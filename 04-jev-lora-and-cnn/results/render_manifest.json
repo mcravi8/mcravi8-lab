@@ -1,0 +1,197 @@
+{
+  "window_sessions": 5,
+  "vol_weeks": 12,
+  "flat_band": 0.3333333333333333,
+  "train_end": "2025-10-03",
+  "gap_dropped": [
+    "2025-10-10"
+  ],
+  "test_start": "2025-10-17",
+  "test_end": "2026-10-02",
+  "first_chart": "2024-04-05",
+  "holiday_short_next_weeks": 264,
+  "input_sha256": {
+    "TSLA": "023ad1d6f1a8d2ab0391084681bbbf74b51fbe11fb05de57b92266c33231ac56",
+    "NVDA": "5736512876451130eb5be7a01c2f527659f7831e6bfbf5d90a1bfd816e9b9952",
+    "PLTR": "4e7e3ff88dcb54f2f761c9c46586054705ed5e7a88aa78961e6620d39f97f11f",
+    "COIN": "a52a035caa8c6409ea160e0e57414e4068d40caa2f9754492a43dd179506f166",
+    "AAPL": "7886cdcde11c040fbe502ccc54401ca9b66ecc1d5074cdb70922b24d7cafafde",
+    "MSFT": "8a8fdb7dbe7ae5ea2776782022037fb011303d34be6413002ae7c3236a5257fa",
+    "AMZN": "7333f66422211eac4215b7e5329112efc39294b75cd51c532e4539cb452fd161",
+    "META": "056a509ca4ba3bfa7380e51ea051e50b87805bde6235aead27e72ff50e9585a3",
+    "KO": "e27cfff24bbd6bd8582cf5ec944756dfc0246a6d78eb045408cf3c528eb0b803",
+    "JNJ": "1d2a336ef2f84373fd203ad44240ca3af782727931e16861f2e4aab0eaf01e09",
+    "PG": "4aaa195542babc9ef3c36403c63e07e2a62ff2913b767d126638cb2c06a1d2a3",
+    "SPY": "5fc0bb39bd23196b4a5f9f2f9499e228c1aede1256b7a89fac0c5fe6ce976faf"
+  },
+  "counts": {
+    "TSLA": {
+      "train": {
+        "Up": 24,
+        "Flat": 20,
+        "Down": 20,
+        "total": 64
+      },
+      "test": {
+        "Up": 15,
+        "Flat": 14,
+        "Down": 12,
+        "total": 41
+      }
+    },
+    "NVDA": {
+      "train": {
+        "Up": 20,
+        "Flat": 22,
+        "Down": 22,
+        "total": 64
+      },
+      "test": {
+        "Up": 16,
+        "Flat": 10,
+        "Down": 15,
+        "total": 41
+      }
+    },
+    "PLTR": {
+      "train": {
+        "Up": 28,
+        "Flat": 21,
+        "Down": 15,
+        "total": 64
+      },
+      "test": {
+        "Up": 14,
+        "Flat": 14,
+        "Down": 13,
+        "total": 41
+      }
+    },
+    "COIN": {
+      "train": {
+        "Up": 17,
+        "Flat": 21,
+        "Down": 26,
+        "total": 64
+      },
+      "test": {
+        "Up": 12,
+        "Flat": 14,
+        "Down": 15,
+        "total": 41
+      }
+    },
+    "AAPL": {
+      "train": {
+        "Up": 26,
+        "Flat": 19,
+        "Down": 19,
+        "total": 64
+      },
+      "test": {
+        "Up": 19,
+        "Flat": 12,
+        "Down": 10,
+        "total": 41
+      }
+    },
+    "MSFT": {
+      "train": {
+        "Up": 20,
+        "Flat": 21,
+        "Down": 23,
+        "total": 64
+      },
+      "test": {
+        "Up": 16,
+        "Flat": 12,
+        "Down": 13,
+        "total": 41
+      }
+    },
+    "AMZN": {
+      "train": {
+        "Up": 17,
+        "Flat": 27,
+        "Down": 20,
+        "total": 64
+      },
+      "test": {
+        "Up": 14,
+        "Flat": 15,
+        "Down": 12,
+        "total": 41
+      }
+    },
+    "META": {
+      "train": {
+        "Up": 24,
+        "Flat": 16,
+        "Down": 24,
+        "total": 64
+      },
+      "test": {
+        "Up": 14,
+        "Flat": 9,
+        "Down": 18,
+        "total": 41
+      }
+    },
+    "KO": {
+      "train": {
+        "Up": 24,
+        "Flat": 19,
+        "Down": 21,
+        "total": 64
+      },
+      "test": {
+        "Up": 19,
+        "Flat": 11,
+        "Down": 11,
+        "total": 41
+      }
+    },
+    "JNJ": {
+      "train": {
+        "Up": 29,
+        "Flat": 16,
+        "Down": 19,
+        "total": 64
+      },
+      "test": {
+        "Up": 17,
+        "Flat": 9,
+        "Down": 15,
+        "total": 41
+      }
+    },
+    "PG": {
+      "train": {
+        "Up": 31,
+        "Flat": 15,
+        "Down": 18,
+        "total": 64
+      },
+      "test": {
+        "Up": 14,
+        "Flat": 14,
+        "Down": 13,
+        "total": 41
+      }
+    },
+    "SPY": {
+      "train": {
+        "Up": 28,
+        "Flat": 16,
+        "Down": 20,
+        "total": 64
+      },
+      "test": {
+        "Up": 17,
+        "Flat": 13,
+        "Down": 11,
+        "total": 41
+      }
+    }
+  }
+}
