@@ -1,0 +1,1201 @@
+label,split,ticker,year,count
+Bearish Engulfing,test,ABBV,2021,1
+Bearish Engulfing,test,ABBV,2023,1
+Bearish Engulfing,test,ADBE,2021,1
+Bearish Engulfing,test,AMD,2019,1
+Bearish Engulfing,test,AMD,2020,1
+Bearish Engulfing,test,AMD,2022,1
+Bearish Engulfing,test,AMZN,2025,1
+Bearish Engulfing,test,BA,2023,1
+Bearish Engulfing,test,BA,2024,1
+Bearish Engulfing,test,BAC,2023,1
+Bearish Engulfing,test,BRK-B,2020,1
+Bearish Engulfing,test,BRK-B,2022,1
+Bearish Engulfing,test,BRK-B,2025,1
+Bearish Engulfing,test,CAT,2020,1
+Bearish Engulfing,test,CAT,2026,1
+Bearish Engulfing,test,COST,2020,1
+Bearish Engulfing,test,COST,2021,1
+Bearish Engulfing,test,COST,2023,1
+Bearish Engulfing,test,COST,2024,1
+Bearish Engulfing,test,CRM,2022,1
+Bearish Engulfing,test,CSCO,2021,1
+Bearish Engulfing,test,CSCO,2024,1
+Bearish Engulfing,test,DIA,2019,1
+Bearish Engulfing,test,DIA,2023,1
+Bearish Engulfing,test,DIA,2024,1
+Bearish Engulfing,test,DIS,2021,1
+Bearish Engulfing,test,GE,2019,1
+Bearish Engulfing,test,GE,2023,1
+Bearish Engulfing,test,GS,2021,1
+Bearish Engulfing,test,GS,2022,1
+Bearish Engulfing,test,GS,2025,1
+Bearish Engulfing,test,GS,2026,1
+Bearish Engulfing,test,JNJ,2019,1
+Bearish Engulfing,test,JPM,2024,1
+Bearish Engulfing,test,JPM,2025,1
+Bearish Engulfing,test,KO,2019,1
+Bearish Engulfing,test,KO,2024,1
+Bearish Engulfing,test,MA,2021,1
+Bearish Engulfing,test,MA,2024,1
+Bearish Engulfing,test,MCD,2026,1
+Bearish Engulfing,test,META,2021,1
+Bearish Engulfing,test,META,2022,1
+Bearish Engulfing,test,META,2024,1
+Bearish Engulfing,test,META,2026,1
+Bearish Engulfing,test,MRK,2019,1
+Bearish Engulfing,test,NFLX,2019,1
+Bearish Engulfing,test,NKE,2023,1
+Bearish Engulfing,test,NVDA,2021,1
+Bearish Engulfing,test,NVDA,2022,1
+Bearish Engulfing,test,NVDA,2026,1
+Bearish Engulfing,test,ORCL,2019,1
+Bearish Engulfing,test,PEP,2021,1
+Bearish Engulfing,test,PEP,2023,1
+Bearish Engulfing,test,PFE,2020,1
+Bearish Engulfing,test,PG,2020,1
+Bearish Engulfing,test,PLTR,2025,1
+Bearish Engulfing,test,QCOM,2021,1
+Bearish Engulfing,test,QCOM,2024,1
+Bearish Engulfing,test,QQQ,2019,1
+Bearish Engulfing,test,QQQ,2023,1
+Bearish Engulfing,test,QQQ,2024,1
+Bearish Engulfing,test,QQQ,2025,1
+Bearish Engulfing,test,SPY,2021,1
+Bearish Engulfing,test,SPY,2022,1
+Bearish Engulfing,test,TXN,2021,1
+Bearish Engulfing,test,TXN,2022,1
+Bearish Engulfing,test,UNH,2023,1
+Bearish Engulfing,test,V,2023,1
+Bearish Engulfing,test,WFC,2019,1
+Bearish Engulfing,test,WFC,2026,1
+Bearish Engulfing,test,WMT,2019,1
+Bearish Engulfing,test,XLF,2020,1
+Bearish Engulfing,test,XLF,2022,1
+Bearish Engulfing,test,XLF,2026,1
+Bearish Engulfing,test,XOM,2026,1
+Bearish Engulfing,train,AAPL,2008,1
+Bearish Engulfing,train,AAPL,2011,1
+Bearish Engulfing,train,AAPL,2014,1
+Bearish Engulfing,train,ADBE,2012,1
+Bearish Engulfing,train,ADBE,2015,1
+Bearish Engulfing,train,AMD,2011,1
+Bearish Engulfing,train,AMD,2016,1
+Bearish Engulfing,train,AMZN,2009,1
+Bearish Engulfing,train,AMZN,2010,1
+Bearish Engulfing,train,BA,2012,1
+Bearish Engulfing,train,BAC,2016,1
+Bearish Engulfing,train,BAC,2017,1
+Bearish Engulfing,train,CAT,2010,1
+Bearish Engulfing,train,COST,2011,1
+Bearish Engulfing,train,CRM,2012,1
+Bearish Engulfing,train,CSCO,2007,1
+Bearish Engulfing,train,CSCO,2015,1
+Bearish Engulfing,train,CSCO,2018,1
+Bearish Engulfing,train,CVX,2010,1
+Bearish Engulfing,train,CVX,2012,1
+Bearish Engulfing,train,CVX,2017,1
+Bearish Engulfing,train,DIA,2005,1
+Bearish Engulfing,train,DIA,2017,1
+Bearish Engulfing,train,DIS,2006,1
+Bearish Engulfing,train,DIS,2012,1
+Bearish Engulfing,train,GE,2005,1
+Bearish Engulfing,train,GE,2014,1
+Bearish Engulfing,train,GE,2017,1
+Bearish Engulfing,train,GOOGL,2005,1
+Bearish Engulfing,train,GOOGL,2017,1
+Bearish Engulfing,train,GS,2005,1
+Bearish Engulfing,train,HD,2005,1
+Bearish Engulfing,train,HD,2012,1
+Bearish Engulfing,train,IBM,2008,1
+Bearish Engulfing,train,IBM,2012,1
+Bearish Engulfing,train,INTC,2015,1
+Bearish Engulfing,train,INTC,2016,1
+Bearish Engulfing,train,IWM,2008,1
+Bearish Engulfing,train,JNJ,2012,1
+Bearish Engulfing,train,JPM,2009,1
+Bearish Engulfing,train,KO,2005,1
+Bearish Engulfing,train,KO,2017,1
+Bearish Engulfing,train,MA,2018,1
+Bearish Engulfing,train,MCD,2007,1
+Bearish Engulfing,train,MCD,2010,1
+Bearish Engulfing,train,MCD,2011,1
+Bearish Engulfing,train,MCD,2015,1
+Bearish Engulfing,train,META,2013,1
+Bearish Engulfing,train,MRK,2005,1
+Bearish Engulfing,train,MRK,2012,1
+Bearish Engulfing,train,MSFT,2008,1
+Bearish Engulfing,train,MSFT,2009,1
+Bearish Engulfing,train,NFLX,2015,1
+Bearish Engulfing,train,NKE,2007,1
+Bearish Engulfing,train,NKE,2015,1
+Bearish Engulfing,train,NKE,2018,1
+Bearish Engulfing,train,NVDA,2006,1
+Bearish Engulfing,train,PEP,2005,1
+Bearish Engulfing,train,PEP,2009,1
+Bearish Engulfing,train,PEP,2012,1
+Bearish Engulfing,train,PFE,2010,1
+Bearish Engulfing,train,PFE,2017,1
+Bearish Engulfing,train,QCOM,2006,1
+Bearish Engulfing,train,QQQ,2014,1
+Bearish Engulfing,train,QQQ,2015,1
+Bearish Engulfing,train,TSLA,2016,1
+Bearish Engulfing,train,TXN,2006,1
+Bearish Engulfing,train,UNH,2008,1
+Bearish Engulfing,train,UNH,2010,1
+Bearish Engulfing,train,V,2011,1
+Bearish Engulfing,train,WMT,2016,1
+Bearish Engulfing,train,XLF,2011,1
+Bearish Engulfing,train,XLF,2018,1
+Bearish Engulfing,train,XOM,2005,1
+Bearish Engulfing,train,XOM,2010,1
+Bullish Engulfing,test,ABBV,2021,1
+Bullish Engulfing,test,ABBV,2023,1
+Bullish Engulfing,test,ADBE,2021,1
+Bullish Engulfing,test,AMD,2019,1
+Bullish Engulfing,test,AMD,2020,1
+Bullish Engulfing,test,AMD,2022,1
+Bullish Engulfing,test,AMZN,2025,1
+Bullish Engulfing,test,BA,2023,1
+Bullish Engulfing,test,BA,2024,1
+Bullish Engulfing,test,BAC,2023,1
+Bullish Engulfing,test,BRK-B,2020,1
+Bullish Engulfing,test,BRK-B,2022,1
+Bullish Engulfing,test,BRK-B,2025,1
+Bullish Engulfing,test,CAT,2020,1
+Bullish Engulfing,test,CAT,2026,1
+Bullish Engulfing,test,COST,2020,1
+Bullish Engulfing,test,COST,2021,1
+Bullish Engulfing,test,COST,2023,1
+Bullish Engulfing,test,COST,2024,1
+Bullish Engulfing,test,CRM,2022,1
+Bullish Engulfing,test,CSCO,2021,1
+Bullish Engulfing,test,CSCO,2024,1
+Bullish Engulfing,test,DIA,2019,1
+Bullish Engulfing,test,DIA,2023,1
+Bullish Engulfing,test,DIA,2024,1
+Bullish Engulfing,test,DIS,2021,1
+Bullish Engulfing,test,GE,2019,1
+Bullish Engulfing,test,GE,2023,1
+Bullish Engulfing,test,GS,2021,1
+Bullish Engulfing,test,GS,2022,1
+Bullish Engulfing,test,GS,2025,1
+Bullish Engulfing,test,GS,2026,1
+Bullish Engulfing,test,JNJ,2019,1
+Bullish Engulfing,test,JPM,2024,1
+Bullish Engulfing,test,JPM,2025,1
+Bullish Engulfing,test,KO,2019,1
+Bullish Engulfing,test,KO,2024,1
+Bullish Engulfing,test,MA,2021,1
+Bullish Engulfing,test,MA,2024,1
+Bullish Engulfing,test,MCD,2026,1
+Bullish Engulfing,test,META,2021,1
+Bullish Engulfing,test,META,2022,1
+Bullish Engulfing,test,META,2024,1
+Bullish Engulfing,test,META,2026,1
+Bullish Engulfing,test,MRK,2019,1
+Bullish Engulfing,test,NFLX,2019,1
+Bullish Engulfing,test,NKE,2023,1
+Bullish Engulfing,test,NVDA,2021,1
+Bullish Engulfing,test,NVDA,2022,1
+Bullish Engulfing,test,NVDA,2026,1
+Bullish Engulfing,test,ORCL,2019,1
+Bullish Engulfing,test,PEP,2021,1
+Bullish Engulfing,test,PEP,2023,1
+Bullish Engulfing,test,PFE,2020,1
+Bullish Engulfing,test,PG,2020,1
+Bullish Engulfing,test,PLTR,2025,1
+Bullish Engulfing,test,QCOM,2021,1
+Bullish Engulfing,test,QCOM,2024,1
+Bullish Engulfing,test,QQQ,2019,1
+Bullish Engulfing,test,QQQ,2023,1
+Bullish Engulfing,test,QQQ,2024,1
+Bullish Engulfing,test,QQQ,2025,1
+Bullish Engulfing,test,SPY,2021,1
+Bullish Engulfing,test,SPY,2022,1
+Bullish Engulfing,test,TXN,2021,1
+Bullish Engulfing,test,TXN,2022,1
+Bullish Engulfing,test,UNH,2023,1
+Bullish Engulfing,test,V,2023,1
+Bullish Engulfing,test,WFC,2019,1
+Bullish Engulfing,test,WFC,2026,1
+Bullish Engulfing,test,WMT,2019,1
+Bullish Engulfing,test,XLF,2020,1
+Bullish Engulfing,test,XLF,2022,1
+Bullish Engulfing,test,XLF,2026,1
+Bullish Engulfing,test,XOM,2026,1
+Bullish Engulfing,train,AAPL,2008,1
+Bullish Engulfing,train,AAPL,2011,1
+Bullish Engulfing,train,AAPL,2014,1
+Bullish Engulfing,train,ADBE,2012,1
+Bullish Engulfing,train,ADBE,2015,1
+Bullish Engulfing,train,AMD,2011,1
+Bullish Engulfing,train,AMD,2016,1
+Bullish Engulfing,train,AMZN,2009,1
+Bullish Engulfing,train,AMZN,2010,1
+Bullish Engulfing,train,BA,2012,1
+Bullish Engulfing,train,BAC,2016,1
+Bullish Engulfing,train,BAC,2017,1
+Bullish Engulfing,train,CAT,2010,1
+Bullish Engulfing,train,COST,2011,1
+Bullish Engulfing,train,CRM,2012,1
+Bullish Engulfing,train,CSCO,2007,1
+Bullish Engulfing,train,CSCO,2015,1
+Bullish Engulfing,train,CSCO,2018,1
+Bullish Engulfing,train,CVX,2010,1
+Bullish Engulfing,train,CVX,2012,1
+Bullish Engulfing,train,CVX,2017,1
+Bullish Engulfing,train,DIA,2005,1
+Bullish Engulfing,train,DIA,2017,1
+Bullish Engulfing,train,DIS,2006,1
+Bullish Engulfing,train,DIS,2012,1
+Bullish Engulfing,train,GE,2005,1
+Bullish Engulfing,train,GE,2014,1
+Bullish Engulfing,train,GE,2017,1
+Bullish Engulfing,train,GOOGL,2005,1
+Bullish Engulfing,train,GOOGL,2017,1
+Bullish Engulfing,train,GS,2005,1
+Bullish Engulfing,train,HD,2005,1
+Bullish Engulfing,train,HD,2012,1
+Bullish Engulfing,train,IBM,2008,1
+Bullish Engulfing,train,IBM,2012,1
+Bullish Engulfing,train,INTC,2015,1
+Bullish Engulfing,train,INTC,2016,1
+Bullish Engulfing,train,IWM,2008,1
+Bullish Engulfing,train,JNJ,2012,1
+Bullish Engulfing,train,JPM,2009,1
+Bullish Engulfing,train,KO,2005,1
+Bullish Engulfing,train,KO,2017,1
+Bullish Engulfing,train,MA,2018,1
+Bullish Engulfing,train,MCD,2007,1
+Bullish Engulfing,train,MCD,2010,1
+Bullish Engulfing,train,MCD,2011,1
+Bullish Engulfing,train,MCD,2015,1
+Bullish Engulfing,train,META,2013,1
+Bullish Engulfing,train,MRK,2005,1
+Bullish Engulfing,train,MRK,2012,1
+Bullish Engulfing,train,MSFT,2008,1
+Bullish Engulfing,train,MSFT,2009,1
+Bullish Engulfing,train,NFLX,2015,1
+Bullish Engulfing,train,NKE,2007,1
+Bullish Engulfing,train,NKE,2015,1
+Bullish Engulfing,train,NKE,2018,1
+Bullish Engulfing,train,NVDA,2006,1
+Bullish Engulfing,train,PEP,2005,1
+Bullish Engulfing,train,PEP,2009,1
+Bullish Engulfing,train,PEP,2012,1
+Bullish Engulfing,train,PFE,2010,1
+Bullish Engulfing,train,PFE,2017,1
+Bullish Engulfing,train,QCOM,2006,1
+Bullish Engulfing,train,QQQ,2014,1
+Bullish Engulfing,train,QQQ,2015,1
+Bullish Engulfing,train,TSLA,2016,1
+Bullish Engulfing,train,TXN,2006,1
+Bullish Engulfing,train,UNH,2008,1
+Bullish Engulfing,train,UNH,2010,1
+Bullish Engulfing,train,V,2011,1
+Bullish Engulfing,train,WMT,2016,1
+Bullish Engulfing,train,XLF,2011,1
+Bullish Engulfing,train,XLF,2018,1
+Bullish Engulfing,train,XOM,2005,1
+Bullish Engulfing,train,XOM,2010,1
+Doji,test,ABBV,2021,1
+Doji,test,ABBV,2023,1
+Doji,test,ADBE,2021,1
+Doji,test,AMD,2019,1
+Doji,test,AMD,2020,1
+Doji,test,AMD,2022,1
+Doji,test,AMZN,2025,1
+Doji,test,BA,2023,1
+Doji,test,BA,2024,1
+Doji,test,BAC,2023,1
+Doji,test,BRK-B,2020,1
+Doji,test,BRK-B,2022,1
+Doji,test,BRK-B,2025,1
+Doji,test,CAT,2020,1
+Doji,test,CAT,2026,1
+Doji,test,COST,2020,1
+Doji,test,COST,2021,1
+Doji,test,COST,2023,1
+Doji,test,COST,2024,1
+Doji,test,CRM,2022,1
+Doji,test,CSCO,2021,1
+Doji,test,CSCO,2024,1
+Doji,test,DIA,2019,1
+Doji,test,DIA,2023,1
+Doji,test,DIA,2024,1
+Doji,test,DIS,2021,1
+Doji,test,GE,2019,1
+Doji,test,GE,2023,1
+Doji,test,GS,2021,1
+Doji,test,GS,2022,1
+Doji,test,GS,2025,1
+Doji,test,GS,2026,1
+Doji,test,JNJ,2019,1
+Doji,test,JPM,2024,1
+Doji,test,JPM,2025,1
+Doji,test,KO,2019,1
+Doji,test,KO,2024,1
+Doji,test,MA,2021,1
+Doji,test,MA,2024,1
+Doji,test,MCD,2026,1
+Doji,test,META,2021,1
+Doji,test,META,2022,1
+Doji,test,META,2024,1
+Doji,test,META,2026,1
+Doji,test,MRK,2019,1
+Doji,test,NFLX,2019,1
+Doji,test,NKE,2023,1
+Doji,test,NVDA,2021,1
+Doji,test,NVDA,2022,1
+Doji,test,NVDA,2026,1
+Doji,test,ORCL,2019,1
+Doji,test,PEP,2021,1
+Doji,test,PEP,2023,1
+Doji,test,PFE,2020,1
+Doji,test,PG,2020,1
+Doji,test,PLTR,2025,1
+Doji,test,QCOM,2021,1
+Doji,test,QCOM,2024,1
+Doji,test,QQQ,2019,1
+Doji,test,QQQ,2023,1
+Doji,test,QQQ,2024,1
+Doji,test,QQQ,2025,1
+Doji,test,SPY,2021,1
+Doji,test,SPY,2022,1
+Doji,test,TXN,2021,1
+Doji,test,TXN,2022,1
+Doji,test,UNH,2023,1
+Doji,test,V,2023,1
+Doji,test,WFC,2019,1
+Doji,test,WFC,2026,1
+Doji,test,WMT,2019,1
+Doji,test,XLF,2020,1
+Doji,test,XLF,2022,1
+Doji,test,XLF,2026,1
+Doji,test,XOM,2026,1
+Doji,train,AAPL,2008,1
+Doji,train,AAPL,2011,1
+Doji,train,AAPL,2014,1
+Doji,train,ADBE,2012,1
+Doji,train,ADBE,2015,1
+Doji,train,AMD,2011,1
+Doji,train,AMD,2016,1
+Doji,train,AMZN,2009,1
+Doji,train,AMZN,2010,1
+Doji,train,BA,2012,1
+Doji,train,BAC,2016,1
+Doji,train,BAC,2017,1
+Doji,train,CAT,2010,1
+Doji,train,COST,2011,1
+Doji,train,CRM,2012,1
+Doji,train,CSCO,2007,1
+Doji,train,CSCO,2015,1
+Doji,train,CSCO,2018,1
+Doji,train,CVX,2010,1
+Doji,train,CVX,2012,1
+Doji,train,CVX,2017,1
+Doji,train,DIA,2005,1
+Doji,train,DIA,2017,1
+Doji,train,DIS,2006,1
+Doji,train,DIS,2012,1
+Doji,train,GE,2005,1
+Doji,train,GE,2014,1
+Doji,train,GE,2017,1
+Doji,train,GOOGL,2005,1
+Doji,train,GOOGL,2017,1
+Doji,train,GS,2005,1
+Doji,train,HD,2005,1
+Doji,train,HD,2012,1
+Doji,train,IBM,2008,1
+Doji,train,IBM,2012,1
+Doji,train,INTC,2015,1
+Doji,train,INTC,2016,1
+Doji,train,IWM,2008,1
+Doji,train,JNJ,2012,1
+Doji,train,JPM,2009,1
+Doji,train,KO,2005,1
+Doji,train,KO,2017,1
+Doji,train,MA,2018,1
+Doji,train,MCD,2007,1
+Doji,train,MCD,2010,1
+Doji,train,MCD,2011,1
+Doji,train,MCD,2015,1
+Doji,train,META,2013,1
+Doji,train,MRK,2005,1
+Doji,train,MRK,2012,1
+Doji,train,MSFT,2008,1
+Doji,train,MSFT,2009,1
+Doji,train,NFLX,2015,1
+Doji,train,NKE,2007,1
+Doji,train,NKE,2015,1
+Doji,train,NKE,2018,1
+Doji,train,NVDA,2006,1
+Doji,train,PEP,2005,1
+Doji,train,PEP,2009,1
+Doji,train,PEP,2012,1
+Doji,train,PFE,2010,1
+Doji,train,PFE,2017,1
+Doji,train,QCOM,2006,1
+Doji,train,QQQ,2014,1
+Doji,train,QQQ,2015,1
+Doji,train,TSLA,2016,1
+Doji,train,TXN,2006,1
+Doji,train,UNH,2008,1
+Doji,train,UNH,2010,1
+Doji,train,V,2011,1
+Doji,train,WMT,2016,1
+Doji,train,XLF,2011,1
+Doji,train,XLF,2018,1
+Doji,train,XOM,2005,1
+Doji,train,XOM,2010,1
+Evening Star,test,AAPL,2019,1
+Evening Star,test,ABBV,2021,1
+Evening Star,test,ADBE,2020,1
+Evening Star,test,ADBE,2021,1
+Evening Star,test,ADBE,2023,1
+Evening Star,test,ADBE,2025,1
+Evening Star,test,AMD,2022,1
+Evening Star,test,AMZN,2024,1
+Evening Star,test,BA,2023,1
+Evening Star,test,BA,2024,1
+Evening Star,test,BA,2025,1
+Evening Star,test,BRK-B,2020,1
+Evening Star,test,BRK-B,2022,1
+Evening Star,test,BRK-B,2024,1
+Evening Star,test,CAT,2021,1
+Evening Star,test,CAT,2026,1
+Evening Star,test,COIN,2022,1
+Evening Star,test,COST,2023,1
+Evening Star,test,CSCO,2021,1
+Evening Star,test,DIA,2019,1
+Evening Star,test,DIA,2024,1
+Evening Star,test,DIS,2021,1
+Evening Star,test,DIS,2023,1
+Evening Star,test,GE,2021,1
+Evening Star,test,GOOGL,2020,1
+Evening Star,test,GS,2026,1
+Evening Star,test,HD,2019,1
+Evening Star,test,IBM,2019,1
+Evening Star,test,IBM,2021,1
+Evening Star,test,INTC,2024,1
+Evening Star,test,INTC,2026,1
+Evening Star,test,IWM,2024,1
+Evening Star,test,IWM,2026,1
+Evening Star,test,JNJ,2019,1
+Evening Star,test,JNJ,2024,1
+Evening Star,test,JPM,2021,1
+Evening Star,test,KO,2019,1
+Evening Star,test,KO,2022,1
+Evening Star,test,KO,2026,1
+Evening Star,test,MA,2022,1
+Evening Star,test,MA,2024,1
+Evening Star,test,MCD,2025,1
+Evening Star,test,MRK,2021,1
+Evening Star,test,MRK,2022,1
+Evening Star,test,MRK,2023,1
+Evening Star,test,MSFT,2020,1
+Evening Star,test,MSFT,2023,1
+Evening Star,test,NFLX,2023,1
+Evening Star,test,NKE,2025,1
+Evening Star,test,NVDA,2022,1
+Evening Star,test,ORCL,2021,1
+Evening Star,test,PEP,2019,1
+Evening Star,test,PEP,2021,1
+Evening Star,test,PFE,2022,1
+Evening Star,test,PFE,2023,1
+Evening Star,test,PFE,2026,1
+Evening Star,test,PG,2020,1
+Evening Star,test,PG,2023,1
+Evening Star,test,PG,2024,1
+Evening Star,test,PG,2025,1
+Evening Star,test,PLTR,2021,1
+Evening Star,test,PLTR,2024,1
+Evening Star,test,PLTR,2026,1
+Evening Star,test,QCOM,2021,1
+Evening Star,test,QCOM,2024,1
+Evening Star,test,QQQ,2019,1
+Evening Star,test,SPY,2019,1
+Evening Star,test,TSLA,2020,1
+Evening Star,test,TSLA,2021,1
+Evening Star,test,TXN,2021,1
+Evening Star,test,TXN,2022,1
+Evening Star,test,TXN,2023,1
+Evening Star,test,XLF,2020,1
+Evening Star,test,XLF,2022,1
+Evening Star,test,XOM,2026,1
+Evening Star,train,AAPL,2011,1
+Evening Star,train,AAPL,2014,1
+Evening Star,train,ABBV,2015,1
+Evening Star,train,ADBE,2008,1
+Evening Star,train,AMD,2008,1
+Evening Star,train,AMZN,2009,1
+Evening Star,train,AMZN,2010,1
+Evening Star,train,BA,2006,1
+Evening Star,train,BA,2007,1
+Evening Star,train,BA,2012,1
+Evening Star,train,BAC,2009,1
+Evening Star,train,BAC,2012,1
+Evening Star,train,BAC,2016,1
+Evening Star,train,BAC,2017,1
+Evening Star,train,COST,2006,1
+Evening Star,train,COST,2011,1
+Evening Star,train,CRM,2012,1
+Evening Star,train,CRM,2013,1
+Evening Star,train,CSCO,2007,1
+Evening Star,train,CSCO,2011,1
+Evening Star,train,CSCO,2018,1
+Evening Star,train,CVX,2008,1
+Evening Star,train,CVX,2017,1
+Evening Star,train,DIS,2006,1
+Evening Star,train,DIS,2018,1
+Evening Star,train,GE,2005,1
+Evening Star,train,GE,2012,1
+Evening Star,train,GE,2014,1
+Evening Star,train,GOOGL,2005,1
+Evening Star,train,GOOGL,2011,1
+Evening Star,train,GS,2005,1
+Evening Star,train,HD,2005,1
+Evening Star,train,HD,2008,1
+Evening Star,train,HD,2015,1
+Evening Star,train,IBM,2018,1
+Evening Star,train,INTC,2010,1
+Evening Star,train,INTC,2011,1
+Evening Star,train,INTC,2015,1
+Evening Star,train,JPM,2006,1
+Evening Star,train,JPM,2015,1
+Evening Star,train,KO,2010,1
+Evening Star,train,MA,2007,1
+Evening Star,train,MA,2018,1
+Evening Star,train,MCD,2006,1
+Evening Star,train,MCD,2007,1
+Evening Star,train,MCD,2010,1
+Evening Star,train,MCD,2011,1
+Evening Star,train,MCD,2015,1
+Evening Star,train,MCD,2016,1
+Evening Star,train,META,2013,1
+Evening Star,train,META,2018,1
+Evening Star,train,MRK,2012,1
+Evening Star,train,MSFT,2007,1
+Evening Star,train,MSFT,2008,1
+Evening Star,train,MSFT,2009,1
+Evening Star,train,MSFT,2013,1
+Evening Star,train,MSFT,2015,1
+Evening Star,train,NFLX,2015,1
+Evening Star,train,NFLX,2018,1
+Evening Star,train,NKE,2005,1
+Evening Star,train,NKE,2007,1
+Evening Star,train,NVDA,2011,1
+Evening Star,train,PEP,2005,1
+Evening Star,train,PEP,2009,1
+Evening Star,train,QQQ,2006,1
+Evening Star,train,QQQ,2014,1
+Evening Star,train,SPY,2011,1
+Evening Star,train,TSLA,2016,1
+Evening Star,train,TXN,2006,1
+Evening Star,train,TXN,2012,1
+Evening Star,train,V,2011,1
+Evening Star,train,V,2013,1
+Evening Star,train,WMT,2010,1
+Evening Star,train,WMT,2017,1
+Evening Star,train,XOM,2005,1
+Hammer,test,ABBV,2021,1
+Hammer,test,ABBV,2022,1
+Hammer,test,ABBV,2023,1
+Hammer,test,ABBV,2024,1
+Hammer,test,ADBE,2021,1
+Hammer,test,ADBE,2023,1
+Hammer,test,AMD,2020,1
+Hammer,test,AMD,2022,1
+Hammer,test,AMZN,2024,1
+Hammer,test,AMZN,2025,1
+Hammer,test,BA,2023,1
+Hammer,test,BA,2024,1
+Hammer,test,BA,2026,1
+Hammer,test,BAC,2023,1
+Hammer,test,BRK-B,2020,1
+Hammer,test,BRK-B,2022,1
+Hammer,test,BRK-B,2024,1
+Hammer,test,BRK-B,2025,1
+Hammer,test,CAT,2020,1
+Hammer,test,CAT,2026,1
+Hammer,test,COST,2020,1
+Hammer,test,COST,2021,1
+Hammer,test,COST,2023,1
+Hammer,test,COST,2024,1
+Hammer,test,CRM,2022,1
+Hammer,test,CSCO,2021,1
+Hammer,test,CSCO,2024,1
+Hammer,test,DIA,2019,1
+Hammer,test,DIS,2021,1
+Hammer,test,DIS,2025,1
+Hammer,test,GE,2019,1
+Hammer,test,GE,2021,1
+Hammer,test,GE,2023,1
+Hammer,test,GS,2021,1
+Hammer,test,GS,2022,1
+Hammer,test,GS,2025,1
+Hammer,test,GS,2026,1
+Hammer,test,JPM,2024,1
+Hammer,test,JPM,2025,1
+Hammer,test,KO,2019,1
+Hammer,test,KO,2022,1
+Hammer,test,KO,2024,1
+Hammer,test,MA,2021,1
+Hammer,test,META,2022,1
+Hammer,test,META,2024,1
+Hammer,test,MRK,2019,1
+Hammer,test,MSFT,2024,1
+Hammer,test,NFLX,2019,1
+Hammer,test,NKE,2023,1
+Hammer,test,NVDA,2022,1
+Hammer,test,NVDA,2026,1
+Hammer,test,ORCL,2019,1
+Hammer,test,PEP,2021,1
+Hammer,test,PEP,2023,1
+Hammer,test,PFE,2020,1
+Hammer,test,PG,2020,1
+Hammer,test,PLTR,2020,1
+Hammer,test,PLTR,2025,1
+Hammer,test,QCOM,2020,1
+Hammer,test,QCOM,2021,1
+Hammer,test,QCOM,2024,1
+Hammer,test,QQQ,2019,1
+Hammer,test,QQQ,2023,1
+Hammer,test,QQQ,2024,1
+Hammer,test,QQQ,2025,1
+Hammer,test,SPY,2022,1
+Hammer,test,TXN,2021,1
+Hammer,test,UNH,2023,1
+Hammer,test,UNH,2025,1
+Hammer,test,WFC,2019,1
+Hammer,test,WFC,2026,1
+Hammer,test,WMT,2019,1
+Hammer,test,XLF,2022,1
+Hammer,test,XLF,2026,1
+Hammer,test,XOM,2026,1
+Hammer,train,AAPL,2008,1
+Hammer,train,AAPL,2011,1
+Hammer,train,AAPL,2014,1
+Hammer,train,ADBE,2008,1
+Hammer,train,ADBE,2012,1
+Hammer,train,ADBE,2015,1
+Hammer,train,AMD,2011,1
+Hammer,train,AMD,2016,1
+Hammer,train,AMZN,2009,1
+Hammer,train,AMZN,2010,1
+Hammer,train,BA,2012,1
+Hammer,train,BAC,2016,1
+Hammer,train,BAC,2017,1
+Hammer,train,CAT,2010,1
+Hammer,train,COST,2011,1
+Hammer,train,CRM,2012,1
+Hammer,train,CSCO,2007,1
+Hammer,train,CSCO,2015,1
+Hammer,train,CSCO,2018,1
+Hammer,train,CVX,2010,1
+Hammer,train,CVX,2012,1
+Hammer,train,CVX,2017,1
+Hammer,train,DIA,2005,1
+Hammer,train,GE,2013,1
+Hammer,train,GE,2014,1
+Hammer,train,GE,2017,1
+Hammer,train,GOOGL,2005,1
+Hammer,train,GOOGL,2017,1
+Hammer,train,GS,2005,1
+Hammer,train,HD,2005,1
+Hammer,train,HD,2008,1
+Hammer,train,HD,2012,1
+Hammer,train,IBM,2012,1
+Hammer,train,INTC,2016,1
+Hammer,train,IWM,2008,1
+Hammer,train,JNJ,2012,1
+Hammer,train,JPM,2009,1
+Hammer,train,JPM,2015,1
+Hammer,train,KO,2005,1
+Hammer,train,KO,2017,1
+Hammer,train,MA,2018,1
+Hammer,train,MCD,2007,1
+Hammer,train,MCD,2010,1
+Hammer,train,MCD,2015,1
+Hammer,train,MRK,2005,1
+Hammer,train,MRK,2012,1
+Hammer,train,MSFT,2008,1
+Hammer,train,MSFT,2009,1
+Hammer,train,MSFT,2013,1
+Hammer,train,NFLX,2015,1
+Hammer,train,NKE,2005,1
+Hammer,train,NKE,2007,1
+Hammer,train,NKE,2015,1
+Hammer,train,NKE,2018,1
+Hammer,train,NVDA,2006,1
+Hammer,train,PEP,2005,1
+Hammer,train,PEP,2009,1
+Hammer,train,PEP,2012,1
+Hammer,train,PFE,2010,1
+Hammer,train,PFE,2017,1
+Hammer,train,QCOM,2006,1
+Hammer,train,QCOM,2013,1
+Hammer,train,QQQ,2014,1
+Hammer,train,QQQ,2015,1
+Hammer,train,TSLA,2016,1
+Hammer,train,TXN,2006,1
+Hammer,train,UNH,2008,1
+Hammer,train,UNH,2010,1
+Hammer,train,V,2011,1
+Hammer,train,WMT,2016,1
+Hammer,train,WMT,2017,1
+Hammer,train,XLF,2011,1
+Hammer,train,XLF,2018,1
+Hammer,train,XOM,2005,1
+Hammer,train,XOM,2010,1
+Morning Star,test,AAPL,2020,1
+Morning Star,test,AAPL,2022,1
+Morning Star,test,ADBE,2020,1
+Morning Star,test,AMD,2022,1
+Morning Star,test,AMZN,2023,1
+Morning Star,test,BA,2022,1
+Morning Star,test,BA,2023,1
+Morning Star,test,BAC,2019,1
+Morning Star,test,BRK-B,2020,1
+Morning Star,test,BRK-B,2025,1
+Morning Star,test,CAT,2019,1
+Morning Star,test,COIN,2022,1
+Morning Star,test,COST,2023,1
+Morning Star,test,CRM,2022,1
+Morning Star,test,CSCO,2022,1
+Morning Star,test,CSCO,2025,1
+Morning Star,test,DIS,2020,1
+Morning Star,test,DIS,2021,1
+Morning Star,test,DIS,2022,1
+Morning Star,test,DIS,2026,1
+Morning Star,test,GE,2019,1
+Morning Star,test,GE,2021,1
+Morning Star,test,GOOGL,2020,1
+Morning Star,test,GOOGL,2023,1
+Morning Star,test,GS,2020,1
+Morning Star,test,GS,2026,1
+Morning Star,test,IBM,2019,1
+Morning Star,test,INTC,2022,1
+Morning Star,test,INTC,2025,1
+Morning Star,test,IWM,2021,1
+Morning Star,test,IWM,2026,1
+Morning Star,test,JNJ,2019,1
+Morning Star,test,JNJ,2025,1
+Morning Star,test,JNJ,2026,1
+Morning Star,test,JPM,2024,1
+Morning Star,test,JPM,2025,1
+Morning Star,test,MCD,2022,1
+Morning Star,test,MCD,2025,1
+Morning Star,test,META,2022,1
+Morning Star,test,MRK,2022,1
+Morning Star,test,MRK,2023,1
+Morning Star,test,MSFT,2023,1
+Morning Star,test,NKE,2020,1
+Morning Star,test,NVDA,2021,1
+Morning Star,test,NVDA,2022,1
+Morning Star,test,NVDA,2024,1
+Morning Star,test,ORCL,2019,1
+Morning Star,test,ORCL,2020,1
+Morning Star,test,PEP,2019,1
+Morning Star,test,PEP,2020,1
+Morning Star,test,PEP,2021,1
+Morning Star,test,PFE,2022,1
+Morning Star,test,PFE,2023,1
+Morning Star,test,PFE,2024,1
+Morning Star,test,PG,2019,1
+Morning Star,test,PLTR,2021,1
+Morning Star,test,PLTR,2022,1
+Morning Star,test,QCOM,2021,1
+Morning Star,test,QCOM,2022,1
+Morning Star,test,QQQ,2019,1
+Morning Star,test,QQQ,2022,1
+Morning Star,test,QQQ,2023,1
+Morning Star,test,QQQ,2025,1
+Morning Star,test,TXN,2023,1
+Morning Star,test,TXN,2025,1
+Morning Star,test,UNH,2025,1
+Morning Star,test,UNH,2026,1
+Morning Star,test,V,2020,1
+Morning Star,test,V,2023,1
+Morning Star,test,V,2026,1
+Morning Star,test,WFC,2019,1
+Morning Star,test,WMT,2023,1
+Morning Star,test,XLF,2020,1
+Morning Star,test,XLF,2026,1
+Morning Star,test,XOM,2019,1
+Morning Star,train,AAPL,2008,1
+Morning Star,train,AAPL,2011,1
+Morning Star,train,AAPL,2013,1
+Morning Star,train,AAPL,2014,1
+Morning Star,train,ADBE,2015,1
+Morning Star,train,AMD,2011,1
+Morning Star,train,AMD,2016,1
+Morning Star,train,AMD,2018,1
+Morning Star,train,AMZN,2010,1
+Morning Star,train,AMZN,2015,1
+Morning Star,train,BA,2006,1
+Morning Star,train,BA,2007,1
+Morning Star,train,BAC,2005,1
+Morning Star,train,BAC,2012,1
+Morning Star,train,BAC,2017,1
+Morning Star,train,COST,2008,1
+Morning Star,train,COST,2011,1
+Morning Star,train,CSCO,2013,1
+Morning Star,train,CSCO,2015,1
+Morning Star,train,CVX,2008,1
+Morning Star,train,CVX,2015,1
+Morning Star,train,CVX,2017,1
+Morning Star,train,DIS,2008,1
+Morning Star,train,DIS,2018,1
+Morning Star,train,GE,2005,1
+Morning Star,train,GOOGL,2006,1
+Morning Star,train,GOOGL,2011,1
+Morning Star,train,GS,2010,1
+Morning Star,train,HD,2005,1
+Morning Star,train,HD,2008,1
+Morning Star,train,HD,2009,1
+Morning Star,train,HD,2012,1
+Morning Star,train,HD,2015,1
+Morning Star,train,IBM,2009,1
+Morning Star,train,INTC,2015,1
+Morning Star,train,INTC,2016,1
+Morning Star,train,JPM,2009,1
+Morning Star,train,JPM,2017,1
+Morning Star,train,KO,2005,1
+Morning Star,train,KO,2006,1
+Morning Star,train,KO,2010,1
+Morning Star,train,KO,2011,1
+Morning Star,train,MA,2018,1
+Morning Star,train,MCD,2006,1
+Morning Star,train,MCD,2011,1
+Morning Star,train,MCD,2015,1
+Morning Star,train,MRK,2012,1
+Morning Star,train,MSFT,2007,1
+Morning Star,train,MSFT,2008,1
+Morning Star,train,MSFT,2015,1
+Morning Star,train,NFLX,2018,1
+Morning Star,train,NKE,2005,1
+Morning Star,train,NKE,2007,1
+Morning Star,train,NKE,2015,1
+Morning Star,train,NVDA,2006,1
+Morning Star,train,NVDA,2011,1
+Morning Star,train,PEP,2005,1
+Morning Star,train,PEP,2009,1
+Morning Star,train,PFE,2017,1
+Morning Star,train,PG,2008,1
+Morning Star,train,QQQ,2006,1
+Morning Star,train,QQQ,2015,1
+Morning Star,train,SPY,2011,1
+Morning Star,train,TXN,2007,1
+Morning Star,train,UNH,2008,1
+Morning Star,train,V,2013,1
+Morning Star,train,WFC,2006,1
+Morning Star,train,WFC,2008,1
+Morning Star,train,WFC,2017,1
+Morning Star,train,WMT,2016,1
+Morning Star,train,WMT,2017,1
+Morning Star,train,XLF,2011,1
+Morning Star,train,XLF,2018,1
+Morning Star,train,XOM,2006,1
+Morning Star,train,XOM,2010,1
+None,test,ABBV,2021,1
+None,test,ABBV,2023,1
+None,test,ADBE,2021,1
+None,test,AMD,2019,1
+None,test,AMD,2020,1
+None,test,AMD,2022,1
+None,test,AMZN,2025,1
+None,test,BA,2023,1
+None,test,BA,2024,1
+None,test,BAC,2023,1
+None,test,BRK-B,2020,1
+None,test,BRK-B,2022,1
+None,test,BRK-B,2025,1
+None,test,CAT,2020,1
+None,test,CAT,2026,1
+None,test,COST,2020,1
+None,test,COST,2021,1
+None,test,COST,2023,1
+None,test,COST,2024,1
+None,test,CRM,2022,1
+None,test,CSCO,2021,1
+None,test,CSCO,2024,1
+None,test,DIA,2019,1
+None,test,DIA,2023,1
+None,test,DIA,2024,1
+None,test,DIS,2021,1
+None,test,GE,2019,1
+None,test,GE,2023,1
+None,test,GS,2021,1
+None,test,GS,2022,1
+None,test,GS,2025,1
+None,test,GS,2026,1
+None,test,JNJ,2019,1
+None,test,JPM,2024,1
+None,test,JPM,2025,1
+None,test,KO,2019,1
+None,test,KO,2024,1
+None,test,MA,2021,1
+None,test,MA,2024,1
+None,test,MCD,2026,1
+None,test,META,2021,1
+None,test,META,2022,1
+None,test,META,2024,1
+None,test,META,2026,1
+None,test,MRK,2019,1
+None,test,NFLX,2019,1
+None,test,NKE,2023,1
+None,test,NVDA,2021,1
+None,test,NVDA,2022,1
+None,test,NVDA,2026,1
+None,test,ORCL,2019,1
+None,test,PEP,2021,1
+None,test,PEP,2023,1
+None,test,PFE,2020,1
+None,test,PG,2020,1
+None,test,PLTR,2025,1
+None,test,QCOM,2021,1
+None,test,QCOM,2024,1
+None,test,QQQ,2019,1
+None,test,QQQ,2023,1
+None,test,QQQ,2024,1
+None,test,QQQ,2025,1
+None,test,SPY,2021,1
+None,test,SPY,2022,1
+None,test,TXN,2021,1
+None,test,TXN,2022,1
+None,test,UNH,2023,1
+None,test,V,2023,1
+None,test,WFC,2019,1
+None,test,WFC,2026,1
+None,test,WMT,2019,1
+None,test,XLF,2020,1
+None,test,XLF,2022,1
+None,test,XLF,2026,1
+None,test,XOM,2026,1
+None,train,AAPL,2008,1
+None,train,AAPL,2011,1
+None,train,AAPL,2014,1
+None,train,ADBE,2012,1
+None,train,ADBE,2015,1
+None,train,AMD,2011,1
+None,train,AMD,2016,1
+None,train,AMZN,2009,1
+None,train,AMZN,2010,1
+None,train,BA,2012,1
+None,train,BAC,2016,1
+None,train,BAC,2017,1
+None,train,CAT,2010,1
+None,train,COST,2011,1
+None,train,CRM,2012,1
+None,train,CSCO,2007,1
+None,train,CSCO,2015,1
+None,train,CSCO,2018,1
+None,train,CVX,2010,1
+None,train,CVX,2012,1
+None,train,CVX,2017,1
+None,train,DIA,2005,1
+None,train,DIA,2017,1
+None,train,DIS,2006,1
+None,train,DIS,2012,1
+None,train,GE,2005,1
+None,train,GE,2014,1
+None,train,GE,2017,1
+None,train,GOOGL,2005,1
+None,train,GOOGL,2017,1
+None,train,GS,2005,1
+None,train,HD,2005,1
+None,train,HD,2012,1
+None,train,IBM,2008,1
+None,train,IBM,2012,1
+None,train,INTC,2015,1
+None,train,INTC,2016,1
+None,train,IWM,2008,1
+None,train,JNJ,2012,1
+None,train,JPM,2009,1
+None,train,KO,2005,1
+None,train,KO,2017,1
+None,train,MA,2018,1
+None,train,MCD,2007,1
+None,train,MCD,2010,1
+None,train,MCD,2011,1
+None,train,MCD,2015,1
+None,train,META,2013,1
+None,train,MRK,2005,1
+None,train,MRK,2012,1
+None,train,MSFT,2008,1
+None,train,MSFT,2009,1
+None,train,NFLX,2015,1
+None,train,NKE,2007,1
+None,train,NKE,2015,1
+None,train,NKE,2018,1
+None,train,NVDA,2006,1
+None,train,PEP,2005,1
+None,train,PEP,2009,1
+None,train,PEP,2012,1
+None,train,PFE,2010,1
+None,train,PFE,2017,1
+None,train,QCOM,2006,1
+None,train,QQQ,2014,1
+None,train,QQQ,2015,1
+None,train,TSLA,2016,1
+None,train,TXN,2006,1
+None,train,UNH,2008,1
+None,train,UNH,2010,1
+None,train,V,2011,1
+None,train,WMT,2016,1
+None,train,XLF,2011,1
+None,train,XLF,2018,1
+None,train,XOM,2005,1
+None,train,XOM,2010,1
+Shooting Star,test,ABBV,2021,1
+Shooting Star,test,ABBV,2022,1
+Shooting Star,test,ABBV,2023,1
+Shooting Star,test,ABBV,2024,1
+Shooting Star,test,ADBE,2021,1
+Shooting Star,test,ADBE,2023,1
+Shooting Star,test,AMD,2019,1
+Shooting Star,test,AMD,2020,1
+Shooting Star,test,AMZN,2024,1
+Shooting Star,test,BA,2023,1
+Shooting Star,test,BA,2024,1
+Shooting Star,test,BA,2026,1
+Shooting Star,test,BAC,2023,1
+Shooting Star,test,BRK-B,2020,1
+Shooting Star,test,BRK-B,2022,1
+Shooting Star,test,BRK-B,2024,1
+Shooting Star,test,BRK-B,2025,1
+Shooting Star,test,CAT,2020,1
+Shooting Star,test,CAT,2026,1
+Shooting Star,test,COST,2020,1
+Shooting Star,test,COST,2021,1
+Shooting Star,test,COST,2023,1
+Shooting Star,test,COST,2024,1
+Shooting Star,test,CSCO,2021,1
+Shooting Star,test,CSCO,2024,1
+Shooting Star,test,DIA,2019,1
+Shooting Star,test,DIA,2023,1
+Shooting Star,test,DIA,2024,1
+Shooting Star,test,DIS,2021,1
+Shooting Star,test,DIS,2025,1
+Shooting Star,test,GE,2019,1
+Shooting Star,test,GE,2021,1
+Shooting Star,test,GE,2023,1
+Shooting Star,test,GS,2021,1
+Shooting Star,test,GS,2022,1
+Shooting Star,test,GS,2025,1
+Shooting Star,test,JNJ,2019,1
+Shooting Star,test,JPM,2024,1
+Shooting Star,test,JPM,2025,1
+Shooting Star,test,KO,2019,1
+Shooting Star,test,KO,2022,1
+Shooting Star,test,KO,2024,1
+Shooting Star,test,MA,2021,1
+Shooting Star,test,MA,2024,1
+Shooting Star,test,MCD,2026,1
+Shooting Star,test,META,2021,1
+Shooting Star,test,META,2024,1
+Shooting Star,test,META,2026,1
+Shooting Star,test,MRK,2019,1
+Shooting Star,test,MSFT,2024,1
+Shooting Star,test,NFLX,2019,1
+Shooting Star,test,NKE,2023,1
+Shooting Star,test,NVDA,2021,1
+Shooting Star,test,NVDA,2022,1
+Shooting Star,test,NVDA,2026,1
+Shooting Star,test,ORCL,2019,1
+Shooting Star,test,PEP,2021,1
+Shooting Star,test,PG,2020,1
+Shooting Star,test,PLTR,2025,1
+Shooting Star,test,QCOM,2020,1
+Shooting Star,test,QCOM,2021,1
+Shooting Star,test,QCOM,2024,1
+Shooting Star,test,QQQ,2019,1
+Shooting Star,test,QQQ,2023,1
+Shooting Star,test,QQQ,2025,1
+Shooting Star,test,SPY,2021,1
+Shooting Star,test,TXN,2021,1
+Shooting Star,test,UNH,2025,1
+Shooting Star,test,V,2021,1
+Shooting Star,test,V,2023,1
+Shooting Star,test,WFC,2019,1
+Shooting Star,test,WMT,2019,1
+Shooting Star,test,XLF,2020,1
+Shooting Star,test,XLF,2022,1
+Shooting Star,test,XOM,2026,1
+Shooting Star,train,AAPL,2011,1
+Shooting Star,train,AAPL,2013,1
+Shooting Star,train,ADBE,2012,1
+Shooting Star,train,AMD,2016,1
+Shooting Star,train,AMZN,2010,1
+Shooting Star,train,BA,2012,1
+Shooting Star,train,BAC,2016,1
+Shooting Star,train,BAC,2017,1
+Shooting Star,train,CAT,2010,1
+Shooting Star,train,COST,2006,1
+Shooting Star,train,COST,2011,1
+Shooting Star,train,COST,2014,1
+Shooting Star,train,CRM,2012,1
+Shooting Star,train,CSCO,2007,1
+Shooting Star,train,CSCO,2013,1
+Shooting Star,train,CSCO,2015,1
+Shooting Star,train,CSCO,2018,1
+Shooting Star,train,CVX,2010,1
+Shooting Star,train,CVX,2012,1
+Shooting Star,train,CVX,2015,1
+Shooting Star,train,CVX,2017,1
+Shooting Star,train,DIA,2005,1
+Shooting Star,train,DIA,2010,1
+Shooting Star,train,DIA,2017,1
+Shooting Star,train,DIS,2012,1
+Shooting Star,train,GE,2005,1
+Shooting Star,train,GE,2013,1
+Shooting Star,train,GE,2014,1
+Shooting Star,train,GOOGL,2005,1
+Shooting Star,train,GOOGL,2006,1
+Shooting Star,train,HD,2005,1
+Shooting Star,train,HD,2008,1
+Shooting Star,train,HD,2012,1
+Shooting Star,train,INTC,2015,1
+Shooting Star,train,INTC,2016,1
+Shooting Star,train,JNJ,2012,1
+Shooting Star,train,JPM,2015,1
+Shooting Star,train,JPM,2017,1
+Shooting Star,train,KO,2010,1
+Shooting Star,train,KO,2011,1
+Shooting Star,train,KO,2017,1
+Shooting Star,train,MCD,2006,1
+Shooting Star,train,MCD,2010,1
+Shooting Star,train,MCD,2011,1
+Shooting Star,train,MCD,2015,1
+Shooting Star,train,MCD,2016,1
+Shooting Star,train,META,2013,1
+Shooting Star,train,MRK,2005,1
+Shooting Star,train,MRK,2008,1
+Shooting Star,train,MRK,2012,1
+Shooting Star,train,MSFT,2009,1
+Shooting Star,train,MSFT,2013,1
+Shooting Star,train,NKE,2005,1
+Shooting Star,train,NKE,2007,1
+Shooting Star,train,NKE,2015,1
+Shooting Star,train,NKE,2018,1
+Shooting Star,train,NVDA,2006,1
+Shooting Star,train,PEP,2005,1
+Shooting Star,train,PEP,2009,1
+Shooting Star,train,PFE,2017,1
+Shooting Star,train,QCOM,2006,1
+Shooting Star,train,QQQ,2014,1
+Shooting Star,train,QQQ,2015,1
+Shooting Star,train,TSLA,2014,1
+Shooting Star,train,TXN,2006,1
+Shooting Star,train,TXN,2017,1
+Shooting Star,train,UNH,2010,1
+Shooting Star,train,UNH,2017,1
+Shooting Star,train,WFC,2017,1
+Shooting Star,train,WMT,2010,1
+Shooting Star,train,WMT,2016,1
+Shooting Star,train,WMT,2017,1
+Shooting Star,train,XLF,2011,1
+Shooting Star,train,XLF,2018,1
+Shooting Star,train,XOM,2010,1

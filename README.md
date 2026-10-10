@@ -39,7 +39,7 @@ The historical LoRA placebo conclusion was also corrected: 0 wins, 5 losses and 
 | [03: Twelve tickers](03-jev-12-tickers/README.md) | Does pooling or calibration help? | Reused historical test period; no demonstrated added skill. |
 | [04: LoRA and CNN](04-jev-lora-and-cnn/README.md) | Does task-specific training help? | Historical results retained; revised training requires parity and checkpoint checks. |
 | [05: CPU walk-forward study](05-cpu-walkforward/README.md) | Can numerical models beat training-frequency priors over longer histories? | CPU study complete; future protocol and model frozen. |
-| [06: Pattern recognition](06-jev-patterns/README.md) | Can JEV identify candlestick and chart patterns? | Day 1 shared CPU infrastructure; dataset stages follow. |
+| [06: Pattern recognition](06-jev-patterns/README.md) | Can JEV identify candlestick and chart patterns? | Shared CPU tools and 1,200 candle examples ready; synthetic stage follows. |
 
 ## Completed review and implementation
 

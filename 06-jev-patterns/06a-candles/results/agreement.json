@@ -1,0 +1,92 @@
+{
+  "eligible_windows": 254240,
+  "exact_detector_set_agreement": 254240,
+  "single_label_candidates": 252985,
+  "excluded": {
+    "multiple_labels": 1255,
+    "embargo_or_crossing_window": 3840
+  },
+  "per_class": {
+    "Doji": {
+      "eligible_windows": 254240,
+      "talib_positive": 34962,
+      "pandas_positive": 34962,
+      "both_positive": 34962,
+      "either_positive": 34962,
+      "positive_jaccard": 1.0,
+      "agreement_given_talib_positive": 1.0,
+      "binary_agreement": 1.0
+    },
+    "Hammer": {
+      "eligible_windows": 254240,
+      "talib_positive": 2454,
+      "pandas_positive": 2454,
+      "both_positive": 2454,
+      "either_positive": 2454,
+      "positive_jaccard": 1.0,
+      "agreement_given_talib_positive": 1.0,
+      "binary_agreement": 1.0
+    },
+    "Shooting Star": {
+      "eligible_windows": 254240,
+      "talib_positive": 2068,
+      "pandas_positive": 2068,
+      "both_positive": 2068,
+      "either_positive": 2068,
+      "positive_jaccard": 1.0,
+      "agreement_given_talib_positive": 1.0,
+      "binary_agreement": 1.0
+    },
+    "Bullish Engulfing": {
+      "eligible_windows": 254240,
+      "talib_positive": 9010,
+      "pandas_positive": 9010,
+      "both_positive": 9010,
+      "either_positive": 9010,
+      "positive_jaccard": 1.0,
+      "agreement_given_talib_positive": 1.0,
+      "binary_agreement": 1.0
+    },
+    "Bearish Engulfing": {
+      "eligible_windows": 254240,
+      "talib_positive": 10563,
+      "pandas_positive": 10563,
+      "both_positive": 10563,
+      "either_positive": 10563,
+      "positive_jaccard": 1.0,
+      "agreement_given_talib_positive": 1.0,
+      "binary_agreement": 1.0
+    },
+    "Morning Star": {
+      "eligible_windows": 254240,
+      "talib_positive": 680,
+      "pandas_positive": 680,
+      "both_positive": 680,
+      "either_positive": 680,
+      "positive_jaccard": 1.0,
+      "agreement_given_talib_positive": 1.0,
+      "binary_agreement": 1.0
+    },
+    "Evening Star": {
+      "eligible_windows": 254240,
+      "talib_positive": 724,
+      "pandas_positive": 724,
+      "both_positive": 724,
+      "either_positive": 724,
+      "positive_jaccard": 1.0,
+      "agreement_given_talib_positive": 1.0,
+      "binary_agreement": 1.0
+    },
+    "None": {
+      "eligible_windows": 254240,
+      "talib_positive": 195036,
+      "pandas_positive": 195036,
+      "both_positive": 195036,
+      "either_positive": 195036,
+      "positive_jaccard": 1.0,
+      "agreement_given_talib_positive": 1.0,
+      "binary_agreement": 1.0
+    }
+  },
+  "interpretation": "Independent implementations of the same rules; agreement is not independent expert validation."
+}

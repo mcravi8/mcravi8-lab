@@ -1,0 +1,2321 @@
+{
+  "reviewer": "Codex AI-assisted visual inspection of all five 10-chart contact sheets, with numerical diagnostics",
+  "count": 50,
+  "items": [
+    {
+      "id": "1988defb72bd14af9624",
+      "label": "Doji",
+      "split": "train",
+      "ticker": "DIA",
+      "end_date": "2017-08-11",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.05041303023332944,
+        "mean_prior_10_bodies": 0.2319101957541932,
+        "tiny_wick_threshold": 0.06310257250175141,
+        "lower_wick": 0.1512390906999599,
+        "upper_wick": 0.38652126715257396,
+        "prior_5_day_return": -0.006634438525691677,
+        "last_3_ohlc": [
+          {
+            "Open": 185.13262569,
+            "High": 185.3678951,
+            "Low": 184.82173672,
+            "Close": 185.27546692
+          },
+          {
+            "Open": 184.6956674,
+            "High": 184.77128695,
+            "Low": 183.6369552,
+            "Close": 183.67897034
+          },
+          {
+            "Open": 183.813383,
+            "High": 184.19990427,
+            "Low": 183.61173088,
+            "Close": 183.76296997
+          }
+        ]
+      },
+      "audit_position": 1,
+      "notes": "Small final body is visibly consistent with Doji; preceding ranges provide the comparison context.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "926657a79e89be404b4dd8ec9673c522f5ae7ed4068e2d70ddc69bfdc7b8f5eb"
+    },
+    {
+      "id": "5f79403c8fe458663272",
+      "label": "Doji",
+      "split": "train",
+      "ticker": "COST",
+      "end_date": "2011-07-25",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.028800211774054674,
+        "mean_prior_10_bodies": 0.260684839405382,
+        "tiny_wick_threshold": 0.07863783859055126,
+        "lower_wick": 0.07201701181500653,
+        "upper_wick": 0.28084876487334043,
+        "prior_5_day_return": 0.022664328336755135,
+        "last_3_ohlc": [
+          {
+            "Open": 58.23660001,
+            "High": 59.13675764,
+            "Low": 58.09257149,
+            "Close": 58.70467758
+          },
+          {
+            "Open": 58.81270599,
+            "High": 58.92792882,
+            "Low": 58.43824278,
+            "Close": 58.81270599
+          },
+          {
+            "Open": 58.47424241,
+            "High": 58.75509118,
+            "Low": 58.37342519,
+            "Close": 58.4454422
+          }
+        ]
+      },
+      "audit_position": 2,
+      "notes": "Small final body is visibly consistent with Doji; preceding ranges provide the comparison context.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "008fe22ec750eeecf0cb7e742882043838c9ea1469a7c005258cb308fb3bd6f2"
+    },
+    {
+      "id": "e6fc6e3dde5802d76ee3",
+      "label": "Doji",
+      "split": "train",
+      "ticker": "BAC",
+      "end_date": "2017-11-14",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.016242682666891994,
+        "mean_prior_10_bodies": 0.14374418119519347,
+        "tiny_wick_threshold": 0.034027598478119,
+        "lower_wick": 0.1299383633601714,
+        "upper_wick": 0.07309052301352992,
+        "prior_5_day_return": -0.04864853793710833,
+        "last_3_ohlc": [
+          {
+            "Open": 21.59415161,
+            "High": 21.71596863,
+            "Low": 21.48857573,
+            "Close": 21.52918243
+          },
+          {
+            "Open": 21.32615797,
+            "High": 21.50482286,
+            "Low": 21.22870341,
+            "Close": 21.43985367
+          },
+          {
+            "Open": 21.32615441,
+            "High": 21.39924493,
+            "Low": 21.17997336,
+            "Close": 21.30991173
+          }
+        ]
+      },
+      "audit_position": 3,
+      "notes": "Small final body is visibly consistent with Doji; preceding ranges provide the comparison context.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "536831e4faa50bb2e0c6e66ad2483ef4c4d0676cb58ddb110a1e6d8689005c63"
+    },
+    {
+      "id": "5856eadde23cafe6f631",
+      "label": "Doji",
+      "split": "train",
+      "ticker": "CSCO",
+      "end_date": "2015-12-08",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.014426057003220194,
+        "mean_prior_10_bodies": 0.1572400625106205,
+        "tiny_wick_threshold": 0.033179138644149404,
+        "lower_wick": 0.09376661903190353,
+        "upper_wick": 0.08655496627481085,
+        "prior_5_day_return": 0.008807259608722307,
+        "last_3_ohlc": [
+          {
+            "Open": 19.43867239,
+            "High": 19.87144321,
+            "Low": 19.43867239,
+            "Close": 19.82095337
+          },
+          {
+            "Open": 19.87864915,
+            "High": 19.87864915,
+            "Low": 19.66226382,
+            "Close": 19.82815933
+          },
+          {
+            "Open": 19.59734995,
+            "High": 19.68390491,
+            "Low": 19.48915727,
+            "Close": 19.58292389
+          }
+        ]
+      },
+      "audit_position": 4,
+      "notes": "Small final body is visibly consistent with Doji; preceding ranges provide the comparison context.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "3f386ed99466fb45e3de2f4d3d93d4b4628682c8159a0099a855a2285f35ca18"
+    },
+    {
+      "id": "237d604fe1653e0991ac",
+      "label": "Doji",
+      "split": "test",
+      "ticker": "NVDA",
+      "end_date": "2026-03-16",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.24942985662468686,
+        "mean_prior_10_bodies": 2.9640924241879305,
+        "tiny_wick_threshold": 0.5372495038301796,
+        "lower_wick": 1.5564398694995702,
+        "upper_wick": 5.647095607740454,
+        "prior_5_day_return": 0.013720405084769904,
+        "last_3_ohlc": [
+          {
+            "Open": 183.63026415,
+            "High": 184.51823383,
+            "Low": 181.33550642,
+            "Close": 182.72233582
+          },
+          {
+            "Open": 184.49829181,
+            "High": 185.66562182,
+            "Low": 179.52965287,
+            "Close": 179.83894348
+          },
+          {
+            "Open": 182.55272468,
+            "High": 188.44925015,
+            "Low": 180.99628481,
+            "Close": 182.80215454
+          }
+        ]
+      },
+      "audit_position": 5,
+      "notes": "Small final body is visibly consistent with Doji; preceding ranges provide the comparison context.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "44abdc58ff03e6c441c3d3b88f2d977c2795b3cf3a47b70d168aec53c11e6667"
+    },
+    {
+      "id": "8970994c86000f52b1ea",
+      "label": "Doji",
+      "split": "test",
+      "ticker": "GS",
+      "end_date": "2025-08-13",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 1.0633093622634533,
+        "mean_prior_10_bodies": 5.757338598339629,
+        "tiny_wick_threshold": 1.3469560911871317,
+        "lower_wick": 11.774161091572864,
+        "upper_wick": 3.0532262392199527,
+        "prior_5_day_return": 0.031169042624203502,
+        "last_3_ohlc": [
+          {
+            "Open": 704.49824801,
+            "High": 706.09806444,
+            "Low": 698.19656692,
+            "Close": 701.61077881
+          },
+          {
+            "Open": 707.50278911,
+            "High": 729.80245647,
+            "Low": 706.59553182,
+            "Close": 725.15911865
+          },
+          {
+            "Open": 727.50032108,
+            "High": 730.55354732,
+            "Low": 714.66285063,
+            "Close": 726.43701172
+          }
+        ]
+      },
+      "audit_position": 6,
+      "notes": "Small final body is visibly consistent with Doji; preceding ranges provide the comparison context.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "a6bc9536baa8dfddeb8b4bcbaf4b240651d00b563f5fe73a0a871799ce6d20f1"
+    },
+    {
+      "id": "cb4dae2cc6e14c84bd27",
+      "label": "Doji",
+      "split": "test",
+      "ticker": "DIA",
+      "end_date": "2019-08-21",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.1758557020766034,
+        "mean_prior_10_bodies": 1.7449942552565916,
+        "tiny_wick_threshold": 0.3181933435974725,
+        "lower_wick": 0.29893322807981804,
+        "upper_wick": 0.5539159465469652,
+        "prior_5_day_return": -0.010622300563090215,
+        "last_3_ohlc": [
+          {
+            "Open": 230.39206414,
+            "High": 230.57669382,
+            "Low": 229.31940885,
+            "Close": 229.77659607
+          },
+          {
+            "Open": 229.48646509,
+            "High": 229.97002798,
+            "Low": 228.13245144,
+            "Close": 228.32588196
+          },
+          {
+            "Open": 230.20742982,
+            "High": 230.93720147,
+            "Low": 229.90849659,
+            "Close": 230.38328552
+          }
+        ]
+      },
+      "audit_position": 7,
+      "notes": "Small final body is visibly consistent with Doji; preceding ranges provide the comparison context.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "2e4d317374d6ccd9d1172caa0ba2915ce9897cad0979b68bd5da8f92658cebaa"
+    },
+    {
+      "id": "f64131dd33b5c6c1e45d",
+      "label": "Hammer",
+      "split": "train",
+      "ticker": "COST",
+      "end_date": "2011-11-07",
+      "visual_status": "subtle_or_ambiguous",
+      "diagnostics": {
+        "last_body": 0.3395348320210019,
+        "mean_prior_10_bodies": 0.4031053345234625,
+        "tiny_wick_threshold": 0.11601947027769306,
+        "lower_wick": 0.3467605018602953,
+        "upper_wick": 0.09391166162596676,
+        "prior_5_day_return": -0.013187678849271522,
+        "last_3_ohlc": [
+          {
+            "Open": 60.60321329,
+            "High": 61.23171445,
+            "Low": 59.87357478,
+            "Close": 61.18836594
+          },
+          {
+            "Open": 61.05833024,
+            "High": 61.17391893,
+            "Low": 60.32147157,
+            "Close": 60.54541779
+          },
+          {
+            "Open": 60.45871727,
+            "High": 60.89216377,
+            "Low": 60.11195677,
+            "Close": 60.79825211
+          }
+        ]
+      },
+      "audit_position": 8,
+      "notes": "Lower wick only 1.02 times the body, so this is a marginal-looking Hammer under the actual TA-Lib >1x rule; retained.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "3eaf092275f655846374687ff19a16afa90fa1de331db0569b490557cb23a3b8"
+    },
+    {
+      "id": "f1e89177d82346fc0554",
+      "label": "Hammer",
+      "split": "train",
+      "ticker": "BAC",
+      "end_date": "2017-04-11",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.07248050661135252,
+        "mean_prior_10_bodies": 0.20858230567181088,
+        "tiny_wick_threshold": 0.04050847322238901,
+        "lower_wick": 0.20133439924052254,
+        "upper_wick": 0.02416068089030432,
+        "prior_5_day_return": -0.02416263720111822,
+        "last_3_ohlc": [
+          {
+            "Open": 18.54692954,
+            "High": 18.79658382,
+            "Low": 18.46639545,
+            "Close": 18.65162277
+          },
+          {
+            "Open": 18.62745977,
+            "High": 18.74826165,
+            "Low": 18.45028604,
+            "Close": 18.53887367
+          },
+          {
+            "Open": 18.38585728,
+            "High": 18.48249846,
+            "Low": 18.18452288,
+            "Close": 18.45833778
+          }
+        ]
+      },
+      "audit_position": 9,
+      "notes": "Short final body with longer lower wick and small upper wick is visible; preceding five-session decline checked against numeric diagnostics.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "a3ff9b1e632a0d5600680291e58842dcc25bcf420b3abf0a61e725d63a81a697"
+    },
+    {
+      "id": "0792cce6ac17b9cb811c",
+      "label": "Hammer",
+      "split": "train",
+      "ticker": "CSCO",
+      "end_date": "2015-11-02",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.07212892657461722,
+        "mean_prior_10_bodies": 0.1774362415671238,
+        "tiny_wick_threshold": 0.0336119297000943,
+        "lower_wick": 0.18753465879605713,
+        "upper_wick": 0.0,
+        "prior_5_day_return": -0.017035782341731975,
+        "last_3_ohlc": [
+          {
+            "Open": 21.02549496,
+            "High": 21.06877176,
+            "Low": 20.86681248,
+            "Close": 21.01828194
+          },
+          {
+            "Open": 20.91730715,
+            "High": 21.09762876,
+            "Low": 20.80911446,
+            "Close": 20.80911446
+          },
+          {
+            "Open": 20.82354227,
+            "High": 20.82354227,
+            "Low": 20.56387869,
+            "Close": 20.75141335
+          }
+        ]
+      },
+      "audit_position": 10,
+      "notes": "Short final body with longer lower wick and small upper wick is visible; preceding five-session decline checked against numeric diagnostics.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "34dfbf146b4c74f4a4d3c53d91439d3aaf871b643d3961d5c761c7164f1fe47f"
+    },
+    {
+      "id": "d6e9220cbd085bcb840b",
+      "label": "Hammer",
+      "split": "train",
+      "ticker": "UNH",
+      "end_date": "2008-02-20",
+      "visual_status": "subtle_or_ambiguous",
+      "diagnostics": {
+        "last_body": 0.22133160694310305,
+        "mean_prior_10_bodies": 0.3281838629070009,
+        "tiny_wick_threshold": 0.09151009988372827,
+        "lower_wick": 0.236599269126053,
+        "upper_wick": 0.061059002917758676,
+        "prior_5_day_return": -0.0029031225877925726,
+        "last_3_ohlc": [
+          {
+            "Open": 35.36759525,
+            "High": 36.43610382,
+            "Low": 35.36759525,
+            "Close": 36.43610382
+          },
+          {
+            "Open": 36.7795656,
+            "High": 37.01616482,
+            "Low": 36.46664556,
+            "Close": 36.69561386
+          },
+          {
+            "Open": 36.48955249,
+            "High": 36.7719431,
+            "Low": 36.25295322,
+            "Close": 36.71088409
+          }
+        ]
+      },
+      "audit_position": 11,
+      "notes": "Lower wick only 1.07 times the body and preceding decline is slight (-0.29%); visually subtle despite rule agreement; retained.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "93ee2b50e019e47488d5e00a11a34e300eedda212a2780d732ab34ca5bb8bc07"
+    },
+    {
+      "id": "3132c7d9e5fa938079cf",
+      "label": "Hammer",
+      "split": "test",
+      "ticker": "NVDA",
+      "end_date": "2026-05-27",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 1.5165225807166394,
+        "mean_prior_10_bodies": 3.224627000182534,
+        "tiny_wick_threshold": 0.7511826169219942,
+        "lower_wick": 3.811295551200118,
+        "upper_wick": 0.029930365146356053,
+        "prior_5_day_return": -0.03355526071634918,
+        "last_3_ohlc": [
+          {
+            "Open": 220.39621757,
+            "High": 220.50596732,
+            "Low": 214.31013814,
+            "Close": 214.83892822
+          },
+          {
+            "Open": 216.04617181,
+            "High": 217.68243117,
+            "Low": 211.51653202,
+            "Close": 214.37001038
+          },
+          {
+            "Open": 213.63168066,
+            "High": 213.66161103,
+            "Low": 208.30386253,
+            "Close": 212.11515808
+          }
+        ]
+      },
+      "audit_position": 12,
+      "notes": "Short final body with longer lower wick and small upper wick is visible; preceding five-session decline checked against numeric diagnostics.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "a373526e1607ea841dc9f8809635133d90e79f97eeaeae870a36f65670b4ee9f"
+    },
+    {
+      "id": "88c8ce2e64c39bd06d4a",
+      "label": "Hammer",
+      "split": "test",
+      "ticker": "GS",
+      "end_date": "2025-10-17",
+      "visual_status": "subtle_or_ambiguous",
+      "diagnostics": {
+        "last_body": 7.237652317825109,
+        "mean_prior_10_bodies": 8.894069072588934,
+        "tiny_wick_threshold": 2.2503392794179935,
+        "lower_wick": 10.55246044638352,
+        "upper_wick": 0.7747401785534294,
+        "prior_5_day_return": -0.028039859008357038,
+        "last_3_ohlc": [
+          {
+            "Open": 763.60123519,
+            "High": 767.39658218,
+            "Low": 747.94906524,
+            "Close": 753.11743164
+          },
+          {
+            "Open": 755.79477069,
+            "High": 766.36686481,
+            "Low": 737.89679358,
+            "Close": 743.46728516
+          },
+          {
+            "Open": 743.52610447,
+            "High": 744.30084464,
+            "Low": 725.7359917,
+            "Close": 736.28845215
+          }
+        ]
+      },
+      "audit_position": 13,
+      "notes": "Final lower wick is visible but only 1.46 times the body, less distinct than the common informal 2x-wick picture; retained.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "ed4f7364e223a16ba1cb85ae76f1a554f5fdce351a2d49503e30a4e4c373b304"
+    },
+    {
+      "id": "297b564dfa3722a0446b",
+      "label": "Hammer",
+      "split": "test",
+      "ticker": "DIA",
+      "end_date": "2019-05-29",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.7080291651869857,
+        "mean_prior_10_bodies": 0.9638684884340109,
+        "tiny_wick_threshold": 0.21203659317718065,
+        "lower_wick": 1.564669229298545,
+        "upper_wick": 0.17481987544468325,
+        "prior_5_day_return": -0.01246752232775139,
+        "last_3_ohlc": [
+          {
+            "Open": 223.95644405,
+            "High": 224.36727816,
+            "Low": 222.91626097,
+            "Close": 223.8777771
+          },
+          {
+            "Open": 223.87776442,
+            "High": 224.83054416,
+            "Low": 221.55263452,
+            "Close": 221.56137085
+          },
+          {
+            "Open": 220.34633483,
+            "High": 220.5211547,
+            "Low": 218.07363643,
+            "Close": 219.63830566
+          }
+        ]
+      },
+      "audit_position": 14,
+      "notes": "Short final body with longer lower wick and small upper wick is visible; preceding five-session decline checked against numeric diagnostics.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "eb679c9e2f94edc1b0d816b2422cdbc13acda3a8f9522b1177a0c989dbef21ae"
+    },
+    {
+      "id": "e5f7a3c939c3e8db49ec",
+      "label": "Shooting Star",
+      "split": "train",
+      "ticker": "DIA",
+      "end_date": "2017-12-13",
+      "visual_status": "subtle_or_ambiguous",
+      "diagnostics": {
+        "last_body": 0.5165050727246978,
+        "mean_prior_10_bodies": 0.7942321099464209,
+        "tiny_wick_threshold": 0.15325760038355216,
+        "lower_wick": 0.03387638643931723,
+        "upper_wick": 0.5842449255474662,
+        "prior_5_day_return": 0.014173201258221857,
+        "last_3_ohlc": [
+          {
+            "Open": 206.40717836,
+            "High": 206.80514211,
+            "Low": 206.17855786,
+            "Close": 206.74586487
+          },
+          {
+            "Open": 207.38931171,
+            "High": 208.18523897,
+            "Low": 207.27924573,
+            "Close": 207.82115173
+          },
+          {
+            "Open": 208.03279607,
+            "High": 209.13354607,
+            "Low": 207.99891969,
+            "Close": 208.54930115
+          }
+        ]
+      },
+      "audit_position": 15,
+      "notes": "Small final candle at the top of a rising chart; upper wick is only 1.13 times the body, so Shooting Star geometry is subtle; retained.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "9d8157b287236ab7f4825ea62e0ca80662bd67717003a1667cc0060f7f180d23"
+    },
+    {
+      "id": "45dc4fba542078dfb4f1",
+      "label": "Shooting Star",
+      "split": "train",
+      "ticker": "COST",
+      "end_date": "2011-09-01",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.3612063398845251,
+        "mean_prior_10_bodies": 0.7043524626693796,
+        "tiny_wick_threshold": 0.14563833515887412,
+        "lower_wick": 0.14448584289661426,
+        "upper_wick": 1.0330503525325767,
+        "prior_5_day_return": 0.01355041269510715,
+        "last_3_ohlc": [
+          {
+            "Open": 56.05923447,
+            "High": 56.73830429,
+            "Low": 55.78471958,
+            "Close": 56.39876938
+          },
+          {
+            "Open": 56.52157429,
+            "High": 57.09950671,
+            "Low": 56.36264259,
+            "Close": 56.73830032
+          },
+          {
+            "Open": 57.05615587,
+            "High": 58.45041257,
+            "Low": 56.91167003,
+            "Close": 57.41736221
+          }
+        ]
+      },
+      "audit_position": 16,
+      "notes": "Final body gap and longer upper wick are visible; preceding five-session rise checked against numeric diagnostics.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "0f0797f9ce112dde2a798367ac2954bd1f1d8b675d9f4549f06a5aa374dcb1e8"
+    },
+    {
+      "id": "40c3245d9871b5dc59b0",
+      "label": "Shooting Star",
+      "split": "train",
+      "ticker": "BAC",
+      "end_date": "2017-12-04",
+      "visual_status": "subtle_or_ambiguous",
+      "diagnostics": {
+        "last_body": 0.17127025244876037,
+        "mean_prior_10_bodies": 0.19267894498856536,
+        "tiny_wick_threshold": 0.04131255479635439,
+        "lower_wick": 0.024467845601876093,
+        "upper_wick": 0.20389404658459398,
+        "prior_5_day_return": 0.0612915859430605,
+        "last_3_ohlc": [
+          {
+            "Open": 23.34179288,
+            "High": 23.42334926,
+            "Low": 22.90138096,
+            "Close": 22.97478294
+          },
+          {
+            "Open": 23.04002639,
+            "High": 23.25207638,
+            "Low": 22.42834427,
+            "Close": 22.91769028
+          },
+          {
+            "Open": 23.52937329,
+            "High": 23.90453759,
+            "Low": 23.50490544,
+            "Close": 23.70064354
+          }
+        ]
+      },
+      "audit_position": 17,
+      "notes": "Gap-up final green candle has an upper wick only 1.19 times its body; numerical rule match is visually marginal; retained.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "aa7e0c22e0f2b40ccb66ce5c44d1778ffea4321ab0852b2c94c459a6fe0f754a"
+    },
+    {
+      "id": "d0780e67cc9223e54ca2",
+      "label": "Shooting Star",
+      "split": "test",
+      "ticker": "NVDA",
+      "end_date": "2026-05-08",
+      "visual_status": "subtle_or_ambiguous",
+      "diagnostics": {
+        "last_body": 2.165049439320512,
+        "mean_prior_10_bodies": 5.039480338450306,
+        "tiny_wick_threshold": 0.7812143535864098,
+        "lower_wick": 0.1396801178919418,
+        "upper_wick": 2.594076731125682,
+        "prior_5_day_return": 0.05977856713273888,
+        "last_3_ohlc": [
+          {
+            "Open": 199.43413852,
+            "High": 207.79503232,
+            "Low": 198.15705886,
+            "Close": 207.35603333
+          },
+          {
+            "Open": 207.86487247,
+            "High": 213.71150922,
+            "Low": 206.02907229,
+            "Close": 211.01766968
+          },
+          {
+            "Open": 212.54417908,
+            "High": 217.30330525,
+            "Low": 212.40449896,
+            "Close": 214.70922852
+          }
+        ]
+      },
+      "audit_position": 18,
+      "notes": "Upper wick is only 1.20 times the final green body; this looks less emphatic than a textbook Shooting Star; retained.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "90f811d0375c920d806d344aa10703db15d8da1692221bf8e690feee994788fe"
+    },
+    {
+      "id": "e099bc8dc1a2acdd3f2c",
+      "label": "Shooting Star",
+      "split": "test",
+      "ticker": "GS",
+      "end_date": "2025-12-22",
+      "visual_status": "subtle_or_ambiguous",
+      "diagnostics": {
+        "last_body": 2.4442018577466342,
+        "mean_prior_10_bodies": 12.112694011027212,
+        "tiny_wick_threshold": 2.1773257994984987,
+        "lower_wick": 1.6557554669835781,
+        "upper_wick": 6.3864939661657445,
+        "prior_5_day_return": 0.006216363165664873,
+        "last_3_ohlc": [
+          {
+            "Open": 867.79701133,
+            "High": 879.90968163,
+            "Low": 862.08070006,
+            "Close": 863.65759277
+          },
+          {
+            "Open": 870.42840639,
+            "High": 886.76922201,
+            "Low": 869.22603632,
+            "Close": 880.58966064
+          },
+          {
+            "Open": 883.58594951,
+            "High": 892.41664533,
+            "Low": 881.93019404,
+            "Close": 886.03015137
+          }
+        ]
+      },
+      "audit_position": 19,
+      "notes": "The final green body is small on the full-chart scale. The upper wick and body gap exist, but are difficult to judge at reduced display size; retained.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "03bbc6d10ccaaf5602e8a214f92c916bafac5ca7cbfd8b56ca4ba29517854c7a"
+    },
+    {
+      "id": "050ebbc0bc3f31c597a4",
+      "label": "Shooting Star",
+      "split": "test",
+      "ticker": "DIA",
+      "end_date": "2019-10-11",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.34372982320368806,
+        "mean_prior_10_bodies": 1.530867647621426,
+        "tiny_wick_threshold": 0.2754137343104199,
+        "lower_wick": 0.13219343357170033,
+        "upper_wick": 1.74503401089828,
+        "prior_5_day_return": 0.011449898442655204,
+        "last_3_ohlc": [
+          {
+            "Open": 232.17643966,
+            "High": 232.88148945,
+            "Low": 231.33037454,
+            "Close": 232.1676178
+          },
+          {
+            "Open": 231.9913762,
+            "High": 234.45907743,
+            "Low": 231.88559452,
+            "Close": 233.56013489
+          },
+          {
+            "Open": 235.99249759,
+            "High": 238.08126143,
+            "Low": 235.86030416,
+            "Close": 236.33622742
+          }
+        ]
+      },
+      "audit_position": 20,
+      "notes": "Final body gap and longer upper wick are visible; preceding five-session rise checked against numeric diagnostics.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "ca7a21103e05a31d664bf42be22a3fb17d03541c6f850dc4995a4ad17c9229cb"
+    },
+    {
+      "id": "744acb88b0d74c491852",
+      "label": "Bullish Engulfing",
+      "split": "train",
+      "ticker": "DIA",
+      "end_date": "2017-09-28",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.5317467609168034,
+        "mean_prior_10_bodies": 0.26659783042704815,
+        "tiny_wick_threshold": 0.07037846870942645,
+        "lower_wick": 0.22789330881667524,
+        "upper_wick": 0.1434845636352975,
+        "prior_5_day_return": -0.0034833375736912364,
+        "last_3_ohlc": [
+          {
+            "Open": 188.27072435,
+            "High": 188.64210236,
+            "Low": 187.89934634,
+            "Close": 187.95843506
+          },
+          {
+            "Open": 188.55755698,
+            "High": 188.65885001,
+            "Low": 187.67132986,
+            "Close": 188.32122803
+          },
+          {
+            "Open": 188.19469367,
+            "High": 188.86992499,
+            "Low": 187.96680036,
+            "Close": 188.72644043
+          }
+        ]
+      },
+      "audit_position": 21,
+      "notes": "Final green real body covers the preceding red real body; body endpoints, rather than wick coverage, determine this label.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "9b67d15a54bc849aae75da561336803e93662b5ba70fb8cefb137c363825f6d6"
+    },
+    {
+      "id": "d4dd0898d346ac3f55b1",
+      "label": "Bullish Engulfing",
+      "split": "train",
+      "ticker": "COST",
+      "end_date": "2011-03-29",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.4738987871662559,
+        "mean_prior_10_bodies": 0.40281070824843823,
+        "tiny_wick_threshold": 0.0781928645517595,
+        "lower_wick": 0.3302906040437321,
+        "upper_wick": 0.035897937211593955,
+        "prior_5_day_return": 0.003097095626837909,
+        "last_3_ohlc": [
+          {
+            "Open": 51.87007857,
+            "High": 51.96342525,
+            "Low": 51.27412252,
+            "Close": 51.31002045
+          },
+          {
+            "Open": 51.33157401,
+            "High": 51.56134165,
+            "Low": 50.97256173,
+            "Close": 51.16643143
+          },
+          {
+            "Open": 51.15206252,
+            "High": 51.66185924,
+            "Low": 50.82177191,
+            "Close": 51.6259613
+          }
+        ]
+      },
+      "audit_position": 22,
+      "notes": "Final green real body covers the preceding red real body; body endpoints, rather than wick coverage, determine this label.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "7cf31165943f47a14552b675f31293c0d82f46894e5b20ff095bea1097ef03f4"
+    },
+    {
+      "id": "c3afb0920b01ba99a2ab",
+      "label": "Bullish Engulfing",
+      "split": "train",
+      "ticker": "BAC",
+      "end_date": "2017-05-03",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.3221347099590588,
+        "mean_prior_10_bodies": 0.1425449428259661,
+        "tiny_wick_threshold": 0.0347905961524317,
+        "lower_wick": 0.02416067926922949,
+        "upper_wick": 0.008053559756408646,
+        "prior_5_day_return": -0.0187655425204446,
+        "last_3_ohlc": [
+          {
+            "Open": 18.94153661,
+            "High": 19.14287097,
+            "Low": 18.80462919,
+            "Close": 19.01401711
+          },
+          {
+            "Open": 19.01402144,
+            "High": 19.06234127,
+            "Low": 18.78852636,
+            "Close": 18.9495945
+          },
+          {
+            "Open": 18.82073905,
+            "High": 19.15092732,
+            "Low": 18.79657837,
+            "Close": 19.14287376
+          }
+        ]
+      },
+      "audit_position": 23,
+      "notes": "Final green real body covers the preceding red real body; body endpoints, rather than wick coverage, determine this label.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "773cca21745a6881a580d6a7a52bb8849c1c0602a359da1d32d003b909f2c326"
+    },
+    {
+      "id": "8d40490f34a4019a235b",
+      "label": "Bullish Engulfing",
+      "split": "test",
+      "ticker": "NVDA",
+      "end_date": "2026-05-28",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 2.963228069713125,
+        "mean_prior_10_bodies": 3.1537882415564837,
+        "tiny_wick_threshold": 0.7166614539637304,
+        "lower_wick": 0.05986073288451621,
+        "upper_wick": 1.267108000689916,
+        "prior_5_day_return": -0.03630840368320809,
+        "last_3_ohlc": [
+          {
+            "Open": 216.04617181,
+            "High": 217.68243117,
+            "Low": 211.51653202,
+            "Close": 214.37001038
+          },
+          {
+            "Open": 213.63168066,
+            "High": 213.66161103,
+            "Low": 208.30386253,
+            "Close": 212.11515808
+          },
+          {
+            "Open": 210.79817025,
+            "High": 215.02850632,
+            "Low": 210.73830951,
+            "Close": 213.76139832
+          }
+        ]
+      },
+      "audit_position": 24,
+      "notes": "Final green real body covers the preceding red real body; body endpoints, rather than wick coverage, determine this label.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "ca8d833392fa7fe23d2898ea168f3e2fa2f8bb62caa005e6fb92df004ff0a8c5"
+    },
+    {
+      "id": "1290bdee572005ad8b04",
+      "label": "Bullish Engulfing",
+      "split": "test",
+      "ticker": "GS",
+      "end_date": "2025-04-24",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 17.733809359107454,
+        "mean_prior_10_bodies": 11.62743027662953,
+        "tiny_wick_threshold": 2.262490613828043,
+        "lower_wick": 3.57198789216352,
+        "upper_wick": 1.426887505726313,
+        "prior_5_day_return": 0.04217438364699477,
+        "last_3_ohlc": [
+          {
+            "Open": 495.25522698,
+            "High": 505.70912667,
+            "Low": 493.99336302,
+            "Close": 504.72875977
+          },
+          {
+            "Open": 517.96836484,
+            "High": 535.5953564,
+            "Low": 512.75597504,
+            "Close": 513.77514648
+          },
+          {
+            "Open": 511.63002121,
+            "High": 530.79071807,
+            "Low": 508.05803332,
+            "Close": 529.36383057
+          }
+        ]
+      },
+      "audit_position": 25,
+      "notes": "Final green real body covers the preceding red real body; body endpoints, rather than wick coverage, determine this label.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "df42422cd7ee3241ad2e74954bb27a92f1482b9e217c42386674777d59687dda"
+    },
+    {
+      "id": "dabb807fbc5efa7a107f",
+      "label": "Bullish Engulfing",
+      "split": "test",
+      "ticker": "DIA",
+      "end_date": "2019-10-10",
+      "visual_status": "subtle_or_ambiguous",
+      "diagnostics": {
+        "last_body": 1.5687586871159453,
+        "mean_prior_10_bodies": 1.4735820249906226,
+        "tiny_wick_threshold": 0.26827501955366334,
+        "lower_wick": 0.10578167772092684,
+        "upper_wick": 0.8989425411812135,
+        "prior_5_day_return": 0.010394313335893468,
+        "last_3_ohlc": [
+          {
+            "Open": 231.47136978,
+            "High": 232.85503054,
+            "Low": 230.33445222,
+            "Close": 230.53713989
+          },
+          {
+            "Open": 232.17643966,
+            "High": 232.88148945,
+            "Low": 231.33037454,
+            "Close": 232.1676178
+          },
+          {
+            "Open": 231.9913762,
+            "High": 234.45907743,
+            "Low": 231.88559452,
+            "Close": 233.56013489
+          }
+        ]
+      },
+      "audit_position": 26,
+      "notes": "The preceding red body is almost zero (about 0.009 price units), appearing as a cross. Engulfing is numerically valid but prior candle color is visually difficult to distinguish; retained.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "a839a73042c32f2a32938681e41aa85757ba21fd7578186f3bfd1033d9454f88"
+    },
+    {
+      "id": "104332cb5aa42d4c2ff0",
+      "label": "Bearish Engulfing",
+      "split": "train",
+      "ticker": "DIA",
+      "end_date": "2017-05-09",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.4343727771501733,
+        "mean_prior_10_bodies": 0.32243431700250935,
+        "tiny_wick_threshold": 0.07350877116582438,
+        "lower_wick": 0.33412506177455725,
+        "upper_wick": 0.1503652000364184,
+        "prior_5_day_return": 0.00478723255430058,
+        "last_3_ohlc": [
+          {
+            "Open": 174.64141028,
+            "High": 175.23448392,
+            "Low": 174.38244882,
+            "Close": 175.22613525
+          },
+          {
+            "Open": 175.16778983,
+            "High": 175.43510017,
+            "Low": 175.025786,
+            "Close": 175.3515625
+          },
+          {
+            "Open": 175.53527915,
+            "High": 175.68564435,
+            "Low": 174.76678131,
+            "Close": 175.10090637
+          }
+        ]
+      },
+      "audit_position": 27,
+      "notes": "Final red real body covers the preceding green real body; body endpoints, rather than wick coverage, determine this label.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "f073e6d3db288ce33f06d615b44ff131f057c2b259f8a016deb10c080969a7ce"
+    },
+    {
+      "id": "df628ccdcba4cc5ab46c",
+      "label": "Bearish Engulfing",
+      "split": "train",
+      "ticker": "COST",
+      "end_date": "2011-01-28",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 1.002480025335906,
+        "mean_prior_10_bodies": 0.24274314364869626,
+        "tiny_wick_threshold": 0.05678329431698842,
+        "lower_wick": 0.12889036701570689,
+        "upper_wick": 0.17901409512867872,
+        "prior_5_day_return": 0.010503518191945282,
+        "last_3_ohlc": [
+          {
+            "Open": 51.89262855,
+            "High": 52.25781899,
+            "Low": 51.71361438,
+            "Close": 52.00003815
+          },
+          {
+            "Open": 52.1575661,
+            "High": 52.77337528,
+            "Low": 52.10028572,
+            "Close": 52.35806656
+          },
+          {
+            "Open": 52.50841569,
+            "High": 52.68742979,
+            "Low": 51.3770453,
+            "Close": 51.50593567
+          }
+        ]
+      },
+      "audit_position": 28,
+      "notes": "Final red real body covers the preceding green real body; body endpoints, rather than wick coverage, determine this label.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "b783f941b612f3085f52179fabc082f5f38249d199e7fe6e1b17dd47e181582d"
+    },
+    {
+      "id": "e439b7b50950e67e898d",
+      "label": "Bearish Engulfing",
+      "split": "train",
+      "ticker": "BAC",
+      "end_date": "2017-10-04",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.12181857082472547,
+        "mean_prior_10_bodies": 0.08770878250757086,
+        "tiny_wick_threshold": 0.027774321022935523,
+        "lower_wick": 0.008119792333339149,
+        "upper_wick": 0.07309052289984663,
+        "prior_5_day_return": 0.04232188464982789,
+        "last_3_ohlc": [
+          {
+            "Open": 20.6764585,
+            "High": 20.83076086,
+            "Low": 20.61961066,
+            "Close": 20.80639839
+          },
+          {
+            "Open": 20.91197524,
+            "High": 21.05815628,
+            "Low": 20.8064009,
+            "Close": 21.00130844
+          },
+          {
+            "Open": 21.00130847,
+            "High": 21.07439899,
+            "Low": 20.87137011,
+            "Close": 20.8794899
+          }
+        ]
+      },
+      "audit_position": 29,
+      "notes": "Final red real body covers the preceding green real body; body endpoints, rather than wick coverage, determine this label.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "381646a0519783caadc5e00dcdc588d4db568fbd550ffc2e56f1cbb3383b2b46"
+    },
+    {
+      "id": "b20d0510da998ed00aa4",
+      "label": "Bearish Engulfing",
+      "split": "test",
+      "ticker": "NVDA",
+      "end_date": "2026-04-21",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 2.244868881140235,
+        "mean_prior_10_bodies": 2.7177913959085687,
+        "tiny_wick_threshold": 0.437100565730564,
+        "lower_wick": 0.8779980340787858,
+        "upper_wick": 0.6185812200147041,
+        "prior_5_day_return": 0.06734981773787507,
+        "last_3_ohlc": [
+          {
+            "Open": 199.44410763,
+            "High": 201.24000565,
+            "Low": 198.81555475,
+            "Close": 201.220047
+          },
+          {
+            "Open": 199.52392392,
+            "High": 201.70893187,
+            "Low": 197.38880499,
+            "Close": 201.59918213
+          },
+          {
+            "Open": 201.66904796,
+            "High": 202.28762918,
+            "Low": 198.54618104,
+            "Close": 199.42417908
+          }
+        ]
+      },
+      "audit_position": 30,
+      "notes": "Final red real body covers the preceding green real body; body endpoints, rather than wick coverage, determine this label.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "fe805a836a67478c5dbc2a017911ca8b32b41ed448f2c083d2c6b48f7865ae62"
+    },
+    {
+      "id": "7c7abde0db30a0b4135d",
+      "label": "Bearish Engulfing",
+      "split": "test",
+      "ticker": "GS",
+      "end_date": "2025-06-04",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 6.11627598312657,
+        "mean_prior_10_bodies": 5.39117832458337,
+        "tiny_wick_threshold": 1.1726075861217315,
+        "lower_wick": 0.47803965723244346,
+        "upper_wick": 0.8292014330896791,
+        "prior_5_day_return": -0.014438255064674,
+        "last_3_ohlc": [
+          {
+            "Open": 583.9278069,
+            "High": 584.48384288,
+            "Low": 577.65541854,
+            "Close": 584.04486084
+          },
+          {
+            "Open": 585.29352276,
+            "High": 591.45862168,
+            "Low": 579.1771864,
+            "Close": 589.02966309
+          },
+          {
+            "Open": 590.63910313,
+            "High": 591.46830456,
+            "Low": 584.04478749,
+            "Close": 584.52282715
+          }
+        ]
+      },
+      "audit_position": 31,
+      "notes": "Final red real body covers the preceding green real body; body endpoints, rather than wick coverage, determine this label.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "c0a0fa938cd5562063f151838c557e1e09e5ae76aa23a2ffe853314fb7a70587"
+    },
+    {
+      "id": "2505b8214622982fb988",
+      "label": "Bearish Engulfing",
+      "split": "test",
+      "ticker": "DIA",
+      "end_date": "2019-10-01",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 3.754456097151376,
+        "mean_prior_10_bodies": 1.146907287252469,
+        "tiny_wick_threshold": 0.20557652347485972,
+        "lower_wick": 0.04405552672884028,
+        "upper_wick": 0.46710154621490574,
+        "prior_5_day_return": -0.0006686657434884502,
+        "last_3_ohlc": [
+          {
+            "Open": 237.58772097,
+            "High": 237.93145083,
+            "Low": 235.31391297,
+            "Close": 236.18641663
+          },
+          {
+            "Open": 236.64471071,
+            "High": 237.80803989,
+            "Low": 236.64471071,
+            "Close": 237.23518372
+          },
+          {
+            "Open": 237.74642997,
+            "High": 238.21353152,
+            "Low": 233.94791835,
+            "Close": 233.99197388
+          }
+        ]
+      },
+      "audit_position": 32,
+      "notes": "Final red real body covers the preceding green real body; body endpoints, rather than wick coverage, determine this label.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "0f4fbc7ca0d27e6258edeead89f4b410f77ba7e03175a95c99427c1e40a3d928"
+    },
+    {
+      "id": "3d8277b4f20714eeb184",
+      "label": "Morning Star",
+      "split": "train",
+      "ticker": "CVX",
+      "end_date": "2008-10-13",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 4.75912849096397,
+        "mean_prior_10_bodies": 1.626525704813297,
+        "tiny_wick_threshold": 0.3014115172010067,
+        "lower_wick": 0.362319390373834,
+        "upper_wick": 0.29377257964151227,
+        "prior_5_day_return": -0.11070541138539836,
+        "last_3_ohlc": [
+          {
+            "Open": 36.10965524,
+            "High": 36.17330481,
+            "Low": 31.33583641,
+            "Close": 31.33583641
+          },
+          {
+            "Open": 29.62217003,
+            "High": 31.70796354,
+            "Low": 27.1740568,
+            "Close": 28.31487846
+          },
+          {
+            "Open": 29.46056755,
+            "High": 34.51346862,
+            "Low": 29.09824816,
+            "Close": 34.21969604
+          }
+        ]
+      },
+      "audit_position": 33,
+      "notes": "Final three candles show a red first body, lower gapped middle body and green recovery; numerical rolling-body thresholds and prior decline agree.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "7ba30b121f1578a00e17e6d13ebe02099b75ad115414c5a79aba1859662c23d9"
+    },
+    {
+      "id": "3762ab4accc58025cf58",
+      "label": "Morning Star",
+      "split": "train",
+      "ticker": "COST",
+      "end_date": "2011-07-19",
+      "visual_status": "subtle_or_ambiguous",
+      "diagnostics": {
+        "last_body": 0.7561294751012326,
+        "mean_prior_10_bodies": 0.3442198176630768,
+        "tiny_wick_threshold": 0.08634308871333787,
+        "lower_wick": 0.043211322954917364,
+        "upper_wick": 0.10081726334683339,
+        "prior_5_day_return": -0.02108245732643621,
+        "last_3_ohlc": [
+          {
+            "Open": 57.86935963,
+            "High": 58.02058552,
+            "Low": 57.17803892,
+            "Close": 57.50929642
+          },
+          {
+            "Open": 57.27164807,
+            "High": 57.47328257,
+            "Low": 56.75315622,
+            "Close": 56.96919632
+          },
+          {
+            "Open": 57.43728712,
+            "High": 58.29423386,
+            "Low": 57.3940758,
+            "Close": 58.1934166
+          }
+        ]
+      },
+      "audit_position": 34,
+      "notes": "The middle red body is 84% of the first body. It is short versus its own rolling average, but this Morning Star is less distinct than a tiny-middle-candle illustration; retained.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "7ee22fb78e0c42b781237b5edb3f77cf7d2b381de9310e1f0c09085934b9d620"
+    },
+    {
+      "id": "3f047dfded71012370c8",
+      "label": "Morning Star",
+      "split": "train",
+      "ticker": "BAC",
+      "end_date": "2017-04-17",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.3624009755449258,
+        "mean_prior_10_bodies": 0.16187257423222157,
+        "tiny_wick_threshold": 0.037770323965265334,
+        "lower_wick": 0.08053406214092007,
+        "upper_wick": 0.01610711964007905,
+        "prior_5_day_return": -0.0221842018873718,
+        "last_3_ohlc": [
+          {
+            "Open": 18.4261235,
+            "High": 18.47444486,
+            "Low": 18.20868352,
+            "Close": 18.24089622
+          },
+          {
+            "Open": 18.16841709,
+            "High": 18.49055185,
+            "Low": 17.99124336,
+            "Close": 17.99124336
+          },
+          {
+            "Open": 18.00734809,
+            "High": 18.38585619,
+            "Low": 17.92681403,
+            "Close": 18.36974907
+          }
+        ]
+      },
+      "audit_position": 35,
+      "notes": "Final three candles show a red first body, lower gapped middle body and green recovery; numerical rolling-body thresholds and prior decline agree.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "42e7b9895ee6ba2c0ee0d18b8ff18580f8aa9e68068078283829d1aa8337ea95"
+    },
+    {
+      "id": "d148bf1b134665c833fa",
+      "label": "Morning Star",
+      "split": "test",
+      "ticker": "BRK-B",
+      "end_date": "2020-03-24",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 7.2899932861328125,
+        "mean_prior_10_bodies": 4.88599853515625,
+        "tiny_wick_threshold": 1.1105000305175783,
+        "lower_wick": 1.3800048828125,
+        "upper_wick": 0.94000244140625,
+        "prior_5_day_return": -0.0073308435299942465,
+        "last_3_ohlc": [
+          {
+            "Open": 176.30000305,
+            "High": 177.17999268,
+            "Low": 167.28999329,
+            "Close": 170.05999756
+          },
+          {
+            "Open": 165.30000305,
+            "High": 166.69000244,
+            "Low": 159.5,
+            "Close": 162.13000488
+          },
+          {
+            "Open": 170.91000366,
+            "High": 179.13999939,
+            "Low": 169.52999878,
+            "Close": 178.19999695
+          }
+        ]
+      },
+      "audit_position": 36,
+      "notes": "Final three candles show a red first body, lower gapped middle body and green recovery; numerical rolling-body thresholds and prior decline agree.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "f86b3a09a63afc486ef33b0e73724d7092d28a5b19adf9f052e54ac7f2bb4cda"
+    },
+    {
+      "id": "2ca911903f68c5c8fba3",
+      "label": "Morning Star",
+      "split": "test",
+      "ticker": "WMT",
+      "end_date": "2023-10-10",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.44250581105333,
+        "mean_prior_10_bodies": 0.3646647758181395,
+        "tiny_wick_threshold": 0.08485158088919129,
+        "lower_wick": 0.18411127904423807,
+        "upper_wick": 0.1550389370573555,
+        "prior_5_day_return": -0.021287054253596116,
+        "last_3_ohlc": [
+          {
+            "Open": 51.24364906,
+            "High": 51.3534697,
+            "Low": 48.98266348,
+            "Close": 50.52013397
+          },
+          {
+            "Open": 50.09054599,
+            "High": 50.33925591,
+            "Low": 49.50268953,
+            "Close": 50.33602524
+          },
+          {
+            "Open": 50.46199324,
+            "High": 51.05953799,
+            "Low": 50.27788196,
+            "Close": 50.90449905
+          }
+        ]
+      },
+      "audit_position": 37,
+      "notes": "Final three candles show a red first body, lower gapped middle body and green recovery; numerical rolling-body thresholds and prior decline agree.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "78ecfdc3269e3b99c710269b6e8e7bec381e5522d30674ae44a704846e60b7a7"
+    },
+    {
+      "id": "2c74f24d522bacd2789e",
+      "label": "Morning Star",
+      "split": "test",
+      "ticker": "QQQ",
+      "end_date": "2023-08-21",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 4.202170928520843,
+        "mean_prior_10_bodies": 2.788356228084882,
+        "tiny_wick_threshold": 0.486980393232272,
+        "lower_wick": 0.4614546797446337,
+        "upper_wick": 0.6774553801069487,
+        "prior_5_day_return": -0.014596011153003352,
+        "last_3_ohlc": [
+          {
+            "Open": 357.34162132,
+            "High": 357.68526279,
+            "Low": 351.64710244,
+            "Close": 352.05944824
+          },
+          {
+            "Open": 348.7998694,
+            "High": 352.87439873,
+            "Low": 348.25985277,
+            "Close": 351.61767578
+          },
+          {
+            "Open": 353.08063547,
+            "High": 357.96026178,
+            "Low": 352.61918079,
+            "Close": 357.2828064
+          }
+        ]
+      },
+      "audit_position": 38,
+      "notes": "Final three candles show a red first body, lower gapped middle body and green recovery; numerical rolling-body thresholds and prior decline agree.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "230edca9cbe7d1833432b9157347a9345990e1d795cfc1486d508f2a7d7c943a"
+    },
+    {
+      "id": "5155c3f06c28e95c6975",
+      "label": "Evening Star",
+      "split": "train",
+      "ticker": "CVX",
+      "end_date": "2008-04-24",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.7144149829445041,
+        "mean_prior_10_bodies": 0.3774829102903233,
+        "tiny_wick_threshold": 0.06806266631445261,
+        "lower_wick": 0.2365289365191856,
+        "upper_wick": 0.05309885880473075,
+        "prior_5_day_return": 0.038073712752476174,
+        "last_3_ohlc": [
+          {
+            "Open": 44.64625633,
+            "High": 45.61651336,
+            "Low": 44.63660367,
+            "Close": 45.38963699
+          },
+          {
+            "Open": 45.49581234,
+            "High": 45.67924241,
+            "Low": 45.12412404,
+            "Close": 45.60683823
+          },
+          {
+            "Open": 45.31720963,
+            "High": 45.37030849,
+            "Low": 44.36626571,
+            "Close": 44.60279465
+          }
+        ]
+      },
+      "audit_position": 39,
+      "notes": "Final three candles show a green first body, higher gapped middle body and red reversal; numerical rolling-body thresholds and prior rise agree.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "d642a81b0c7e8f1421e6df73d7e7381870be1b511de2402b503d834d1a96a442"
+    },
+    {
+      "id": "479667c0d50ba46e0d23",
+      "label": "Evening Star",
+      "split": "train",
+      "ticker": "COST",
+      "end_date": "2011-06-22",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.4176744791808602,
+        "mean_prior_10_bodies": 0.3773460218726129,
+        "tiny_wick_threshold": 0.08267046391267173,
+        "lower_wick": 0.014400105363350235,
+        "upper_wick": 0.1872343344821843,
+        "prior_5_day_return": 0.016985671618647613,
+        "last_3_ohlc": [
+          {
+            "Open": 57.40127387,
+            "High": 58.54627768,
+            "Low": 57.35086524,
+            "Close": 58.51026917
+          },
+          {
+            "Open": 58.61106873,
+            "High": 58.64707723,
+            "Low": 57.99896258,
+            "Close": 58.61106873
+          },
+          {
+            "Open": 58.40222877,
+            "High": 58.5894631,
+            "Low": 57.97015419,
+            "Close": 57.98455429
+          }
+        ]
+      },
+      "audit_position": 40,
+      "notes": "Final three candles show a green first body, higher gapped middle body and red reversal; numerical rolling-body thresholds and prior rise agree.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "74baf0ef5f794e017306fe054e493a2aab6ec6dc582f54573d5b213441132f3a"
+    },
+    {
+      "id": "4244fd4b492b0c119bdb",
+      "label": "Evening Star",
+      "split": "train",
+      "ticker": "BAC",
+      "end_date": "2017-10-09",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.3329672161487274,
+        "mean_prior_10_bodies": 0.10801167317709251,
+        "tiny_wick_threshold": 0.027205827424453873,
+        "lower_wick": 0.07309051564116587,
+        "upper_wick": 0.008121340514275488,
+        "prior_5_day_return": 0.011806401087111285,
+        "last_3_ohlc": [
+          {
+            "Open": 20.9282186,
+            "High": 21.30179101,
+            "Low": 20.83888539,
+            "Close": 21.22057915
+          },
+          {
+            "Open": 21.31803262,
+            "High": 21.35863778,
+            "Low": 21.1474891,
+            "Close": 21.28554726
+          },
+          {
+            "Open": 21.32615226,
+            "High": 21.3342736,
+            "Low": 20.92009453,
+            "Close": 20.99318504
+          }
+        ]
+      },
+      "audit_position": 41,
+      "notes": "Final three candles show a green first body, higher gapped middle body and red reversal; numerical rolling-body thresholds and prior rise agree.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "7b47a9d0629921fdf0120e1e8bf2a64976a76b1359d12f41308313a2770e6b6b"
+    },
+    {
+      "id": "c96be99629808a469689",
+      "label": "Evening Star",
+      "split": "test",
+      "ticker": "DIA",
+      "end_date": "2019-12-30",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 1.6040558307160495,
+        "mean_prior_10_bodies": 0.3699240831960992,
+        "tiny_wick_threshold": 0.09260892664986671,
+        "lower_wick": 0.36335339884792006,
+        "upper_wick": 0.06204188291457058,
+        "prior_5_day_return": 0.00875214569834104,
+        "last_3_ohlc": [
+          {
+            "Open": 252.77654949,
+            "High": 253.54755659,
+            "Low": 252.74996397,
+            "Close": 253.51210022
+          },
+          {
+            "Open": 254.19451388,
+            "High": 254.2122556,
+            "Low": 253.37033563,
+            "Close": 253.75140381
+          },
+          {
+            "Open": 253.76019902,
+            "High": 253.8222409,
+            "Low": 251.79278979,
+            "Close": 252.15614319
+          }
+        ]
+      },
+      "audit_position": 42,
+      "notes": "Final three candles show a green first body, higher gapped middle body and red reversal; numerical rolling-body thresholds and prior rise agree.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "f2699eaa430bb1497b05959bf7956fdd57257ab1f7b9c9ee193db91e9eb085e4"
+    },
+    {
+      "id": "d4a2cf760815be516687",
+      "label": "Evening Star",
+      "split": "test",
+      "ticker": "CSCO",
+      "end_date": "2021-11-11",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.706342619144543,
+        "mean_prior_10_bodies": 0.28776867685383606,
+        "tiny_wick_threshold": 0.08083685858812559,
+        "lower_wick": 0.061041585127895814,
+        "upper_wick": 0.17440595458695185,
+        "prior_5_day_return": 0.016042949212754065,
+        "last_3_ohlc": [
+          {
+            "Open": 49.7665502,
+            "High": 50.25488622,
+            "Low": 49.6183073,
+            "Close": 50.08919907
+          },
+          {
+            "Open": 50.49033275,
+            "High": 51.12691166,
+            "Low": 50.30720467,
+            "Close": 50.37696838
+          },
+          {
+            "Open": 50.20256225,
+            "High": 50.37696821,
+            "Low": 49.43517805,
+            "Close": 49.49621964
+          }
+        ]
+      },
+      "audit_position": 43,
+      "notes": "Final three candles show a green first body, higher gapped middle body and red reversal; numerical rolling-body thresholds and prior rise agree.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "461f1761e939972ec542f84b11d25f7395867b72f57a0aff4d1fb079e38295d9"
+    },
+    {
+      "id": "5a16ff6985f1ac500864",
+      "label": "Evening Star",
+      "split": "test",
+      "ticker": "BRK-B",
+      "end_date": "2020-04-13",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 5.0800018310546875,
+        "mean_prior_10_bodies": 2.1279998779296876,
+        "tiny_wick_threshold": 0.5964999389648438,
+        "lower_wick": 2.69000244140625,
+        "upper_wick": 0.0,
+        "prior_5_day_return": 0.013236329621554743,
+        "last_3_ohlc": [
+          {
+            "Open": 187.55000305,
+            "High": 191.41999817,
+            "Low": 185.13999939,
+            "Close": 191.00999451
+          },
+          {
+            "Open": 194.0,
+            "High": 197.22999573,
+            "Low": 191.44999695,
+            "Close": 193.83999634
+          },
+          {
+            "Open": 193.8500061,
+            "High": 193.8500061,
+            "Low": 186.08000183,
+            "Close": 188.77000427
+          }
+        ]
+      },
+      "audit_position": 44,
+      "notes": "Final three candles show a green first body, higher gapped middle body and red reversal; numerical rolling-body thresholds and prior rise agree.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "268289978ee5fe9652f766cc058a5001e9328405a32802597f725c7069b817f4"
+    },
+    {
+      "id": "497bada820232e32f51c",
+      "label": "None",
+      "split": "train",
+      "ticker": "DIA",
+      "end_date": "2017-09-15",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.2700847685592862,
+        "mean_prior_10_bodies": 0.4809509657184378,
+        "tiny_wick_threshold": 0.08145024854500947,
+        "lower_wick": 0.18568891293159595,
+        "upper_wick": 0.10129305730384885,
+        "prior_5_day_return": 0.01930208054225302,
+        "last_3_ohlc": [
+          {
+            "Open": 186.44246399,
+            "High": 186.8130639,
+            "Low": 186.31611171,
+            "Close": 186.78779602
+          },
+          {
+            "Open": 186.69511019,
+            "High": 187.35210077,
+            "Low": 186.66984231,
+            "Close": 187.25946045
+          },
+          {
+            "Open": 187.48568305,
+            "High": 187.85706088,
+            "Low": 187.29999414,
+            "Close": 187.75576782
+          }
+        ]
+      },
+      "audit_position": 45,
+      "notes": "No obvious complete listed pattern ends at the final candle; both numeric detectors return an empty pattern set.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "8ba31f1b1a68d0d6c35e98d75e1cfacc7ea2c1f24726f2d850d07e240c92fd57"
+    },
+    {
+      "id": "158f72fdace99d12a60c",
+      "label": "None",
+      "split": "train",
+      "ticker": "COST",
+      "end_date": "2011-08-26",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 1.0330505410684196,
+        "mean_prior_10_bodies": 0.7462519776661487,
+        "tiny_wick_threshold": 0.15813610381409007,
+        "lower_wick": 0.5273582659964262,
+        "upper_wick": 0.3323092319529479,
+        "prior_5_day_return": 0.020172043572744602,
+        "last_3_ohlc": [
+          {
+            "Open": 55.06229,
+            "High": 56.00864875,
+            "Low": 54.72275519,
+            "Close": 55.97975159
+          },
+          {
+            "Open": 56.18204021,
+            "High": 56.7238498,
+            "Low": 54.73721463,
+            "Close": 54.80223465
+          },
+          {
+            "Open": 54.74444198,
+            "High": 56.10980176,
+            "Low": 54.21708372,
+            "Close": 55.77749252
+          }
+        ]
+      },
+      "audit_position": 46,
+      "notes": "No obvious complete listed pattern ends at the final candle; both numeric detectors return an empty pattern set.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "0533b5a249f8c6f488bfacd284a8c80c4860184bc5fd4171bfe44b955b4ab436"
+    },
+    {
+      "id": "04b9d360ebb67badaec5",
+      "label": "None",
+      "split": "train",
+      "ticker": "BAC",
+      "end_date": "2017-03-28",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.3785081204997951,
+        "mean_prior_10_bodies": 0.2810624817154029,
+        "tiny_wick_threshold": 0.05121945816468021,
+        "lower_wick": 0.008053560358664669,
+        "upper_wick": 0.1530145746954794,
+        "prior_5_day_return": -0.057692630091286445,
+        "last_3_ohlc": [
+          {
+            "Open": 18.68383461,
+            "High": 18.80463495,
+            "Low": 18.3294856,
+            "Close": 18.61940765
+          },
+          {
+            "Open": 17.94291588,
+            "High": 18.56302445,
+            "Low": 17.84627473,
+            "Close": 18.54691887
+          },
+          {
+            "Open": 18.53081843,
+            "High": 19.06234113,
+            "Low": 18.52276487,
+            "Close": 18.90932655
+          }
+        ]
+      },
+      "audit_position": 47,
+      "notes": "No obvious complete listed pattern ends at the final candle; both numeric detectors return an empty pattern set.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "c6221aadcecf284d589bdd48a7f2636920b1f1e317a0beb5c5081a392be0f5a0"
+    },
+    {
+      "id": "4a1d9e9f78db18f52525",
+      "label": "None",
+      "split": "test",
+      "ticker": "NVDA",
+      "end_date": "2026-06-08",
+      "visual_status": "subtle_or_ambiguous",
+      "diagnostics": {
+        "last_body": 1.5382720124165132,
+        "mean_prior_10_bodies": 4.922397397588648,
+        "tiny_wick_threshold": 0.7821587044510725,
+        "lower_wick": 2.637048622524077,
+        "upper_wick": 0.28968439799839985,
+        "prior_5_day_return": -0.027474491542089585,
+        "last_3_ohlc": [
+          {
+            "Open": 213.67091279,
+            "High": 221.35231999,
+            "Low": 210.73419644,
+            "Close": 218.41560364
+          },
+          {
+            "Open": 214.29021047,
+            "High": 214.62982678,
+            "Low": 204.10161445,
+            "Close": 204.87075806
+          },
+          {
+            "Open": 209.94507133,
+            "High": 210.23475573,
+            "Low": 205.76975069,
+            "Close": 208.40679932
+          }
+        ]
+      },
+      "audit_position": 48,
+      "notes": "Final candle resembles a Hammer. Its body bottom is above the preceding low plus the near threshold, so both detectors correctly assign None under the frozen rule; visually ambiguous without exact prices; retained.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "960308e6d3a489a5837bd0825b713828df3dc3c8acc569c2b08f0dbe5af2862c"
+    },
+    {
+      "id": "f3eafd0d85924fc7b337",
+      "label": "None",
+      "split": "test",
+      "ticker": "GS",
+      "end_date": "2025-05-13",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 10.201550917690383,
+        "mean_prior_10_bodies": 4.394132336552218,
+        "tiny_wick_threshold": 1.0989700031172243,
+        "lower_wick": 0.23294674794055936,
+        "upper_wick": 3.7855623855292606,
+        "prior_5_day_return": 0.05679463538921081,
+        "last_3_ohlc": [
+          {
+            "Open": 553.51362846,
+            "High": 555.30930877,
+            "Low": 549.17484774,
+            "Close": 550.45605469
+          },
+          {
+            "Open": 578.76026561,
+            "High": 585.6615787,
+            "Low": 570.82034903,
+            "Close": 573.98468018
+          },
+          {
+            "Open": 575.8871942,
+            "High": 589.8743075,
+            "Low": 575.65424745,
+            "Close": 586.08874512
+          }
+        ]
+      },
+      "audit_position": 49,
+      "notes": "No obvious complete listed pattern ends at the final candle; both numeric detectors return an empty pattern set.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "9ac349a51e278404585967db2f48a9137ed4b40cc867b0e644b7fccdbbb6081f"
+    },
+    {
+      "id": "9c759f78d29d7a8dd588",
+      "label": "None",
+      "split": "test",
+      "ticker": "DIA",
+      "end_date": "2019-05-21",
+      "visual_status": "visually_consistent",
+      "diagnostics": {
+        "last_body": 0.4982241418026092,
+        "mean_prior_10_bodies": 1.2044952050692472,
+        "tiny_wick_threshold": 0.2923853753002078,
+        "lower_wick": 0.45455583746405637,
+        "upper_wick": 0.09616630246819113,
+        "prior_5_day_return": 0.015147298425929545,
+        "last_3_ohlc": [
+          {
+            "Open": 224.08755939,
+            "High": 226.73614695,
+            "Low": 223.95644779,
+            "Close": 225.03161621
+          },
+          {
+            "Open": 223.95645515,
+            "High": 225.00540128,
+            "Low": 223.32710614,
+            "Close": 224.35856628
+          },
+          {
+            "Open": 225.69598973,
+            "High": 226.29038017,
+            "Low": 225.24143389,
+            "Close": 226.19421387
+          }
+        ]
+      },
+      "audit_position": 50,
+      "notes": "No obvious complete listed pattern ends at the final candle; both numeric detectors return an empty pattern set.",
+      "render_checks": {
+        "twenty_candles": true,
+        "volume_present": true,
+        "pattern_at_right_edge": true,
+        "no_axes_dates_ticker_or_price_text": true,
+        "no_clipping_seen": true
+      },
+      "chart_sha256": "dfc830c9bd654372aaaa6f5ac1084b4577bc53882dec5356803a56113251caef"
+    }
+  ],
+  "human_expert_review": false,
+  "review_date": "2026-10-10",
+  "status_counts": {
+    "visually_consistent": 40,
+    "subtle_or_ambiguous": 10
+  },
+  "criteria": "Inspect the final one to three candles and prior trend; check body/wick/gap geometry against frozen definitions; verify framing and absence of text; flag subtle/marginal cases without replacing selected examples.",
+  "conclusion": "No obvious rendering defects or contradictions with the frozen numeric definitions identified in these 50 charts. Ten are visually subtle or ambiguous. This aided review does not estimate independent human label accuracy.",
+  "contact_sheet_sha256": {
+    "audit_contact_1.png": "ddb3095773358d060fd9e58e8ef0f31380cc9d9160c16da2736567c4fb60768a",
+    "audit_contact_2.png": "c192e94836786a3ac55fa8d839d7d195b336c74091cabe8224593461cbc31145",
+    "audit_contact_3.png": "78fba1e0fdc960a621228036843904396f48de78258b41338a6cf99343172b2a",
+    "audit_contact_4.png": "7da7f2b5b41f87ebf3083c2661ded91856f699532c84b92a1208fddda8f5cbf7",
+    "audit_contact_5.png": "440b5b947c4430def4a9c943ec0830a9aa29feb422d63ce5bc1a4fc2851ecb71"
+  }
+}

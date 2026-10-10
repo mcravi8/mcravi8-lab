@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "frozen_before_sampling": true,
+  "classes": [
+    "Doji",
+    "Hammer",
+    "Shooting Star",
+    "Bullish Engulfing",
+    "Bearish Engulfing",
+    "Morning Star",
+    "Evening Star",
+    "None"
+  ],
+  "reference": "TA-Lib 0.8.1 standard candle settings, verified against the matching official C release",
+  "body_long_short": {
+    "range": "absolute close minus open",
+    "previous_sessions": 10,
+    "factor": 1.0
+  },
+  "doji": {
+    "range": "high minus low",
+    "previous_sessions": 10,
+    "factor": 0.1,
+    "comparison": "body <= threshold"
+  },
+  "shadow_long": {
+    "range": "current absolute body",
+    "factor": 1.0,
+    "comparison": "shadow > threshold"
+  },
+  "shadow_very_short": {
+    "range": "high minus low",
+    "previous_sessions": 10,
+    "factor": 0.1,
+    "comparison": "shadow < threshold"
+  },
+  "hammer_near": {
+    "range": "high minus low",
+    "sessions_before_previous_candle": 5,
+    "factor": 0.2,
+    "comparison": "body low <= previous low + threshold"
+  },
+  "shooting_star_gap": "current body low > previous body high",
+  "engulfing": "opposite body colors; current body covers prior body with at least one strict endpoint; +/-80 and +/-100 count; no extra trend filter",
+  "star_penetration": 0.3,
+  "prior_trend": {
+    "sessions": 5,
+    "formula": "close immediately before pattern starts / close five sessions earlier - 1",
+    "negative": [
+      "Hammer",
+      "Morning Star"
+    ],
+    "positive": [
+      "Shooting Star",
+      "Evening Star"
+    ],
+    "span": {
+      "Hammer": 1,
+      "Shooting Star": 1,
+      "Morning Star": 3,
+      "Evening Star": 3
+    }
+  },
+  "agreement": "exact equality of complete sets of seven pattern flags; retain a single flag or neither detector finding any flag (None); exclude all multiple-pattern windows",
+  "n_bars": 20,
+  "train_end": "2018-12-31",
+  "test_start": "2019-04-01",
+  "split_boundary": "all twenty chart sessions must lie inside the assigned split; Q1 2019 is embargoed",
+  "per_class": 150,
+  "per_class_train": 75,
+  "per_class_test": 75,
+  "sampling": "deterministic round-robin across ticker/year cells, seeded hash ordering; keep deficits if a split has fewer than 75",
+  "seed": 606,
+  "hand_review": "50 deterministically selected samples, stratified across classes and splits; visual chart inspection with numerical diagnostics, report ambiguous cases without silently replacing them",
+  "upstream_sources": {
+    "ta_CDLDOJI.c": {
+      "url": "https://raw.githubusercontent.com/TA-Lib/ta-lib/v0.8.1/src/ta_func/ta_CDLDOJI.c",
+      "sha256": "30df77aaeecc976c17da1a6098ef19b3e934aeccbb8545a8a64c660cca2a16af"
+    },
+    "ta_CDLHAMMER.c": {
+      "url": "https://raw.githubusercontent.com/TA-Lib/ta-lib/v0.8.1/src/ta_func/ta_CDLHAMMER.c",
+      "sha256": "565144a004bded644db1b5a412ef0a831ce0bb2626640b7db501c07b7cf19beb"
+    },
+    "ta_CDLSHOOTINGSTAR.c": {
+      "url": "https://raw.githubusercontent.com/TA-Lib/ta-lib/v0.8.1/src/ta_func/ta_CDLSHOOTINGSTAR.c",
+      "sha256": "bab537dc069163fa3158aea86f6c8943f4cfca747638934e86458f499c4dcb78"
+    },
+    "ta_CDLENGULFING.c": {
+      "url": "https://raw.githubusercontent.com/TA-Lib/ta-lib/v0.8.1/src/ta_func/ta_CDLENGULFING.c",
+      "sha256": "afba4d35fd1d7601e7bad5e15811db47e6970ada6a379f41da238a946d7d9a40"
+    },
+    "ta_CDLMORNINGSTAR.c": {
+      "url": "https://raw.githubusercontent.com/TA-Lib/ta-lib/v0.8.1/src/ta_func/ta_CDLMORNINGSTAR.c",
+      "sha256": "0b7a30ba99b061e1eb59669c43f9f043a688c6b0c21edb041ffbfb1353613d8d"
+    },
+    "ta_CDLEVENINGSTAR.c": {
+      "url": "https://raw.githubusercontent.com/TA-Lib/ta-lib/v0.8.1/src/ta_func/ta_CDLEVENINGSTAR.c",
+      "sha256": "76055c8734861d22ea7c634ad94cb6a27815bb9fcaad7850ca2196d3b66feffc"
+    }
+  }
+}

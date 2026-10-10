@@ -1,6 +1,6 @@
 # Experiment 06: Can JEV-27B-VL recognize chart patterns?
 
-Day 1 is CPU-only. Shared infrastructure is implemented; the candle and synthetic dataset stages follow in separate commits. No JEV inference, GPU training, or Runpod resource has been started. [PLAN.md](PLAN.md) preserves the original design.
+Day 1 is CPU-only. Shared infrastructure and the candle dataset are complete; the synthetic dataset follows in its own commit. No JEV inference, GPU training, or Runpod resource has been started. [PLAN.md](PLAN.md) preserves the original design.
 
 This experiment studies recognition of visible patterns, rather than future returns. It uses **AutoTrust's [JEV-27B-VL](https://huggingface.co/autotrust/JEV-27B-VL)**, with model weights, calibration and native System 1 serving code from Hugging Face. A later authorized session may serve the model on Runpod. Local validation uses a fake server and CPU tensors only.
 
@@ -59,6 +59,39 @@ Real-data intervals resample whole **ticker-calendar-quarter** blocks. Synthetic
 `shared/src/baselines.py` supplies training-majority, training-frequency prior, uniform probabilities, numerical logistic regression and the Experiment 04 CNN architecture with an arbitrary output count. Logistic uses only normalized visible OHLCV interpolated to 32 positions, with its scaler fitted on training rows. CNN validation comes from the latest 20% of training dates with overlapping fit windows purged. It verifies checkpoint reload predictions. Synthetic examples cannot train fitted baselines; uniform needs no training data. Default CLI mode is a preflight; fitting needs explicit `--mode train`.
 
 All real training dates end by **2018-12-31**. January–March 2019 is embargoed, and test input windows begin on or after **2019-04-01**. Synthetic data are evaluation-only. The train set is for baseline fitting and any future calibration; held-out labels must not select prompts, thresholds, hyperparameters or examples.
+
+## 06a dataset ready
+
+The candle dataset has **1,200 charts: 150 per class, each with 75 train and 75 test**. Doji, Hammer, Shooting Star, Bullish/Bearish Engulfing, Morning/Evening Star and None all meet the quota. TA-Lib and the independent pandas implementation agree on all 254,240 eligible windows; per-class positive agreement is 100%. This verifies the shared definitions, not independent expert truth. The rarest single-label pools are Evening Star (560) and Morning Star (590). The fixed 50-chart visual audit flags ten subtle cases, retained with notes.
+
+Nine 640 x 480 samples are in [06a-candles/results/samples](06a-candles/results/samples); the sample manifest maps filenames to source labels and dates. See the [candle README](06a-candles/README.md) for all counts, exclusions and reproduction commands.
+
+Future scoring commands below require an already authorized, separately verified native JEV server. They do not provision a pod. Use its exact Hugging Face snapshot commit in `JEV_MODEL_REVISION` and its documented served alias if necessary.
+
+```sh
+# Optional pure CPU preflight; does not train:
+06-jev-patterns/.venv/bin/python 06-jev-patterns/shared/src/baselines.py \
+  --root 06-jev-patterns/06a-candles --index 06-jev-patterns/06a-candles/results/index.csv \
+  --options-file 06-jev-patterns/06a-candles/options.json \
+  --out 06-jev-patterns/06a-candles/results/baselines
+
+# Future zero-shot arm (JEV_BASE_URL and JEV_MODEL_REVISION must be set):
+06-jev-patterns/.venv/bin/python 06-jev-patterns/shared/src/score.py \
+  --root 06-jev-patterns/06a-candles --index results/index.csv \
+  --options-file 06-jev-patterns/06a-candles/options.json \
+  --question 'Which candlestick pattern ends at the right edge of this chart?' \
+  --out results/zero_shot/preds.csv
+```
+
+For a definitions arm, add `--context-file 06-jev-patterns/shared/context/candles.txt` and select a new output such as `results/definitions/preds.csv`. Add `--parity-only` to perform only the gate. A local smoke run instead uses `--base-url http://127.0.0.1:8765 --dry-run --limit 10 --out results/dry_run/preds.csv`, with the fake server running. Final prompt paraphrases and exact arm/subset manifests are Day 2 work; these are invocation examples, not executed or finalized inference arms.
+
+```sh
+# Later evaluation and exact paired comparison, using completed compatible arms:
+06-jev-patterns/.venv/bin/python 06-jev-patterns/shared/src/evaluate.py \
+  --predictions 06-jev-patterns/06a-candles/results/definitions/preds.csv \
+  --compare 06-jev-patterns/06a-candles/results/zero_shot/preds.csv \
+  --out 06-jev-patterns/06a-candles/results/comparison
+```
 
 ## Dataset stages and Day 2
 

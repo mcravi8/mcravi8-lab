@@ -1,0 +1,149 @@
+{
+  "total": 1200,
+  "counts": {
+    "Doji": {
+      "train": {
+        "available": 21710,
+        "selected": 75,
+        "target": 75,
+        "deficit": 0,
+        "tickers": 42,
+        "years": 14
+      },
+      "test": {
+        "available": 12317,
+        "selected": 75,
+        "target": 75,
+        "deficit": 0,
+        "tickers": 40,
+        "years": 8
+      }
+    },
+    "Hammer": {
+      "train": {
+        "available": 1148,
+        "selected": 75,
+        "target": 75,
+        "deficit": 0,
+        "tickers": 40,
+        "years": 14
+      },
+      "test": {
+        "available": 875,
+        "selected": 75,
+        "target": 75,
+        "deficit": 0,
+        "tickers": 38,
+        "years": 8
+      }
+    },
+    "Shooting Star": {
+      "train": {
+        "available": 884,
+        "selected": 75,
+        "target": 75,
+        "deficit": 0,
+        "tickers": 37,
+        "years": 14
+      },
+      "test": {
+        "available": 672,
+        "selected": 75,
+        "target": 75,
+        "deficit": 0,
+        "tickers": 39,
+        "years": 8
+      }
+    },
+    "Bullish Engulfing": {
+      "train": {
+        "available": 5812,
+        "selected": 75,
+        "target": 75,
+        "deficit": 0,
+        "tickers": 42,
+        "years": 14
+      },
+      "test": {
+        "available": 3069,
+        "selected": 75,
+        "target": 75,
+        "deficit": 0,
+        "tickers": 40,
+        "years": 8
+      }
+    },
+    "Bearish Engulfing": {
+      "train": {
+        "available": 6541,
+        "selected": 75,
+        "target": 75,
+        "deficit": 0,
+        "tickers": 42,
+        "years": 14
+      },
+      "test": {
+        "available": 3771,
+        "selected": 75,
+        "target": 75,
+        "deficit": 0,
+        "tickers": 40,
+        "years": 8
+      }
+    },
+    "Morning Star": {
+      "train": {
+        "available": 401,
+        "selected": 75,
+        "target": 75,
+        "deficit": 0,
+        "tickers": 37,
+        "years": 14
+      },
+      "test": {
+        "available": 189,
+        "selected": 75,
+        "target": 75,
+        "deficit": 0,
+        "tickers": 41,
+        "years": 8
+      }
+    },
+    "Evening Star": {
+      "train": {
+        "available": 334,
+        "selected": 75,
+        "target": 75,
+        "deficit": 0,
+        "tickers": 36,
+        "years": 14
+      },
+      "test": {
+        "available": 226,
+        "selected": 75,
+        "target": 75,
+        "deficit": 0,
+        "tickers": 42,
+        "years": 8
+      }
+    },
+    "None": {
+      "train": {
+        "available": 124183,
+        "selected": 75,
+        "target": 75,
+        "deficit": 0,
+        "tickers": 42,
+        "years": 14
+      },
+      "test": {
+        "available": 70853,
+        "selected": 75,
+        "target": 75,
+        "deficit": 0,
+        "tickers": 40,
+        "years": 8
+      }
+    }
+  }
+}

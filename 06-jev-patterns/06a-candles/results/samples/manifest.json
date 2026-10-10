@@ -1,0 +1,74 @@
+[
+  {
+    "sample": "results/samples/sample_01.png",
+    "id": "ba8d0e9b91a35d46bfe4",
+    "label": "Doji",
+    "ticker": "XOM",
+    "end_date": "2010-05-13",
+    "split": "train"
+  },
+  {
+    "sample": "results/samples/sample_02.png",
+    "id": "7173450c6b7c245ef54d",
+    "label": "Hammer",
+    "ticker": "XOM",
+    "end_date": "2010-08-20",
+    "split": "train"
+  },
+  {
+    "sample": "results/samples/sample_03.png",
+    "id": "0f8f55474b7285828faf",
+    "label": "Shooting Star",
+    "ticker": "XOM",
+    "end_date": "2010-11-01",
+    "split": "train"
+  },
+  {
+    "sample": "results/samples/sample_04.png",
+    "id": "ccfefa061452b2a5e038",
+    "label": "Bullish Engulfing",
+    "ticker": "XOM",
+    "end_date": "2010-03-09",
+    "split": "train"
+  },
+  {
+    "sample": "results/samples/sample_05.png",
+    "id": "7991ba9ef7d2d1cd6abd",
+    "label": "Bearish Engulfing",
+    "ticker": "XOM",
+    "end_date": "2010-07-29",
+    "split": "train"
+  },
+  {
+    "sample": "results/samples/sample_06.png",
+    "id": "e0983735dadaf62f533b",
+    "label": "Morning Star",
+    "ticker": "INTC",
+    "end_date": "2025-04-03",
+    "split": "test"
+  },
+  {
+    "sample": "results/samples/sample_07.png",
+    "id": "602912b2bf003ecd038a",
+    "label": "Evening Star",
+    "ticker": "TXN",
+    "end_date": "2023-03-06",
+    "split": "test"
+  },
+  {
+    "sample": "results/samples/sample_08.png",
+    "id": "d4a4bbc6c99d656bd9b7",
+    "label": "None",
+    "ticker": "XOM",
+    "end_date": "2010-08-04",
+    "split": "train"
+  },
+  {
+    "sample": "results/samples/sample_09.png",
+    "id": "2c243dc90807f7460a2a",
+    "label": "Doji",
+    "ticker": "QCOM",
+    "end_date": "2006-12-12",
+    "split": "train"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "rules_sha256": "5490cd94e193e0c36dbedd01ab8a3e1ddd7404d56057a04904a4a4ca51810e63",
+  "source_sha256": "d3bb73bdfc8382aebe786c2d7cf1b3e033f6b6e1c7e77143f781db4bf4502b01",
+  "context_sha256": "ad6f93748c5faf7069f604baeee3bd7e906d7986afc6454516b2cf52e2818246",
+  "talib_python_version": "0.8.1",
+  "talib_c_version": "b'0.8.1 (Sep 21 2026 16:38:04)'",
+  "numpy_version": "2.4.6",
+  "pandas_version": "2.3.3",
+  "data_manifest_sha256": "0f01c1ff972b70167981802046fbc5aaf3ec05897c1240b5688462df8f81539a",
+  "index_sha256": "e5d180976ce0dea0f3d15849fbb1f542c139969ac076e21bebe1ff8b8f7c9f3e",
+  "selected": 1200,
+  "rendered": true,
+  "no_gpu_or_model_calls": true,
+  "renderer_sha256": "e7bd429d29d49433b10529fc5c7e1f7d0fe9248ed52c364aac485e05d90b4906",
+  "chart_hashes_sha256": "6b09c76040bc45b922552c3703fdd01225b1acb84c498811202a921665f62444",
+  "size": [
+    640,
+    480
+  ],
+  "n_bars": 20,
+  "style": "candle",
+  "mirror": false
+}
