@@ -1,0 +1,1201 @@
+file,ticker,end_date,label,template_id,noise_level,noise_number,is_clean,split,replication_unit,n_bars,source_n_bars,framing,bars_file,label_source
+charts/synth_0000_0.png,SYNTH,,Head and Shoulders,template_0000,0.0,0,True,eval,template_0000,102,102,variable,data/bars/synth_0000_0.csv,synthetic_generator
+charts/synth_0000_1.png,SYNTH,,Head and Shoulders,template_0000,0.015,1,False,eval,template_0000,102,102,variable,data/bars/synth_0000_1.csv,synthetic_generator
+charts/synth_0000_2.png,SYNTH,,Head and Shoulders,template_0000,0.035,2,False,eval,template_0000,102,102,variable,data/bars/synth_0000_2.csv,synthetic_generator
+charts/synth_0000_3.png,SYNTH,,Head and Shoulders,template_0000,0.07,3,False,eval,template_0000,102,102,variable,data/bars/synth_0000_3.csv,synthetic_generator
+charts/synth_0000_4.png,SYNTH,,Head and Shoulders,template_0000,0.12,4,False,eval,template_0000,102,102,variable,data/bars/synth_0000_4.csv,synthetic_generator
+charts/synth_0000_5.png,SYNTH,,Head and Shoulders,template_0000,0.2,5,False,eval,template_0000,102,102,variable,data/bars/synth_0000_5.csv,synthetic_generator
+charts/synth_0001_0.png,SYNTH,,Inverse Head and Shoulders,template_0001,0.0,0,True,eval,template_0001,61,61,variable,data/bars/synth_0001_0.csv,synthetic_generator
+charts/synth_0001_1.png,SYNTH,,Inverse Head and Shoulders,template_0001,0.015,1,False,eval,template_0001,61,61,variable,data/bars/synth_0001_1.csv,synthetic_generator
+charts/synth_0001_2.png,SYNTH,,Inverse Head and Shoulders,template_0001,0.035,2,False,eval,template_0001,61,61,variable,data/bars/synth_0001_2.csv,synthetic_generator
+charts/synth_0001_3.png,SYNTH,,Inverse Head and Shoulders,template_0001,0.07,3,False,eval,template_0001,61,61,variable,data/bars/synth_0001_3.csv,synthetic_generator
+charts/synth_0001_4.png,SYNTH,,Inverse Head and Shoulders,template_0001,0.12,4,False,eval,template_0001,61,61,variable,data/bars/synth_0001_4.csv,synthetic_generator
+charts/synth_0001_5.png,SYNTH,,Inverse Head and Shoulders,template_0001,0.2,5,False,eval,template_0001,61,61,variable,data/bars/synth_0001_5.csv,synthetic_generator
+charts/synth_0002_0.png,SYNTH,,Double Top,template_0002,0.0,0,True,eval,template_0002,119,119,variable,data/bars/synth_0002_0.csv,synthetic_generator
+charts/synth_0002_1.png,SYNTH,,Double Top,template_0002,0.015,1,False,eval,template_0002,119,119,variable,data/bars/synth_0002_1.csv,synthetic_generator
+charts/synth_0002_2.png,SYNTH,,Double Top,template_0002,0.035,2,False,eval,template_0002,119,119,variable,data/bars/synth_0002_2.csv,synthetic_generator
+charts/synth_0002_3.png,SYNTH,,Double Top,template_0002,0.07,3,False,eval,template_0002,119,119,variable,data/bars/synth_0002_3.csv,synthetic_generator
+charts/synth_0002_4.png,SYNTH,,Double Top,template_0002,0.12,4,False,eval,template_0002,119,119,variable,data/bars/synth_0002_4.csv,synthetic_generator
+charts/synth_0002_5.png,SYNTH,,Double Top,template_0002,0.2,5,False,eval,template_0002,119,119,variable,data/bars/synth_0002_5.csv,synthetic_generator
+charts/synth_0003_0.png,SYNTH,,Double Bottom,template_0003,0.0,0,True,eval,template_0003,86,86,variable,data/bars/synth_0003_0.csv,synthetic_generator
+charts/synth_0003_1.png,SYNTH,,Double Bottom,template_0003,0.015,1,False,eval,template_0003,86,86,variable,data/bars/synth_0003_1.csv,synthetic_generator
+charts/synth_0003_2.png,SYNTH,,Double Bottom,template_0003,0.035,2,False,eval,template_0003,86,86,variable,data/bars/synth_0003_2.csv,synthetic_generator
+charts/synth_0003_3.png,SYNTH,,Double Bottom,template_0003,0.07,3,False,eval,template_0003,86,86,variable,data/bars/synth_0003_3.csv,synthetic_generator
+charts/synth_0003_4.png,SYNTH,,Double Bottom,template_0003,0.12,4,False,eval,template_0003,86,86,variable,data/bars/synth_0003_4.csv,synthetic_generator
+charts/synth_0003_5.png,SYNTH,,Double Bottom,template_0003,0.2,5,False,eval,template_0003,86,86,variable,data/bars/synth_0003_5.csv,synthetic_generator
+charts/synth_0004_0.png,SYNTH,,Triangle,template_0004,0.0,0,True,eval,template_0004,79,79,variable,data/bars/synth_0004_0.csv,synthetic_generator
+charts/synth_0004_1.png,SYNTH,,Triangle,template_0004,0.015,1,False,eval,template_0004,79,79,variable,data/bars/synth_0004_1.csv,synthetic_generator
+charts/synth_0004_2.png,SYNTH,,Triangle,template_0004,0.035,2,False,eval,template_0004,79,79,variable,data/bars/synth_0004_2.csv,synthetic_generator
+charts/synth_0004_3.png,SYNTH,,Triangle,template_0004,0.07,3,False,eval,template_0004,79,79,variable,data/bars/synth_0004_3.csv,synthetic_generator
+charts/synth_0004_4.png,SYNTH,,Triangle,template_0004,0.12,4,False,eval,template_0004,79,79,variable,data/bars/synth_0004_4.csv,synthetic_generator
+charts/synth_0004_5.png,SYNTH,,Triangle,template_0004,0.2,5,False,eval,template_0004,79,79,variable,data/bars/synth_0004_5.csv,synthetic_generator
+charts/synth_0005_0.png,SYNTH,,Bull Flag,template_0005,0.0,0,True,eval,template_0005,91,91,variable,data/bars/synth_0005_0.csv,synthetic_generator
+charts/synth_0005_1.png,SYNTH,,Bull Flag,template_0005,0.015,1,False,eval,template_0005,91,91,variable,data/bars/synth_0005_1.csv,synthetic_generator
+charts/synth_0005_2.png,SYNTH,,Bull Flag,template_0005,0.035,2,False,eval,template_0005,91,91,variable,data/bars/synth_0005_2.csv,synthetic_generator
+charts/synth_0005_3.png,SYNTH,,Bull Flag,template_0005,0.07,3,False,eval,template_0005,91,91,variable,data/bars/synth_0005_3.csv,synthetic_generator
+charts/synth_0005_4.png,SYNTH,,Bull Flag,template_0005,0.12,4,False,eval,template_0005,91,91,variable,data/bars/synth_0005_4.csv,synthetic_generator
+charts/synth_0005_5.png,SYNTH,,Bull Flag,template_0005,0.2,5,False,eval,template_0005,91,91,variable,data/bars/synth_0005_5.csv,synthetic_generator
+charts/synth_0006_0.png,SYNTH,,None,template_0006,0.0,0,True,eval,template_0006,113,113,variable,data/bars/synth_0006_0.csv,synthetic_generator
+charts/synth_0006_1.png,SYNTH,,None,template_0006,0.015,1,False,eval,template_0006,113,113,variable,data/bars/synth_0006_1.csv,synthetic_generator
+charts/synth_0006_2.png,SYNTH,,None,template_0006,0.035,2,False,eval,template_0006,113,113,variable,data/bars/synth_0006_2.csv,synthetic_generator
+charts/synth_0006_3.png,SYNTH,,None,template_0006,0.07,3,False,eval,template_0006,113,113,variable,data/bars/synth_0006_3.csv,synthetic_generator
+charts/synth_0006_4.png,SYNTH,,None,template_0006,0.12,4,False,eval,template_0006,113,113,variable,data/bars/synth_0006_4.csv,synthetic_generator
+charts/synth_0006_5.png,SYNTH,,None,template_0006,0.2,5,False,eval,template_0006,113,113,variable,data/bars/synth_0006_5.csv,synthetic_generator
+charts/synth_0007_0.png,SYNTH,,Head and Shoulders,template_0007,0.0,0,True,eval,template_0007,92,92,variable,data/bars/synth_0007_0.csv,synthetic_generator
+charts/synth_0007_1.png,SYNTH,,Head and Shoulders,template_0007,0.015,1,False,eval,template_0007,92,92,variable,data/bars/synth_0007_1.csv,synthetic_generator
+charts/synth_0007_2.png,SYNTH,,Head and Shoulders,template_0007,0.035,2,False,eval,template_0007,92,92,variable,data/bars/synth_0007_2.csv,synthetic_generator
+charts/synth_0007_3.png,SYNTH,,Head and Shoulders,template_0007,0.07,3,False,eval,template_0007,92,92,variable,data/bars/synth_0007_3.csv,synthetic_generator
+charts/synth_0007_4.png,SYNTH,,Head and Shoulders,template_0007,0.12,4,False,eval,template_0007,92,92,variable,data/bars/synth_0007_4.csv,synthetic_generator
+charts/synth_0007_5.png,SYNTH,,Head and Shoulders,template_0007,0.2,5,False,eval,template_0007,92,92,variable,data/bars/synth_0007_5.csv,synthetic_generator
+charts/synth_0008_0.png,SYNTH,,Inverse Head and Shoulders,template_0008,0.0,0,True,eval,template_0008,71,71,variable,data/bars/synth_0008_0.csv,synthetic_generator
+charts/synth_0008_1.png,SYNTH,,Inverse Head and Shoulders,template_0008,0.015,1,False,eval,template_0008,71,71,variable,data/bars/synth_0008_1.csv,synthetic_generator
+charts/synth_0008_2.png,SYNTH,,Inverse Head and Shoulders,template_0008,0.035,2,False,eval,template_0008,71,71,variable,data/bars/synth_0008_2.csv,synthetic_generator
+charts/synth_0008_3.png,SYNTH,,Inverse Head and Shoulders,template_0008,0.07,3,False,eval,template_0008,71,71,variable,data/bars/synth_0008_3.csv,synthetic_generator
+charts/synth_0008_4.png,SYNTH,,Inverse Head and Shoulders,template_0008,0.12,4,False,eval,template_0008,71,71,variable,data/bars/synth_0008_4.csv,synthetic_generator
+charts/synth_0008_5.png,SYNTH,,Inverse Head and Shoulders,template_0008,0.2,5,False,eval,template_0008,71,71,variable,data/bars/synth_0008_5.csv,synthetic_generator
+charts/synth_0009_0.png,SYNTH,,Double Top,template_0009,0.0,0,True,eval,template_0009,86,86,variable,data/bars/synth_0009_0.csv,synthetic_generator
+charts/synth_0009_1.png,SYNTH,,Double Top,template_0009,0.015,1,False,eval,template_0009,86,86,variable,data/bars/synth_0009_1.csv,synthetic_generator
+charts/synth_0009_2.png,SYNTH,,Double Top,template_0009,0.035,2,False,eval,template_0009,86,86,variable,data/bars/synth_0009_2.csv,synthetic_generator
+charts/synth_0009_3.png,SYNTH,,Double Top,template_0009,0.07,3,False,eval,template_0009,86,86,variable,data/bars/synth_0009_3.csv,synthetic_generator
+charts/synth_0009_4.png,SYNTH,,Double Top,template_0009,0.12,4,False,eval,template_0009,86,86,variable,data/bars/synth_0009_4.csv,synthetic_generator
+charts/synth_0009_5.png,SYNTH,,Double Top,template_0009,0.2,5,False,eval,template_0009,86,86,variable,data/bars/synth_0009_5.csv,synthetic_generator
+charts/synth_0010_0.png,SYNTH,,Double Bottom,template_0010,0.0,0,True,eval,template_0010,95,95,variable,data/bars/synth_0010_0.csv,synthetic_generator
+charts/synth_0010_1.png,SYNTH,,Double Bottom,template_0010,0.015,1,False,eval,template_0010,95,95,variable,data/bars/synth_0010_1.csv,synthetic_generator
+charts/synth_0010_2.png,SYNTH,,Double Bottom,template_0010,0.035,2,False,eval,template_0010,95,95,variable,data/bars/synth_0010_2.csv,synthetic_generator
+charts/synth_0010_3.png,SYNTH,,Double Bottom,template_0010,0.07,3,False,eval,template_0010,95,95,variable,data/bars/synth_0010_3.csv,synthetic_generator
+charts/synth_0010_4.png,SYNTH,,Double Bottom,template_0010,0.12,4,False,eval,template_0010,95,95,variable,data/bars/synth_0010_4.csv,synthetic_generator
+charts/synth_0010_5.png,SYNTH,,Double Bottom,template_0010,0.2,5,False,eval,template_0010,95,95,variable,data/bars/synth_0010_5.csv,synthetic_generator
+charts/synth_0011_0.png,SYNTH,,Triangle,template_0011,0.0,0,True,eval,template_0011,104,104,variable,data/bars/synth_0011_0.csv,synthetic_generator
+charts/synth_0011_1.png,SYNTH,,Triangle,template_0011,0.015,1,False,eval,template_0011,104,104,variable,data/bars/synth_0011_1.csv,synthetic_generator
+charts/synth_0011_2.png,SYNTH,,Triangle,template_0011,0.035,2,False,eval,template_0011,104,104,variable,data/bars/synth_0011_2.csv,synthetic_generator
+charts/synth_0011_3.png,SYNTH,,Triangle,template_0011,0.07,3,False,eval,template_0011,104,104,variable,data/bars/synth_0011_3.csv,synthetic_generator
+charts/synth_0011_4.png,SYNTH,,Triangle,template_0011,0.12,4,False,eval,template_0011,104,104,variable,data/bars/synth_0011_4.csv,synthetic_generator
+charts/synth_0011_5.png,SYNTH,,Triangle,template_0011,0.2,5,False,eval,template_0011,104,104,variable,data/bars/synth_0011_5.csv,synthetic_generator
+charts/synth_0012_0.png,SYNTH,,Bull Flag,template_0012,0.0,0,True,eval,template_0012,87,87,variable,data/bars/synth_0012_0.csv,synthetic_generator
+charts/synth_0012_1.png,SYNTH,,Bull Flag,template_0012,0.015,1,False,eval,template_0012,87,87,variable,data/bars/synth_0012_1.csv,synthetic_generator
+charts/synth_0012_2.png,SYNTH,,Bull Flag,template_0012,0.035,2,False,eval,template_0012,87,87,variable,data/bars/synth_0012_2.csv,synthetic_generator
+charts/synth_0012_3.png,SYNTH,,Bull Flag,template_0012,0.07,3,False,eval,template_0012,87,87,variable,data/bars/synth_0012_3.csv,synthetic_generator
+charts/synth_0012_4.png,SYNTH,,Bull Flag,template_0012,0.12,4,False,eval,template_0012,87,87,variable,data/bars/synth_0012_4.csv,synthetic_generator
+charts/synth_0012_5.png,SYNTH,,Bull Flag,template_0012,0.2,5,False,eval,template_0012,87,87,variable,data/bars/synth_0012_5.csv,synthetic_generator
+charts/synth_0013_0.png,SYNTH,,None,template_0013,0.0,0,True,eval,template_0013,94,94,variable,data/bars/synth_0013_0.csv,synthetic_generator
+charts/synth_0013_1.png,SYNTH,,None,template_0013,0.015,1,False,eval,template_0013,94,94,variable,data/bars/synth_0013_1.csv,synthetic_generator
+charts/synth_0013_2.png,SYNTH,,None,template_0013,0.035,2,False,eval,template_0013,94,94,variable,data/bars/synth_0013_2.csv,synthetic_generator
+charts/synth_0013_3.png,SYNTH,,None,template_0013,0.07,3,False,eval,template_0013,94,94,variable,data/bars/synth_0013_3.csv,synthetic_generator
+charts/synth_0013_4.png,SYNTH,,None,template_0013,0.12,4,False,eval,template_0013,94,94,variable,data/bars/synth_0013_4.csv,synthetic_generator
+charts/synth_0013_5.png,SYNTH,,None,template_0013,0.2,5,False,eval,template_0013,94,94,variable,data/bars/synth_0013_5.csv,synthetic_generator
+charts/synth_0014_0.png,SYNTH,,Head and Shoulders,template_0014,0.0,0,True,eval,template_0014,115,115,variable,data/bars/synth_0014_0.csv,synthetic_generator
+charts/synth_0014_1.png,SYNTH,,Head and Shoulders,template_0014,0.015,1,False,eval,template_0014,115,115,variable,data/bars/synth_0014_1.csv,synthetic_generator
+charts/synth_0014_2.png,SYNTH,,Head and Shoulders,template_0014,0.035,2,False,eval,template_0014,115,115,variable,data/bars/synth_0014_2.csv,synthetic_generator
+charts/synth_0014_3.png,SYNTH,,Head and Shoulders,template_0014,0.07,3,False,eval,template_0014,115,115,variable,data/bars/synth_0014_3.csv,synthetic_generator
+charts/synth_0014_4.png,SYNTH,,Head and Shoulders,template_0014,0.12,4,False,eval,template_0014,115,115,variable,data/bars/synth_0014_4.csv,synthetic_generator
+charts/synth_0014_5.png,SYNTH,,Head and Shoulders,template_0014,0.2,5,False,eval,template_0014,115,115,variable,data/bars/synth_0014_5.csv,synthetic_generator
+charts/synth_0015_0.png,SYNTH,,Inverse Head and Shoulders,template_0015,0.0,0,True,eval,template_0015,103,103,variable,data/bars/synth_0015_0.csv,synthetic_generator
+charts/synth_0015_1.png,SYNTH,,Inverse Head and Shoulders,template_0015,0.015,1,False,eval,template_0015,103,103,variable,data/bars/synth_0015_1.csv,synthetic_generator
+charts/synth_0015_2.png,SYNTH,,Inverse Head and Shoulders,template_0015,0.035,2,False,eval,template_0015,103,103,variable,data/bars/synth_0015_2.csv,synthetic_generator
+charts/synth_0015_3.png,SYNTH,,Inverse Head and Shoulders,template_0015,0.07,3,False,eval,template_0015,103,103,variable,data/bars/synth_0015_3.csv,synthetic_generator
+charts/synth_0015_4.png,SYNTH,,Inverse Head and Shoulders,template_0015,0.12,4,False,eval,template_0015,103,103,variable,data/bars/synth_0015_4.csv,synthetic_generator
+charts/synth_0015_5.png,SYNTH,,Inverse Head and Shoulders,template_0015,0.2,5,False,eval,template_0015,103,103,variable,data/bars/synth_0015_5.csv,synthetic_generator
+charts/synth_0016_0.png,SYNTH,,Double Top,template_0016,0.0,0,True,eval,template_0016,104,104,variable,data/bars/synth_0016_0.csv,synthetic_generator
+charts/synth_0016_1.png,SYNTH,,Double Top,template_0016,0.015,1,False,eval,template_0016,104,104,variable,data/bars/synth_0016_1.csv,synthetic_generator
+charts/synth_0016_2.png,SYNTH,,Double Top,template_0016,0.035,2,False,eval,template_0016,104,104,variable,data/bars/synth_0016_2.csv,synthetic_generator
+charts/synth_0016_3.png,SYNTH,,Double Top,template_0016,0.07,3,False,eval,template_0016,104,104,variable,data/bars/synth_0016_3.csv,synthetic_generator
+charts/synth_0016_4.png,SYNTH,,Double Top,template_0016,0.12,4,False,eval,template_0016,104,104,variable,data/bars/synth_0016_4.csv,synthetic_generator
+charts/synth_0016_5.png,SYNTH,,Double Top,template_0016,0.2,5,False,eval,template_0016,104,104,variable,data/bars/synth_0016_5.csv,synthetic_generator
+charts/synth_0017_0.png,SYNTH,,Double Bottom,template_0017,0.0,0,True,eval,template_0017,62,62,variable,data/bars/synth_0017_0.csv,synthetic_generator
+charts/synth_0017_1.png,SYNTH,,Double Bottom,template_0017,0.015,1,False,eval,template_0017,62,62,variable,data/bars/synth_0017_1.csv,synthetic_generator
+charts/synth_0017_2.png,SYNTH,,Double Bottom,template_0017,0.035,2,False,eval,template_0017,62,62,variable,data/bars/synth_0017_2.csv,synthetic_generator
+charts/synth_0017_3.png,SYNTH,,Double Bottom,template_0017,0.07,3,False,eval,template_0017,62,62,variable,data/bars/synth_0017_3.csv,synthetic_generator
+charts/synth_0017_4.png,SYNTH,,Double Bottom,template_0017,0.12,4,False,eval,template_0017,62,62,variable,data/bars/synth_0017_4.csv,synthetic_generator
+charts/synth_0017_5.png,SYNTH,,Double Bottom,template_0017,0.2,5,False,eval,template_0017,62,62,variable,data/bars/synth_0017_5.csv,synthetic_generator
+charts/synth_0018_0.png,SYNTH,,Triangle,template_0018,0.0,0,True,eval,template_0018,94,94,variable,data/bars/synth_0018_0.csv,synthetic_generator
+charts/synth_0018_1.png,SYNTH,,Triangle,template_0018,0.015,1,False,eval,template_0018,94,94,variable,data/bars/synth_0018_1.csv,synthetic_generator
+charts/synth_0018_2.png,SYNTH,,Triangle,template_0018,0.035,2,False,eval,template_0018,94,94,variable,data/bars/synth_0018_2.csv,synthetic_generator
+charts/synth_0018_3.png,SYNTH,,Triangle,template_0018,0.07,3,False,eval,template_0018,94,94,variable,data/bars/synth_0018_3.csv,synthetic_generator
+charts/synth_0018_4.png,SYNTH,,Triangle,template_0018,0.12,4,False,eval,template_0018,94,94,variable,data/bars/synth_0018_4.csv,synthetic_generator
+charts/synth_0018_5.png,SYNTH,,Triangle,template_0018,0.2,5,False,eval,template_0018,94,94,variable,data/bars/synth_0018_5.csv,synthetic_generator
+charts/synth_0019_0.png,SYNTH,,Bull Flag,template_0019,0.0,0,True,eval,template_0019,119,119,variable,data/bars/synth_0019_0.csv,synthetic_generator
+charts/synth_0019_1.png,SYNTH,,Bull Flag,template_0019,0.015,1,False,eval,template_0019,119,119,variable,data/bars/synth_0019_1.csv,synthetic_generator
+charts/synth_0019_2.png,SYNTH,,Bull Flag,template_0019,0.035,2,False,eval,template_0019,119,119,variable,data/bars/synth_0019_2.csv,synthetic_generator
+charts/synth_0019_3.png,SYNTH,,Bull Flag,template_0019,0.07,3,False,eval,template_0019,119,119,variable,data/bars/synth_0019_3.csv,synthetic_generator
+charts/synth_0019_4.png,SYNTH,,Bull Flag,template_0019,0.12,4,False,eval,template_0019,119,119,variable,data/bars/synth_0019_4.csv,synthetic_generator
+charts/synth_0019_5.png,SYNTH,,Bull Flag,template_0019,0.2,5,False,eval,template_0019,119,119,variable,data/bars/synth_0019_5.csv,synthetic_generator
+charts/synth_0020_0.png,SYNTH,,None,template_0020,0.0,0,True,eval,template_0020,86,86,variable,data/bars/synth_0020_0.csv,synthetic_generator
+charts/synth_0020_1.png,SYNTH,,None,template_0020,0.015,1,False,eval,template_0020,86,86,variable,data/bars/synth_0020_1.csv,synthetic_generator
+charts/synth_0020_2.png,SYNTH,,None,template_0020,0.035,2,False,eval,template_0020,86,86,variable,data/bars/synth_0020_2.csv,synthetic_generator
+charts/synth_0020_3.png,SYNTH,,None,template_0020,0.07,3,False,eval,template_0020,86,86,variable,data/bars/synth_0020_3.csv,synthetic_generator
+charts/synth_0020_4.png,SYNTH,,None,template_0020,0.12,4,False,eval,template_0020,86,86,variable,data/bars/synth_0020_4.csv,synthetic_generator
+charts/synth_0020_5.png,SYNTH,,None,template_0020,0.2,5,False,eval,template_0020,86,86,variable,data/bars/synth_0020_5.csv,synthetic_generator
+charts/synth_0021_0.png,SYNTH,,Head and Shoulders,template_0021,0.0,0,True,eval,template_0021,66,66,variable,data/bars/synth_0021_0.csv,synthetic_generator
+charts/synth_0021_1.png,SYNTH,,Head and Shoulders,template_0021,0.015,1,False,eval,template_0021,66,66,variable,data/bars/synth_0021_1.csv,synthetic_generator
+charts/synth_0021_2.png,SYNTH,,Head and Shoulders,template_0021,0.035,2,False,eval,template_0021,66,66,variable,data/bars/synth_0021_2.csv,synthetic_generator
+charts/synth_0021_3.png,SYNTH,,Head and Shoulders,template_0021,0.07,3,False,eval,template_0021,66,66,variable,data/bars/synth_0021_3.csv,synthetic_generator
+charts/synth_0021_4.png,SYNTH,,Head and Shoulders,template_0021,0.12,4,False,eval,template_0021,66,66,variable,data/bars/synth_0021_4.csv,synthetic_generator
+charts/synth_0021_5.png,SYNTH,,Head and Shoulders,template_0021,0.2,5,False,eval,template_0021,66,66,variable,data/bars/synth_0021_5.csv,synthetic_generator
+charts/synth_0022_0.png,SYNTH,,Inverse Head and Shoulders,template_0022,0.0,0,True,eval,template_0022,116,116,variable,data/bars/synth_0022_0.csv,synthetic_generator
+charts/synth_0022_1.png,SYNTH,,Inverse Head and Shoulders,template_0022,0.015,1,False,eval,template_0022,116,116,variable,data/bars/synth_0022_1.csv,synthetic_generator
+charts/synth_0022_2.png,SYNTH,,Inverse Head and Shoulders,template_0022,0.035,2,False,eval,template_0022,116,116,variable,data/bars/synth_0022_2.csv,synthetic_generator
+charts/synth_0022_3.png,SYNTH,,Inverse Head and Shoulders,template_0022,0.07,3,False,eval,template_0022,116,116,variable,data/bars/synth_0022_3.csv,synthetic_generator
+charts/synth_0022_4.png,SYNTH,,Inverse Head and Shoulders,template_0022,0.12,4,False,eval,template_0022,116,116,variable,data/bars/synth_0022_4.csv,synthetic_generator
+charts/synth_0022_5.png,SYNTH,,Inverse Head and Shoulders,template_0022,0.2,5,False,eval,template_0022,116,116,variable,data/bars/synth_0022_5.csv,synthetic_generator
+charts/synth_0023_0.png,SYNTH,,Double Top,template_0023,0.0,0,True,eval,template_0023,102,102,variable,data/bars/synth_0023_0.csv,synthetic_generator
+charts/synth_0023_1.png,SYNTH,,Double Top,template_0023,0.015,1,False,eval,template_0023,102,102,variable,data/bars/synth_0023_1.csv,synthetic_generator
+charts/synth_0023_2.png,SYNTH,,Double Top,template_0023,0.035,2,False,eval,template_0023,102,102,variable,data/bars/synth_0023_2.csv,synthetic_generator
+charts/synth_0023_3.png,SYNTH,,Double Top,template_0023,0.07,3,False,eval,template_0023,102,102,variable,data/bars/synth_0023_3.csv,synthetic_generator
+charts/synth_0023_4.png,SYNTH,,Double Top,template_0023,0.12,4,False,eval,template_0023,102,102,variable,data/bars/synth_0023_4.csv,synthetic_generator
+charts/synth_0023_5.png,SYNTH,,Double Top,template_0023,0.2,5,False,eval,template_0023,102,102,variable,data/bars/synth_0023_5.csv,synthetic_generator
+charts/synth_0024_0.png,SYNTH,,Double Bottom,template_0024,0.0,0,True,eval,template_0024,76,76,variable,data/bars/synth_0024_0.csv,synthetic_generator
+charts/synth_0024_1.png,SYNTH,,Double Bottom,template_0024,0.015,1,False,eval,template_0024,76,76,variable,data/bars/synth_0024_1.csv,synthetic_generator
+charts/synth_0024_2.png,SYNTH,,Double Bottom,template_0024,0.035,2,False,eval,template_0024,76,76,variable,data/bars/synth_0024_2.csv,synthetic_generator
+charts/synth_0024_3.png,SYNTH,,Double Bottom,template_0024,0.07,3,False,eval,template_0024,76,76,variable,data/bars/synth_0024_3.csv,synthetic_generator
+charts/synth_0024_4.png,SYNTH,,Double Bottom,template_0024,0.12,4,False,eval,template_0024,76,76,variable,data/bars/synth_0024_4.csv,synthetic_generator
+charts/synth_0024_5.png,SYNTH,,Double Bottom,template_0024,0.2,5,False,eval,template_0024,76,76,variable,data/bars/synth_0024_5.csv,synthetic_generator
+charts/synth_0025_0.png,SYNTH,,Triangle,template_0025,0.0,0,True,eval,template_0025,94,94,variable,data/bars/synth_0025_0.csv,synthetic_generator
+charts/synth_0025_1.png,SYNTH,,Triangle,template_0025,0.015,1,False,eval,template_0025,94,94,variable,data/bars/synth_0025_1.csv,synthetic_generator
+charts/synth_0025_2.png,SYNTH,,Triangle,template_0025,0.035,2,False,eval,template_0025,94,94,variable,data/bars/synth_0025_2.csv,synthetic_generator
+charts/synth_0025_3.png,SYNTH,,Triangle,template_0025,0.07,3,False,eval,template_0025,94,94,variable,data/bars/synth_0025_3.csv,synthetic_generator
+charts/synth_0025_4.png,SYNTH,,Triangle,template_0025,0.12,4,False,eval,template_0025,94,94,variable,data/bars/synth_0025_4.csv,synthetic_generator
+charts/synth_0025_5.png,SYNTH,,Triangle,template_0025,0.2,5,False,eval,template_0025,94,94,variable,data/bars/synth_0025_5.csv,synthetic_generator
+charts/synth_0026_0.png,SYNTH,,Bull Flag,template_0026,0.0,0,True,eval,template_0026,120,120,variable,data/bars/synth_0026_0.csv,synthetic_generator
+charts/synth_0026_1.png,SYNTH,,Bull Flag,template_0026,0.015,1,False,eval,template_0026,120,120,variable,data/bars/synth_0026_1.csv,synthetic_generator
+charts/synth_0026_2.png,SYNTH,,Bull Flag,template_0026,0.035,2,False,eval,template_0026,120,120,variable,data/bars/synth_0026_2.csv,synthetic_generator
+charts/synth_0026_3.png,SYNTH,,Bull Flag,template_0026,0.07,3,False,eval,template_0026,120,120,variable,data/bars/synth_0026_3.csv,synthetic_generator
+charts/synth_0026_4.png,SYNTH,,Bull Flag,template_0026,0.12,4,False,eval,template_0026,120,120,variable,data/bars/synth_0026_4.csv,synthetic_generator
+charts/synth_0026_5.png,SYNTH,,Bull Flag,template_0026,0.2,5,False,eval,template_0026,120,120,variable,data/bars/synth_0026_5.csv,synthetic_generator
+charts/synth_0027_0.png,SYNTH,,None,template_0027,0.0,0,True,eval,template_0027,64,64,variable,data/bars/synth_0027_0.csv,synthetic_generator
+charts/synth_0027_1.png,SYNTH,,None,template_0027,0.015,1,False,eval,template_0027,64,64,variable,data/bars/synth_0027_1.csv,synthetic_generator
+charts/synth_0027_2.png,SYNTH,,None,template_0027,0.035,2,False,eval,template_0027,64,64,variable,data/bars/synth_0027_2.csv,synthetic_generator
+charts/synth_0027_3.png,SYNTH,,None,template_0027,0.07,3,False,eval,template_0027,64,64,variable,data/bars/synth_0027_3.csv,synthetic_generator
+charts/synth_0027_4.png,SYNTH,,None,template_0027,0.12,4,False,eval,template_0027,64,64,variable,data/bars/synth_0027_4.csv,synthetic_generator
+charts/synth_0027_5.png,SYNTH,,None,template_0027,0.2,5,False,eval,template_0027,64,64,variable,data/bars/synth_0027_5.csv,synthetic_generator
+charts/synth_0028_0.png,SYNTH,,Head and Shoulders,template_0028,0.0,0,True,eval,template_0028,107,107,variable,data/bars/synth_0028_0.csv,synthetic_generator
+charts/synth_0028_1.png,SYNTH,,Head and Shoulders,template_0028,0.015,1,False,eval,template_0028,107,107,variable,data/bars/synth_0028_1.csv,synthetic_generator
+charts/synth_0028_2.png,SYNTH,,Head and Shoulders,template_0028,0.035,2,False,eval,template_0028,107,107,variable,data/bars/synth_0028_2.csv,synthetic_generator
+charts/synth_0028_3.png,SYNTH,,Head and Shoulders,template_0028,0.07,3,False,eval,template_0028,107,107,variable,data/bars/synth_0028_3.csv,synthetic_generator
+charts/synth_0028_4.png,SYNTH,,Head and Shoulders,template_0028,0.12,4,False,eval,template_0028,107,107,variable,data/bars/synth_0028_4.csv,synthetic_generator
+charts/synth_0028_5.png,SYNTH,,Head and Shoulders,template_0028,0.2,5,False,eval,template_0028,107,107,variable,data/bars/synth_0028_5.csv,synthetic_generator
+charts/synth_0029_0.png,SYNTH,,Inverse Head and Shoulders,template_0029,0.0,0,True,eval,template_0029,92,92,variable,data/bars/synth_0029_0.csv,synthetic_generator
+charts/synth_0029_1.png,SYNTH,,Inverse Head and Shoulders,template_0029,0.015,1,False,eval,template_0029,92,92,variable,data/bars/synth_0029_1.csv,synthetic_generator
+charts/synth_0029_2.png,SYNTH,,Inverse Head and Shoulders,template_0029,0.035,2,False,eval,template_0029,92,92,variable,data/bars/synth_0029_2.csv,synthetic_generator
+charts/synth_0029_3.png,SYNTH,,Inverse Head and Shoulders,template_0029,0.07,3,False,eval,template_0029,92,92,variable,data/bars/synth_0029_3.csv,synthetic_generator
+charts/synth_0029_4.png,SYNTH,,Inverse Head and Shoulders,template_0029,0.12,4,False,eval,template_0029,92,92,variable,data/bars/synth_0029_4.csv,synthetic_generator
+charts/synth_0029_5.png,SYNTH,,Inverse Head and Shoulders,template_0029,0.2,5,False,eval,template_0029,92,92,variable,data/bars/synth_0029_5.csv,synthetic_generator
+charts/synth_0030_0.png,SYNTH,,Double Top,template_0030,0.0,0,True,eval,template_0030,103,103,variable,data/bars/synth_0030_0.csv,synthetic_generator
+charts/synth_0030_1.png,SYNTH,,Double Top,template_0030,0.015,1,False,eval,template_0030,103,103,variable,data/bars/synth_0030_1.csv,synthetic_generator
+charts/synth_0030_2.png,SYNTH,,Double Top,template_0030,0.035,2,False,eval,template_0030,103,103,variable,data/bars/synth_0030_2.csv,synthetic_generator
+charts/synth_0030_3.png,SYNTH,,Double Top,template_0030,0.07,3,False,eval,template_0030,103,103,variable,data/bars/synth_0030_3.csv,synthetic_generator
+charts/synth_0030_4.png,SYNTH,,Double Top,template_0030,0.12,4,False,eval,template_0030,103,103,variable,data/bars/synth_0030_4.csv,synthetic_generator
+charts/synth_0030_5.png,SYNTH,,Double Top,template_0030,0.2,5,False,eval,template_0030,103,103,variable,data/bars/synth_0030_5.csv,synthetic_generator
+charts/synth_0031_0.png,SYNTH,,Double Bottom,template_0031,0.0,0,True,eval,template_0031,70,70,variable,data/bars/synth_0031_0.csv,synthetic_generator
+charts/synth_0031_1.png,SYNTH,,Double Bottom,template_0031,0.015,1,False,eval,template_0031,70,70,variable,data/bars/synth_0031_1.csv,synthetic_generator
+charts/synth_0031_2.png,SYNTH,,Double Bottom,template_0031,0.035,2,False,eval,template_0031,70,70,variable,data/bars/synth_0031_2.csv,synthetic_generator
+charts/synth_0031_3.png,SYNTH,,Double Bottom,template_0031,0.07,3,False,eval,template_0031,70,70,variable,data/bars/synth_0031_3.csv,synthetic_generator
+charts/synth_0031_4.png,SYNTH,,Double Bottom,template_0031,0.12,4,False,eval,template_0031,70,70,variable,data/bars/synth_0031_4.csv,synthetic_generator
+charts/synth_0031_5.png,SYNTH,,Double Bottom,template_0031,0.2,5,False,eval,template_0031,70,70,variable,data/bars/synth_0031_5.csv,synthetic_generator
+charts/synth_0032_0.png,SYNTH,,Triangle,template_0032,0.0,0,True,eval,template_0032,112,112,variable,data/bars/synth_0032_0.csv,synthetic_generator
+charts/synth_0032_1.png,SYNTH,,Triangle,template_0032,0.015,1,False,eval,template_0032,112,112,variable,data/bars/synth_0032_1.csv,synthetic_generator
+charts/synth_0032_2.png,SYNTH,,Triangle,template_0032,0.035,2,False,eval,template_0032,112,112,variable,data/bars/synth_0032_2.csv,synthetic_generator
+charts/synth_0032_3.png,SYNTH,,Triangle,template_0032,0.07,3,False,eval,template_0032,112,112,variable,data/bars/synth_0032_3.csv,synthetic_generator
+charts/synth_0032_4.png,SYNTH,,Triangle,template_0032,0.12,4,False,eval,template_0032,112,112,variable,data/bars/synth_0032_4.csv,synthetic_generator
+charts/synth_0032_5.png,SYNTH,,Triangle,template_0032,0.2,5,False,eval,template_0032,112,112,variable,data/bars/synth_0032_5.csv,synthetic_generator
+charts/synth_0033_0.png,SYNTH,,Bull Flag,template_0033,0.0,0,True,eval,template_0033,111,111,variable,data/bars/synth_0033_0.csv,synthetic_generator
+charts/synth_0033_1.png,SYNTH,,Bull Flag,template_0033,0.015,1,False,eval,template_0033,111,111,variable,data/bars/synth_0033_1.csv,synthetic_generator
+charts/synth_0033_2.png,SYNTH,,Bull Flag,template_0033,0.035,2,False,eval,template_0033,111,111,variable,data/bars/synth_0033_2.csv,synthetic_generator
+charts/synth_0033_3.png,SYNTH,,Bull Flag,template_0033,0.07,3,False,eval,template_0033,111,111,variable,data/bars/synth_0033_3.csv,synthetic_generator
+charts/synth_0033_4.png,SYNTH,,Bull Flag,template_0033,0.12,4,False,eval,template_0033,111,111,variable,data/bars/synth_0033_4.csv,synthetic_generator
+charts/synth_0033_5.png,SYNTH,,Bull Flag,template_0033,0.2,5,False,eval,template_0033,111,111,variable,data/bars/synth_0033_5.csv,synthetic_generator
+charts/synth_0034_0.png,SYNTH,,None,template_0034,0.0,0,True,eval,template_0034,70,70,variable,data/bars/synth_0034_0.csv,synthetic_generator
+charts/synth_0034_1.png,SYNTH,,None,template_0034,0.015,1,False,eval,template_0034,70,70,variable,data/bars/synth_0034_1.csv,synthetic_generator
+charts/synth_0034_2.png,SYNTH,,None,template_0034,0.035,2,False,eval,template_0034,70,70,variable,data/bars/synth_0034_2.csv,synthetic_generator
+charts/synth_0034_3.png,SYNTH,,None,template_0034,0.07,3,False,eval,template_0034,70,70,variable,data/bars/synth_0034_3.csv,synthetic_generator
+charts/synth_0034_4.png,SYNTH,,None,template_0034,0.12,4,False,eval,template_0034,70,70,variable,data/bars/synth_0034_4.csv,synthetic_generator
+charts/synth_0034_5.png,SYNTH,,None,template_0034,0.2,5,False,eval,template_0034,70,70,variable,data/bars/synth_0034_5.csv,synthetic_generator
+charts/synth_0035_0.png,SYNTH,,Head and Shoulders,template_0035,0.0,0,True,eval,template_0035,69,69,variable,data/bars/synth_0035_0.csv,synthetic_generator
+charts/synth_0035_1.png,SYNTH,,Head and Shoulders,template_0035,0.015,1,False,eval,template_0035,69,69,variable,data/bars/synth_0035_1.csv,synthetic_generator
+charts/synth_0035_2.png,SYNTH,,Head and Shoulders,template_0035,0.035,2,False,eval,template_0035,69,69,variable,data/bars/synth_0035_2.csv,synthetic_generator
+charts/synth_0035_3.png,SYNTH,,Head and Shoulders,template_0035,0.07,3,False,eval,template_0035,69,69,variable,data/bars/synth_0035_3.csv,synthetic_generator
+charts/synth_0035_4.png,SYNTH,,Head and Shoulders,template_0035,0.12,4,False,eval,template_0035,69,69,variable,data/bars/synth_0035_4.csv,synthetic_generator
+charts/synth_0035_5.png,SYNTH,,Head and Shoulders,template_0035,0.2,5,False,eval,template_0035,69,69,variable,data/bars/synth_0035_5.csv,synthetic_generator
+charts/synth_0036_0.png,SYNTH,,Inverse Head and Shoulders,template_0036,0.0,0,True,eval,template_0036,66,66,variable,data/bars/synth_0036_0.csv,synthetic_generator
+charts/synth_0036_1.png,SYNTH,,Inverse Head and Shoulders,template_0036,0.015,1,False,eval,template_0036,66,66,variable,data/bars/synth_0036_1.csv,synthetic_generator
+charts/synth_0036_2.png,SYNTH,,Inverse Head and Shoulders,template_0036,0.035,2,False,eval,template_0036,66,66,variable,data/bars/synth_0036_2.csv,synthetic_generator
+charts/synth_0036_3.png,SYNTH,,Inverse Head and Shoulders,template_0036,0.07,3,False,eval,template_0036,66,66,variable,data/bars/synth_0036_3.csv,synthetic_generator
+charts/synth_0036_4.png,SYNTH,,Inverse Head and Shoulders,template_0036,0.12,4,False,eval,template_0036,66,66,variable,data/bars/synth_0036_4.csv,synthetic_generator
+charts/synth_0036_5.png,SYNTH,,Inverse Head and Shoulders,template_0036,0.2,5,False,eval,template_0036,66,66,variable,data/bars/synth_0036_5.csv,synthetic_generator
+charts/synth_0037_0.png,SYNTH,,Double Top,template_0037,0.0,0,True,eval,template_0037,100,100,variable,data/bars/synth_0037_0.csv,synthetic_generator
+charts/synth_0037_1.png,SYNTH,,Double Top,template_0037,0.015,1,False,eval,template_0037,100,100,variable,data/bars/synth_0037_1.csv,synthetic_generator
+charts/synth_0037_2.png,SYNTH,,Double Top,template_0037,0.035,2,False,eval,template_0037,100,100,variable,data/bars/synth_0037_2.csv,synthetic_generator
+charts/synth_0037_3.png,SYNTH,,Double Top,template_0037,0.07,3,False,eval,template_0037,100,100,variable,data/bars/synth_0037_3.csv,synthetic_generator
+charts/synth_0037_4.png,SYNTH,,Double Top,template_0037,0.12,4,False,eval,template_0037,100,100,variable,data/bars/synth_0037_4.csv,synthetic_generator
+charts/synth_0037_5.png,SYNTH,,Double Top,template_0037,0.2,5,False,eval,template_0037,100,100,variable,data/bars/synth_0037_5.csv,synthetic_generator
+charts/synth_0038_0.png,SYNTH,,Double Bottom,template_0038,0.0,0,True,eval,template_0038,95,95,variable,data/bars/synth_0038_0.csv,synthetic_generator
+charts/synth_0038_1.png,SYNTH,,Double Bottom,template_0038,0.015,1,False,eval,template_0038,95,95,variable,data/bars/synth_0038_1.csv,synthetic_generator
+charts/synth_0038_2.png,SYNTH,,Double Bottom,template_0038,0.035,2,False,eval,template_0038,95,95,variable,data/bars/synth_0038_2.csv,synthetic_generator
+charts/synth_0038_3.png,SYNTH,,Double Bottom,template_0038,0.07,3,False,eval,template_0038,95,95,variable,data/bars/synth_0038_3.csv,synthetic_generator
+charts/synth_0038_4.png,SYNTH,,Double Bottom,template_0038,0.12,4,False,eval,template_0038,95,95,variable,data/bars/synth_0038_4.csv,synthetic_generator
+charts/synth_0038_5.png,SYNTH,,Double Bottom,template_0038,0.2,5,False,eval,template_0038,95,95,variable,data/bars/synth_0038_5.csv,synthetic_generator
+charts/synth_0039_0.png,SYNTH,,Triangle,template_0039,0.0,0,True,eval,template_0039,93,93,variable,data/bars/synth_0039_0.csv,synthetic_generator
+charts/synth_0039_1.png,SYNTH,,Triangle,template_0039,0.015,1,False,eval,template_0039,93,93,variable,data/bars/synth_0039_1.csv,synthetic_generator
+charts/synth_0039_2.png,SYNTH,,Triangle,template_0039,0.035,2,False,eval,template_0039,93,93,variable,data/bars/synth_0039_2.csv,synthetic_generator
+charts/synth_0039_3.png,SYNTH,,Triangle,template_0039,0.07,3,False,eval,template_0039,93,93,variable,data/bars/synth_0039_3.csv,synthetic_generator
+charts/synth_0039_4.png,SYNTH,,Triangle,template_0039,0.12,4,False,eval,template_0039,93,93,variable,data/bars/synth_0039_4.csv,synthetic_generator
+charts/synth_0039_5.png,SYNTH,,Triangle,template_0039,0.2,5,False,eval,template_0039,93,93,variable,data/bars/synth_0039_5.csv,synthetic_generator
+charts/synth_0040_0.png,SYNTH,,Bull Flag,template_0040,0.0,0,True,eval,template_0040,70,70,variable,data/bars/synth_0040_0.csv,synthetic_generator
+charts/synth_0040_1.png,SYNTH,,Bull Flag,template_0040,0.015,1,False,eval,template_0040,70,70,variable,data/bars/synth_0040_1.csv,synthetic_generator
+charts/synth_0040_2.png,SYNTH,,Bull Flag,template_0040,0.035,2,False,eval,template_0040,70,70,variable,data/bars/synth_0040_2.csv,synthetic_generator
+charts/synth_0040_3.png,SYNTH,,Bull Flag,template_0040,0.07,3,False,eval,template_0040,70,70,variable,data/bars/synth_0040_3.csv,synthetic_generator
+charts/synth_0040_4.png,SYNTH,,Bull Flag,template_0040,0.12,4,False,eval,template_0040,70,70,variable,data/bars/synth_0040_4.csv,synthetic_generator
+charts/synth_0040_5.png,SYNTH,,Bull Flag,template_0040,0.2,5,False,eval,template_0040,70,70,variable,data/bars/synth_0040_5.csv,synthetic_generator
+charts/synth_0041_0.png,SYNTH,,None,template_0041,0.0,0,True,eval,template_0041,96,96,variable,data/bars/synth_0041_0.csv,synthetic_generator
+charts/synth_0041_1.png,SYNTH,,None,template_0041,0.015,1,False,eval,template_0041,96,96,variable,data/bars/synth_0041_1.csv,synthetic_generator
+charts/synth_0041_2.png,SYNTH,,None,template_0041,0.035,2,False,eval,template_0041,96,96,variable,data/bars/synth_0041_2.csv,synthetic_generator
+charts/synth_0041_3.png,SYNTH,,None,template_0041,0.07,3,False,eval,template_0041,96,96,variable,data/bars/synth_0041_3.csv,synthetic_generator
+charts/synth_0041_4.png,SYNTH,,None,template_0041,0.12,4,False,eval,template_0041,96,96,variable,data/bars/synth_0041_4.csv,synthetic_generator
+charts/synth_0041_5.png,SYNTH,,None,template_0041,0.2,5,False,eval,template_0041,96,96,variable,data/bars/synth_0041_5.csv,synthetic_generator
+charts/synth_0042_0.png,SYNTH,,Head and Shoulders,template_0042,0.0,0,True,eval,template_0042,87,87,variable,data/bars/synth_0042_0.csv,synthetic_generator
+charts/synth_0042_1.png,SYNTH,,Head and Shoulders,template_0042,0.015,1,False,eval,template_0042,87,87,variable,data/bars/synth_0042_1.csv,synthetic_generator
+charts/synth_0042_2.png,SYNTH,,Head and Shoulders,template_0042,0.035,2,False,eval,template_0042,87,87,variable,data/bars/synth_0042_2.csv,synthetic_generator
+charts/synth_0042_3.png,SYNTH,,Head and Shoulders,template_0042,0.07,3,False,eval,template_0042,87,87,variable,data/bars/synth_0042_3.csv,synthetic_generator
+charts/synth_0042_4.png,SYNTH,,Head and Shoulders,template_0042,0.12,4,False,eval,template_0042,87,87,variable,data/bars/synth_0042_4.csv,synthetic_generator
+charts/synth_0042_5.png,SYNTH,,Head and Shoulders,template_0042,0.2,5,False,eval,template_0042,87,87,variable,data/bars/synth_0042_5.csv,synthetic_generator
+charts/synth_0043_0.png,SYNTH,,Inverse Head and Shoulders,template_0043,0.0,0,True,eval,template_0043,80,80,variable,data/bars/synth_0043_0.csv,synthetic_generator
+charts/synth_0043_1.png,SYNTH,,Inverse Head and Shoulders,template_0043,0.015,1,False,eval,template_0043,80,80,variable,data/bars/synth_0043_1.csv,synthetic_generator
+charts/synth_0043_2.png,SYNTH,,Inverse Head and Shoulders,template_0043,0.035,2,False,eval,template_0043,80,80,variable,data/bars/synth_0043_2.csv,synthetic_generator
+charts/synth_0043_3.png,SYNTH,,Inverse Head and Shoulders,template_0043,0.07,3,False,eval,template_0043,80,80,variable,data/bars/synth_0043_3.csv,synthetic_generator
+charts/synth_0043_4.png,SYNTH,,Inverse Head and Shoulders,template_0043,0.12,4,False,eval,template_0043,80,80,variable,data/bars/synth_0043_4.csv,synthetic_generator
+charts/synth_0043_5.png,SYNTH,,Inverse Head and Shoulders,template_0043,0.2,5,False,eval,template_0043,80,80,variable,data/bars/synth_0043_5.csv,synthetic_generator
+charts/synth_0044_0.png,SYNTH,,Double Top,template_0044,0.0,0,True,eval,template_0044,109,109,variable,data/bars/synth_0044_0.csv,synthetic_generator
+charts/synth_0044_1.png,SYNTH,,Double Top,template_0044,0.015,1,False,eval,template_0044,109,109,variable,data/bars/synth_0044_1.csv,synthetic_generator
+charts/synth_0044_2.png,SYNTH,,Double Top,template_0044,0.035,2,False,eval,template_0044,109,109,variable,data/bars/synth_0044_2.csv,synthetic_generator
+charts/synth_0044_3.png,SYNTH,,Double Top,template_0044,0.07,3,False,eval,template_0044,109,109,variable,data/bars/synth_0044_3.csv,synthetic_generator
+charts/synth_0044_4.png,SYNTH,,Double Top,template_0044,0.12,4,False,eval,template_0044,109,109,variable,data/bars/synth_0044_4.csv,synthetic_generator
+charts/synth_0044_5.png,SYNTH,,Double Top,template_0044,0.2,5,False,eval,template_0044,109,109,variable,data/bars/synth_0044_5.csv,synthetic_generator
+charts/synth_0045_0.png,SYNTH,,Double Bottom,template_0045,0.0,0,True,eval,template_0045,111,111,variable,data/bars/synth_0045_0.csv,synthetic_generator
+charts/synth_0045_1.png,SYNTH,,Double Bottom,template_0045,0.015,1,False,eval,template_0045,111,111,variable,data/bars/synth_0045_1.csv,synthetic_generator
+charts/synth_0045_2.png,SYNTH,,Double Bottom,template_0045,0.035,2,False,eval,template_0045,111,111,variable,data/bars/synth_0045_2.csv,synthetic_generator
+charts/synth_0045_3.png,SYNTH,,Double Bottom,template_0045,0.07,3,False,eval,template_0045,111,111,variable,data/bars/synth_0045_3.csv,synthetic_generator
+charts/synth_0045_4.png,SYNTH,,Double Bottom,template_0045,0.12,4,False,eval,template_0045,111,111,variable,data/bars/synth_0045_4.csv,synthetic_generator
+charts/synth_0045_5.png,SYNTH,,Double Bottom,template_0045,0.2,5,False,eval,template_0045,111,111,variable,data/bars/synth_0045_5.csv,synthetic_generator
+charts/synth_0046_0.png,SYNTH,,Triangle,template_0046,0.0,0,True,eval,template_0046,77,77,variable,data/bars/synth_0046_0.csv,synthetic_generator
+charts/synth_0046_1.png,SYNTH,,Triangle,template_0046,0.015,1,False,eval,template_0046,77,77,variable,data/bars/synth_0046_1.csv,synthetic_generator
+charts/synth_0046_2.png,SYNTH,,Triangle,template_0046,0.035,2,False,eval,template_0046,77,77,variable,data/bars/synth_0046_2.csv,synthetic_generator
+charts/synth_0046_3.png,SYNTH,,Triangle,template_0046,0.07,3,False,eval,template_0046,77,77,variable,data/bars/synth_0046_3.csv,synthetic_generator
+charts/synth_0046_4.png,SYNTH,,Triangle,template_0046,0.12,4,False,eval,template_0046,77,77,variable,data/bars/synth_0046_4.csv,synthetic_generator
+charts/synth_0046_5.png,SYNTH,,Triangle,template_0046,0.2,5,False,eval,template_0046,77,77,variable,data/bars/synth_0046_5.csv,synthetic_generator
+charts/synth_0047_0.png,SYNTH,,Bull Flag,template_0047,0.0,0,True,eval,template_0047,118,118,variable,data/bars/synth_0047_0.csv,synthetic_generator
+charts/synth_0047_1.png,SYNTH,,Bull Flag,template_0047,0.015,1,False,eval,template_0047,118,118,variable,data/bars/synth_0047_1.csv,synthetic_generator
+charts/synth_0047_2.png,SYNTH,,Bull Flag,template_0047,0.035,2,False,eval,template_0047,118,118,variable,data/bars/synth_0047_2.csv,synthetic_generator
+charts/synth_0047_3.png,SYNTH,,Bull Flag,template_0047,0.07,3,False,eval,template_0047,118,118,variable,data/bars/synth_0047_3.csv,synthetic_generator
+charts/synth_0047_4.png,SYNTH,,Bull Flag,template_0047,0.12,4,False,eval,template_0047,118,118,variable,data/bars/synth_0047_4.csv,synthetic_generator
+charts/synth_0047_5.png,SYNTH,,Bull Flag,template_0047,0.2,5,False,eval,template_0047,118,118,variable,data/bars/synth_0047_5.csv,synthetic_generator
+charts/synth_0048_0.png,SYNTH,,None,template_0048,0.0,0,True,eval,template_0048,69,69,variable,data/bars/synth_0048_0.csv,synthetic_generator
+charts/synth_0048_1.png,SYNTH,,None,template_0048,0.015,1,False,eval,template_0048,69,69,variable,data/bars/synth_0048_1.csv,synthetic_generator
+charts/synth_0048_2.png,SYNTH,,None,template_0048,0.035,2,False,eval,template_0048,69,69,variable,data/bars/synth_0048_2.csv,synthetic_generator
+charts/synth_0048_3.png,SYNTH,,None,template_0048,0.07,3,False,eval,template_0048,69,69,variable,data/bars/synth_0048_3.csv,synthetic_generator
+charts/synth_0048_4.png,SYNTH,,None,template_0048,0.12,4,False,eval,template_0048,69,69,variable,data/bars/synth_0048_4.csv,synthetic_generator
+charts/synth_0048_5.png,SYNTH,,None,template_0048,0.2,5,False,eval,template_0048,69,69,variable,data/bars/synth_0048_5.csv,synthetic_generator
+charts/synth_0049_0.png,SYNTH,,Head and Shoulders,template_0049,0.0,0,True,eval,template_0049,75,75,variable,data/bars/synth_0049_0.csv,synthetic_generator
+charts/synth_0049_1.png,SYNTH,,Head and Shoulders,template_0049,0.015,1,False,eval,template_0049,75,75,variable,data/bars/synth_0049_1.csv,synthetic_generator
+charts/synth_0049_2.png,SYNTH,,Head and Shoulders,template_0049,0.035,2,False,eval,template_0049,75,75,variable,data/bars/synth_0049_2.csv,synthetic_generator
+charts/synth_0049_3.png,SYNTH,,Head and Shoulders,template_0049,0.07,3,False,eval,template_0049,75,75,variable,data/bars/synth_0049_3.csv,synthetic_generator
+charts/synth_0049_4.png,SYNTH,,Head and Shoulders,template_0049,0.12,4,False,eval,template_0049,75,75,variable,data/bars/synth_0049_4.csv,synthetic_generator
+charts/synth_0049_5.png,SYNTH,,Head and Shoulders,template_0049,0.2,5,False,eval,template_0049,75,75,variable,data/bars/synth_0049_5.csv,synthetic_generator
+charts/synth_0050_0.png,SYNTH,,Inverse Head and Shoulders,template_0050,0.0,0,True,eval,template_0050,118,118,variable,data/bars/synth_0050_0.csv,synthetic_generator
+charts/synth_0050_1.png,SYNTH,,Inverse Head and Shoulders,template_0050,0.015,1,False,eval,template_0050,118,118,variable,data/bars/synth_0050_1.csv,synthetic_generator
+charts/synth_0050_2.png,SYNTH,,Inverse Head and Shoulders,template_0050,0.035,2,False,eval,template_0050,118,118,variable,data/bars/synth_0050_2.csv,synthetic_generator
+charts/synth_0050_3.png,SYNTH,,Inverse Head and Shoulders,template_0050,0.07,3,False,eval,template_0050,118,118,variable,data/bars/synth_0050_3.csv,synthetic_generator
+charts/synth_0050_4.png,SYNTH,,Inverse Head and Shoulders,template_0050,0.12,4,False,eval,template_0050,118,118,variable,data/bars/synth_0050_4.csv,synthetic_generator
+charts/synth_0050_5.png,SYNTH,,Inverse Head and Shoulders,template_0050,0.2,5,False,eval,template_0050,118,118,variable,data/bars/synth_0050_5.csv,synthetic_generator
+charts/synth_0051_0.png,SYNTH,,Double Top,template_0051,0.0,0,True,eval,template_0051,88,88,variable,data/bars/synth_0051_0.csv,synthetic_generator
+charts/synth_0051_1.png,SYNTH,,Double Top,template_0051,0.015,1,False,eval,template_0051,88,88,variable,data/bars/synth_0051_1.csv,synthetic_generator
+charts/synth_0051_2.png,SYNTH,,Double Top,template_0051,0.035,2,False,eval,template_0051,88,88,variable,data/bars/synth_0051_2.csv,synthetic_generator
+charts/synth_0051_3.png,SYNTH,,Double Top,template_0051,0.07,3,False,eval,template_0051,88,88,variable,data/bars/synth_0051_3.csv,synthetic_generator
+charts/synth_0051_4.png,SYNTH,,Double Top,template_0051,0.12,4,False,eval,template_0051,88,88,variable,data/bars/synth_0051_4.csv,synthetic_generator
+charts/synth_0051_5.png,SYNTH,,Double Top,template_0051,0.2,5,False,eval,template_0051,88,88,variable,data/bars/synth_0051_5.csv,synthetic_generator
+charts/synth_0052_0.png,SYNTH,,Double Bottom,template_0052,0.0,0,True,eval,template_0052,76,76,variable,data/bars/synth_0052_0.csv,synthetic_generator
+charts/synth_0052_1.png,SYNTH,,Double Bottom,template_0052,0.015,1,False,eval,template_0052,76,76,variable,data/bars/synth_0052_1.csv,synthetic_generator
+charts/synth_0052_2.png,SYNTH,,Double Bottom,template_0052,0.035,2,False,eval,template_0052,76,76,variable,data/bars/synth_0052_2.csv,synthetic_generator
+charts/synth_0052_3.png,SYNTH,,Double Bottom,template_0052,0.07,3,False,eval,template_0052,76,76,variable,data/bars/synth_0052_3.csv,synthetic_generator
+charts/synth_0052_4.png,SYNTH,,Double Bottom,template_0052,0.12,4,False,eval,template_0052,76,76,variable,data/bars/synth_0052_4.csv,synthetic_generator
+charts/synth_0052_5.png,SYNTH,,Double Bottom,template_0052,0.2,5,False,eval,template_0052,76,76,variable,data/bars/synth_0052_5.csv,synthetic_generator
+charts/synth_0053_0.png,SYNTH,,Triangle,template_0053,0.0,0,True,eval,template_0053,109,109,variable,data/bars/synth_0053_0.csv,synthetic_generator
+charts/synth_0053_1.png,SYNTH,,Triangle,template_0053,0.015,1,False,eval,template_0053,109,109,variable,data/bars/synth_0053_1.csv,synthetic_generator
+charts/synth_0053_2.png,SYNTH,,Triangle,template_0053,0.035,2,False,eval,template_0053,109,109,variable,data/bars/synth_0053_2.csv,synthetic_generator
+charts/synth_0053_3.png,SYNTH,,Triangle,template_0053,0.07,3,False,eval,template_0053,109,109,variable,data/bars/synth_0053_3.csv,synthetic_generator
+charts/synth_0053_4.png,SYNTH,,Triangle,template_0053,0.12,4,False,eval,template_0053,109,109,variable,data/bars/synth_0053_4.csv,synthetic_generator
+charts/synth_0053_5.png,SYNTH,,Triangle,template_0053,0.2,5,False,eval,template_0053,109,109,variable,data/bars/synth_0053_5.csv,synthetic_generator
+charts/synth_0054_0.png,SYNTH,,Bull Flag,template_0054,0.0,0,True,eval,template_0054,110,110,variable,data/bars/synth_0054_0.csv,synthetic_generator
+charts/synth_0054_1.png,SYNTH,,Bull Flag,template_0054,0.015,1,False,eval,template_0054,110,110,variable,data/bars/synth_0054_1.csv,synthetic_generator
+charts/synth_0054_2.png,SYNTH,,Bull Flag,template_0054,0.035,2,False,eval,template_0054,110,110,variable,data/bars/synth_0054_2.csv,synthetic_generator
+charts/synth_0054_3.png,SYNTH,,Bull Flag,template_0054,0.07,3,False,eval,template_0054,110,110,variable,data/bars/synth_0054_3.csv,synthetic_generator
+charts/synth_0054_4.png,SYNTH,,Bull Flag,template_0054,0.12,4,False,eval,template_0054,110,110,variable,data/bars/synth_0054_4.csv,synthetic_generator
+charts/synth_0054_5.png,SYNTH,,Bull Flag,template_0054,0.2,5,False,eval,template_0054,110,110,variable,data/bars/synth_0054_5.csv,synthetic_generator
+charts/synth_0055_0.png,SYNTH,,None,template_0055,0.0,0,True,eval,template_0055,83,83,variable,data/bars/synth_0055_0.csv,synthetic_generator
+charts/synth_0055_1.png,SYNTH,,None,template_0055,0.015,1,False,eval,template_0055,83,83,variable,data/bars/synth_0055_1.csv,synthetic_generator
+charts/synth_0055_2.png,SYNTH,,None,template_0055,0.035,2,False,eval,template_0055,83,83,variable,data/bars/synth_0055_2.csv,synthetic_generator
+charts/synth_0055_3.png,SYNTH,,None,template_0055,0.07,3,False,eval,template_0055,83,83,variable,data/bars/synth_0055_3.csv,synthetic_generator
+charts/synth_0055_4.png,SYNTH,,None,template_0055,0.12,4,False,eval,template_0055,83,83,variable,data/bars/synth_0055_4.csv,synthetic_generator
+charts/synth_0055_5.png,SYNTH,,None,template_0055,0.2,5,False,eval,template_0055,83,83,variable,data/bars/synth_0055_5.csv,synthetic_generator
+charts/synth_0056_0.png,SYNTH,,Head and Shoulders,template_0056,0.0,0,True,eval,template_0056,120,120,variable,data/bars/synth_0056_0.csv,synthetic_generator
+charts/synth_0056_1.png,SYNTH,,Head and Shoulders,template_0056,0.015,1,False,eval,template_0056,120,120,variable,data/bars/synth_0056_1.csv,synthetic_generator
+charts/synth_0056_2.png,SYNTH,,Head and Shoulders,template_0056,0.035,2,False,eval,template_0056,120,120,variable,data/bars/synth_0056_2.csv,synthetic_generator
+charts/synth_0056_3.png,SYNTH,,Head and Shoulders,template_0056,0.07,3,False,eval,template_0056,120,120,variable,data/bars/synth_0056_3.csv,synthetic_generator
+charts/synth_0056_4.png,SYNTH,,Head and Shoulders,template_0056,0.12,4,False,eval,template_0056,120,120,variable,data/bars/synth_0056_4.csv,synthetic_generator
+charts/synth_0056_5.png,SYNTH,,Head and Shoulders,template_0056,0.2,5,False,eval,template_0056,120,120,variable,data/bars/synth_0056_5.csv,synthetic_generator
+charts/synth_0057_0.png,SYNTH,,Inverse Head and Shoulders,template_0057,0.0,0,True,eval,template_0057,110,110,variable,data/bars/synth_0057_0.csv,synthetic_generator
+charts/synth_0057_1.png,SYNTH,,Inverse Head and Shoulders,template_0057,0.015,1,False,eval,template_0057,110,110,variable,data/bars/synth_0057_1.csv,synthetic_generator
+charts/synth_0057_2.png,SYNTH,,Inverse Head and Shoulders,template_0057,0.035,2,False,eval,template_0057,110,110,variable,data/bars/synth_0057_2.csv,synthetic_generator
+charts/synth_0057_3.png,SYNTH,,Inverse Head and Shoulders,template_0057,0.07,3,False,eval,template_0057,110,110,variable,data/bars/synth_0057_3.csv,synthetic_generator
+charts/synth_0057_4.png,SYNTH,,Inverse Head and Shoulders,template_0057,0.12,4,False,eval,template_0057,110,110,variable,data/bars/synth_0057_4.csv,synthetic_generator
+charts/synth_0057_5.png,SYNTH,,Inverse Head and Shoulders,template_0057,0.2,5,False,eval,template_0057,110,110,variable,data/bars/synth_0057_5.csv,synthetic_generator
+charts/synth_0058_0.png,SYNTH,,Double Top,template_0058,0.0,0,True,eval,template_0058,85,85,variable,data/bars/synth_0058_0.csv,synthetic_generator
+charts/synth_0058_1.png,SYNTH,,Double Top,template_0058,0.015,1,False,eval,template_0058,85,85,variable,data/bars/synth_0058_1.csv,synthetic_generator
+charts/synth_0058_2.png,SYNTH,,Double Top,template_0058,0.035,2,False,eval,template_0058,85,85,variable,data/bars/synth_0058_2.csv,synthetic_generator
+charts/synth_0058_3.png,SYNTH,,Double Top,template_0058,0.07,3,False,eval,template_0058,85,85,variable,data/bars/synth_0058_3.csv,synthetic_generator
+charts/synth_0058_4.png,SYNTH,,Double Top,template_0058,0.12,4,False,eval,template_0058,85,85,variable,data/bars/synth_0058_4.csv,synthetic_generator
+charts/synth_0058_5.png,SYNTH,,Double Top,template_0058,0.2,5,False,eval,template_0058,85,85,variable,data/bars/synth_0058_5.csv,synthetic_generator
+charts/synth_0059_0.png,SYNTH,,Double Bottom,template_0059,0.0,0,True,eval,template_0059,120,120,variable,data/bars/synth_0059_0.csv,synthetic_generator
+charts/synth_0059_1.png,SYNTH,,Double Bottom,template_0059,0.015,1,False,eval,template_0059,120,120,variable,data/bars/synth_0059_1.csv,synthetic_generator
+charts/synth_0059_2.png,SYNTH,,Double Bottom,template_0059,0.035,2,False,eval,template_0059,120,120,variable,data/bars/synth_0059_2.csv,synthetic_generator
+charts/synth_0059_3.png,SYNTH,,Double Bottom,template_0059,0.07,3,False,eval,template_0059,120,120,variable,data/bars/synth_0059_3.csv,synthetic_generator
+charts/synth_0059_4.png,SYNTH,,Double Bottom,template_0059,0.12,4,False,eval,template_0059,120,120,variable,data/bars/synth_0059_4.csv,synthetic_generator
+charts/synth_0059_5.png,SYNTH,,Double Bottom,template_0059,0.2,5,False,eval,template_0059,120,120,variable,data/bars/synth_0059_5.csv,synthetic_generator
+charts/synth_0060_0.png,SYNTH,,Triangle,template_0060,0.0,0,True,eval,template_0060,70,70,variable,data/bars/synth_0060_0.csv,synthetic_generator
+charts/synth_0060_1.png,SYNTH,,Triangle,template_0060,0.015,1,False,eval,template_0060,70,70,variable,data/bars/synth_0060_1.csv,synthetic_generator
+charts/synth_0060_2.png,SYNTH,,Triangle,template_0060,0.035,2,False,eval,template_0060,70,70,variable,data/bars/synth_0060_2.csv,synthetic_generator
+charts/synth_0060_3.png,SYNTH,,Triangle,template_0060,0.07,3,False,eval,template_0060,70,70,variable,data/bars/synth_0060_3.csv,synthetic_generator
+charts/synth_0060_4.png,SYNTH,,Triangle,template_0060,0.12,4,False,eval,template_0060,70,70,variable,data/bars/synth_0060_4.csv,synthetic_generator
+charts/synth_0060_5.png,SYNTH,,Triangle,template_0060,0.2,5,False,eval,template_0060,70,70,variable,data/bars/synth_0060_5.csv,synthetic_generator
+charts/synth_0061_0.png,SYNTH,,Bull Flag,template_0061,0.0,0,True,eval,template_0061,95,95,variable,data/bars/synth_0061_0.csv,synthetic_generator
+charts/synth_0061_1.png,SYNTH,,Bull Flag,template_0061,0.015,1,False,eval,template_0061,95,95,variable,data/bars/synth_0061_1.csv,synthetic_generator
+charts/synth_0061_2.png,SYNTH,,Bull Flag,template_0061,0.035,2,False,eval,template_0061,95,95,variable,data/bars/synth_0061_2.csv,synthetic_generator
+charts/synth_0061_3.png,SYNTH,,Bull Flag,template_0061,0.07,3,False,eval,template_0061,95,95,variable,data/bars/synth_0061_3.csv,synthetic_generator
+charts/synth_0061_4.png,SYNTH,,Bull Flag,template_0061,0.12,4,False,eval,template_0061,95,95,variable,data/bars/synth_0061_4.csv,synthetic_generator
+charts/synth_0061_5.png,SYNTH,,Bull Flag,template_0061,0.2,5,False,eval,template_0061,95,95,variable,data/bars/synth_0061_5.csv,synthetic_generator
+charts/synth_0062_0.png,SYNTH,,None,template_0062,0.0,0,True,eval,template_0062,98,98,variable,data/bars/synth_0062_0.csv,synthetic_generator
+charts/synth_0062_1.png,SYNTH,,None,template_0062,0.015,1,False,eval,template_0062,98,98,variable,data/bars/synth_0062_1.csv,synthetic_generator
+charts/synth_0062_2.png,SYNTH,,None,template_0062,0.035,2,False,eval,template_0062,98,98,variable,data/bars/synth_0062_2.csv,synthetic_generator
+charts/synth_0062_3.png,SYNTH,,None,template_0062,0.07,3,False,eval,template_0062,98,98,variable,data/bars/synth_0062_3.csv,synthetic_generator
+charts/synth_0062_4.png,SYNTH,,None,template_0062,0.12,4,False,eval,template_0062,98,98,variable,data/bars/synth_0062_4.csv,synthetic_generator
+charts/synth_0062_5.png,SYNTH,,None,template_0062,0.2,5,False,eval,template_0062,98,98,variable,data/bars/synth_0062_5.csv,synthetic_generator
+charts/synth_0063_0.png,SYNTH,,Head and Shoulders,template_0063,0.0,0,True,eval,template_0063,89,89,variable,data/bars/synth_0063_0.csv,synthetic_generator
+charts/synth_0063_1.png,SYNTH,,Head and Shoulders,template_0063,0.015,1,False,eval,template_0063,89,89,variable,data/bars/synth_0063_1.csv,synthetic_generator
+charts/synth_0063_2.png,SYNTH,,Head and Shoulders,template_0063,0.035,2,False,eval,template_0063,89,89,variable,data/bars/synth_0063_2.csv,synthetic_generator
+charts/synth_0063_3.png,SYNTH,,Head and Shoulders,template_0063,0.07,3,False,eval,template_0063,89,89,variable,data/bars/synth_0063_3.csv,synthetic_generator
+charts/synth_0063_4.png,SYNTH,,Head and Shoulders,template_0063,0.12,4,False,eval,template_0063,89,89,variable,data/bars/synth_0063_4.csv,synthetic_generator
+charts/synth_0063_5.png,SYNTH,,Head and Shoulders,template_0063,0.2,5,False,eval,template_0063,89,89,variable,data/bars/synth_0063_5.csv,synthetic_generator
+charts/synth_0064_0.png,SYNTH,,Inverse Head and Shoulders,template_0064,0.0,0,True,eval,template_0064,90,90,variable,data/bars/synth_0064_0.csv,synthetic_generator
+charts/synth_0064_1.png,SYNTH,,Inverse Head and Shoulders,template_0064,0.015,1,False,eval,template_0064,90,90,variable,data/bars/synth_0064_1.csv,synthetic_generator
+charts/synth_0064_2.png,SYNTH,,Inverse Head and Shoulders,template_0064,0.035,2,False,eval,template_0064,90,90,variable,data/bars/synth_0064_2.csv,synthetic_generator
+charts/synth_0064_3.png,SYNTH,,Inverse Head and Shoulders,template_0064,0.07,3,False,eval,template_0064,90,90,variable,data/bars/synth_0064_3.csv,synthetic_generator
+charts/synth_0064_4.png,SYNTH,,Inverse Head and Shoulders,template_0064,0.12,4,False,eval,template_0064,90,90,variable,data/bars/synth_0064_4.csv,synthetic_generator
+charts/synth_0064_5.png,SYNTH,,Inverse Head and Shoulders,template_0064,0.2,5,False,eval,template_0064,90,90,variable,data/bars/synth_0064_5.csv,synthetic_generator
+charts/synth_0065_0.png,SYNTH,,Double Top,template_0065,0.0,0,True,eval,template_0065,71,71,variable,data/bars/synth_0065_0.csv,synthetic_generator
+charts/synth_0065_1.png,SYNTH,,Double Top,template_0065,0.015,1,False,eval,template_0065,71,71,variable,data/bars/synth_0065_1.csv,synthetic_generator
+charts/synth_0065_2.png,SYNTH,,Double Top,template_0065,0.035,2,False,eval,template_0065,71,71,variable,data/bars/synth_0065_2.csv,synthetic_generator
+charts/synth_0065_3.png,SYNTH,,Double Top,template_0065,0.07,3,False,eval,template_0065,71,71,variable,data/bars/synth_0065_3.csv,synthetic_generator
+charts/synth_0065_4.png,SYNTH,,Double Top,template_0065,0.12,4,False,eval,template_0065,71,71,variable,data/bars/synth_0065_4.csv,synthetic_generator
+charts/synth_0065_5.png,SYNTH,,Double Top,template_0065,0.2,5,False,eval,template_0065,71,71,variable,data/bars/synth_0065_5.csv,synthetic_generator
+charts/synth_0066_0.png,SYNTH,,Double Bottom,template_0066,0.0,0,True,eval,template_0066,118,118,variable,data/bars/synth_0066_0.csv,synthetic_generator
+charts/synth_0066_1.png,SYNTH,,Double Bottom,template_0066,0.015,1,False,eval,template_0066,118,118,variable,data/bars/synth_0066_1.csv,synthetic_generator
+charts/synth_0066_2.png,SYNTH,,Double Bottom,template_0066,0.035,2,False,eval,template_0066,118,118,variable,data/bars/synth_0066_2.csv,synthetic_generator
+charts/synth_0066_3.png,SYNTH,,Double Bottom,template_0066,0.07,3,False,eval,template_0066,118,118,variable,data/bars/synth_0066_3.csv,synthetic_generator
+charts/synth_0066_4.png,SYNTH,,Double Bottom,template_0066,0.12,4,False,eval,template_0066,118,118,variable,data/bars/synth_0066_4.csv,synthetic_generator
+charts/synth_0066_5.png,SYNTH,,Double Bottom,template_0066,0.2,5,False,eval,template_0066,118,118,variable,data/bars/synth_0066_5.csv,synthetic_generator
+charts/synth_0067_0.png,SYNTH,,Triangle,template_0067,0.0,0,True,eval,template_0067,62,62,variable,data/bars/synth_0067_0.csv,synthetic_generator
+charts/synth_0067_1.png,SYNTH,,Triangle,template_0067,0.015,1,False,eval,template_0067,62,62,variable,data/bars/synth_0067_1.csv,synthetic_generator
+charts/synth_0067_2.png,SYNTH,,Triangle,template_0067,0.035,2,False,eval,template_0067,62,62,variable,data/bars/synth_0067_2.csv,synthetic_generator
+charts/synth_0067_3.png,SYNTH,,Triangle,template_0067,0.07,3,False,eval,template_0067,62,62,variable,data/bars/synth_0067_3.csv,synthetic_generator
+charts/synth_0067_4.png,SYNTH,,Triangle,template_0067,0.12,4,False,eval,template_0067,62,62,variable,data/bars/synth_0067_4.csv,synthetic_generator
+charts/synth_0067_5.png,SYNTH,,Triangle,template_0067,0.2,5,False,eval,template_0067,62,62,variable,data/bars/synth_0067_5.csv,synthetic_generator
+charts/synth_0068_0.png,SYNTH,,Bull Flag,template_0068,0.0,0,True,eval,template_0068,102,102,variable,data/bars/synth_0068_0.csv,synthetic_generator
+charts/synth_0068_1.png,SYNTH,,Bull Flag,template_0068,0.015,1,False,eval,template_0068,102,102,variable,data/bars/synth_0068_1.csv,synthetic_generator
+charts/synth_0068_2.png,SYNTH,,Bull Flag,template_0068,0.035,2,False,eval,template_0068,102,102,variable,data/bars/synth_0068_2.csv,synthetic_generator
+charts/synth_0068_3.png,SYNTH,,Bull Flag,template_0068,0.07,3,False,eval,template_0068,102,102,variable,data/bars/synth_0068_3.csv,synthetic_generator
+charts/synth_0068_4.png,SYNTH,,Bull Flag,template_0068,0.12,4,False,eval,template_0068,102,102,variable,data/bars/synth_0068_4.csv,synthetic_generator
+charts/synth_0068_5.png,SYNTH,,Bull Flag,template_0068,0.2,5,False,eval,template_0068,102,102,variable,data/bars/synth_0068_5.csv,synthetic_generator
+charts/synth_0069_0.png,SYNTH,,None,template_0069,0.0,0,True,eval,template_0069,69,69,variable,data/bars/synth_0069_0.csv,synthetic_generator
+charts/synth_0069_1.png,SYNTH,,None,template_0069,0.015,1,False,eval,template_0069,69,69,variable,data/bars/synth_0069_1.csv,synthetic_generator
+charts/synth_0069_2.png,SYNTH,,None,template_0069,0.035,2,False,eval,template_0069,69,69,variable,data/bars/synth_0069_2.csv,synthetic_generator
+charts/synth_0069_3.png,SYNTH,,None,template_0069,0.07,3,False,eval,template_0069,69,69,variable,data/bars/synth_0069_3.csv,synthetic_generator
+charts/synth_0069_4.png,SYNTH,,None,template_0069,0.12,4,False,eval,template_0069,69,69,variable,data/bars/synth_0069_4.csv,synthetic_generator
+charts/synth_0069_5.png,SYNTH,,None,template_0069,0.2,5,False,eval,template_0069,69,69,variable,data/bars/synth_0069_5.csv,synthetic_generator
+charts/synth_0070_0.png,SYNTH,,Head and Shoulders,template_0070,0.0,0,True,eval,template_0070,116,116,variable,data/bars/synth_0070_0.csv,synthetic_generator
+charts/synth_0070_1.png,SYNTH,,Head and Shoulders,template_0070,0.015,1,False,eval,template_0070,116,116,variable,data/bars/synth_0070_1.csv,synthetic_generator
+charts/synth_0070_2.png,SYNTH,,Head and Shoulders,template_0070,0.035,2,False,eval,template_0070,116,116,variable,data/bars/synth_0070_2.csv,synthetic_generator
+charts/synth_0070_3.png,SYNTH,,Head and Shoulders,template_0070,0.07,3,False,eval,template_0070,116,116,variable,data/bars/synth_0070_3.csv,synthetic_generator
+charts/synth_0070_4.png,SYNTH,,Head and Shoulders,template_0070,0.12,4,False,eval,template_0070,116,116,variable,data/bars/synth_0070_4.csv,synthetic_generator
+charts/synth_0070_5.png,SYNTH,,Head and Shoulders,template_0070,0.2,5,False,eval,template_0070,116,116,variable,data/bars/synth_0070_5.csv,synthetic_generator
+charts/synth_0071_0.png,SYNTH,,Inverse Head and Shoulders,template_0071,0.0,0,True,eval,template_0071,87,87,variable,data/bars/synth_0071_0.csv,synthetic_generator
+charts/synth_0071_1.png,SYNTH,,Inverse Head and Shoulders,template_0071,0.015,1,False,eval,template_0071,87,87,variable,data/bars/synth_0071_1.csv,synthetic_generator
+charts/synth_0071_2.png,SYNTH,,Inverse Head and Shoulders,template_0071,0.035,2,False,eval,template_0071,87,87,variable,data/bars/synth_0071_2.csv,synthetic_generator
+charts/synth_0071_3.png,SYNTH,,Inverse Head and Shoulders,template_0071,0.07,3,False,eval,template_0071,87,87,variable,data/bars/synth_0071_3.csv,synthetic_generator
+charts/synth_0071_4.png,SYNTH,,Inverse Head and Shoulders,template_0071,0.12,4,False,eval,template_0071,87,87,variable,data/bars/synth_0071_4.csv,synthetic_generator
+charts/synth_0071_5.png,SYNTH,,Inverse Head and Shoulders,template_0071,0.2,5,False,eval,template_0071,87,87,variable,data/bars/synth_0071_5.csv,synthetic_generator
+charts/synth_0072_0.png,SYNTH,,Double Top,template_0072,0.0,0,True,eval,template_0072,91,91,variable,data/bars/synth_0072_0.csv,synthetic_generator
+charts/synth_0072_1.png,SYNTH,,Double Top,template_0072,0.015,1,False,eval,template_0072,91,91,variable,data/bars/synth_0072_1.csv,synthetic_generator
+charts/synth_0072_2.png,SYNTH,,Double Top,template_0072,0.035,2,False,eval,template_0072,91,91,variable,data/bars/synth_0072_2.csv,synthetic_generator
+charts/synth_0072_3.png,SYNTH,,Double Top,template_0072,0.07,3,False,eval,template_0072,91,91,variable,data/bars/synth_0072_3.csv,synthetic_generator
+charts/synth_0072_4.png,SYNTH,,Double Top,template_0072,0.12,4,False,eval,template_0072,91,91,variable,data/bars/synth_0072_4.csv,synthetic_generator
+charts/synth_0072_5.png,SYNTH,,Double Top,template_0072,0.2,5,False,eval,template_0072,91,91,variable,data/bars/synth_0072_5.csv,synthetic_generator
+charts/synth_0073_0.png,SYNTH,,Double Bottom,template_0073,0.0,0,True,eval,template_0073,87,87,variable,data/bars/synth_0073_0.csv,synthetic_generator
+charts/synth_0073_1.png,SYNTH,,Double Bottom,template_0073,0.015,1,False,eval,template_0073,87,87,variable,data/bars/synth_0073_1.csv,synthetic_generator
+charts/synth_0073_2.png,SYNTH,,Double Bottom,template_0073,0.035,2,False,eval,template_0073,87,87,variable,data/bars/synth_0073_2.csv,synthetic_generator
+charts/synth_0073_3.png,SYNTH,,Double Bottom,template_0073,0.07,3,False,eval,template_0073,87,87,variable,data/bars/synth_0073_3.csv,synthetic_generator
+charts/synth_0073_4.png,SYNTH,,Double Bottom,template_0073,0.12,4,False,eval,template_0073,87,87,variable,data/bars/synth_0073_4.csv,synthetic_generator
+charts/synth_0073_5.png,SYNTH,,Double Bottom,template_0073,0.2,5,False,eval,template_0073,87,87,variable,data/bars/synth_0073_5.csv,synthetic_generator
+charts/synth_0074_0.png,SYNTH,,Triangle,template_0074,0.0,0,True,eval,template_0074,111,111,variable,data/bars/synth_0074_0.csv,synthetic_generator
+charts/synth_0074_1.png,SYNTH,,Triangle,template_0074,0.015,1,False,eval,template_0074,111,111,variable,data/bars/synth_0074_1.csv,synthetic_generator
+charts/synth_0074_2.png,SYNTH,,Triangle,template_0074,0.035,2,False,eval,template_0074,111,111,variable,data/bars/synth_0074_2.csv,synthetic_generator
+charts/synth_0074_3.png,SYNTH,,Triangle,template_0074,0.07,3,False,eval,template_0074,111,111,variable,data/bars/synth_0074_3.csv,synthetic_generator
+charts/synth_0074_4.png,SYNTH,,Triangle,template_0074,0.12,4,False,eval,template_0074,111,111,variable,data/bars/synth_0074_4.csv,synthetic_generator
+charts/synth_0074_5.png,SYNTH,,Triangle,template_0074,0.2,5,False,eval,template_0074,111,111,variable,data/bars/synth_0074_5.csv,synthetic_generator
+charts/synth_0075_0.png,SYNTH,,Bull Flag,template_0075,0.0,0,True,eval,template_0075,81,81,variable,data/bars/synth_0075_0.csv,synthetic_generator
+charts/synth_0075_1.png,SYNTH,,Bull Flag,template_0075,0.015,1,False,eval,template_0075,81,81,variable,data/bars/synth_0075_1.csv,synthetic_generator
+charts/synth_0075_2.png,SYNTH,,Bull Flag,template_0075,0.035,2,False,eval,template_0075,81,81,variable,data/bars/synth_0075_2.csv,synthetic_generator
+charts/synth_0075_3.png,SYNTH,,Bull Flag,template_0075,0.07,3,False,eval,template_0075,81,81,variable,data/bars/synth_0075_3.csv,synthetic_generator
+charts/synth_0075_4.png,SYNTH,,Bull Flag,template_0075,0.12,4,False,eval,template_0075,81,81,variable,data/bars/synth_0075_4.csv,synthetic_generator
+charts/synth_0075_5.png,SYNTH,,Bull Flag,template_0075,0.2,5,False,eval,template_0075,81,81,variable,data/bars/synth_0075_5.csv,synthetic_generator
+charts/synth_0076_0.png,SYNTH,,None,template_0076,0.0,0,True,eval,template_0076,69,69,variable,data/bars/synth_0076_0.csv,synthetic_generator
+charts/synth_0076_1.png,SYNTH,,None,template_0076,0.015,1,False,eval,template_0076,69,69,variable,data/bars/synth_0076_1.csv,synthetic_generator
+charts/synth_0076_2.png,SYNTH,,None,template_0076,0.035,2,False,eval,template_0076,69,69,variable,data/bars/synth_0076_2.csv,synthetic_generator
+charts/synth_0076_3.png,SYNTH,,None,template_0076,0.07,3,False,eval,template_0076,69,69,variable,data/bars/synth_0076_3.csv,synthetic_generator
+charts/synth_0076_4.png,SYNTH,,None,template_0076,0.12,4,False,eval,template_0076,69,69,variable,data/bars/synth_0076_4.csv,synthetic_generator
+charts/synth_0076_5.png,SYNTH,,None,template_0076,0.2,5,False,eval,template_0076,69,69,variable,data/bars/synth_0076_5.csv,synthetic_generator
+charts/synth_0077_0.png,SYNTH,,Head and Shoulders,template_0077,0.0,0,True,eval,template_0077,91,91,variable,data/bars/synth_0077_0.csv,synthetic_generator
+charts/synth_0077_1.png,SYNTH,,Head and Shoulders,template_0077,0.015,1,False,eval,template_0077,91,91,variable,data/bars/synth_0077_1.csv,synthetic_generator
+charts/synth_0077_2.png,SYNTH,,Head and Shoulders,template_0077,0.035,2,False,eval,template_0077,91,91,variable,data/bars/synth_0077_2.csv,synthetic_generator
+charts/synth_0077_3.png,SYNTH,,Head and Shoulders,template_0077,0.07,3,False,eval,template_0077,91,91,variable,data/bars/synth_0077_3.csv,synthetic_generator
+charts/synth_0077_4.png,SYNTH,,Head and Shoulders,template_0077,0.12,4,False,eval,template_0077,91,91,variable,data/bars/synth_0077_4.csv,synthetic_generator
+charts/synth_0077_5.png,SYNTH,,Head and Shoulders,template_0077,0.2,5,False,eval,template_0077,91,91,variable,data/bars/synth_0077_5.csv,synthetic_generator
+charts/synth_0078_0.png,SYNTH,,Inverse Head and Shoulders,template_0078,0.0,0,True,eval,template_0078,89,89,variable,data/bars/synth_0078_0.csv,synthetic_generator
+charts/synth_0078_1.png,SYNTH,,Inverse Head and Shoulders,template_0078,0.015,1,False,eval,template_0078,89,89,variable,data/bars/synth_0078_1.csv,synthetic_generator
+charts/synth_0078_2.png,SYNTH,,Inverse Head and Shoulders,template_0078,0.035,2,False,eval,template_0078,89,89,variable,data/bars/synth_0078_2.csv,synthetic_generator
+charts/synth_0078_3.png,SYNTH,,Inverse Head and Shoulders,template_0078,0.07,3,False,eval,template_0078,89,89,variable,data/bars/synth_0078_3.csv,synthetic_generator
+charts/synth_0078_4.png,SYNTH,,Inverse Head and Shoulders,template_0078,0.12,4,False,eval,template_0078,89,89,variable,data/bars/synth_0078_4.csv,synthetic_generator
+charts/synth_0078_5.png,SYNTH,,Inverse Head and Shoulders,template_0078,0.2,5,False,eval,template_0078,89,89,variable,data/bars/synth_0078_5.csv,synthetic_generator
+charts/synth_0079_0.png,SYNTH,,Double Top,template_0079,0.0,0,True,eval,template_0079,91,91,variable,data/bars/synth_0079_0.csv,synthetic_generator
+charts/synth_0079_1.png,SYNTH,,Double Top,template_0079,0.015,1,False,eval,template_0079,91,91,variable,data/bars/synth_0079_1.csv,synthetic_generator
+charts/synth_0079_2.png,SYNTH,,Double Top,template_0079,0.035,2,False,eval,template_0079,91,91,variable,data/bars/synth_0079_2.csv,synthetic_generator
+charts/synth_0079_3.png,SYNTH,,Double Top,template_0079,0.07,3,False,eval,template_0079,91,91,variable,data/bars/synth_0079_3.csv,synthetic_generator
+charts/synth_0079_4.png,SYNTH,,Double Top,template_0079,0.12,4,False,eval,template_0079,91,91,variable,data/bars/synth_0079_4.csv,synthetic_generator
+charts/synth_0079_5.png,SYNTH,,Double Top,template_0079,0.2,5,False,eval,template_0079,91,91,variable,data/bars/synth_0079_5.csv,synthetic_generator
+charts/synth_0080_0.png,SYNTH,,Double Bottom,template_0080,0.0,0,True,eval,template_0080,104,104,variable,data/bars/synth_0080_0.csv,synthetic_generator
+charts/synth_0080_1.png,SYNTH,,Double Bottom,template_0080,0.015,1,False,eval,template_0080,104,104,variable,data/bars/synth_0080_1.csv,synthetic_generator
+charts/synth_0080_2.png,SYNTH,,Double Bottom,template_0080,0.035,2,False,eval,template_0080,104,104,variable,data/bars/synth_0080_2.csv,synthetic_generator
+charts/synth_0080_3.png,SYNTH,,Double Bottom,template_0080,0.07,3,False,eval,template_0080,104,104,variable,data/bars/synth_0080_3.csv,synthetic_generator
+charts/synth_0080_4.png,SYNTH,,Double Bottom,template_0080,0.12,4,False,eval,template_0080,104,104,variable,data/bars/synth_0080_4.csv,synthetic_generator
+charts/synth_0080_5.png,SYNTH,,Double Bottom,template_0080,0.2,5,False,eval,template_0080,104,104,variable,data/bars/synth_0080_5.csv,synthetic_generator
+charts/synth_0081_0.png,SYNTH,,Triangle,template_0081,0.0,0,True,eval,template_0081,106,106,variable,data/bars/synth_0081_0.csv,synthetic_generator
+charts/synth_0081_1.png,SYNTH,,Triangle,template_0081,0.015,1,False,eval,template_0081,106,106,variable,data/bars/synth_0081_1.csv,synthetic_generator
+charts/synth_0081_2.png,SYNTH,,Triangle,template_0081,0.035,2,False,eval,template_0081,106,106,variable,data/bars/synth_0081_2.csv,synthetic_generator
+charts/synth_0081_3.png,SYNTH,,Triangle,template_0081,0.07,3,False,eval,template_0081,106,106,variable,data/bars/synth_0081_3.csv,synthetic_generator
+charts/synth_0081_4.png,SYNTH,,Triangle,template_0081,0.12,4,False,eval,template_0081,106,106,variable,data/bars/synth_0081_4.csv,synthetic_generator
+charts/synth_0081_5.png,SYNTH,,Triangle,template_0081,0.2,5,False,eval,template_0081,106,106,variable,data/bars/synth_0081_5.csv,synthetic_generator
+charts/synth_0082_0.png,SYNTH,,Bull Flag,template_0082,0.0,0,True,eval,template_0082,70,70,variable,data/bars/synth_0082_0.csv,synthetic_generator
+charts/synth_0082_1.png,SYNTH,,Bull Flag,template_0082,0.015,1,False,eval,template_0082,70,70,variable,data/bars/synth_0082_1.csv,synthetic_generator
+charts/synth_0082_2.png,SYNTH,,Bull Flag,template_0082,0.035,2,False,eval,template_0082,70,70,variable,data/bars/synth_0082_2.csv,synthetic_generator
+charts/synth_0082_3.png,SYNTH,,Bull Flag,template_0082,0.07,3,False,eval,template_0082,70,70,variable,data/bars/synth_0082_3.csv,synthetic_generator
+charts/synth_0082_4.png,SYNTH,,Bull Flag,template_0082,0.12,4,False,eval,template_0082,70,70,variable,data/bars/synth_0082_4.csv,synthetic_generator
+charts/synth_0082_5.png,SYNTH,,Bull Flag,template_0082,0.2,5,False,eval,template_0082,70,70,variable,data/bars/synth_0082_5.csv,synthetic_generator
+charts/synth_0083_0.png,SYNTH,,None,template_0083,0.0,0,True,eval,template_0083,101,101,variable,data/bars/synth_0083_0.csv,synthetic_generator
+charts/synth_0083_1.png,SYNTH,,None,template_0083,0.015,1,False,eval,template_0083,101,101,variable,data/bars/synth_0083_1.csv,synthetic_generator
+charts/synth_0083_2.png,SYNTH,,None,template_0083,0.035,2,False,eval,template_0083,101,101,variable,data/bars/synth_0083_2.csv,synthetic_generator
+charts/synth_0083_3.png,SYNTH,,None,template_0083,0.07,3,False,eval,template_0083,101,101,variable,data/bars/synth_0083_3.csv,synthetic_generator
+charts/synth_0083_4.png,SYNTH,,None,template_0083,0.12,4,False,eval,template_0083,101,101,variable,data/bars/synth_0083_4.csv,synthetic_generator
+charts/synth_0083_5.png,SYNTH,,None,template_0083,0.2,5,False,eval,template_0083,101,101,variable,data/bars/synth_0083_5.csv,synthetic_generator
+charts/synth_0084_0.png,SYNTH,,Head and Shoulders,template_0084,0.0,0,True,eval,template_0084,65,65,variable,data/bars/synth_0084_0.csv,synthetic_generator
+charts/synth_0084_1.png,SYNTH,,Head and Shoulders,template_0084,0.015,1,False,eval,template_0084,65,65,variable,data/bars/synth_0084_1.csv,synthetic_generator
+charts/synth_0084_2.png,SYNTH,,Head and Shoulders,template_0084,0.035,2,False,eval,template_0084,65,65,variable,data/bars/synth_0084_2.csv,synthetic_generator
+charts/synth_0084_3.png,SYNTH,,Head and Shoulders,template_0084,0.07,3,False,eval,template_0084,65,65,variable,data/bars/synth_0084_3.csv,synthetic_generator
+charts/synth_0084_4.png,SYNTH,,Head and Shoulders,template_0084,0.12,4,False,eval,template_0084,65,65,variable,data/bars/synth_0084_4.csv,synthetic_generator
+charts/synth_0084_5.png,SYNTH,,Head and Shoulders,template_0084,0.2,5,False,eval,template_0084,65,65,variable,data/bars/synth_0084_5.csv,synthetic_generator
+charts/synth_0085_0.png,SYNTH,,Inverse Head and Shoulders,template_0085,0.0,0,True,eval,template_0085,65,65,variable,data/bars/synth_0085_0.csv,synthetic_generator
+charts/synth_0085_1.png,SYNTH,,Inverse Head and Shoulders,template_0085,0.015,1,False,eval,template_0085,65,65,variable,data/bars/synth_0085_1.csv,synthetic_generator
+charts/synth_0085_2.png,SYNTH,,Inverse Head and Shoulders,template_0085,0.035,2,False,eval,template_0085,65,65,variable,data/bars/synth_0085_2.csv,synthetic_generator
+charts/synth_0085_3.png,SYNTH,,Inverse Head and Shoulders,template_0085,0.07,3,False,eval,template_0085,65,65,variable,data/bars/synth_0085_3.csv,synthetic_generator
+charts/synth_0085_4.png,SYNTH,,Inverse Head and Shoulders,template_0085,0.12,4,False,eval,template_0085,65,65,variable,data/bars/synth_0085_4.csv,synthetic_generator
+charts/synth_0085_5.png,SYNTH,,Inverse Head and Shoulders,template_0085,0.2,5,False,eval,template_0085,65,65,variable,data/bars/synth_0085_5.csv,synthetic_generator
+charts/synth_0086_0.png,SYNTH,,Double Top,template_0086,0.0,0,True,eval,template_0086,63,63,variable,data/bars/synth_0086_0.csv,synthetic_generator
+charts/synth_0086_1.png,SYNTH,,Double Top,template_0086,0.015,1,False,eval,template_0086,63,63,variable,data/bars/synth_0086_1.csv,synthetic_generator
+charts/synth_0086_2.png,SYNTH,,Double Top,template_0086,0.035,2,False,eval,template_0086,63,63,variable,data/bars/synth_0086_2.csv,synthetic_generator
+charts/synth_0086_3.png,SYNTH,,Double Top,template_0086,0.07,3,False,eval,template_0086,63,63,variable,data/bars/synth_0086_3.csv,synthetic_generator
+charts/synth_0086_4.png,SYNTH,,Double Top,template_0086,0.12,4,False,eval,template_0086,63,63,variable,data/bars/synth_0086_4.csv,synthetic_generator
+charts/synth_0086_5.png,SYNTH,,Double Top,template_0086,0.2,5,False,eval,template_0086,63,63,variable,data/bars/synth_0086_5.csv,synthetic_generator
+charts/synth_0087_0.png,SYNTH,,Double Bottom,template_0087,0.0,0,True,eval,template_0087,70,70,variable,data/bars/synth_0087_0.csv,synthetic_generator
+charts/synth_0087_1.png,SYNTH,,Double Bottom,template_0087,0.015,1,False,eval,template_0087,70,70,variable,data/bars/synth_0087_1.csv,synthetic_generator
+charts/synth_0087_2.png,SYNTH,,Double Bottom,template_0087,0.035,2,False,eval,template_0087,70,70,variable,data/bars/synth_0087_2.csv,synthetic_generator
+charts/synth_0087_3.png,SYNTH,,Double Bottom,template_0087,0.07,3,False,eval,template_0087,70,70,variable,data/bars/synth_0087_3.csv,synthetic_generator
+charts/synth_0087_4.png,SYNTH,,Double Bottom,template_0087,0.12,4,False,eval,template_0087,70,70,variable,data/bars/synth_0087_4.csv,synthetic_generator
+charts/synth_0087_5.png,SYNTH,,Double Bottom,template_0087,0.2,5,False,eval,template_0087,70,70,variable,data/bars/synth_0087_5.csv,synthetic_generator
+charts/synth_0088_0.png,SYNTH,,Triangle,template_0088,0.0,0,True,eval,template_0088,101,101,variable,data/bars/synth_0088_0.csv,synthetic_generator
+charts/synth_0088_1.png,SYNTH,,Triangle,template_0088,0.015,1,False,eval,template_0088,101,101,variable,data/bars/synth_0088_1.csv,synthetic_generator
+charts/synth_0088_2.png,SYNTH,,Triangle,template_0088,0.035,2,False,eval,template_0088,101,101,variable,data/bars/synth_0088_2.csv,synthetic_generator
+charts/synth_0088_3.png,SYNTH,,Triangle,template_0088,0.07,3,False,eval,template_0088,101,101,variable,data/bars/synth_0088_3.csv,synthetic_generator
+charts/synth_0088_4.png,SYNTH,,Triangle,template_0088,0.12,4,False,eval,template_0088,101,101,variable,data/bars/synth_0088_4.csv,synthetic_generator
+charts/synth_0088_5.png,SYNTH,,Triangle,template_0088,0.2,5,False,eval,template_0088,101,101,variable,data/bars/synth_0088_5.csv,synthetic_generator
+charts/synth_0089_0.png,SYNTH,,Bull Flag,template_0089,0.0,0,True,eval,template_0089,102,102,variable,data/bars/synth_0089_0.csv,synthetic_generator
+charts/synth_0089_1.png,SYNTH,,Bull Flag,template_0089,0.015,1,False,eval,template_0089,102,102,variable,data/bars/synth_0089_1.csv,synthetic_generator
+charts/synth_0089_2.png,SYNTH,,Bull Flag,template_0089,0.035,2,False,eval,template_0089,102,102,variable,data/bars/synth_0089_2.csv,synthetic_generator
+charts/synth_0089_3.png,SYNTH,,Bull Flag,template_0089,0.07,3,False,eval,template_0089,102,102,variable,data/bars/synth_0089_3.csv,synthetic_generator
+charts/synth_0089_4.png,SYNTH,,Bull Flag,template_0089,0.12,4,False,eval,template_0089,102,102,variable,data/bars/synth_0089_4.csv,synthetic_generator
+charts/synth_0089_5.png,SYNTH,,Bull Flag,template_0089,0.2,5,False,eval,template_0089,102,102,variable,data/bars/synth_0089_5.csv,synthetic_generator
+charts/synth_0090_0.png,SYNTH,,None,template_0090,0.0,0,True,eval,template_0090,100,100,variable,data/bars/synth_0090_0.csv,synthetic_generator
+charts/synth_0090_1.png,SYNTH,,None,template_0090,0.015,1,False,eval,template_0090,100,100,variable,data/bars/synth_0090_1.csv,synthetic_generator
+charts/synth_0090_2.png,SYNTH,,None,template_0090,0.035,2,False,eval,template_0090,100,100,variable,data/bars/synth_0090_2.csv,synthetic_generator
+charts/synth_0090_3.png,SYNTH,,None,template_0090,0.07,3,False,eval,template_0090,100,100,variable,data/bars/synth_0090_3.csv,synthetic_generator
+charts/synth_0090_4.png,SYNTH,,None,template_0090,0.12,4,False,eval,template_0090,100,100,variable,data/bars/synth_0090_4.csv,synthetic_generator
+charts/synth_0090_5.png,SYNTH,,None,template_0090,0.2,5,False,eval,template_0090,100,100,variable,data/bars/synth_0090_5.csv,synthetic_generator
+charts/synth_0091_0.png,SYNTH,,Head and Shoulders,template_0091,0.0,0,True,eval,template_0091,70,70,variable,data/bars/synth_0091_0.csv,synthetic_generator
+charts/synth_0091_1.png,SYNTH,,Head and Shoulders,template_0091,0.015,1,False,eval,template_0091,70,70,variable,data/bars/synth_0091_1.csv,synthetic_generator
+charts/synth_0091_2.png,SYNTH,,Head and Shoulders,template_0091,0.035,2,False,eval,template_0091,70,70,variable,data/bars/synth_0091_2.csv,synthetic_generator
+charts/synth_0091_3.png,SYNTH,,Head and Shoulders,template_0091,0.07,3,False,eval,template_0091,70,70,variable,data/bars/synth_0091_3.csv,synthetic_generator
+charts/synth_0091_4.png,SYNTH,,Head and Shoulders,template_0091,0.12,4,False,eval,template_0091,70,70,variable,data/bars/synth_0091_4.csv,synthetic_generator
+charts/synth_0091_5.png,SYNTH,,Head and Shoulders,template_0091,0.2,5,False,eval,template_0091,70,70,variable,data/bars/synth_0091_5.csv,synthetic_generator
+charts/synth_0092_0.png,SYNTH,,Inverse Head and Shoulders,template_0092,0.0,0,True,eval,template_0092,92,92,variable,data/bars/synth_0092_0.csv,synthetic_generator
+charts/synth_0092_1.png,SYNTH,,Inverse Head and Shoulders,template_0092,0.015,1,False,eval,template_0092,92,92,variable,data/bars/synth_0092_1.csv,synthetic_generator
+charts/synth_0092_2.png,SYNTH,,Inverse Head and Shoulders,template_0092,0.035,2,False,eval,template_0092,92,92,variable,data/bars/synth_0092_2.csv,synthetic_generator
+charts/synth_0092_3.png,SYNTH,,Inverse Head and Shoulders,template_0092,0.07,3,False,eval,template_0092,92,92,variable,data/bars/synth_0092_3.csv,synthetic_generator
+charts/synth_0092_4.png,SYNTH,,Inverse Head and Shoulders,template_0092,0.12,4,False,eval,template_0092,92,92,variable,data/bars/synth_0092_4.csv,synthetic_generator
+charts/synth_0092_5.png,SYNTH,,Inverse Head and Shoulders,template_0092,0.2,5,False,eval,template_0092,92,92,variable,data/bars/synth_0092_5.csv,synthetic_generator
+charts/synth_0093_0.png,SYNTH,,Double Top,template_0093,0.0,0,True,eval,template_0093,85,85,variable,data/bars/synth_0093_0.csv,synthetic_generator
+charts/synth_0093_1.png,SYNTH,,Double Top,template_0093,0.015,1,False,eval,template_0093,85,85,variable,data/bars/synth_0093_1.csv,synthetic_generator
+charts/synth_0093_2.png,SYNTH,,Double Top,template_0093,0.035,2,False,eval,template_0093,85,85,variable,data/bars/synth_0093_2.csv,synthetic_generator
+charts/synth_0093_3.png,SYNTH,,Double Top,template_0093,0.07,3,False,eval,template_0093,85,85,variable,data/bars/synth_0093_3.csv,synthetic_generator
+charts/synth_0093_4.png,SYNTH,,Double Top,template_0093,0.12,4,False,eval,template_0093,85,85,variable,data/bars/synth_0093_4.csv,synthetic_generator
+charts/synth_0093_5.png,SYNTH,,Double Top,template_0093,0.2,5,False,eval,template_0093,85,85,variable,data/bars/synth_0093_5.csv,synthetic_generator
+charts/synth_0094_0.png,SYNTH,,Double Bottom,template_0094,0.0,0,True,eval,template_0094,93,93,variable,data/bars/synth_0094_0.csv,synthetic_generator
+charts/synth_0094_1.png,SYNTH,,Double Bottom,template_0094,0.015,1,False,eval,template_0094,93,93,variable,data/bars/synth_0094_1.csv,synthetic_generator
+charts/synth_0094_2.png,SYNTH,,Double Bottom,template_0094,0.035,2,False,eval,template_0094,93,93,variable,data/bars/synth_0094_2.csv,synthetic_generator
+charts/synth_0094_3.png,SYNTH,,Double Bottom,template_0094,0.07,3,False,eval,template_0094,93,93,variable,data/bars/synth_0094_3.csv,synthetic_generator
+charts/synth_0094_4.png,SYNTH,,Double Bottom,template_0094,0.12,4,False,eval,template_0094,93,93,variable,data/bars/synth_0094_4.csv,synthetic_generator
+charts/synth_0094_5.png,SYNTH,,Double Bottom,template_0094,0.2,5,False,eval,template_0094,93,93,variable,data/bars/synth_0094_5.csv,synthetic_generator
+charts/synth_0095_0.png,SYNTH,,Triangle,template_0095,0.0,0,True,eval,template_0095,70,70,variable,data/bars/synth_0095_0.csv,synthetic_generator
+charts/synth_0095_1.png,SYNTH,,Triangle,template_0095,0.015,1,False,eval,template_0095,70,70,variable,data/bars/synth_0095_1.csv,synthetic_generator
+charts/synth_0095_2.png,SYNTH,,Triangle,template_0095,0.035,2,False,eval,template_0095,70,70,variable,data/bars/synth_0095_2.csv,synthetic_generator
+charts/synth_0095_3.png,SYNTH,,Triangle,template_0095,0.07,3,False,eval,template_0095,70,70,variable,data/bars/synth_0095_3.csv,synthetic_generator
+charts/synth_0095_4.png,SYNTH,,Triangle,template_0095,0.12,4,False,eval,template_0095,70,70,variable,data/bars/synth_0095_4.csv,synthetic_generator
+charts/synth_0095_5.png,SYNTH,,Triangle,template_0095,0.2,5,False,eval,template_0095,70,70,variable,data/bars/synth_0095_5.csv,synthetic_generator
+charts/synth_0096_0.png,SYNTH,,Bull Flag,template_0096,0.0,0,True,eval,template_0096,95,95,variable,data/bars/synth_0096_0.csv,synthetic_generator
+charts/synth_0096_1.png,SYNTH,,Bull Flag,template_0096,0.015,1,False,eval,template_0096,95,95,variable,data/bars/synth_0096_1.csv,synthetic_generator
+charts/synth_0096_2.png,SYNTH,,Bull Flag,template_0096,0.035,2,False,eval,template_0096,95,95,variable,data/bars/synth_0096_2.csv,synthetic_generator
+charts/synth_0096_3.png,SYNTH,,Bull Flag,template_0096,0.07,3,False,eval,template_0096,95,95,variable,data/bars/synth_0096_3.csv,synthetic_generator
+charts/synth_0096_4.png,SYNTH,,Bull Flag,template_0096,0.12,4,False,eval,template_0096,95,95,variable,data/bars/synth_0096_4.csv,synthetic_generator
+charts/synth_0096_5.png,SYNTH,,Bull Flag,template_0096,0.2,5,False,eval,template_0096,95,95,variable,data/bars/synth_0096_5.csv,synthetic_generator
+charts/synth_0097_0.png,SYNTH,,None,template_0097,0.0,0,True,eval,template_0097,64,64,variable,data/bars/synth_0097_0.csv,synthetic_generator
+charts/synth_0097_1.png,SYNTH,,None,template_0097,0.015,1,False,eval,template_0097,64,64,variable,data/bars/synth_0097_1.csv,synthetic_generator
+charts/synth_0097_2.png,SYNTH,,None,template_0097,0.035,2,False,eval,template_0097,64,64,variable,data/bars/synth_0097_2.csv,synthetic_generator
+charts/synth_0097_3.png,SYNTH,,None,template_0097,0.07,3,False,eval,template_0097,64,64,variable,data/bars/synth_0097_3.csv,synthetic_generator
+charts/synth_0097_4.png,SYNTH,,None,template_0097,0.12,4,False,eval,template_0097,64,64,variable,data/bars/synth_0097_4.csv,synthetic_generator
+charts/synth_0097_5.png,SYNTH,,None,template_0097,0.2,5,False,eval,template_0097,64,64,variable,data/bars/synth_0097_5.csv,synthetic_generator
+charts/synth_0098_0.png,SYNTH,,Head and Shoulders,template_0098,0.0,0,True,eval,template_0098,61,61,variable,data/bars/synth_0098_0.csv,synthetic_generator
+charts/synth_0098_1.png,SYNTH,,Head and Shoulders,template_0098,0.015,1,False,eval,template_0098,61,61,variable,data/bars/synth_0098_1.csv,synthetic_generator
+charts/synth_0098_2.png,SYNTH,,Head and Shoulders,template_0098,0.035,2,False,eval,template_0098,61,61,variable,data/bars/synth_0098_2.csv,synthetic_generator
+charts/synth_0098_3.png,SYNTH,,Head and Shoulders,template_0098,0.07,3,False,eval,template_0098,61,61,variable,data/bars/synth_0098_3.csv,synthetic_generator
+charts/synth_0098_4.png,SYNTH,,Head and Shoulders,template_0098,0.12,4,False,eval,template_0098,61,61,variable,data/bars/synth_0098_4.csv,synthetic_generator
+charts/synth_0098_5.png,SYNTH,,Head and Shoulders,template_0098,0.2,5,False,eval,template_0098,61,61,variable,data/bars/synth_0098_5.csv,synthetic_generator
+charts/synth_0099_0.png,SYNTH,,Inverse Head and Shoulders,template_0099,0.0,0,True,eval,template_0099,75,75,variable,data/bars/synth_0099_0.csv,synthetic_generator
+charts/synth_0099_1.png,SYNTH,,Inverse Head and Shoulders,template_0099,0.015,1,False,eval,template_0099,75,75,variable,data/bars/synth_0099_1.csv,synthetic_generator
+charts/synth_0099_2.png,SYNTH,,Inverse Head and Shoulders,template_0099,0.035,2,False,eval,template_0099,75,75,variable,data/bars/synth_0099_2.csv,synthetic_generator
+charts/synth_0099_3.png,SYNTH,,Inverse Head and Shoulders,template_0099,0.07,3,False,eval,template_0099,75,75,variable,data/bars/synth_0099_3.csv,synthetic_generator
+charts/synth_0099_4.png,SYNTH,,Inverse Head and Shoulders,template_0099,0.12,4,False,eval,template_0099,75,75,variable,data/bars/synth_0099_4.csv,synthetic_generator
+charts/synth_0099_5.png,SYNTH,,Inverse Head and Shoulders,template_0099,0.2,5,False,eval,template_0099,75,75,variable,data/bars/synth_0099_5.csv,synthetic_generator
+charts/synth_0100_0.png,SYNTH,,Double Top,template_0100,0.0,0,True,eval,template_0100,69,69,variable,data/bars/synth_0100_0.csv,synthetic_generator
+charts/synth_0100_1.png,SYNTH,,Double Top,template_0100,0.015,1,False,eval,template_0100,69,69,variable,data/bars/synth_0100_1.csv,synthetic_generator
+charts/synth_0100_2.png,SYNTH,,Double Top,template_0100,0.035,2,False,eval,template_0100,69,69,variable,data/bars/synth_0100_2.csv,synthetic_generator
+charts/synth_0100_3.png,SYNTH,,Double Top,template_0100,0.07,3,False,eval,template_0100,69,69,variable,data/bars/synth_0100_3.csv,synthetic_generator
+charts/synth_0100_4.png,SYNTH,,Double Top,template_0100,0.12,4,False,eval,template_0100,69,69,variable,data/bars/synth_0100_4.csv,synthetic_generator
+charts/synth_0100_5.png,SYNTH,,Double Top,template_0100,0.2,5,False,eval,template_0100,69,69,variable,data/bars/synth_0100_5.csv,synthetic_generator
+charts/synth_0101_0.png,SYNTH,,Double Bottom,template_0101,0.0,0,True,eval,template_0101,106,106,variable,data/bars/synth_0101_0.csv,synthetic_generator
+charts/synth_0101_1.png,SYNTH,,Double Bottom,template_0101,0.015,1,False,eval,template_0101,106,106,variable,data/bars/synth_0101_1.csv,synthetic_generator
+charts/synth_0101_2.png,SYNTH,,Double Bottom,template_0101,0.035,2,False,eval,template_0101,106,106,variable,data/bars/synth_0101_2.csv,synthetic_generator
+charts/synth_0101_3.png,SYNTH,,Double Bottom,template_0101,0.07,3,False,eval,template_0101,106,106,variable,data/bars/synth_0101_3.csv,synthetic_generator
+charts/synth_0101_4.png,SYNTH,,Double Bottom,template_0101,0.12,4,False,eval,template_0101,106,106,variable,data/bars/synth_0101_4.csv,synthetic_generator
+charts/synth_0101_5.png,SYNTH,,Double Bottom,template_0101,0.2,5,False,eval,template_0101,106,106,variable,data/bars/synth_0101_5.csv,synthetic_generator
+charts/synth_0102_0.png,SYNTH,,Triangle,template_0102,0.0,0,True,eval,template_0102,95,95,variable,data/bars/synth_0102_0.csv,synthetic_generator
+charts/synth_0102_1.png,SYNTH,,Triangle,template_0102,0.015,1,False,eval,template_0102,95,95,variable,data/bars/synth_0102_1.csv,synthetic_generator
+charts/synth_0102_2.png,SYNTH,,Triangle,template_0102,0.035,2,False,eval,template_0102,95,95,variable,data/bars/synth_0102_2.csv,synthetic_generator
+charts/synth_0102_3.png,SYNTH,,Triangle,template_0102,0.07,3,False,eval,template_0102,95,95,variable,data/bars/synth_0102_3.csv,synthetic_generator
+charts/synth_0102_4.png,SYNTH,,Triangle,template_0102,0.12,4,False,eval,template_0102,95,95,variable,data/bars/synth_0102_4.csv,synthetic_generator
+charts/synth_0102_5.png,SYNTH,,Triangle,template_0102,0.2,5,False,eval,template_0102,95,95,variable,data/bars/synth_0102_5.csv,synthetic_generator
+charts/synth_0103_0.png,SYNTH,,Bull Flag,template_0103,0.0,0,True,eval,template_0103,95,95,variable,data/bars/synth_0103_0.csv,synthetic_generator
+charts/synth_0103_1.png,SYNTH,,Bull Flag,template_0103,0.015,1,False,eval,template_0103,95,95,variable,data/bars/synth_0103_1.csv,synthetic_generator
+charts/synth_0103_2.png,SYNTH,,Bull Flag,template_0103,0.035,2,False,eval,template_0103,95,95,variable,data/bars/synth_0103_2.csv,synthetic_generator
+charts/synth_0103_3.png,SYNTH,,Bull Flag,template_0103,0.07,3,False,eval,template_0103,95,95,variable,data/bars/synth_0103_3.csv,synthetic_generator
+charts/synth_0103_4.png,SYNTH,,Bull Flag,template_0103,0.12,4,False,eval,template_0103,95,95,variable,data/bars/synth_0103_4.csv,synthetic_generator
+charts/synth_0103_5.png,SYNTH,,Bull Flag,template_0103,0.2,5,False,eval,template_0103,95,95,variable,data/bars/synth_0103_5.csv,synthetic_generator
+charts/synth_0104_0.png,SYNTH,,None,template_0104,0.0,0,True,eval,template_0104,69,69,variable,data/bars/synth_0104_0.csv,synthetic_generator
+charts/synth_0104_1.png,SYNTH,,None,template_0104,0.015,1,False,eval,template_0104,69,69,variable,data/bars/synth_0104_1.csv,synthetic_generator
+charts/synth_0104_2.png,SYNTH,,None,template_0104,0.035,2,False,eval,template_0104,69,69,variable,data/bars/synth_0104_2.csv,synthetic_generator
+charts/synth_0104_3.png,SYNTH,,None,template_0104,0.07,3,False,eval,template_0104,69,69,variable,data/bars/synth_0104_3.csv,synthetic_generator
+charts/synth_0104_4.png,SYNTH,,None,template_0104,0.12,4,False,eval,template_0104,69,69,variable,data/bars/synth_0104_4.csv,synthetic_generator
+charts/synth_0104_5.png,SYNTH,,None,template_0104,0.2,5,False,eval,template_0104,69,69,variable,data/bars/synth_0104_5.csv,synthetic_generator
+charts/synth_0105_0.png,SYNTH,,Head and Shoulders,template_0105,0.0,0,True,eval,template_0105,72,72,variable,data/bars/synth_0105_0.csv,synthetic_generator
+charts/synth_0105_1.png,SYNTH,,Head and Shoulders,template_0105,0.015,1,False,eval,template_0105,72,72,variable,data/bars/synth_0105_1.csv,synthetic_generator
+charts/synth_0105_2.png,SYNTH,,Head and Shoulders,template_0105,0.035,2,False,eval,template_0105,72,72,variable,data/bars/synth_0105_2.csv,synthetic_generator
+charts/synth_0105_3.png,SYNTH,,Head and Shoulders,template_0105,0.07,3,False,eval,template_0105,72,72,variable,data/bars/synth_0105_3.csv,synthetic_generator
+charts/synth_0105_4.png,SYNTH,,Head and Shoulders,template_0105,0.12,4,False,eval,template_0105,72,72,variable,data/bars/synth_0105_4.csv,synthetic_generator
+charts/synth_0105_5.png,SYNTH,,Head and Shoulders,template_0105,0.2,5,False,eval,template_0105,72,72,variable,data/bars/synth_0105_5.csv,synthetic_generator
+charts/synth_0106_0.png,SYNTH,,Inverse Head and Shoulders,template_0106,0.0,0,True,eval,template_0106,62,62,variable,data/bars/synth_0106_0.csv,synthetic_generator
+charts/synth_0106_1.png,SYNTH,,Inverse Head and Shoulders,template_0106,0.015,1,False,eval,template_0106,62,62,variable,data/bars/synth_0106_1.csv,synthetic_generator
+charts/synth_0106_2.png,SYNTH,,Inverse Head and Shoulders,template_0106,0.035,2,False,eval,template_0106,62,62,variable,data/bars/synth_0106_2.csv,synthetic_generator
+charts/synth_0106_3.png,SYNTH,,Inverse Head and Shoulders,template_0106,0.07,3,False,eval,template_0106,62,62,variable,data/bars/synth_0106_3.csv,synthetic_generator
+charts/synth_0106_4.png,SYNTH,,Inverse Head and Shoulders,template_0106,0.12,4,False,eval,template_0106,62,62,variable,data/bars/synth_0106_4.csv,synthetic_generator
+charts/synth_0106_5.png,SYNTH,,Inverse Head and Shoulders,template_0106,0.2,5,False,eval,template_0106,62,62,variable,data/bars/synth_0106_5.csv,synthetic_generator
+charts/synth_0107_0.png,SYNTH,,Double Top,template_0107,0.0,0,True,eval,template_0107,85,85,variable,data/bars/synth_0107_0.csv,synthetic_generator
+charts/synth_0107_1.png,SYNTH,,Double Top,template_0107,0.015,1,False,eval,template_0107,85,85,variable,data/bars/synth_0107_1.csv,synthetic_generator
+charts/synth_0107_2.png,SYNTH,,Double Top,template_0107,0.035,2,False,eval,template_0107,85,85,variable,data/bars/synth_0107_2.csv,synthetic_generator
+charts/synth_0107_3.png,SYNTH,,Double Top,template_0107,0.07,3,False,eval,template_0107,85,85,variable,data/bars/synth_0107_3.csv,synthetic_generator
+charts/synth_0107_4.png,SYNTH,,Double Top,template_0107,0.12,4,False,eval,template_0107,85,85,variable,data/bars/synth_0107_4.csv,synthetic_generator
+charts/synth_0107_5.png,SYNTH,,Double Top,template_0107,0.2,5,False,eval,template_0107,85,85,variable,data/bars/synth_0107_5.csv,synthetic_generator
+charts/synth_0108_0.png,SYNTH,,Double Bottom,template_0108,0.0,0,True,eval,template_0108,104,104,variable,data/bars/synth_0108_0.csv,synthetic_generator
+charts/synth_0108_1.png,SYNTH,,Double Bottom,template_0108,0.015,1,False,eval,template_0108,104,104,variable,data/bars/synth_0108_1.csv,synthetic_generator
+charts/synth_0108_2.png,SYNTH,,Double Bottom,template_0108,0.035,2,False,eval,template_0108,104,104,variable,data/bars/synth_0108_2.csv,synthetic_generator
+charts/synth_0108_3.png,SYNTH,,Double Bottom,template_0108,0.07,3,False,eval,template_0108,104,104,variable,data/bars/synth_0108_3.csv,synthetic_generator
+charts/synth_0108_4.png,SYNTH,,Double Bottom,template_0108,0.12,4,False,eval,template_0108,104,104,variable,data/bars/synth_0108_4.csv,synthetic_generator
+charts/synth_0108_5.png,SYNTH,,Double Bottom,template_0108,0.2,5,False,eval,template_0108,104,104,variable,data/bars/synth_0108_5.csv,synthetic_generator
+charts/synth_0109_0.png,SYNTH,,Triangle,template_0109,0.0,0,True,eval,template_0109,114,114,variable,data/bars/synth_0109_0.csv,synthetic_generator
+charts/synth_0109_1.png,SYNTH,,Triangle,template_0109,0.015,1,False,eval,template_0109,114,114,variable,data/bars/synth_0109_1.csv,synthetic_generator
+charts/synth_0109_2.png,SYNTH,,Triangle,template_0109,0.035,2,False,eval,template_0109,114,114,variable,data/bars/synth_0109_2.csv,synthetic_generator
+charts/synth_0109_3.png,SYNTH,,Triangle,template_0109,0.07,3,False,eval,template_0109,114,114,variable,data/bars/synth_0109_3.csv,synthetic_generator
+charts/synth_0109_4.png,SYNTH,,Triangle,template_0109,0.12,4,False,eval,template_0109,114,114,variable,data/bars/synth_0109_4.csv,synthetic_generator
+charts/synth_0109_5.png,SYNTH,,Triangle,template_0109,0.2,5,False,eval,template_0109,114,114,variable,data/bars/synth_0109_5.csv,synthetic_generator
+charts/synth_0110_0.png,SYNTH,,Bull Flag,template_0110,0.0,0,True,eval,template_0110,105,105,variable,data/bars/synth_0110_0.csv,synthetic_generator
+charts/synth_0110_1.png,SYNTH,,Bull Flag,template_0110,0.015,1,False,eval,template_0110,105,105,variable,data/bars/synth_0110_1.csv,synthetic_generator
+charts/synth_0110_2.png,SYNTH,,Bull Flag,template_0110,0.035,2,False,eval,template_0110,105,105,variable,data/bars/synth_0110_2.csv,synthetic_generator
+charts/synth_0110_3.png,SYNTH,,Bull Flag,template_0110,0.07,3,False,eval,template_0110,105,105,variable,data/bars/synth_0110_3.csv,synthetic_generator
+charts/synth_0110_4.png,SYNTH,,Bull Flag,template_0110,0.12,4,False,eval,template_0110,105,105,variable,data/bars/synth_0110_4.csv,synthetic_generator
+charts/synth_0110_5.png,SYNTH,,Bull Flag,template_0110,0.2,5,False,eval,template_0110,105,105,variable,data/bars/synth_0110_5.csv,synthetic_generator
+charts/synth_0111_0.png,SYNTH,,None,template_0111,0.0,0,True,eval,template_0111,75,75,variable,data/bars/synth_0111_0.csv,synthetic_generator
+charts/synth_0111_1.png,SYNTH,,None,template_0111,0.015,1,False,eval,template_0111,75,75,variable,data/bars/synth_0111_1.csv,synthetic_generator
+charts/synth_0111_2.png,SYNTH,,None,template_0111,0.035,2,False,eval,template_0111,75,75,variable,data/bars/synth_0111_2.csv,synthetic_generator
+charts/synth_0111_3.png,SYNTH,,None,template_0111,0.07,3,False,eval,template_0111,75,75,variable,data/bars/synth_0111_3.csv,synthetic_generator
+charts/synth_0111_4.png,SYNTH,,None,template_0111,0.12,4,False,eval,template_0111,75,75,variable,data/bars/synth_0111_4.csv,synthetic_generator
+charts/synth_0111_5.png,SYNTH,,None,template_0111,0.2,5,False,eval,template_0111,75,75,variable,data/bars/synth_0111_5.csv,synthetic_generator
+charts/synth_0112_0.png,SYNTH,,Head and Shoulders,template_0112,0.0,0,True,eval,template_0112,95,95,variable,data/bars/synth_0112_0.csv,synthetic_generator
+charts/synth_0112_1.png,SYNTH,,Head and Shoulders,template_0112,0.015,1,False,eval,template_0112,95,95,variable,data/bars/synth_0112_1.csv,synthetic_generator
+charts/synth_0112_2.png,SYNTH,,Head and Shoulders,template_0112,0.035,2,False,eval,template_0112,95,95,variable,data/bars/synth_0112_2.csv,synthetic_generator
+charts/synth_0112_3.png,SYNTH,,Head and Shoulders,template_0112,0.07,3,False,eval,template_0112,95,95,variable,data/bars/synth_0112_3.csv,synthetic_generator
+charts/synth_0112_4.png,SYNTH,,Head and Shoulders,template_0112,0.12,4,False,eval,template_0112,95,95,variable,data/bars/synth_0112_4.csv,synthetic_generator
+charts/synth_0112_5.png,SYNTH,,Head and Shoulders,template_0112,0.2,5,False,eval,template_0112,95,95,variable,data/bars/synth_0112_5.csv,synthetic_generator
+charts/synth_0113_0.png,SYNTH,,Inverse Head and Shoulders,template_0113,0.0,0,True,eval,template_0113,92,92,variable,data/bars/synth_0113_0.csv,synthetic_generator
+charts/synth_0113_1.png,SYNTH,,Inverse Head and Shoulders,template_0113,0.015,1,False,eval,template_0113,92,92,variable,data/bars/synth_0113_1.csv,synthetic_generator
+charts/synth_0113_2.png,SYNTH,,Inverse Head and Shoulders,template_0113,0.035,2,False,eval,template_0113,92,92,variable,data/bars/synth_0113_2.csv,synthetic_generator
+charts/synth_0113_3.png,SYNTH,,Inverse Head and Shoulders,template_0113,0.07,3,False,eval,template_0113,92,92,variable,data/bars/synth_0113_3.csv,synthetic_generator
+charts/synth_0113_4.png,SYNTH,,Inverse Head and Shoulders,template_0113,0.12,4,False,eval,template_0113,92,92,variable,data/bars/synth_0113_4.csv,synthetic_generator
+charts/synth_0113_5.png,SYNTH,,Inverse Head and Shoulders,template_0113,0.2,5,False,eval,template_0113,92,92,variable,data/bars/synth_0113_5.csv,synthetic_generator
+charts/synth_0114_0.png,SYNTH,,Double Top,template_0114,0.0,0,True,eval,template_0114,93,93,variable,data/bars/synth_0114_0.csv,synthetic_generator
+charts/synth_0114_1.png,SYNTH,,Double Top,template_0114,0.015,1,False,eval,template_0114,93,93,variable,data/bars/synth_0114_1.csv,synthetic_generator
+charts/synth_0114_2.png,SYNTH,,Double Top,template_0114,0.035,2,False,eval,template_0114,93,93,variable,data/bars/synth_0114_2.csv,synthetic_generator
+charts/synth_0114_3.png,SYNTH,,Double Top,template_0114,0.07,3,False,eval,template_0114,93,93,variable,data/bars/synth_0114_3.csv,synthetic_generator
+charts/synth_0114_4.png,SYNTH,,Double Top,template_0114,0.12,4,False,eval,template_0114,93,93,variable,data/bars/synth_0114_4.csv,synthetic_generator
+charts/synth_0114_5.png,SYNTH,,Double Top,template_0114,0.2,5,False,eval,template_0114,93,93,variable,data/bars/synth_0114_5.csv,synthetic_generator
+charts/synth_0115_0.png,SYNTH,,Double Bottom,template_0115,0.0,0,True,eval,template_0115,63,63,variable,data/bars/synth_0115_0.csv,synthetic_generator
+charts/synth_0115_1.png,SYNTH,,Double Bottom,template_0115,0.015,1,False,eval,template_0115,63,63,variable,data/bars/synth_0115_1.csv,synthetic_generator
+charts/synth_0115_2.png,SYNTH,,Double Bottom,template_0115,0.035,2,False,eval,template_0115,63,63,variable,data/bars/synth_0115_2.csv,synthetic_generator
+charts/synth_0115_3.png,SYNTH,,Double Bottom,template_0115,0.07,3,False,eval,template_0115,63,63,variable,data/bars/synth_0115_3.csv,synthetic_generator
+charts/synth_0115_4.png,SYNTH,,Double Bottom,template_0115,0.12,4,False,eval,template_0115,63,63,variable,data/bars/synth_0115_4.csv,synthetic_generator
+charts/synth_0115_5.png,SYNTH,,Double Bottom,template_0115,0.2,5,False,eval,template_0115,63,63,variable,data/bars/synth_0115_5.csv,synthetic_generator
+charts/synth_0116_0.png,SYNTH,,Triangle,template_0116,0.0,0,True,eval,template_0116,110,110,variable,data/bars/synth_0116_0.csv,synthetic_generator
+charts/synth_0116_1.png,SYNTH,,Triangle,template_0116,0.015,1,False,eval,template_0116,110,110,variable,data/bars/synth_0116_1.csv,synthetic_generator
+charts/synth_0116_2.png,SYNTH,,Triangle,template_0116,0.035,2,False,eval,template_0116,110,110,variable,data/bars/synth_0116_2.csv,synthetic_generator
+charts/synth_0116_3.png,SYNTH,,Triangle,template_0116,0.07,3,False,eval,template_0116,110,110,variable,data/bars/synth_0116_3.csv,synthetic_generator
+charts/synth_0116_4.png,SYNTH,,Triangle,template_0116,0.12,4,False,eval,template_0116,110,110,variable,data/bars/synth_0116_4.csv,synthetic_generator
+charts/synth_0116_5.png,SYNTH,,Triangle,template_0116,0.2,5,False,eval,template_0116,110,110,variable,data/bars/synth_0116_5.csv,synthetic_generator
+charts/synth_0117_0.png,SYNTH,,Bull Flag,template_0117,0.0,0,True,eval,template_0117,73,73,variable,data/bars/synth_0117_0.csv,synthetic_generator
+charts/synth_0117_1.png,SYNTH,,Bull Flag,template_0117,0.015,1,False,eval,template_0117,73,73,variable,data/bars/synth_0117_1.csv,synthetic_generator
+charts/synth_0117_2.png,SYNTH,,Bull Flag,template_0117,0.035,2,False,eval,template_0117,73,73,variable,data/bars/synth_0117_2.csv,synthetic_generator
+charts/synth_0117_3.png,SYNTH,,Bull Flag,template_0117,0.07,3,False,eval,template_0117,73,73,variable,data/bars/synth_0117_3.csv,synthetic_generator
+charts/synth_0117_4.png,SYNTH,,Bull Flag,template_0117,0.12,4,False,eval,template_0117,73,73,variable,data/bars/synth_0117_4.csv,synthetic_generator
+charts/synth_0117_5.png,SYNTH,,Bull Flag,template_0117,0.2,5,False,eval,template_0117,73,73,variable,data/bars/synth_0117_5.csv,synthetic_generator
+charts/synth_0118_0.png,SYNTH,,None,template_0118,0.0,0,True,eval,template_0118,81,81,variable,data/bars/synth_0118_0.csv,synthetic_generator
+charts/synth_0118_1.png,SYNTH,,None,template_0118,0.015,1,False,eval,template_0118,81,81,variable,data/bars/synth_0118_1.csv,synthetic_generator
+charts/synth_0118_2.png,SYNTH,,None,template_0118,0.035,2,False,eval,template_0118,81,81,variable,data/bars/synth_0118_2.csv,synthetic_generator
+charts/synth_0118_3.png,SYNTH,,None,template_0118,0.07,3,False,eval,template_0118,81,81,variable,data/bars/synth_0118_3.csv,synthetic_generator
+charts/synth_0118_4.png,SYNTH,,None,template_0118,0.12,4,False,eval,template_0118,81,81,variable,data/bars/synth_0118_4.csv,synthetic_generator
+charts/synth_0118_5.png,SYNTH,,None,template_0118,0.2,5,False,eval,template_0118,81,81,variable,data/bars/synth_0118_5.csv,synthetic_generator
+charts/synth_0119_0.png,SYNTH,,Head and Shoulders,template_0119,0.0,0,True,eval,template_0119,62,62,variable,data/bars/synth_0119_0.csv,synthetic_generator
+charts/synth_0119_1.png,SYNTH,,Head and Shoulders,template_0119,0.015,1,False,eval,template_0119,62,62,variable,data/bars/synth_0119_1.csv,synthetic_generator
+charts/synth_0119_2.png,SYNTH,,Head and Shoulders,template_0119,0.035,2,False,eval,template_0119,62,62,variable,data/bars/synth_0119_2.csv,synthetic_generator
+charts/synth_0119_3.png,SYNTH,,Head and Shoulders,template_0119,0.07,3,False,eval,template_0119,62,62,variable,data/bars/synth_0119_3.csv,synthetic_generator
+charts/synth_0119_4.png,SYNTH,,Head and Shoulders,template_0119,0.12,4,False,eval,template_0119,62,62,variable,data/bars/synth_0119_4.csv,synthetic_generator
+charts/synth_0119_5.png,SYNTH,,Head and Shoulders,template_0119,0.2,5,False,eval,template_0119,62,62,variable,data/bars/synth_0119_5.csv,synthetic_generator
+charts/synth_0120_0.png,SYNTH,,Inverse Head and Shoulders,template_0120,0.0,0,True,eval,template_0120,74,74,variable,data/bars/synth_0120_0.csv,synthetic_generator
+charts/synth_0120_1.png,SYNTH,,Inverse Head and Shoulders,template_0120,0.015,1,False,eval,template_0120,74,74,variable,data/bars/synth_0120_1.csv,synthetic_generator
+charts/synth_0120_2.png,SYNTH,,Inverse Head and Shoulders,template_0120,0.035,2,False,eval,template_0120,74,74,variable,data/bars/synth_0120_2.csv,synthetic_generator
+charts/synth_0120_3.png,SYNTH,,Inverse Head and Shoulders,template_0120,0.07,3,False,eval,template_0120,74,74,variable,data/bars/synth_0120_3.csv,synthetic_generator
+charts/synth_0120_4.png,SYNTH,,Inverse Head and Shoulders,template_0120,0.12,4,False,eval,template_0120,74,74,variable,data/bars/synth_0120_4.csv,synthetic_generator
+charts/synth_0120_5.png,SYNTH,,Inverse Head and Shoulders,template_0120,0.2,5,False,eval,template_0120,74,74,variable,data/bars/synth_0120_5.csv,synthetic_generator
+charts/synth_0121_0.png,SYNTH,,Double Top,template_0121,0.0,0,True,eval,template_0121,107,107,variable,data/bars/synth_0121_0.csv,synthetic_generator
+charts/synth_0121_1.png,SYNTH,,Double Top,template_0121,0.015,1,False,eval,template_0121,107,107,variable,data/bars/synth_0121_1.csv,synthetic_generator
+charts/synth_0121_2.png,SYNTH,,Double Top,template_0121,0.035,2,False,eval,template_0121,107,107,variable,data/bars/synth_0121_2.csv,synthetic_generator
+charts/synth_0121_3.png,SYNTH,,Double Top,template_0121,0.07,3,False,eval,template_0121,107,107,variable,data/bars/synth_0121_3.csv,synthetic_generator
+charts/synth_0121_4.png,SYNTH,,Double Top,template_0121,0.12,4,False,eval,template_0121,107,107,variable,data/bars/synth_0121_4.csv,synthetic_generator
+charts/synth_0121_5.png,SYNTH,,Double Top,template_0121,0.2,5,False,eval,template_0121,107,107,variable,data/bars/synth_0121_5.csv,synthetic_generator
+charts/synth_0122_0.png,SYNTH,,Double Bottom,template_0122,0.0,0,True,eval,template_0122,110,110,variable,data/bars/synth_0122_0.csv,synthetic_generator
+charts/synth_0122_1.png,SYNTH,,Double Bottom,template_0122,0.015,1,False,eval,template_0122,110,110,variable,data/bars/synth_0122_1.csv,synthetic_generator
+charts/synth_0122_2.png,SYNTH,,Double Bottom,template_0122,0.035,2,False,eval,template_0122,110,110,variable,data/bars/synth_0122_2.csv,synthetic_generator
+charts/synth_0122_3.png,SYNTH,,Double Bottom,template_0122,0.07,3,False,eval,template_0122,110,110,variable,data/bars/synth_0122_3.csv,synthetic_generator
+charts/synth_0122_4.png,SYNTH,,Double Bottom,template_0122,0.12,4,False,eval,template_0122,110,110,variable,data/bars/synth_0122_4.csv,synthetic_generator
+charts/synth_0122_5.png,SYNTH,,Double Bottom,template_0122,0.2,5,False,eval,template_0122,110,110,variable,data/bars/synth_0122_5.csv,synthetic_generator
+charts/synth_0123_0.png,SYNTH,,Triangle,template_0123,0.0,0,True,eval,template_0123,70,70,variable,data/bars/synth_0123_0.csv,synthetic_generator
+charts/synth_0123_1.png,SYNTH,,Triangle,template_0123,0.015,1,False,eval,template_0123,70,70,variable,data/bars/synth_0123_1.csv,synthetic_generator
+charts/synth_0123_2.png,SYNTH,,Triangle,template_0123,0.035,2,False,eval,template_0123,70,70,variable,data/bars/synth_0123_2.csv,synthetic_generator
+charts/synth_0123_3.png,SYNTH,,Triangle,template_0123,0.07,3,False,eval,template_0123,70,70,variable,data/bars/synth_0123_3.csv,synthetic_generator
+charts/synth_0123_4.png,SYNTH,,Triangle,template_0123,0.12,4,False,eval,template_0123,70,70,variable,data/bars/synth_0123_4.csv,synthetic_generator
+charts/synth_0123_5.png,SYNTH,,Triangle,template_0123,0.2,5,False,eval,template_0123,70,70,variable,data/bars/synth_0123_5.csv,synthetic_generator
+charts/synth_0124_0.png,SYNTH,,Bull Flag,template_0124,0.0,0,True,eval,template_0124,63,63,variable,data/bars/synth_0124_0.csv,synthetic_generator
+charts/synth_0124_1.png,SYNTH,,Bull Flag,template_0124,0.015,1,False,eval,template_0124,63,63,variable,data/bars/synth_0124_1.csv,synthetic_generator
+charts/synth_0124_2.png,SYNTH,,Bull Flag,template_0124,0.035,2,False,eval,template_0124,63,63,variable,data/bars/synth_0124_2.csv,synthetic_generator
+charts/synth_0124_3.png,SYNTH,,Bull Flag,template_0124,0.07,3,False,eval,template_0124,63,63,variable,data/bars/synth_0124_3.csv,synthetic_generator
+charts/synth_0124_4.png,SYNTH,,Bull Flag,template_0124,0.12,4,False,eval,template_0124,63,63,variable,data/bars/synth_0124_4.csv,synthetic_generator
+charts/synth_0124_5.png,SYNTH,,Bull Flag,template_0124,0.2,5,False,eval,template_0124,63,63,variable,data/bars/synth_0124_5.csv,synthetic_generator
+charts/synth_0125_0.png,SYNTH,,None,template_0125,0.0,0,True,eval,template_0125,109,109,variable,data/bars/synth_0125_0.csv,synthetic_generator
+charts/synth_0125_1.png,SYNTH,,None,template_0125,0.015,1,False,eval,template_0125,109,109,variable,data/bars/synth_0125_1.csv,synthetic_generator
+charts/synth_0125_2.png,SYNTH,,None,template_0125,0.035,2,False,eval,template_0125,109,109,variable,data/bars/synth_0125_2.csv,synthetic_generator
+charts/synth_0125_3.png,SYNTH,,None,template_0125,0.07,3,False,eval,template_0125,109,109,variable,data/bars/synth_0125_3.csv,synthetic_generator
+charts/synth_0125_4.png,SYNTH,,None,template_0125,0.12,4,False,eval,template_0125,109,109,variable,data/bars/synth_0125_4.csv,synthetic_generator
+charts/synth_0125_5.png,SYNTH,,None,template_0125,0.2,5,False,eval,template_0125,109,109,variable,data/bars/synth_0125_5.csv,synthetic_generator
+charts/synth_0126_0.png,SYNTH,,Head and Shoulders,template_0126,0.0,0,True,eval,template_0126,62,62,variable,data/bars/synth_0126_0.csv,synthetic_generator
+charts/synth_0126_1.png,SYNTH,,Head and Shoulders,template_0126,0.015,1,False,eval,template_0126,62,62,variable,data/bars/synth_0126_1.csv,synthetic_generator
+charts/synth_0126_2.png,SYNTH,,Head and Shoulders,template_0126,0.035,2,False,eval,template_0126,62,62,variable,data/bars/synth_0126_2.csv,synthetic_generator
+charts/synth_0126_3.png,SYNTH,,Head and Shoulders,template_0126,0.07,3,False,eval,template_0126,62,62,variable,data/bars/synth_0126_3.csv,synthetic_generator
+charts/synth_0126_4.png,SYNTH,,Head and Shoulders,template_0126,0.12,4,False,eval,template_0126,62,62,variable,data/bars/synth_0126_4.csv,synthetic_generator
+charts/synth_0126_5.png,SYNTH,,Head and Shoulders,template_0126,0.2,5,False,eval,template_0126,62,62,variable,data/bars/synth_0126_5.csv,synthetic_generator
+charts/synth_0127_0.png,SYNTH,,Inverse Head and Shoulders,template_0127,0.0,0,True,eval,template_0127,84,84,variable,data/bars/synth_0127_0.csv,synthetic_generator
+charts/synth_0127_1.png,SYNTH,,Inverse Head and Shoulders,template_0127,0.015,1,False,eval,template_0127,84,84,variable,data/bars/synth_0127_1.csv,synthetic_generator
+charts/synth_0127_2.png,SYNTH,,Inverse Head and Shoulders,template_0127,0.035,2,False,eval,template_0127,84,84,variable,data/bars/synth_0127_2.csv,synthetic_generator
+charts/synth_0127_3.png,SYNTH,,Inverse Head and Shoulders,template_0127,0.07,3,False,eval,template_0127,84,84,variable,data/bars/synth_0127_3.csv,synthetic_generator
+charts/synth_0127_4.png,SYNTH,,Inverse Head and Shoulders,template_0127,0.12,4,False,eval,template_0127,84,84,variable,data/bars/synth_0127_4.csv,synthetic_generator
+charts/synth_0127_5.png,SYNTH,,Inverse Head and Shoulders,template_0127,0.2,5,False,eval,template_0127,84,84,variable,data/bars/synth_0127_5.csv,synthetic_generator
+charts/synth_0128_0.png,SYNTH,,Double Top,template_0128,0.0,0,True,eval,template_0128,101,101,variable,data/bars/synth_0128_0.csv,synthetic_generator
+charts/synth_0128_1.png,SYNTH,,Double Top,template_0128,0.015,1,False,eval,template_0128,101,101,variable,data/bars/synth_0128_1.csv,synthetic_generator
+charts/synth_0128_2.png,SYNTH,,Double Top,template_0128,0.035,2,False,eval,template_0128,101,101,variable,data/bars/synth_0128_2.csv,synthetic_generator
+charts/synth_0128_3.png,SYNTH,,Double Top,template_0128,0.07,3,False,eval,template_0128,101,101,variable,data/bars/synth_0128_3.csv,synthetic_generator
+charts/synth_0128_4.png,SYNTH,,Double Top,template_0128,0.12,4,False,eval,template_0128,101,101,variable,data/bars/synth_0128_4.csv,synthetic_generator
+charts/synth_0128_5.png,SYNTH,,Double Top,template_0128,0.2,5,False,eval,template_0128,101,101,variable,data/bars/synth_0128_5.csv,synthetic_generator
+charts/synth_0129_0.png,SYNTH,,Double Bottom,template_0129,0.0,0,True,eval,template_0129,111,111,variable,data/bars/synth_0129_0.csv,synthetic_generator
+charts/synth_0129_1.png,SYNTH,,Double Bottom,template_0129,0.015,1,False,eval,template_0129,111,111,variable,data/bars/synth_0129_1.csv,synthetic_generator
+charts/synth_0129_2.png,SYNTH,,Double Bottom,template_0129,0.035,2,False,eval,template_0129,111,111,variable,data/bars/synth_0129_2.csv,synthetic_generator
+charts/synth_0129_3.png,SYNTH,,Double Bottom,template_0129,0.07,3,False,eval,template_0129,111,111,variable,data/bars/synth_0129_3.csv,synthetic_generator
+charts/synth_0129_4.png,SYNTH,,Double Bottom,template_0129,0.12,4,False,eval,template_0129,111,111,variable,data/bars/synth_0129_4.csv,synthetic_generator
+charts/synth_0129_5.png,SYNTH,,Double Bottom,template_0129,0.2,5,False,eval,template_0129,111,111,variable,data/bars/synth_0129_5.csv,synthetic_generator
+charts/synth_0130_0.png,SYNTH,,Triangle,template_0130,0.0,0,True,eval,template_0130,105,105,variable,data/bars/synth_0130_0.csv,synthetic_generator
+charts/synth_0130_1.png,SYNTH,,Triangle,template_0130,0.015,1,False,eval,template_0130,105,105,variable,data/bars/synth_0130_1.csv,synthetic_generator
+charts/synth_0130_2.png,SYNTH,,Triangle,template_0130,0.035,2,False,eval,template_0130,105,105,variable,data/bars/synth_0130_2.csv,synthetic_generator
+charts/synth_0130_3.png,SYNTH,,Triangle,template_0130,0.07,3,False,eval,template_0130,105,105,variable,data/bars/synth_0130_3.csv,synthetic_generator
+charts/synth_0130_4.png,SYNTH,,Triangle,template_0130,0.12,4,False,eval,template_0130,105,105,variable,data/bars/synth_0130_4.csv,synthetic_generator
+charts/synth_0130_5.png,SYNTH,,Triangle,template_0130,0.2,5,False,eval,template_0130,105,105,variable,data/bars/synth_0130_5.csv,synthetic_generator
+charts/synth_0131_0.png,SYNTH,,Bull Flag,template_0131,0.0,0,True,eval,template_0131,67,67,variable,data/bars/synth_0131_0.csv,synthetic_generator
+charts/synth_0131_1.png,SYNTH,,Bull Flag,template_0131,0.015,1,False,eval,template_0131,67,67,variable,data/bars/synth_0131_1.csv,synthetic_generator
+charts/synth_0131_2.png,SYNTH,,Bull Flag,template_0131,0.035,2,False,eval,template_0131,67,67,variable,data/bars/synth_0131_2.csv,synthetic_generator
+charts/synth_0131_3.png,SYNTH,,Bull Flag,template_0131,0.07,3,False,eval,template_0131,67,67,variable,data/bars/synth_0131_3.csv,synthetic_generator
+charts/synth_0131_4.png,SYNTH,,Bull Flag,template_0131,0.12,4,False,eval,template_0131,67,67,variable,data/bars/synth_0131_4.csv,synthetic_generator
+charts/synth_0131_5.png,SYNTH,,Bull Flag,template_0131,0.2,5,False,eval,template_0131,67,67,variable,data/bars/synth_0131_5.csv,synthetic_generator
+charts/synth_0132_0.png,SYNTH,,None,template_0132,0.0,0,True,eval,template_0132,98,98,variable,data/bars/synth_0132_0.csv,synthetic_generator
+charts/synth_0132_1.png,SYNTH,,None,template_0132,0.015,1,False,eval,template_0132,98,98,variable,data/bars/synth_0132_1.csv,synthetic_generator
+charts/synth_0132_2.png,SYNTH,,None,template_0132,0.035,2,False,eval,template_0132,98,98,variable,data/bars/synth_0132_2.csv,synthetic_generator
+charts/synth_0132_3.png,SYNTH,,None,template_0132,0.07,3,False,eval,template_0132,98,98,variable,data/bars/synth_0132_3.csv,synthetic_generator
+charts/synth_0132_4.png,SYNTH,,None,template_0132,0.12,4,False,eval,template_0132,98,98,variable,data/bars/synth_0132_4.csv,synthetic_generator
+charts/synth_0132_5.png,SYNTH,,None,template_0132,0.2,5,False,eval,template_0132,98,98,variable,data/bars/synth_0132_5.csv,synthetic_generator
+charts/synth_0133_0.png,SYNTH,,Head and Shoulders,template_0133,0.0,0,True,eval,template_0133,104,104,variable,data/bars/synth_0133_0.csv,synthetic_generator
+charts/synth_0133_1.png,SYNTH,,Head and Shoulders,template_0133,0.015,1,False,eval,template_0133,104,104,variable,data/bars/synth_0133_1.csv,synthetic_generator
+charts/synth_0133_2.png,SYNTH,,Head and Shoulders,template_0133,0.035,2,False,eval,template_0133,104,104,variable,data/bars/synth_0133_2.csv,synthetic_generator
+charts/synth_0133_3.png,SYNTH,,Head and Shoulders,template_0133,0.07,3,False,eval,template_0133,104,104,variable,data/bars/synth_0133_3.csv,synthetic_generator
+charts/synth_0133_4.png,SYNTH,,Head and Shoulders,template_0133,0.12,4,False,eval,template_0133,104,104,variable,data/bars/synth_0133_4.csv,synthetic_generator
+charts/synth_0133_5.png,SYNTH,,Head and Shoulders,template_0133,0.2,5,False,eval,template_0133,104,104,variable,data/bars/synth_0133_5.csv,synthetic_generator
+charts/synth_0134_0.png,SYNTH,,Inverse Head and Shoulders,template_0134,0.0,0,True,eval,template_0134,83,83,variable,data/bars/synth_0134_0.csv,synthetic_generator
+charts/synth_0134_1.png,SYNTH,,Inverse Head and Shoulders,template_0134,0.015,1,False,eval,template_0134,83,83,variable,data/bars/synth_0134_1.csv,synthetic_generator
+charts/synth_0134_2.png,SYNTH,,Inverse Head and Shoulders,template_0134,0.035,2,False,eval,template_0134,83,83,variable,data/bars/synth_0134_2.csv,synthetic_generator
+charts/synth_0134_3.png,SYNTH,,Inverse Head and Shoulders,template_0134,0.07,3,False,eval,template_0134,83,83,variable,data/bars/synth_0134_3.csv,synthetic_generator
+charts/synth_0134_4.png,SYNTH,,Inverse Head and Shoulders,template_0134,0.12,4,False,eval,template_0134,83,83,variable,data/bars/synth_0134_4.csv,synthetic_generator
+charts/synth_0134_5.png,SYNTH,,Inverse Head and Shoulders,template_0134,0.2,5,False,eval,template_0134,83,83,variable,data/bars/synth_0134_5.csv,synthetic_generator
+charts/synth_0135_0.png,SYNTH,,Double Top,template_0135,0.0,0,True,eval,template_0135,104,104,variable,data/bars/synth_0135_0.csv,synthetic_generator
+charts/synth_0135_1.png,SYNTH,,Double Top,template_0135,0.015,1,False,eval,template_0135,104,104,variable,data/bars/synth_0135_1.csv,synthetic_generator
+charts/synth_0135_2.png,SYNTH,,Double Top,template_0135,0.035,2,False,eval,template_0135,104,104,variable,data/bars/synth_0135_2.csv,synthetic_generator
+charts/synth_0135_3.png,SYNTH,,Double Top,template_0135,0.07,3,False,eval,template_0135,104,104,variable,data/bars/synth_0135_3.csv,synthetic_generator
+charts/synth_0135_4.png,SYNTH,,Double Top,template_0135,0.12,4,False,eval,template_0135,104,104,variable,data/bars/synth_0135_4.csv,synthetic_generator
+charts/synth_0135_5.png,SYNTH,,Double Top,template_0135,0.2,5,False,eval,template_0135,104,104,variable,data/bars/synth_0135_5.csv,synthetic_generator
+charts/synth_0136_0.png,SYNTH,,Double Bottom,template_0136,0.0,0,True,eval,template_0136,100,100,variable,data/bars/synth_0136_0.csv,synthetic_generator
+charts/synth_0136_1.png,SYNTH,,Double Bottom,template_0136,0.015,1,False,eval,template_0136,100,100,variable,data/bars/synth_0136_1.csv,synthetic_generator
+charts/synth_0136_2.png,SYNTH,,Double Bottom,template_0136,0.035,2,False,eval,template_0136,100,100,variable,data/bars/synth_0136_2.csv,synthetic_generator
+charts/synth_0136_3.png,SYNTH,,Double Bottom,template_0136,0.07,3,False,eval,template_0136,100,100,variable,data/bars/synth_0136_3.csv,synthetic_generator
+charts/synth_0136_4.png,SYNTH,,Double Bottom,template_0136,0.12,4,False,eval,template_0136,100,100,variable,data/bars/synth_0136_4.csv,synthetic_generator
+charts/synth_0136_5.png,SYNTH,,Double Bottom,template_0136,0.2,5,False,eval,template_0136,100,100,variable,data/bars/synth_0136_5.csv,synthetic_generator
+charts/synth_0137_0.png,SYNTH,,Triangle,template_0137,0.0,0,True,eval,template_0137,93,93,variable,data/bars/synth_0137_0.csv,synthetic_generator
+charts/synth_0137_1.png,SYNTH,,Triangle,template_0137,0.015,1,False,eval,template_0137,93,93,variable,data/bars/synth_0137_1.csv,synthetic_generator
+charts/synth_0137_2.png,SYNTH,,Triangle,template_0137,0.035,2,False,eval,template_0137,93,93,variable,data/bars/synth_0137_2.csv,synthetic_generator
+charts/synth_0137_3.png,SYNTH,,Triangle,template_0137,0.07,3,False,eval,template_0137,93,93,variable,data/bars/synth_0137_3.csv,synthetic_generator
+charts/synth_0137_4.png,SYNTH,,Triangle,template_0137,0.12,4,False,eval,template_0137,93,93,variable,data/bars/synth_0137_4.csv,synthetic_generator
+charts/synth_0137_5.png,SYNTH,,Triangle,template_0137,0.2,5,False,eval,template_0137,93,93,variable,data/bars/synth_0137_5.csv,synthetic_generator
+charts/synth_0138_0.png,SYNTH,,Bull Flag,template_0138,0.0,0,True,eval,template_0138,105,105,variable,data/bars/synth_0138_0.csv,synthetic_generator
+charts/synth_0138_1.png,SYNTH,,Bull Flag,template_0138,0.015,1,False,eval,template_0138,105,105,variable,data/bars/synth_0138_1.csv,synthetic_generator
+charts/synth_0138_2.png,SYNTH,,Bull Flag,template_0138,0.035,2,False,eval,template_0138,105,105,variable,data/bars/synth_0138_2.csv,synthetic_generator
+charts/synth_0138_3.png,SYNTH,,Bull Flag,template_0138,0.07,3,False,eval,template_0138,105,105,variable,data/bars/synth_0138_3.csv,synthetic_generator
+charts/synth_0138_4.png,SYNTH,,Bull Flag,template_0138,0.12,4,False,eval,template_0138,105,105,variable,data/bars/synth_0138_4.csv,synthetic_generator
+charts/synth_0138_5.png,SYNTH,,Bull Flag,template_0138,0.2,5,False,eval,template_0138,105,105,variable,data/bars/synth_0138_5.csv,synthetic_generator
+charts/synth_0139_0.png,SYNTH,,None,template_0139,0.0,0,True,eval,template_0139,115,115,variable,data/bars/synth_0139_0.csv,synthetic_generator
+charts/synth_0139_1.png,SYNTH,,None,template_0139,0.015,1,False,eval,template_0139,115,115,variable,data/bars/synth_0139_1.csv,synthetic_generator
+charts/synth_0139_2.png,SYNTH,,None,template_0139,0.035,2,False,eval,template_0139,115,115,variable,data/bars/synth_0139_2.csv,synthetic_generator
+charts/synth_0139_3.png,SYNTH,,None,template_0139,0.07,3,False,eval,template_0139,115,115,variable,data/bars/synth_0139_3.csv,synthetic_generator
+charts/synth_0139_4.png,SYNTH,,None,template_0139,0.12,4,False,eval,template_0139,115,115,variable,data/bars/synth_0139_4.csv,synthetic_generator
+charts/synth_0139_5.png,SYNTH,,None,template_0139,0.2,5,False,eval,template_0139,115,115,variable,data/bars/synth_0139_5.csv,synthetic_generator
+charts/synth_0140_0.png,SYNTH,,Head and Shoulders,template_0140,0.0,0,True,eval,template_0140,108,108,variable,data/bars/synth_0140_0.csv,synthetic_generator
+charts/synth_0140_1.png,SYNTH,,Head and Shoulders,template_0140,0.015,1,False,eval,template_0140,108,108,variable,data/bars/synth_0140_1.csv,synthetic_generator
+charts/synth_0140_2.png,SYNTH,,Head and Shoulders,template_0140,0.035,2,False,eval,template_0140,108,108,variable,data/bars/synth_0140_2.csv,synthetic_generator
+charts/synth_0140_3.png,SYNTH,,Head and Shoulders,template_0140,0.07,3,False,eval,template_0140,108,108,variable,data/bars/synth_0140_3.csv,synthetic_generator
+charts/synth_0140_4.png,SYNTH,,Head and Shoulders,template_0140,0.12,4,False,eval,template_0140,108,108,variable,data/bars/synth_0140_4.csv,synthetic_generator
+charts/synth_0140_5.png,SYNTH,,Head and Shoulders,template_0140,0.2,5,False,eval,template_0140,108,108,variable,data/bars/synth_0140_5.csv,synthetic_generator
+charts/synth_0141_0.png,SYNTH,,Inverse Head and Shoulders,template_0141,0.0,0,True,eval,template_0141,102,102,variable,data/bars/synth_0141_0.csv,synthetic_generator
+charts/synth_0141_1.png,SYNTH,,Inverse Head and Shoulders,template_0141,0.015,1,False,eval,template_0141,102,102,variable,data/bars/synth_0141_1.csv,synthetic_generator
+charts/synth_0141_2.png,SYNTH,,Inverse Head and Shoulders,template_0141,0.035,2,False,eval,template_0141,102,102,variable,data/bars/synth_0141_2.csv,synthetic_generator
+charts/synth_0141_3.png,SYNTH,,Inverse Head and Shoulders,template_0141,0.07,3,False,eval,template_0141,102,102,variable,data/bars/synth_0141_3.csv,synthetic_generator
+charts/synth_0141_4.png,SYNTH,,Inverse Head and Shoulders,template_0141,0.12,4,False,eval,template_0141,102,102,variable,data/bars/synth_0141_4.csv,synthetic_generator
+charts/synth_0141_5.png,SYNTH,,Inverse Head and Shoulders,template_0141,0.2,5,False,eval,template_0141,102,102,variable,data/bars/synth_0141_5.csv,synthetic_generator
+charts/synth_0142_0.png,SYNTH,,Double Top,template_0142,0.0,0,True,eval,template_0142,73,73,variable,data/bars/synth_0142_0.csv,synthetic_generator
+charts/synth_0142_1.png,SYNTH,,Double Top,template_0142,0.015,1,False,eval,template_0142,73,73,variable,data/bars/synth_0142_1.csv,synthetic_generator
+charts/synth_0142_2.png,SYNTH,,Double Top,template_0142,0.035,2,False,eval,template_0142,73,73,variable,data/bars/synth_0142_2.csv,synthetic_generator
+charts/synth_0142_3.png,SYNTH,,Double Top,template_0142,0.07,3,False,eval,template_0142,73,73,variable,data/bars/synth_0142_3.csv,synthetic_generator
+charts/synth_0142_4.png,SYNTH,,Double Top,template_0142,0.12,4,False,eval,template_0142,73,73,variable,data/bars/synth_0142_4.csv,synthetic_generator
+charts/synth_0142_5.png,SYNTH,,Double Top,template_0142,0.2,5,False,eval,template_0142,73,73,variable,data/bars/synth_0142_5.csv,synthetic_generator
+charts/synth_0143_0.png,SYNTH,,Double Bottom,template_0143,0.0,0,True,eval,template_0143,111,111,variable,data/bars/synth_0143_0.csv,synthetic_generator
+charts/synth_0143_1.png,SYNTH,,Double Bottom,template_0143,0.015,1,False,eval,template_0143,111,111,variable,data/bars/synth_0143_1.csv,synthetic_generator
+charts/synth_0143_2.png,SYNTH,,Double Bottom,template_0143,0.035,2,False,eval,template_0143,111,111,variable,data/bars/synth_0143_2.csv,synthetic_generator
+charts/synth_0143_3.png,SYNTH,,Double Bottom,template_0143,0.07,3,False,eval,template_0143,111,111,variable,data/bars/synth_0143_3.csv,synthetic_generator
+charts/synth_0143_4.png,SYNTH,,Double Bottom,template_0143,0.12,4,False,eval,template_0143,111,111,variable,data/bars/synth_0143_4.csv,synthetic_generator
+charts/synth_0143_5.png,SYNTH,,Double Bottom,template_0143,0.2,5,False,eval,template_0143,111,111,variable,data/bars/synth_0143_5.csv,synthetic_generator
+charts/synth_0144_0.png,SYNTH,,Triangle,template_0144,0.0,0,True,eval,template_0144,65,65,variable,data/bars/synth_0144_0.csv,synthetic_generator
+charts/synth_0144_1.png,SYNTH,,Triangle,template_0144,0.015,1,False,eval,template_0144,65,65,variable,data/bars/synth_0144_1.csv,synthetic_generator
+charts/synth_0144_2.png,SYNTH,,Triangle,template_0144,0.035,2,False,eval,template_0144,65,65,variable,data/bars/synth_0144_2.csv,synthetic_generator
+charts/synth_0144_3.png,SYNTH,,Triangle,template_0144,0.07,3,False,eval,template_0144,65,65,variable,data/bars/synth_0144_3.csv,synthetic_generator
+charts/synth_0144_4.png,SYNTH,,Triangle,template_0144,0.12,4,False,eval,template_0144,65,65,variable,data/bars/synth_0144_4.csv,synthetic_generator
+charts/synth_0144_5.png,SYNTH,,Triangle,template_0144,0.2,5,False,eval,template_0144,65,65,variable,data/bars/synth_0144_5.csv,synthetic_generator
+charts/synth_0145_0.png,SYNTH,,Bull Flag,template_0145,0.0,0,True,eval,template_0145,75,75,variable,data/bars/synth_0145_0.csv,synthetic_generator
+charts/synth_0145_1.png,SYNTH,,Bull Flag,template_0145,0.015,1,False,eval,template_0145,75,75,variable,data/bars/synth_0145_1.csv,synthetic_generator
+charts/synth_0145_2.png,SYNTH,,Bull Flag,template_0145,0.035,2,False,eval,template_0145,75,75,variable,data/bars/synth_0145_2.csv,synthetic_generator
+charts/synth_0145_3.png,SYNTH,,Bull Flag,template_0145,0.07,3,False,eval,template_0145,75,75,variable,data/bars/synth_0145_3.csv,synthetic_generator
+charts/synth_0145_4.png,SYNTH,,Bull Flag,template_0145,0.12,4,False,eval,template_0145,75,75,variable,data/bars/synth_0145_4.csv,synthetic_generator
+charts/synth_0145_5.png,SYNTH,,Bull Flag,template_0145,0.2,5,False,eval,template_0145,75,75,variable,data/bars/synth_0145_5.csv,synthetic_generator
+charts/synth_0146_0.png,SYNTH,,None,template_0146,0.0,0,True,eval,template_0146,87,87,variable,data/bars/synth_0146_0.csv,synthetic_generator
+charts/synth_0146_1.png,SYNTH,,None,template_0146,0.015,1,False,eval,template_0146,87,87,variable,data/bars/synth_0146_1.csv,synthetic_generator
+charts/synth_0146_2.png,SYNTH,,None,template_0146,0.035,2,False,eval,template_0146,87,87,variable,data/bars/synth_0146_2.csv,synthetic_generator
+charts/synth_0146_3.png,SYNTH,,None,template_0146,0.07,3,False,eval,template_0146,87,87,variable,data/bars/synth_0146_3.csv,synthetic_generator
+charts/synth_0146_4.png,SYNTH,,None,template_0146,0.12,4,False,eval,template_0146,87,87,variable,data/bars/synth_0146_4.csv,synthetic_generator
+charts/synth_0146_5.png,SYNTH,,None,template_0146,0.2,5,False,eval,template_0146,87,87,variable,data/bars/synth_0146_5.csv,synthetic_generator
+charts/synth_0147_0.png,SYNTH,,Head and Shoulders,template_0147,0.0,0,True,eval,template_0147,92,92,variable,data/bars/synth_0147_0.csv,synthetic_generator
+charts/synth_0147_1.png,SYNTH,,Head and Shoulders,template_0147,0.015,1,False,eval,template_0147,92,92,variable,data/bars/synth_0147_1.csv,synthetic_generator
+charts/synth_0147_2.png,SYNTH,,Head and Shoulders,template_0147,0.035,2,False,eval,template_0147,92,92,variable,data/bars/synth_0147_2.csv,synthetic_generator
+charts/synth_0147_3.png,SYNTH,,Head and Shoulders,template_0147,0.07,3,False,eval,template_0147,92,92,variable,data/bars/synth_0147_3.csv,synthetic_generator
+charts/synth_0147_4.png,SYNTH,,Head and Shoulders,template_0147,0.12,4,False,eval,template_0147,92,92,variable,data/bars/synth_0147_4.csv,synthetic_generator
+charts/synth_0147_5.png,SYNTH,,Head and Shoulders,template_0147,0.2,5,False,eval,template_0147,92,92,variable,data/bars/synth_0147_5.csv,synthetic_generator
+charts/synth_0148_0.png,SYNTH,,Inverse Head and Shoulders,template_0148,0.0,0,True,eval,template_0148,66,66,variable,data/bars/synth_0148_0.csv,synthetic_generator
+charts/synth_0148_1.png,SYNTH,,Inverse Head and Shoulders,template_0148,0.015,1,False,eval,template_0148,66,66,variable,data/bars/synth_0148_1.csv,synthetic_generator
+charts/synth_0148_2.png,SYNTH,,Inverse Head and Shoulders,template_0148,0.035,2,False,eval,template_0148,66,66,variable,data/bars/synth_0148_2.csv,synthetic_generator
+charts/synth_0148_3.png,SYNTH,,Inverse Head and Shoulders,template_0148,0.07,3,False,eval,template_0148,66,66,variable,data/bars/synth_0148_3.csv,synthetic_generator
+charts/synth_0148_4.png,SYNTH,,Inverse Head and Shoulders,template_0148,0.12,4,False,eval,template_0148,66,66,variable,data/bars/synth_0148_4.csv,synthetic_generator
+charts/synth_0148_5.png,SYNTH,,Inverse Head and Shoulders,template_0148,0.2,5,False,eval,template_0148,66,66,variable,data/bars/synth_0148_5.csv,synthetic_generator
+charts/synth_0149_0.png,SYNTH,,Double Top,template_0149,0.0,0,True,eval,template_0149,70,70,variable,data/bars/synth_0149_0.csv,synthetic_generator
+charts/synth_0149_1.png,SYNTH,,Double Top,template_0149,0.015,1,False,eval,template_0149,70,70,variable,data/bars/synth_0149_1.csv,synthetic_generator
+charts/synth_0149_2.png,SYNTH,,Double Top,template_0149,0.035,2,False,eval,template_0149,70,70,variable,data/bars/synth_0149_2.csv,synthetic_generator
+charts/synth_0149_3.png,SYNTH,,Double Top,template_0149,0.07,3,False,eval,template_0149,70,70,variable,data/bars/synth_0149_3.csv,synthetic_generator
+charts/synth_0149_4.png,SYNTH,,Double Top,template_0149,0.12,4,False,eval,template_0149,70,70,variable,data/bars/synth_0149_4.csv,synthetic_generator
+charts/synth_0149_5.png,SYNTH,,Double Top,template_0149,0.2,5,False,eval,template_0149,70,70,variable,data/bars/synth_0149_5.csv,synthetic_generator
+charts/synth_0150_0.png,SYNTH,,Double Bottom,template_0150,0.0,0,True,eval,template_0150,107,107,variable,data/bars/synth_0150_0.csv,synthetic_generator
+charts/synth_0150_1.png,SYNTH,,Double Bottom,template_0150,0.015,1,False,eval,template_0150,107,107,variable,data/bars/synth_0150_1.csv,synthetic_generator
+charts/synth_0150_2.png,SYNTH,,Double Bottom,template_0150,0.035,2,False,eval,template_0150,107,107,variable,data/bars/synth_0150_2.csv,synthetic_generator
+charts/synth_0150_3.png,SYNTH,,Double Bottom,template_0150,0.07,3,False,eval,template_0150,107,107,variable,data/bars/synth_0150_3.csv,synthetic_generator
+charts/synth_0150_4.png,SYNTH,,Double Bottom,template_0150,0.12,4,False,eval,template_0150,107,107,variable,data/bars/synth_0150_4.csv,synthetic_generator
+charts/synth_0150_5.png,SYNTH,,Double Bottom,template_0150,0.2,5,False,eval,template_0150,107,107,variable,data/bars/synth_0150_5.csv,synthetic_generator
+charts/synth_0151_0.png,SYNTH,,Triangle,template_0151,0.0,0,True,eval,template_0151,110,110,variable,data/bars/synth_0151_0.csv,synthetic_generator
+charts/synth_0151_1.png,SYNTH,,Triangle,template_0151,0.015,1,False,eval,template_0151,110,110,variable,data/bars/synth_0151_1.csv,synthetic_generator
+charts/synth_0151_2.png,SYNTH,,Triangle,template_0151,0.035,2,False,eval,template_0151,110,110,variable,data/bars/synth_0151_2.csv,synthetic_generator
+charts/synth_0151_3.png,SYNTH,,Triangle,template_0151,0.07,3,False,eval,template_0151,110,110,variable,data/bars/synth_0151_3.csv,synthetic_generator
+charts/synth_0151_4.png,SYNTH,,Triangle,template_0151,0.12,4,False,eval,template_0151,110,110,variable,data/bars/synth_0151_4.csv,synthetic_generator
+charts/synth_0151_5.png,SYNTH,,Triangle,template_0151,0.2,5,False,eval,template_0151,110,110,variable,data/bars/synth_0151_5.csv,synthetic_generator
+charts/synth_0152_0.png,SYNTH,,Bull Flag,template_0152,0.0,0,True,eval,template_0152,118,118,variable,data/bars/synth_0152_0.csv,synthetic_generator
+charts/synth_0152_1.png,SYNTH,,Bull Flag,template_0152,0.015,1,False,eval,template_0152,118,118,variable,data/bars/synth_0152_1.csv,synthetic_generator
+charts/synth_0152_2.png,SYNTH,,Bull Flag,template_0152,0.035,2,False,eval,template_0152,118,118,variable,data/bars/synth_0152_2.csv,synthetic_generator
+charts/synth_0152_3.png,SYNTH,,Bull Flag,template_0152,0.07,3,False,eval,template_0152,118,118,variable,data/bars/synth_0152_3.csv,synthetic_generator
+charts/synth_0152_4.png,SYNTH,,Bull Flag,template_0152,0.12,4,False,eval,template_0152,118,118,variable,data/bars/synth_0152_4.csv,synthetic_generator
+charts/synth_0152_5.png,SYNTH,,Bull Flag,template_0152,0.2,5,False,eval,template_0152,118,118,variable,data/bars/synth_0152_5.csv,synthetic_generator
+charts/synth_0153_0.png,SYNTH,,None,template_0153,0.0,0,True,eval,template_0153,92,92,variable,data/bars/synth_0153_0.csv,synthetic_generator
+charts/synth_0153_1.png,SYNTH,,None,template_0153,0.015,1,False,eval,template_0153,92,92,variable,data/bars/synth_0153_1.csv,synthetic_generator
+charts/synth_0153_2.png,SYNTH,,None,template_0153,0.035,2,False,eval,template_0153,92,92,variable,data/bars/synth_0153_2.csv,synthetic_generator
+charts/synth_0153_3.png,SYNTH,,None,template_0153,0.07,3,False,eval,template_0153,92,92,variable,data/bars/synth_0153_3.csv,synthetic_generator
+charts/synth_0153_4.png,SYNTH,,None,template_0153,0.12,4,False,eval,template_0153,92,92,variable,data/bars/synth_0153_4.csv,synthetic_generator
+charts/synth_0153_5.png,SYNTH,,None,template_0153,0.2,5,False,eval,template_0153,92,92,variable,data/bars/synth_0153_5.csv,synthetic_generator
+charts/synth_0154_0.png,SYNTH,,Head and Shoulders,template_0154,0.0,0,True,eval,template_0154,77,77,variable,data/bars/synth_0154_0.csv,synthetic_generator
+charts/synth_0154_1.png,SYNTH,,Head and Shoulders,template_0154,0.015,1,False,eval,template_0154,77,77,variable,data/bars/synth_0154_1.csv,synthetic_generator
+charts/synth_0154_2.png,SYNTH,,Head and Shoulders,template_0154,0.035,2,False,eval,template_0154,77,77,variable,data/bars/synth_0154_2.csv,synthetic_generator
+charts/synth_0154_3.png,SYNTH,,Head and Shoulders,template_0154,0.07,3,False,eval,template_0154,77,77,variable,data/bars/synth_0154_3.csv,synthetic_generator
+charts/synth_0154_4.png,SYNTH,,Head and Shoulders,template_0154,0.12,4,False,eval,template_0154,77,77,variable,data/bars/synth_0154_4.csv,synthetic_generator
+charts/synth_0154_5.png,SYNTH,,Head and Shoulders,template_0154,0.2,5,False,eval,template_0154,77,77,variable,data/bars/synth_0154_5.csv,synthetic_generator
+charts/synth_0155_0.png,SYNTH,,Inverse Head and Shoulders,template_0155,0.0,0,True,eval,template_0155,97,97,variable,data/bars/synth_0155_0.csv,synthetic_generator
+charts/synth_0155_1.png,SYNTH,,Inverse Head and Shoulders,template_0155,0.015,1,False,eval,template_0155,97,97,variable,data/bars/synth_0155_1.csv,synthetic_generator
+charts/synth_0155_2.png,SYNTH,,Inverse Head and Shoulders,template_0155,0.035,2,False,eval,template_0155,97,97,variable,data/bars/synth_0155_2.csv,synthetic_generator
+charts/synth_0155_3.png,SYNTH,,Inverse Head and Shoulders,template_0155,0.07,3,False,eval,template_0155,97,97,variable,data/bars/synth_0155_3.csv,synthetic_generator
+charts/synth_0155_4.png,SYNTH,,Inverse Head and Shoulders,template_0155,0.12,4,False,eval,template_0155,97,97,variable,data/bars/synth_0155_4.csv,synthetic_generator
+charts/synth_0155_5.png,SYNTH,,Inverse Head and Shoulders,template_0155,0.2,5,False,eval,template_0155,97,97,variable,data/bars/synth_0155_5.csv,synthetic_generator
+charts/synth_0156_0.png,SYNTH,,Double Top,template_0156,0.0,0,True,eval,template_0156,75,75,variable,data/bars/synth_0156_0.csv,synthetic_generator
+charts/synth_0156_1.png,SYNTH,,Double Top,template_0156,0.015,1,False,eval,template_0156,75,75,variable,data/bars/synth_0156_1.csv,synthetic_generator
+charts/synth_0156_2.png,SYNTH,,Double Top,template_0156,0.035,2,False,eval,template_0156,75,75,variable,data/bars/synth_0156_2.csv,synthetic_generator
+charts/synth_0156_3.png,SYNTH,,Double Top,template_0156,0.07,3,False,eval,template_0156,75,75,variable,data/bars/synth_0156_3.csv,synthetic_generator
+charts/synth_0156_4.png,SYNTH,,Double Top,template_0156,0.12,4,False,eval,template_0156,75,75,variable,data/bars/synth_0156_4.csv,synthetic_generator
+charts/synth_0156_5.png,SYNTH,,Double Top,template_0156,0.2,5,False,eval,template_0156,75,75,variable,data/bars/synth_0156_5.csv,synthetic_generator
+charts/synth_0157_0.png,SYNTH,,Double Bottom,template_0157,0.0,0,True,eval,template_0157,96,96,variable,data/bars/synth_0157_0.csv,synthetic_generator
+charts/synth_0157_1.png,SYNTH,,Double Bottom,template_0157,0.015,1,False,eval,template_0157,96,96,variable,data/bars/synth_0157_1.csv,synthetic_generator
+charts/synth_0157_2.png,SYNTH,,Double Bottom,template_0157,0.035,2,False,eval,template_0157,96,96,variable,data/bars/synth_0157_2.csv,synthetic_generator
+charts/synth_0157_3.png,SYNTH,,Double Bottom,template_0157,0.07,3,False,eval,template_0157,96,96,variable,data/bars/synth_0157_3.csv,synthetic_generator
+charts/synth_0157_4.png,SYNTH,,Double Bottom,template_0157,0.12,4,False,eval,template_0157,96,96,variable,data/bars/synth_0157_4.csv,synthetic_generator
+charts/synth_0157_5.png,SYNTH,,Double Bottom,template_0157,0.2,5,False,eval,template_0157,96,96,variable,data/bars/synth_0157_5.csv,synthetic_generator
+charts/synth_0158_0.png,SYNTH,,Triangle,template_0158,0.0,0,True,eval,template_0158,64,64,variable,data/bars/synth_0158_0.csv,synthetic_generator
+charts/synth_0158_1.png,SYNTH,,Triangle,template_0158,0.015,1,False,eval,template_0158,64,64,variable,data/bars/synth_0158_1.csv,synthetic_generator
+charts/synth_0158_2.png,SYNTH,,Triangle,template_0158,0.035,2,False,eval,template_0158,64,64,variable,data/bars/synth_0158_2.csv,synthetic_generator
+charts/synth_0158_3.png,SYNTH,,Triangle,template_0158,0.07,3,False,eval,template_0158,64,64,variable,data/bars/synth_0158_3.csv,synthetic_generator
+charts/synth_0158_4.png,SYNTH,,Triangle,template_0158,0.12,4,False,eval,template_0158,64,64,variable,data/bars/synth_0158_4.csv,synthetic_generator
+charts/synth_0158_5.png,SYNTH,,Triangle,template_0158,0.2,5,False,eval,template_0158,64,64,variable,data/bars/synth_0158_5.csv,synthetic_generator
+charts/synth_0159_0.png,SYNTH,,Bull Flag,template_0159,0.0,0,True,eval,template_0159,85,85,variable,data/bars/synth_0159_0.csv,synthetic_generator
+charts/synth_0159_1.png,SYNTH,,Bull Flag,template_0159,0.015,1,False,eval,template_0159,85,85,variable,data/bars/synth_0159_1.csv,synthetic_generator
+charts/synth_0159_2.png,SYNTH,,Bull Flag,template_0159,0.035,2,False,eval,template_0159,85,85,variable,data/bars/synth_0159_2.csv,synthetic_generator
+charts/synth_0159_3.png,SYNTH,,Bull Flag,template_0159,0.07,3,False,eval,template_0159,85,85,variable,data/bars/synth_0159_3.csv,synthetic_generator
+charts/synth_0159_4.png,SYNTH,,Bull Flag,template_0159,0.12,4,False,eval,template_0159,85,85,variable,data/bars/synth_0159_4.csv,synthetic_generator
+charts/synth_0159_5.png,SYNTH,,Bull Flag,template_0159,0.2,5,False,eval,template_0159,85,85,variable,data/bars/synth_0159_5.csv,synthetic_generator
+charts/synth_0160_0.png,SYNTH,,None,template_0160,0.0,0,True,eval,template_0160,76,76,variable,data/bars/synth_0160_0.csv,synthetic_generator
+charts/synth_0160_1.png,SYNTH,,None,template_0160,0.015,1,False,eval,template_0160,76,76,variable,data/bars/synth_0160_1.csv,synthetic_generator
+charts/synth_0160_2.png,SYNTH,,None,template_0160,0.035,2,False,eval,template_0160,76,76,variable,data/bars/synth_0160_2.csv,synthetic_generator
+charts/synth_0160_3.png,SYNTH,,None,template_0160,0.07,3,False,eval,template_0160,76,76,variable,data/bars/synth_0160_3.csv,synthetic_generator
+charts/synth_0160_4.png,SYNTH,,None,template_0160,0.12,4,False,eval,template_0160,76,76,variable,data/bars/synth_0160_4.csv,synthetic_generator
+charts/synth_0160_5.png,SYNTH,,None,template_0160,0.2,5,False,eval,template_0160,76,76,variable,data/bars/synth_0160_5.csv,synthetic_generator
+charts/synth_0161_0.png,SYNTH,,Head and Shoulders,template_0161,0.0,0,True,eval,template_0161,115,115,variable,data/bars/synth_0161_0.csv,synthetic_generator
+charts/synth_0161_1.png,SYNTH,,Head and Shoulders,template_0161,0.015,1,False,eval,template_0161,115,115,variable,data/bars/synth_0161_1.csv,synthetic_generator
+charts/synth_0161_2.png,SYNTH,,Head and Shoulders,template_0161,0.035,2,False,eval,template_0161,115,115,variable,data/bars/synth_0161_2.csv,synthetic_generator
+charts/synth_0161_3.png,SYNTH,,Head and Shoulders,template_0161,0.07,3,False,eval,template_0161,115,115,variable,data/bars/synth_0161_3.csv,synthetic_generator
+charts/synth_0161_4.png,SYNTH,,Head and Shoulders,template_0161,0.12,4,False,eval,template_0161,115,115,variable,data/bars/synth_0161_4.csv,synthetic_generator
+charts/synth_0161_5.png,SYNTH,,Head and Shoulders,template_0161,0.2,5,False,eval,template_0161,115,115,variable,data/bars/synth_0161_5.csv,synthetic_generator
+charts/synth_0162_0.png,SYNTH,,Inverse Head and Shoulders,template_0162,0.0,0,True,eval,template_0162,75,75,variable,data/bars/synth_0162_0.csv,synthetic_generator
+charts/synth_0162_1.png,SYNTH,,Inverse Head and Shoulders,template_0162,0.015,1,False,eval,template_0162,75,75,variable,data/bars/synth_0162_1.csv,synthetic_generator
+charts/synth_0162_2.png,SYNTH,,Inverse Head and Shoulders,template_0162,0.035,2,False,eval,template_0162,75,75,variable,data/bars/synth_0162_2.csv,synthetic_generator
+charts/synth_0162_3.png,SYNTH,,Inverse Head and Shoulders,template_0162,0.07,3,False,eval,template_0162,75,75,variable,data/bars/synth_0162_3.csv,synthetic_generator
+charts/synth_0162_4.png,SYNTH,,Inverse Head and Shoulders,template_0162,0.12,4,False,eval,template_0162,75,75,variable,data/bars/synth_0162_4.csv,synthetic_generator
+charts/synth_0162_5.png,SYNTH,,Inverse Head and Shoulders,template_0162,0.2,5,False,eval,template_0162,75,75,variable,data/bars/synth_0162_5.csv,synthetic_generator
+charts/synth_0163_0.png,SYNTH,,Double Top,template_0163,0.0,0,True,eval,template_0163,71,71,variable,data/bars/synth_0163_0.csv,synthetic_generator
+charts/synth_0163_1.png,SYNTH,,Double Top,template_0163,0.015,1,False,eval,template_0163,71,71,variable,data/bars/synth_0163_1.csv,synthetic_generator
+charts/synth_0163_2.png,SYNTH,,Double Top,template_0163,0.035,2,False,eval,template_0163,71,71,variable,data/bars/synth_0163_2.csv,synthetic_generator
+charts/synth_0163_3.png,SYNTH,,Double Top,template_0163,0.07,3,False,eval,template_0163,71,71,variable,data/bars/synth_0163_3.csv,synthetic_generator
+charts/synth_0163_4.png,SYNTH,,Double Top,template_0163,0.12,4,False,eval,template_0163,71,71,variable,data/bars/synth_0163_4.csv,synthetic_generator
+charts/synth_0163_5.png,SYNTH,,Double Top,template_0163,0.2,5,False,eval,template_0163,71,71,variable,data/bars/synth_0163_5.csv,synthetic_generator
+charts/synth_0164_0.png,SYNTH,,Double Bottom,template_0164,0.0,0,True,eval,template_0164,96,96,variable,data/bars/synth_0164_0.csv,synthetic_generator
+charts/synth_0164_1.png,SYNTH,,Double Bottom,template_0164,0.015,1,False,eval,template_0164,96,96,variable,data/bars/synth_0164_1.csv,synthetic_generator
+charts/synth_0164_2.png,SYNTH,,Double Bottom,template_0164,0.035,2,False,eval,template_0164,96,96,variable,data/bars/synth_0164_2.csv,synthetic_generator
+charts/synth_0164_3.png,SYNTH,,Double Bottom,template_0164,0.07,3,False,eval,template_0164,96,96,variable,data/bars/synth_0164_3.csv,synthetic_generator
+charts/synth_0164_4.png,SYNTH,,Double Bottom,template_0164,0.12,4,False,eval,template_0164,96,96,variable,data/bars/synth_0164_4.csv,synthetic_generator
+charts/synth_0164_5.png,SYNTH,,Double Bottom,template_0164,0.2,5,False,eval,template_0164,96,96,variable,data/bars/synth_0164_5.csv,synthetic_generator
+charts/synth_0165_0.png,SYNTH,,Triangle,template_0165,0.0,0,True,eval,template_0165,63,63,variable,data/bars/synth_0165_0.csv,synthetic_generator
+charts/synth_0165_1.png,SYNTH,,Triangle,template_0165,0.015,1,False,eval,template_0165,63,63,variable,data/bars/synth_0165_1.csv,synthetic_generator
+charts/synth_0165_2.png,SYNTH,,Triangle,template_0165,0.035,2,False,eval,template_0165,63,63,variable,data/bars/synth_0165_2.csv,synthetic_generator
+charts/synth_0165_3.png,SYNTH,,Triangle,template_0165,0.07,3,False,eval,template_0165,63,63,variable,data/bars/synth_0165_3.csv,synthetic_generator
+charts/synth_0165_4.png,SYNTH,,Triangle,template_0165,0.12,4,False,eval,template_0165,63,63,variable,data/bars/synth_0165_4.csv,synthetic_generator
+charts/synth_0165_5.png,SYNTH,,Triangle,template_0165,0.2,5,False,eval,template_0165,63,63,variable,data/bars/synth_0165_5.csv,synthetic_generator
+charts/synth_0166_0.png,SYNTH,,Bull Flag,template_0166,0.0,0,True,eval,template_0166,74,74,variable,data/bars/synth_0166_0.csv,synthetic_generator
+charts/synth_0166_1.png,SYNTH,,Bull Flag,template_0166,0.015,1,False,eval,template_0166,74,74,variable,data/bars/synth_0166_1.csv,synthetic_generator
+charts/synth_0166_2.png,SYNTH,,Bull Flag,template_0166,0.035,2,False,eval,template_0166,74,74,variable,data/bars/synth_0166_2.csv,synthetic_generator
+charts/synth_0166_3.png,SYNTH,,Bull Flag,template_0166,0.07,3,False,eval,template_0166,74,74,variable,data/bars/synth_0166_3.csv,synthetic_generator
+charts/synth_0166_4.png,SYNTH,,Bull Flag,template_0166,0.12,4,False,eval,template_0166,74,74,variable,data/bars/synth_0166_4.csv,synthetic_generator
+charts/synth_0166_5.png,SYNTH,,Bull Flag,template_0166,0.2,5,False,eval,template_0166,74,74,variable,data/bars/synth_0166_5.csv,synthetic_generator
+charts/synth_0167_0.png,SYNTH,,None,template_0167,0.0,0,True,eval,template_0167,68,68,variable,data/bars/synth_0167_0.csv,synthetic_generator
+charts/synth_0167_1.png,SYNTH,,None,template_0167,0.015,1,False,eval,template_0167,68,68,variable,data/bars/synth_0167_1.csv,synthetic_generator
+charts/synth_0167_2.png,SYNTH,,None,template_0167,0.035,2,False,eval,template_0167,68,68,variable,data/bars/synth_0167_2.csv,synthetic_generator
+charts/synth_0167_3.png,SYNTH,,None,template_0167,0.07,3,False,eval,template_0167,68,68,variable,data/bars/synth_0167_3.csv,synthetic_generator
+charts/synth_0167_4.png,SYNTH,,None,template_0167,0.12,4,False,eval,template_0167,68,68,variable,data/bars/synth_0167_4.csv,synthetic_generator
+charts/synth_0167_5.png,SYNTH,,None,template_0167,0.2,5,False,eval,template_0167,68,68,variable,data/bars/synth_0167_5.csv,synthetic_generator
+charts/synth_0168_0.png,SYNTH,,Head and Shoulders,template_0168,0.0,0,True,eval,template_0168,64,64,variable,data/bars/synth_0168_0.csv,synthetic_generator
+charts/synth_0168_1.png,SYNTH,,Head and Shoulders,template_0168,0.015,1,False,eval,template_0168,64,64,variable,data/bars/synth_0168_1.csv,synthetic_generator
+charts/synth_0168_2.png,SYNTH,,Head and Shoulders,template_0168,0.035,2,False,eval,template_0168,64,64,variable,data/bars/synth_0168_2.csv,synthetic_generator
+charts/synth_0168_3.png,SYNTH,,Head and Shoulders,template_0168,0.07,3,False,eval,template_0168,64,64,variable,data/bars/synth_0168_3.csv,synthetic_generator
+charts/synth_0168_4.png,SYNTH,,Head and Shoulders,template_0168,0.12,4,False,eval,template_0168,64,64,variable,data/bars/synth_0168_4.csv,synthetic_generator
+charts/synth_0168_5.png,SYNTH,,Head and Shoulders,template_0168,0.2,5,False,eval,template_0168,64,64,variable,data/bars/synth_0168_5.csv,synthetic_generator
+charts/synth_0169_0.png,SYNTH,,Inverse Head and Shoulders,template_0169,0.0,0,True,eval,template_0169,65,65,variable,data/bars/synth_0169_0.csv,synthetic_generator
+charts/synth_0169_1.png,SYNTH,,Inverse Head and Shoulders,template_0169,0.015,1,False,eval,template_0169,65,65,variable,data/bars/synth_0169_1.csv,synthetic_generator
+charts/synth_0169_2.png,SYNTH,,Inverse Head and Shoulders,template_0169,0.035,2,False,eval,template_0169,65,65,variable,data/bars/synth_0169_2.csv,synthetic_generator
+charts/synth_0169_3.png,SYNTH,,Inverse Head and Shoulders,template_0169,0.07,3,False,eval,template_0169,65,65,variable,data/bars/synth_0169_3.csv,synthetic_generator
+charts/synth_0169_4.png,SYNTH,,Inverse Head and Shoulders,template_0169,0.12,4,False,eval,template_0169,65,65,variable,data/bars/synth_0169_4.csv,synthetic_generator
+charts/synth_0169_5.png,SYNTH,,Inverse Head and Shoulders,template_0169,0.2,5,False,eval,template_0169,65,65,variable,data/bars/synth_0169_5.csv,synthetic_generator
+charts/synth_0170_0.png,SYNTH,,Double Top,template_0170,0.0,0,True,eval,template_0170,91,91,variable,data/bars/synth_0170_0.csv,synthetic_generator
+charts/synth_0170_1.png,SYNTH,,Double Top,template_0170,0.015,1,False,eval,template_0170,91,91,variable,data/bars/synth_0170_1.csv,synthetic_generator
+charts/synth_0170_2.png,SYNTH,,Double Top,template_0170,0.035,2,False,eval,template_0170,91,91,variable,data/bars/synth_0170_2.csv,synthetic_generator
+charts/synth_0170_3.png,SYNTH,,Double Top,template_0170,0.07,3,False,eval,template_0170,91,91,variable,data/bars/synth_0170_3.csv,synthetic_generator
+charts/synth_0170_4.png,SYNTH,,Double Top,template_0170,0.12,4,False,eval,template_0170,91,91,variable,data/bars/synth_0170_4.csv,synthetic_generator
+charts/synth_0170_5.png,SYNTH,,Double Top,template_0170,0.2,5,False,eval,template_0170,91,91,variable,data/bars/synth_0170_5.csv,synthetic_generator
+charts/synth_0171_0.png,SYNTH,,Double Bottom,template_0171,0.0,0,True,eval,template_0171,71,71,variable,data/bars/synth_0171_0.csv,synthetic_generator
+charts/synth_0171_1.png,SYNTH,,Double Bottom,template_0171,0.015,1,False,eval,template_0171,71,71,variable,data/bars/synth_0171_1.csv,synthetic_generator
+charts/synth_0171_2.png,SYNTH,,Double Bottom,template_0171,0.035,2,False,eval,template_0171,71,71,variable,data/bars/synth_0171_2.csv,synthetic_generator
+charts/synth_0171_3.png,SYNTH,,Double Bottom,template_0171,0.07,3,False,eval,template_0171,71,71,variable,data/bars/synth_0171_3.csv,synthetic_generator
+charts/synth_0171_4.png,SYNTH,,Double Bottom,template_0171,0.12,4,False,eval,template_0171,71,71,variable,data/bars/synth_0171_4.csv,synthetic_generator
+charts/synth_0171_5.png,SYNTH,,Double Bottom,template_0171,0.2,5,False,eval,template_0171,71,71,variable,data/bars/synth_0171_5.csv,synthetic_generator
+charts/synth_0172_0.png,SYNTH,,Triangle,template_0172,0.0,0,True,eval,template_0172,75,75,variable,data/bars/synth_0172_0.csv,synthetic_generator
+charts/synth_0172_1.png,SYNTH,,Triangle,template_0172,0.015,1,False,eval,template_0172,75,75,variable,data/bars/synth_0172_1.csv,synthetic_generator
+charts/synth_0172_2.png,SYNTH,,Triangle,template_0172,0.035,2,False,eval,template_0172,75,75,variable,data/bars/synth_0172_2.csv,synthetic_generator
+charts/synth_0172_3.png,SYNTH,,Triangle,template_0172,0.07,3,False,eval,template_0172,75,75,variable,data/bars/synth_0172_3.csv,synthetic_generator
+charts/synth_0172_4.png,SYNTH,,Triangle,template_0172,0.12,4,False,eval,template_0172,75,75,variable,data/bars/synth_0172_4.csv,synthetic_generator
+charts/synth_0172_5.png,SYNTH,,Triangle,template_0172,0.2,5,False,eval,template_0172,75,75,variable,data/bars/synth_0172_5.csv,synthetic_generator
+charts/synth_0173_0.png,SYNTH,,Bull Flag,template_0173,0.0,0,True,eval,template_0173,61,61,variable,data/bars/synth_0173_0.csv,synthetic_generator
+charts/synth_0173_1.png,SYNTH,,Bull Flag,template_0173,0.015,1,False,eval,template_0173,61,61,variable,data/bars/synth_0173_1.csv,synthetic_generator
+charts/synth_0173_2.png,SYNTH,,Bull Flag,template_0173,0.035,2,False,eval,template_0173,61,61,variable,data/bars/synth_0173_2.csv,synthetic_generator
+charts/synth_0173_3.png,SYNTH,,Bull Flag,template_0173,0.07,3,False,eval,template_0173,61,61,variable,data/bars/synth_0173_3.csv,synthetic_generator
+charts/synth_0173_4.png,SYNTH,,Bull Flag,template_0173,0.12,4,False,eval,template_0173,61,61,variable,data/bars/synth_0173_4.csv,synthetic_generator
+charts/synth_0173_5.png,SYNTH,,Bull Flag,template_0173,0.2,5,False,eval,template_0173,61,61,variable,data/bars/synth_0173_5.csv,synthetic_generator
+charts/synth_0174_0.png,SYNTH,,None,template_0174,0.0,0,True,eval,template_0174,90,90,variable,data/bars/synth_0174_0.csv,synthetic_generator
+charts/synth_0174_1.png,SYNTH,,None,template_0174,0.015,1,False,eval,template_0174,90,90,variable,data/bars/synth_0174_1.csv,synthetic_generator
+charts/synth_0174_2.png,SYNTH,,None,template_0174,0.035,2,False,eval,template_0174,90,90,variable,data/bars/synth_0174_2.csv,synthetic_generator
+charts/synth_0174_3.png,SYNTH,,None,template_0174,0.07,3,False,eval,template_0174,90,90,variable,data/bars/synth_0174_3.csv,synthetic_generator
+charts/synth_0174_4.png,SYNTH,,None,template_0174,0.12,4,False,eval,template_0174,90,90,variable,data/bars/synth_0174_4.csv,synthetic_generator
+charts/synth_0174_5.png,SYNTH,,None,template_0174,0.2,5,False,eval,template_0174,90,90,variable,data/bars/synth_0174_5.csv,synthetic_generator
+charts/synth_0175_0.png,SYNTH,,Head and Shoulders,template_0175,0.0,0,True,eval,template_0175,92,92,variable,data/bars/synth_0175_0.csv,synthetic_generator
+charts/synth_0175_1.png,SYNTH,,Head and Shoulders,template_0175,0.015,1,False,eval,template_0175,92,92,variable,data/bars/synth_0175_1.csv,synthetic_generator
+charts/synth_0175_2.png,SYNTH,,Head and Shoulders,template_0175,0.035,2,False,eval,template_0175,92,92,variable,data/bars/synth_0175_2.csv,synthetic_generator
+charts/synth_0175_3.png,SYNTH,,Head and Shoulders,template_0175,0.07,3,False,eval,template_0175,92,92,variable,data/bars/synth_0175_3.csv,synthetic_generator
+charts/synth_0175_4.png,SYNTH,,Head and Shoulders,template_0175,0.12,4,False,eval,template_0175,92,92,variable,data/bars/synth_0175_4.csv,synthetic_generator
+charts/synth_0175_5.png,SYNTH,,Head and Shoulders,template_0175,0.2,5,False,eval,template_0175,92,92,variable,data/bars/synth_0175_5.csv,synthetic_generator
+charts/synth_0176_0.png,SYNTH,,Inverse Head and Shoulders,template_0176,0.0,0,True,eval,template_0176,101,101,variable,data/bars/synth_0176_0.csv,synthetic_generator
+charts/synth_0176_1.png,SYNTH,,Inverse Head and Shoulders,template_0176,0.015,1,False,eval,template_0176,101,101,variable,data/bars/synth_0176_1.csv,synthetic_generator
+charts/synth_0176_2.png,SYNTH,,Inverse Head and Shoulders,template_0176,0.035,2,False,eval,template_0176,101,101,variable,data/bars/synth_0176_2.csv,synthetic_generator
+charts/synth_0176_3.png,SYNTH,,Inverse Head and Shoulders,template_0176,0.07,3,False,eval,template_0176,101,101,variable,data/bars/synth_0176_3.csv,synthetic_generator
+charts/synth_0176_4.png,SYNTH,,Inverse Head and Shoulders,template_0176,0.12,4,False,eval,template_0176,101,101,variable,data/bars/synth_0176_4.csv,synthetic_generator
+charts/synth_0176_5.png,SYNTH,,Inverse Head and Shoulders,template_0176,0.2,5,False,eval,template_0176,101,101,variable,data/bars/synth_0176_5.csv,synthetic_generator
+charts/synth_0177_0.png,SYNTH,,Double Top,template_0177,0.0,0,True,eval,template_0177,116,116,variable,data/bars/synth_0177_0.csv,synthetic_generator
+charts/synth_0177_1.png,SYNTH,,Double Top,template_0177,0.015,1,False,eval,template_0177,116,116,variable,data/bars/synth_0177_1.csv,synthetic_generator
+charts/synth_0177_2.png,SYNTH,,Double Top,template_0177,0.035,2,False,eval,template_0177,116,116,variable,data/bars/synth_0177_2.csv,synthetic_generator
+charts/synth_0177_3.png,SYNTH,,Double Top,template_0177,0.07,3,False,eval,template_0177,116,116,variable,data/bars/synth_0177_3.csv,synthetic_generator
+charts/synth_0177_4.png,SYNTH,,Double Top,template_0177,0.12,4,False,eval,template_0177,116,116,variable,data/bars/synth_0177_4.csv,synthetic_generator
+charts/synth_0177_5.png,SYNTH,,Double Top,template_0177,0.2,5,False,eval,template_0177,116,116,variable,data/bars/synth_0177_5.csv,synthetic_generator
+charts/synth_0178_0.png,SYNTH,,Double Bottom,template_0178,0.0,0,True,eval,template_0178,102,102,variable,data/bars/synth_0178_0.csv,synthetic_generator
+charts/synth_0178_1.png,SYNTH,,Double Bottom,template_0178,0.015,1,False,eval,template_0178,102,102,variable,data/bars/synth_0178_1.csv,synthetic_generator
+charts/synth_0178_2.png,SYNTH,,Double Bottom,template_0178,0.035,2,False,eval,template_0178,102,102,variable,data/bars/synth_0178_2.csv,synthetic_generator
+charts/synth_0178_3.png,SYNTH,,Double Bottom,template_0178,0.07,3,False,eval,template_0178,102,102,variable,data/bars/synth_0178_3.csv,synthetic_generator
+charts/synth_0178_4.png,SYNTH,,Double Bottom,template_0178,0.12,4,False,eval,template_0178,102,102,variable,data/bars/synth_0178_4.csv,synthetic_generator
+charts/synth_0178_5.png,SYNTH,,Double Bottom,template_0178,0.2,5,False,eval,template_0178,102,102,variable,data/bars/synth_0178_5.csv,synthetic_generator
+charts/synth_0179_0.png,SYNTH,,Triangle,template_0179,0.0,0,True,eval,template_0179,90,90,variable,data/bars/synth_0179_0.csv,synthetic_generator
+charts/synth_0179_1.png,SYNTH,,Triangle,template_0179,0.015,1,False,eval,template_0179,90,90,variable,data/bars/synth_0179_1.csv,synthetic_generator
+charts/synth_0179_2.png,SYNTH,,Triangle,template_0179,0.035,2,False,eval,template_0179,90,90,variable,data/bars/synth_0179_2.csv,synthetic_generator
+charts/synth_0179_3.png,SYNTH,,Triangle,template_0179,0.07,3,False,eval,template_0179,90,90,variable,data/bars/synth_0179_3.csv,synthetic_generator
+charts/synth_0179_4.png,SYNTH,,Triangle,template_0179,0.12,4,False,eval,template_0179,90,90,variable,data/bars/synth_0179_4.csv,synthetic_generator
+charts/synth_0179_5.png,SYNTH,,Triangle,template_0179,0.2,5,False,eval,template_0179,90,90,variable,data/bars/synth_0179_5.csv,synthetic_generator
+charts/synth_0180_0.png,SYNTH,,Bull Flag,template_0180,0.0,0,True,eval,template_0180,93,93,variable,data/bars/synth_0180_0.csv,synthetic_generator
+charts/synth_0180_1.png,SYNTH,,Bull Flag,template_0180,0.015,1,False,eval,template_0180,93,93,variable,data/bars/synth_0180_1.csv,synthetic_generator
+charts/synth_0180_2.png,SYNTH,,Bull Flag,template_0180,0.035,2,False,eval,template_0180,93,93,variable,data/bars/synth_0180_2.csv,synthetic_generator
+charts/synth_0180_3.png,SYNTH,,Bull Flag,template_0180,0.07,3,False,eval,template_0180,93,93,variable,data/bars/synth_0180_3.csv,synthetic_generator
+charts/synth_0180_4.png,SYNTH,,Bull Flag,template_0180,0.12,4,False,eval,template_0180,93,93,variable,data/bars/synth_0180_4.csv,synthetic_generator
+charts/synth_0180_5.png,SYNTH,,Bull Flag,template_0180,0.2,5,False,eval,template_0180,93,93,variable,data/bars/synth_0180_5.csv,synthetic_generator
+charts/synth_0181_0.png,SYNTH,,None,template_0181,0.0,0,True,eval,template_0181,62,62,variable,data/bars/synth_0181_0.csv,synthetic_generator
+charts/synth_0181_1.png,SYNTH,,None,template_0181,0.015,1,False,eval,template_0181,62,62,variable,data/bars/synth_0181_1.csv,synthetic_generator
+charts/synth_0181_2.png,SYNTH,,None,template_0181,0.035,2,False,eval,template_0181,62,62,variable,data/bars/synth_0181_2.csv,synthetic_generator
+charts/synth_0181_3.png,SYNTH,,None,template_0181,0.07,3,False,eval,template_0181,62,62,variable,data/bars/synth_0181_3.csv,synthetic_generator
+charts/synth_0181_4.png,SYNTH,,None,template_0181,0.12,4,False,eval,template_0181,62,62,variable,data/bars/synth_0181_4.csv,synthetic_generator
+charts/synth_0181_5.png,SYNTH,,None,template_0181,0.2,5,False,eval,template_0181,62,62,variable,data/bars/synth_0181_5.csv,synthetic_generator
+charts/synth_0182_0.png,SYNTH,,Head and Shoulders,template_0182,0.0,0,True,eval,template_0182,75,75,variable,data/bars/synth_0182_0.csv,synthetic_generator
+charts/synth_0182_1.png,SYNTH,,Head and Shoulders,template_0182,0.015,1,False,eval,template_0182,75,75,variable,data/bars/synth_0182_1.csv,synthetic_generator
+charts/synth_0182_2.png,SYNTH,,Head and Shoulders,template_0182,0.035,2,False,eval,template_0182,75,75,variable,data/bars/synth_0182_2.csv,synthetic_generator
+charts/synth_0182_3.png,SYNTH,,Head and Shoulders,template_0182,0.07,3,False,eval,template_0182,75,75,variable,data/bars/synth_0182_3.csv,synthetic_generator
+charts/synth_0182_4.png,SYNTH,,Head and Shoulders,template_0182,0.12,4,False,eval,template_0182,75,75,variable,data/bars/synth_0182_4.csv,synthetic_generator
+charts/synth_0182_5.png,SYNTH,,Head and Shoulders,template_0182,0.2,5,False,eval,template_0182,75,75,variable,data/bars/synth_0182_5.csv,synthetic_generator
+charts/synth_0183_0.png,SYNTH,,Inverse Head and Shoulders,template_0183,0.0,0,True,eval,template_0183,79,79,variable,data/bars/synth_0183_0.csv,synthetic_generator
+charts/synth_0183_1.png,SYNTH,,Inverse Head and Shoulders,template_0183,0.015,1,False,eval,template_0183,79,79,variable,data/bars/synth_0183_1.csv,synthetic_generator
+charts/synth_0183_2.png,SYNTH,,Inverse Head and Shoulders,template_0183,0.035,2,False,eval,template_0183,79,79,variable,data/bars/synth_0183_2.csv,synthetic_generator
+charts/synth_0183_3.png,SYNTH,,Inverse Head and Shoulders,template_0183,0.07,3,False,eval,template_0183,79,79,variable,data/bars/synth_0183_3.csv,synthetic_generator
+charts/synth_0183_4.png,SYNTH,,Inverse Head and Shoulders,template_0183,0.12,4,False,eval,template_0183,79,79,variable,data/bars/synth_0183_4.csv,synthetic_generator
+charts/synth_0183_5.png,SYNTH,,Inverse Head and Shoulders,template_0183,0.2,5,False,eval,template_0183,79,79,variable,data/bars/synth_0183_5.csv,synthetic_generator
+charts/synth_0184_0.png,SYNTH,,Double Top,template_0184,0.0,0,True,eval,template_0184,118,118,variable,data/bars/synth_0184_0.csv,synthetic_generator
+charts/synth_0184_1.png,SYNTH,,Double Top,template_0184,0.015,1,False,eval,template_0184,118,118,variable,data/bars/synth_0184_1.csv,synthetic_generator
+charts/synth_0184_2.png,SYNTH,,Double Top,template_0184,0.035,2,False,eval,template_0184,118,118,variable,data/bars/synth_0184_2.csv,synthetic_generator
+charts/synth_0184_3.png,SYNTH,,Double Top,template_0184,0.07,3,False,eval,template_0184,118,118,variable,data/bars/synth_0184_3.csv,synthetic_generator
+charts/synth_0184_4.png,SYNTH,,Double Top,template_0184,0.12,4,False,eval,template_0184,118,118,variable,data/bars/synth_0184_4.csv,synthetic_generator
+charts/synth_0184_5.png,SYNTH,,Double Top,template_0184,0.2,5,False,eval,template_0184,118,118,variable,data/bars/synth_0184_5.csv,synthetic_generator
+charts/synth_0185_0.png,SYNTH,,Double Bottom,template_0185,0.0,0,True,eval,template_0185,85,85,variable,data/bars/synth_0185_0.csv,synthetic_generator
+charts/synth_0185_1.png,SYNTH,,Double Bottom,template_0185,0.015,1,False,eval,template_0185,85,85,variable,data/bars/synth_0185_1.csv,synthetic_generator
+charts/synth_0185_2.png,SYNTH,,Double Bottom,template_0185,0.035,2,False,eval,template_0185,85,85,variable,data/bars/synth_0185_2.csv,synthetic_generator
+charts/synth_0185_3.png,SYNTH,,Double Bottom,template_0185,0.07,3,False,eval,template_0185,85,85,variable,data/bars/synth_0185_3.csv,synthetic_generator
+charts/synth_0185_4.png,SYNTH,,Double Bottom,template_0185,0.12,4,False,eval,template_0185,85,85,variable,data/bars/synth_0185_4.csv,synthetic_generator
+charts/synth_0185_5.png,SYNTH,,Double Bottom,template_0185,0.2,5,False,eval,template_0185,85,85,variable,data/bars/synth_0185_5.csv,synthetic_generator
+charts/synth_0186_0.png,SYNTH,,Triangle,template_0186,0.0,0,True,eval,template_0186,114,114,variable,data/bars/synth_0186_0.csv,synthetic_generator
+charts/synth_0186_1.png,SYNTH,,Triangle,template_0186,0.015,1,False,eval,template_0186,114,114,variable,data/bars/synth_0186_1.csv,synthetic_generator
+charts/synth_0186_2.png,SYNTH,,Triangle,template_0186,0.035,2,False,eval,template_0186,114,114,variable,data/bars/synth_0186_2.csv,synthetic_generator
+charts/synth_0186_3.png,SYNTH,,Triangle,template_0186,0.07,3,False,eval,template_0186,114,114,variable,data/bars/synth_0186_3.csv,synthetic_generator
+charts/synth_0186_4.png,SYNTH,,Triangle,template_0186,0.12,4,False,eval,template_0186,114,114,variable,data/bars/synth_0186_4.csv,synthetic_generator
+charts/synth_0186_5.png,SYNTH,,Triangle,template_0186,0.2,5,False,eval,template_0186,114,114,variable,data/bars/synth_0186_5.csv,synthetic_generator
+charts/synth_0187_0.png,SYNTH,,Bull Flag,template_0187,0.0,0,True,eval,template_0187,111,111,variable,data/bars/synth_0187_0.csv,synthetic_generator
+charts/synth_0187_1.png,SYNTH,,Bull Flag,template_0187,0.015,1,False,eval,template_0187,111,111,variable,data/bars/synth_0187_1.csv,synthetic_generator
+charts/synth_0187_2.png,SYNTH,,Bull Flag,template_0187,0.035,2,False,eval,template_0187,111,111,variable,data/bars/synth_0187_2.csv,synthetic_generator
+charts/synth_0187_3.png,SYNTH,,Bull Flag,template_0187,0.07,3,False,eval,template_0187,111,111,variable,data/bars/synth_0187_3.csv,synthetic_generator
+charts/synth_0187_4.png,SYNTH,,Bull Flag,template_0187,0.12,4,False,eval,template_0187,111,111,variable,data/bars/synth_0187_4.csv,synthetic_generator
+charts/synth_0187_5.png,SYNTH,,Bull Flag,template_0187,0.2,5,False,eval,template_0187,111,111,variable,data/bars/synth_0187_5.csv,synthetic_generator
+charts/synth_0188_0.png,SYNTH,,None,template_0188,0.0,0,True,eval,template_0188,115,115,variable,data/bars/synth_0188_0.csv,synthetic_generator
+charts/synth_0188_1.png,SYNTH,,None,template_0188,0.015,1,False,eval,template_0188,115,115,variable,data/bars/synth_0188_1.csv,synthetic_generator
+charts/synth_0188_2.png,SYNTH,,None,template_0188,0.035,2,False,eval,template_0188,115,115,variable,data/bars/synth_0188_2.csv,synthetic_generator
+charts/synth_0188_3.png,SYNTH,,None,template_0188,0.07,3,False,eval,template_0188,115,115,variable,data/bars/synth_0188_3.csv,synthetic_generator
+charts/synth_0188_4.png,SYNTH,,None,template_0188,0.12,4,False,eval,template_0188,115,115,variable,data/bars/synth_0188_4.csv,synthetic_generator
+charts/synth_0188_5.png,SYNTH,,None,template_0188,0.2,5,False,eval,template_0188,115,115,variable,data/bars/synth_0188_5.csv,synthetic_generator
+charts/synth_0189_0.png,SYNTH,,Head and Shoulders,template_0189,0.0,0,True,eval,template_0189,106,106,variable,data/bars/synth_0189_0.csv,synthetic_generator
+charts/synth_0189_1.png,SYNTH,,Head and Shoulders,template_0189,0.015,1,False,eval,template_0189,106,106,variable,data/bars/synth_0189_1.csv,synthetic_generator
+charts/synth_0189_2.png,SYNTH,,Head and Shoulders,template_0189,0.035,2,False,eval,template_0189,106,106,variable,data/bars/synth_0189_2.csv,synthetic_generator
+charts/synth_0189_3.png,SYNTH,,Head and Shoulders,template_0189,0.07,3,False,eval,template_0189,106,106,variable,data/bars/synth_0189_3.csv,synthetic_generator
+charts/synth_0189_4.png,SYNTH,,Head and Shoulders,template_0189,0.12,4,False,eval,template_0189,106,106,variable,data/bars/synth_0189_4.csv,synthetic_generator
+charts/synth_0189_5.png,SYNTH,,Head and Shoulders,template_0189,0.2,5,False,eval,template_0189,106,106,variable,data/bars/synth_0189_5.csv,synthetic_generator
+charts/synth_0190_0.png,SYNTH,,Inverse Head and Shoulders,template_0190,0.0,0,True,eval,template_0190,60,60,variable,data/bars/synth_0190_0.csv,synthetic_generator
+charts/synth_0190_1.png,SYNTH,,Inverse Head and Shoulders,template_0190,0.015,1,False,eval,template_0190,60,60,variable,data/bars/synth_0190_1.csv,synthetic_generator
+charts/synth_0190_2.png,SYNTH,,Inverse Head and Shoulders,template_0190,0.035,2,False,eval,template_0190,60,60,variable,data/bars/synth_0190_2.csv,synthetic_generator
+charts/synth_0190_3.png,SYNTH,,Inverse Head and Shoulders,template_0190,0.07,3,False,eval,template_0190,60,60,variable,data/bars/synth_0190_3.csv,synthetic_generator
+charts/synth_0190_4.png,SYNTH,,Inverse Head and Shoulders,template_0190,0.12,4,False,eval,template_0190,60,60,variable,data/bars/synth_0190_4.csv,synthetic_generator
+charts/synth_0190_5.png,SYNTH,,Inverse Head and Shoulders,template_0190,0.2,5,False,eval,template_0190,60,60,variable,data/bars/synth_0190_5.csv,synthetic_generator
+charts/synth_0191_0.png,SYNTH,,Double Top,template_0191,0.0,0,True,eval,template_0191,86,86,variable,data/bars/synth_0191_0.csv,synthetic_generator
+charts/synth_0191_1.png,SYNTH,,Double Top,template_0191,0.015,1,False,eval,template_0191,86,86,variable,data/bars/synth_0191_1.csv,synthetic_generator
+charts/synth_0191_2.png,SYNTH,,Double Top,template_0191,0.035,2,False,eval,template_0191,86,86,variable,data/bars/synth_0191_2.csv,synthetic_generator
+charts/synth_0191_3.png,SYNTH,,Double Top,template_0191,0.07,3,False,eval,template_0191,86,86,variable,data/bars/synth_0191_3.csv,synthetic_generator
+charts/synth_0191_4.png,SYNTH,,Double Top,template_0191,0.12,4,False,eval,template_0191,86,86,variable,data/bars/synth_0191_4.csv,synthetic_generator
+charts/synth_0191_5.png,SYNTH,,Double Top,template_0191,0.2,5,False,eval,template_0191,86,86,variable,data/bars/synth_0191_5.csv,synthetic_generator
+charts/synth_0192_0.png,SYNTH,,Double Bottom,template_0192,0.0,0,True,eval,template_0192,63,63,variable,data/bars/synth_0192_0.csv,synthetic_generator
+charts/synth_0192_1.png,SYNTH,,Double Bottom,template_0192,0.015,1,False,eval,template_0192,63,63,variable,data/bars/synth_0192_1.csv,synthetic_generator
+charts/synth_0192_2.png,SYNTH,,Double Bottom,template_0192,0.035,2,False,eval,template_0192,63,63,variable,data/bars/synth_0192_2.csv,synthetic_generator
+charts/synth_0192_3.png,SYNTH,,Double Bottom,template_0192,0.07,3,False,eval,template_0192,63,63,variable,data/bars/synth_0192_3.csv,synthetic_generator
+charts/synth_0192_4.png,SYNTH,,Double Bottom,template_0192,0.12,4,False,eval,template_0192,63,63,variable,data/bars/synth_0192_4.csv,synthetic_generator
+charts/synth_0192_5.png,SYNTH,,Double Bottom,template_0192,0.2,5,False,eval,template_0192,63,63,variable,data/bars/synth_0192_5.csv,synthetic_generator
+charts/synth_0193_0.png,SYNTH,,Triangle,template_0193,0.0,0,True,eval,template_0193,112,112,variable,data/bars/synth_0193_0.csv,synthetic_generator
+charts/synth_0193_1.png,SYNTH,,Triangle,template_0193,0.015,1,False,eval,template_0193,112,112,variable,data/bars/synth_0193_1.csv,synthetic_generator
+charts/synth_0193_2.png,SYNTH,,Triangle,template_0193,0.035,2,False,eval,template_0193,112,112,variable,data/bars/synth_0193_2.csv,synthetic_generator
+charts/synth_0193_3.png,SYNTH,,Triangle,template_0193,0.07,3,False,eval,template_0193,112,112,variable,data/bars/synth_0193_3.csv,synthetic_generator
+charts/synth_0193_4.png,SYNTH,,Triangle,template_0193,0.12,4,False,eval,template_0193,112,112,variable,data/bars/synth_0193_4.csv,synthetic_generator
+charts/synth_0193_5.png,SYNTH,,Triangle,template_0193,0.2,5,False,eval,template_0193,112,112,variable,data/bars/synth_0193_5.csv,synthetic_generator
+charts/synth_0194_0.png,SYNTH,,Bull Flag,template_0194,0.0,0,True,eval,template_0194,92,92,variable,data/bars/synth_0194_0.csv,synthetic_generator
+charts/synth_0194_1.png,SYNTH,,Bull Flag,template_0194,0.015,1,False,eval,template_0194,92,92,variable,data/bars/synth_0194_1.csv,synthetic_generator
+charts/synth_0194_2.png,SYNTH,,Bull Flag,template_0194,0.035,2,False,eval,template_0194,92,92,variable,data/bars/synth_0194_2.csv,synthetic_generator
+charts/synth_0194_3.png,SYNTH,,Bull Flag,template_0194,0.07,3,False,eval,template_0194,92,92,variable,data/bars/synth_0194_3.csv,synthetic_generator
+charts/synth_0194_4.png,SYNTH,,Bull Flag,template_0194,0.12,4,False,eval,template_0194,92,92,variable,data/bars/synth_0194_4.csv,synthetic_generator
+charts/synth_0194_5.png,SYNTH,,Bull Flag,template_0194,0.2,5,False,eval,template_0194,92,92,variable,data/bars/synth_0194_5.csv,synthetic_generator
+charts/synth_0195_0.png,SYNTH,,None,template_0195,0.0,0,True,eval,template_0195,116,116,variable,data/bars/synth_0195_0.csv,synthetic_generator
+charts/synth_0195_1.png,SYNTH,,None,template_0195,0.015,1,False,eval,template_0195,116,116,variable,data/bars/synth_0195_1.csv,synthetic_generator
+charts/synth_0195_2.png,SYNTH,,None,template_0195,0.035,2,False,eval,template_0195,116,116,variable,data/bars/synth_0195_2.csv,synthetic_generator
+charts/synth_0195_3.png,SYNTH,,None,template_0195,0.07,3,False,eval,template_0195,116,116,variable,data/bars/synth_0195_3.csv,synthetic_generator
+charts/synth_0195_4.png,SYNTH,,None,template_0195,0.12,4,False,eval,template_0195,116,116,variable,data/bars/synth_0195_4.csv,synthetic_generator
+charts/synth_0195_5.png,SYNTH,,None,template_0195,0.2,5,False,eval,template_0195,116,116,variable,data/bars/synth_0195_5.csv,synthetic_generator
+charts/synth_0196_0.png,SYNTH,,Head and Shoulders,template_0196,0.0,0,True,eval,template_0196,98,98,variable,data/bars/synth_0196_0.csv,synthetic_generator
+charts/synth_0196_1.png,SYNTH,,Head and Shoulders,template_0196,0.015,1,False,eval,template_0196,98,98,variable,data/bars/synth_0196_1.csv,synthetic_generator
+charts/synth_0196_2.png,SYNTH,,Head and Shoulders,template_0196,0.035,2,False,eval,template_0196,98,98,variable,data/bars/synth_0196_2.csv,synthetic_generator
+charts/synth_0196_3.png,SYNTH,,Head and Shoulders,template_0196,0.07,3,False,eval,template_0196,98,98,variable,data/bars/synth_0196_3.csv,synthetic_generator
+charts/synth_0196_4.png,SYNTH,,Head and Shoulders,template_0196,0.12,4,False,eval,template_0196,98,98,variable,data/bars/synth_0196_4.csv,synthetic_generator
+charts/synth_0196_5.png,SYNTH,,Head and Shoulders,template_0196,0.2,5,False,eval,template_0196,98,98,variable,data/bars/synth_0196_5.csv,synthetic_generator
+charts/synth_0197_0.png,SYNTH,,Inverse Head and Shoulders,template_0197,0.0,0,True,eval,template_0197,99,99,variable,data/bars/synth_0197_0.csv,synthetic_generator
+charts/synth_0197_1.png,SYNTH,,Inverse Head and Shoulders,template_0197,0.015,1,False,eval,template_0197,99,99,variable,data/bars/synth_0197_1.csv,synthetic_generator
+charts/synth_0197_2.png,SYNTH,,Inverse Head and Shoulders,template_0197,0.035,2,False,eval,template_0197,99,99,variable,data/bars/synth_0197_2.csv,synthetic_generator
+charts/synth_0197_3.png,SYNTH,,Inverse Head and Shoulders,template_0197,0.07,3,False,eval,template_0197,99,99,variable,data/bars/synth_0197_3.csv,synthetic_generator
+charts/synth_0197_4.png,SYNTH,,Inverse Head and Shoulders,template_0197,0.12,4,False,eval,template_0197,99,99,variable,data/bars/synth_0197_4.csv,synthetic_generator
+charts/synth_0197_5.png,SYNTH,,Inverse Head and Shoulders,template_0197,0.2,5,False,eval,template_0197,99,99,variable,data/bars/synth_0197_5.csv,synthetic_generator
+charts/synth_0198_0.png,SYNTH,,Double Top,template_0198,0.0,0,True,eval,template_0198,62,62,variable,data/bars/synth_0198_0.csv,synthetic_generator
+charts/synth_0198_1.png,SYNTH,,Double Top,template_0198,0.015,1,False,eval,template_0198,62,62,variable,data/bars/synth_0198_1.csv,synthetic_generator
+charts/synth_0198_2.png,SYNTH,,Double Top,template_0198,0.035,2,False,eval,template_0198,62,62,variable,data/bars/synth_0198_2.csv,synthetic_generator
+charts/synth_0198_3.png,SYNTH,,Double Top,template_0198,0.07,3,False,eval,template_0198,62,62,variable,data/bars/synth_0198_3.csv,synthetic_generator
+charts/synth_0198_4.png,SYNTH,,Double Top,template_0198,0.12,4,False,eval,template_0198,62,62,variable,data/bars/synth_0198_4.csv,synthetic_generator
+charts/synth_0198_5.png,SYNTH,,Double Top,template_0198,0.2,5,False,eval,template_0198,62,62,variable,data/bars/synth_0198_5.csv,synthetic_generator
+charts/synth_0199_0.png,SYNTH,,Double Bottom,template_0199,0.0,0,True,eval,template_0199,74,74,variable,data/bars/synth_0199_0.csv,synthetic_generator
+charts/synth_0199_1.png,SYNTH,,Double Bottom,template_0199,0.015,1,False,eval,template_0199,74,74,variable,data/bars/synth_0199_1.csv,synthetic_generator
+charts/synth_0199_2.png,SYNTH,,Double Bottom,template_0199,0.035,2,False,eval,template_0199,74,74,variable,data/bars/synth_0199_2.csv,synthetic_generator
+charts/synth_0199_3.png,SYNTH,,Double Bottom,template_0199,0.07,3,False,eval,template_0199,74,74,variable,data/bars/synth_0199_3.csv,synthetic_generator
+charts/synth_0199_4.png,SYNTH,,Double Bottom,template_0199,0.12,4,False,eval,template_0199,74,74,variable,data/bars/synth_0199_4.csv,synthetic_generator
+charts/synth_0199_5.png,SYNTH,,Double Bottom,template_0199,0.2,5,False,eval,template_0199,74,74,variable,data/bars/synth_0199_5.csv,synthetic_generator

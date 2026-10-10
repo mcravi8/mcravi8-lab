@@ -1,0 +1,42 @@
+{
+  "Head and Shoulders": {
+    "clean": 29,
+    "noisy": 145,
+    "total": 174
+  },
+  "Inverse Head and Shoulders": {
+    "clean": 29,
+    "noisy": 145,
+    "total": 174
+  },
+  "Double Top": {
+    "clean": 29,
+    "noisy": 145,
+    "total": 174
+  },
+  "Double Bottom": {
+    "clean": 29,
+    "noisy": 145,
+    "total": 174
+  },
+  "Triangle": {
+    "clean": 28,
+    "noisy": 140,
+    "total": 168
+  },
+  "Bull Flag": {
+    "clean": 28,
+    "noisy": 140,
+    "total": 168
+  },
+  "None": {
+    "clean": 28,
+    "noisy": 140,
+    "total": 168
+  },
+  "total": {
+    "clean": 200,
+    "noisy": 1000,
+    "total": 1200
+  }
+}

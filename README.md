@@ -39,7 +39,7 @@ The historical LoRA placebo conclusion was also corrected: 0 wins, 5 losses and 
 | [03: Twelve tickers](03-jev-12-tickers/README.md) | Does pooling or calibration help? | Reused historical test period; no demonstrated added skill. |
 | [04: LoRA and CNN](04-jev-lora-and-cnn/README.md) | Does task-specific training help? | Historical results retained; revised training requires parity and checkpoint checks. |
 | [05: CPU walk-forward study](05-cpu-walkforward/README.md) | Can numerical models beat training-frequency priors over longer histories? | CPU study complete; future protocol and model frozen. |
-| [06: Pattern recognition](06-jev-patterns/README.md) | Can JEV identify candlestick and chart patterns? | Shared CPU tools and 1,200 candle examples ready; synthetic stage follows. |
+| [06: Pattern recognition](06-jev-patterns/README.md) | Can JEV identify candlestick and chart patterns? | Day 1 complete: 1,200 candle + 1,200 synthetic charts; CPU checks passed, real inference pending. |
 
 ## Completed review and implementation
 
@@ -47,7 +47,8 @@ The historical LoRA placebo conclusion was also corrected: 0 wins, 5 losses and 
 - Scoring supports separate binary and explicit volatility-based Flat tasks, blank and mirrored image controls, and model-identity checks that prevent incompatible runs from being mixed on resume. Historical predictions remain unchanged.
 - Revised training validates data bundles and splits, uses representative fit-only parity fixtures, and blocks LoRA training above a 0.01 absolute HF-vLLM probability discrepancy. Checkpoints record provenance and validate reload inputs.
 - The longer CPU study includes simple priors, momentum/reversal rules, numerical feature comparisons, a shuffled-label control, and a fixed future protocol.
-- All **60 CPU tests passed**, including checkpoint round trips and localhost fake-server scoring. [GitHub CI passed for research commit `82cd983`](https://github.com/mcravi8/mcravi8-lab/actions/runs/38085970817).
+- Experiment 06 adds 50-name data validation, agreement-filtered candle labels, synthetic pattern/noise controls, generalized native scoring with a mandatory repeatability gate, and multiclass evaluation. All **55 new CPU tests passed locally**.
+- The **60 historical CPU tests passed** again in the Experiment 06 environment, including checkpoint round trips and localhost fake-server scoring. [GitHub CI passed for research commit `82cd983`](https://github.com/mcravi8/mcravi8-lab/actions/runs/38085970817).
 
 ## Pending work and future holdout
 
@@ -70,7 +71,7 @@ python3.11 -m venv .venv
 .venv/bin/python -m unittest discover -s 06-jev-patterns/tests -v
 ```
 
-On macOS, install `torch==2.14.1` from the default package index instead; the checkpoint test explicitly uses CPU. Without PyTorch, that one test is skipped. Run each suite separately because historical experiments share module names. The suite comprises 31 pipeline/scoring/protocol tests, 8 statistical tests, 13 training tests and 8 baseline tests. Tests use synthetic OHLCV, localhost HTTP fixtures and CPU tensors, without downloading model weights. Experiment 06 adds pattern, rendering, arbitrary-option scoring and multiclass evaluation tests. GitHub Actions runs all five suites on pushes and pull requests.
+On macOS, install `torch==2.14.1` from the default package index instead; the checkpoint test explicitly uses CPU. Install PyTorch for the complete suite, including Experiment 06's CPU CNN checks. Run each suite separately because historical experiments share module names. The suite comprises 31 pipeline/scoring/protocol tests, 8 statistical tests, 13 training tests and 8 baseline tests. Tests use synthetic OHLCV, localhost HTTP fixtures and CPU tensors, without downloading model weights. Experiment 06 adds pattern, rendering, arbitrary-option scoring and multiclass evaluation tests. GitHub Actions runs all five suites on pushes and pull requests.
 
 ## Reproducibility
 

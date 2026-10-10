@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "status": "frozen before chart generation and model inference",
+  "seed": 60617,
+  "classes": ["Head and Shoulders", "Inverse Head and Shoulders", "Double Top", "Double Bottom", "Triangle", "Bull Flag", "None"],
+  "clean_templates": 200,
+  "noise_levels": [0.0, 0.015, 0.035, 0.07, 0.12, 0.2],
+  "noise_definition": "Nested Brownian bridges, maximum absolute perturbation normalized to one clean template price range. Bridges are zero at each defining pivot; all five positive amplitudes reuse the same bridge. Final post-breakout padding is unperturbed.",
+  "bars_min": 60,
+  "bars_max": 120,
+  "image_size": [1024, 640],
+  "style": "candle",
+  "padding_fraction_each_side": 0.1,
+  "split": "evaluation_only",
+  "replication_unit": "template_id",
+  "framing_control": {"fixed_bars": 100, "method": "Time-axis interpolation of the same OHLCV template and noise realization. This holds bar count constant; it is not a new historical window."},
+  "definitions": {
+    "Head and Shoulders": "Three peaks. Middle is highest; shoulders differ by <= 0.03 of template height. Two intervening troughs define a near-horizontal neckline. Final decline crosses below that neckline; terminal padding remains below it.",
+    "Inverse Head and Shoulders": "Price inversion of Head and Shoulders. Three troughs, deepest in the middle, similar outer troughs, then a rise above the two-peak neckline.",
+    "Double Top": "Two peaks differ by <= 0.03 of template height, separated by a deep trough. Price subsequently crosses below the trough and remains below during terminal padding.",
+    "Double Bottom": "Price inversion of Double Top. Two similarly low troughs separated by a high peak, followed by a break above the intervening peak.",
+    "Triangle": "Alternating upper and lower pivots converge. Symmetric, ascending and descending constructions share one label. The final segment crosses the converging boundary and stays outside it.",
+    "Bull Flag": "A steep rising pole, then a downward-sloping approximately parallel channel with smaller oscillations, followed by an upward break above the flag and pole high.",
+    "None": "Monotonic linear or gently curved paths without the reversal or consolidation geometry of the other six whole-window classes. Noisy variants retain this generator label, not a claim that an independent detector must still reject every local pattern."
+  },
+  "interpretation": "Labels identify the clean source geometry. Noise increases visual ambiguity; no trained or rule-based detector is used to relabel variants. This balanced artificial set is a visual recognition sanity test, not market prevalence or forecast evidence.",
+  "mirror": "Horizontal flipping reverses time; it does not exchange Head and Shoulders with Inverse, or Double Top with Double Bottom. Only vertical price inversion creates those counterparts."
+}

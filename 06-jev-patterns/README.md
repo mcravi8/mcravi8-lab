@@ -1,6 +1,6 @@
 # Experiment 06: Can JEV-27B-VL recognize chart patterns?
 
-Day 1 is CPU-only. Shared infrastructure and the candle dataset are complete; the synthetic dataset follows in its own commit. No JEV inference, GPU training, or Runpod resource has been started. [PLAN.md](PLAN.md) preserves the original design.
+**Day 1 is complete, CPU-only:** shared infrastructure, 1,200 candle charts and 1,200 synthetic charts are implemented and generated. No JEV inference, GPU training, or Runpod resource has been started. [PLAN.md](PLAN.md) preserves the original design.
 
 This experiment studies recognition of visible patterns, rather than future returns. It uses **AutoTrust's [JEV-27B-VL](https://huggingface.co/autotrust/JEV-27B-VL)**, with model weights, calibration and native System 1 serving code from Hugging Face. A later authorized session may serve the model on Runpod. Local validation uses a fake server and CPU tensors only.
 
@@ -93,7 +93,20 @@ For a definitions arm, add `--context-file 06-jev-patterns/shared/context/candle
   --out 06-jev-patterns/06a-candles/results/comparison
 ```
 
-## Dataset stages and Day 2
+## 06b synthetic dataset ready
+
+There are **200 clean + 1,000 noisy charts** across seven source classes. Head and Shoulders, Inverse Head and Shoulders, Double Top and Double Bottom each have 29 clean + 145 noisy examples (174). Triangle, Bull Flag and None each have 28 clean + 140 noisy examples (168). Each clean template shares its geometry and noise realization with five increasing noise amplitudes: 0.015, 0.035, 0.07, 0.12 and 0.20 of its price range.
+
+All images are 1024 x 640 with 60–120 bars. The [sample grid](06b-chart-patterns/results/samples/synthetic_grid.png) compares seven classes across clean, intermediate and strongest noise. Labels identify the source construction; severe noise may introduce incidental shapes. The 200 template IDs, rather than 1,200 correlated variants, define the independent sampling units. No synthetic class has a deficit.
+
+The [synthetic README](06b-chart-patterns/README.md) documents reproduction, the prepared fixed-100-bar control and geometric constraints. A future scoring call uses `--root 06-jev-patterns/06b-chart-patterns --index results/synthetic_index.csv --options-file 06-jev-patterns/06b-chart-patterns/options.json`; the definitions arm uses `shared/context/chart_patterns.txt` from this experiment. Evaluation automatically recognizes complete template IDs with blank market dates and uses template blocks. Synthetic examples are never baseline training data.
+
+## Verification and Day 2
+
+All **55 Experiment 06 tests and 60 historical tests passed locally** in the pinned environment. `pip check` passed. All 2,400 generated images were checked for expected dimensions and manifest hashes; both sample collections were visually inspected. The data cache verifier confirmed all 50 inputs without network access and preserved the frozen input-manifest hash. [GitHub CPU CI](https://github.com/mcravi8/mcravi8-lab/actions/workflows/tests.yml) runs on each staged push.
+
+The candle definitions contain 157 words; chart-pattern definitions contain 252 words. They describe the frozen detector/generator rules. No real-model prediction, real-dataset baseline fit, GPU or Runpod call was made for Day 1.
+
 
 - [06a candles](06a-candles/README.md): TA-Lib plus independent pandas labels, exact agreement, exclusive labels, ticker/year-stratified selection, twenty-candle images and a fixed visual audit.
 - [06b synthetic](06b-chart-patterns/README.md): 200 clean templates and five paired noise levels (1,000 noisy images), seven classes, sixty to 120 bars, 1024 x 640 images.
