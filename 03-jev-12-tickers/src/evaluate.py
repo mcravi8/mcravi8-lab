@@ -3,12 +3,18 @@ and exploratory volatility analyses. Writes results/metrics.json,
 results/predictions.csv, results/ticker_edge.png, results/vol_regimes.png."""
 import json
 import os
+from pathlib import Path
+import sys
 import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
 from sklearn.linear_model import LogisticRegression
 import statsmodels.api as sm
 from data import ROOT, TICKERS
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from research.statistics import (BLOCK_LENGTHS, PRIMARY_BLOCK_LENGTH,
+    block_bootstrap_means, exact_mcnemar, holm_adjust, inference_metadata,
+    paired_inference, percentile_ci, probability_metrics)
 
 os.environ["MPLCONFIGDIR"] = str(ROOT / ".mplconfig")
 import matplotlib
@@ -58,6 +64,8 @@ def add_refs(df):
             df.loc[m, "maj_test"] = maj_te
         full = df[m].label.value_counts().reindex(LABELS).idxmax()
         df.loc[m, "maj_full"] = full
+    pooled = df.loc[df.split == "train", "label"].value_counts(normalize=True).reindex(LABELS).fillna(0).to_numpy()
+    df[["r_pool_up", "r_pool_flat", "r_pool_down"]] = np.tile(pooled, (len(df), 1))
     Yv = df[["y_up", "y_flat", "y_down"]].to_numpy()
     df["hit"] = (np.array(LABELS)[df[P].to_numpy().argmax(1)] == df.label).astype(float)
     df["hit_pl"] = (np.array(LABELS)[df[PL].to_numpy().argmax(1)] == df.label).astype(float)
@@ -67,47 +75,106 @@ def add_refs(df):
     return df
 
 
-def boot_idx(d, rng, block):
-    """Row-index resamples: iid rows, or whole weeks (all tickers together)."""
-    if not block:
-        return [rng.integers(0, len(d), len(d)) for _ in range(B)]
-    groups = [np.flatnonzero(d.end_date.to_numpy() == w) for w in d.end_date.unique()]
-    return [np.concatenate([groups[j] for j in rng.integers(0, len(groups), len(groups))]) for _ in range(B)]
-
 
 def ci(x):
     return [float(np.percentile(x, 2.5)), float(np.percentile(x, 97.5))]
 
 
+def baseline_report(d, model_probs):
+    """Constants require no chart; ticker priors additionally know ticker identity."""
+    n = len(d)
+    forecasts = {
+        "ticker_train_frequency": d[["r_up", "r_flat", "r_down"]].to_numpy(),
+        "pooled_train_frequency": d[["r_pool_up", "r_pool_flat", "r_pool_down"]].to_numpy(),
+        "uniform": np.full((n, 3), 1 / 3),
+        "always_up": np.tile([1., 0., 0.], (n, 1)),
+    }
+    model = probability_metrics(model_probs, d.label)
+    result = {}
+    for name, p in forecasts.items():
+        ref = probability_metrics(p, d.label)
+        result[name] = {
+            "hit_rate": ref["hit_rate"], "brier": ref["brier"], "log_loss": ref["log_loss"],
+            "information": "ticker identity and training labels" if name.startswith("ticker") else "training labels only; no image or ticker identity",
+            "paired_accuracy": paired_inference(model["hit_rows"] - ref["hit_rows"], d.end_date, resamples=B, seed=SEED),
+            "paired_brier_improvement": paired_inference(ref["brier_rows"] - model["brier_rows"], d.end_date, resamples=B, seed=SEED),
+        }
+    return result
+
+
 def metrics(d, rng, block, base_test_col, cal=None):
-    hit, bt, bte = d.hit.to_numpy(), d.base_train.to_numpy(), (d[base_test_col] == d.label).astype(float).to_numpy()
-    bm, br = d.brier.to_numpy(), d.brier_ref.to_numpy()
+    """Historical exploratory metrics; four-week paired blocks are primary."""
+    model = probability_metrics(d[P].to_numpy(), d.label)
+    placebo = probability_metrics(d[PL].to_numpy(), d.label)
+    hit, hp = model["hit_rows"], placebo["hit_rows"]
+    bt = d.base_train.to_numpy()
+    bte = (d[base_test_col] == d.label).astype(float).to_numpy()
+    bm, br = model["brier_rows"], d.brier_ref.to_numpy()
+    dates = d.end_date
+    train_compare = paired_inference(hit - bt, dates, resamples=B, seed=SEED)
+    placebo_compare = paired_inference(hit - hp, dates, resamples=B, seed=SEED)
+    brier_compare = paired_inference(br - bm, dates, resamples=B, seed=SEED)
+    bss_intervals = {}
+    for length in BLOCK_LENGTHS:
+        means = block_bootstrap_means(np.column_stack([bm, br]), dates,
+                                     resamples=B, seed=SEED, block_length=length)
+        valid = means[:, 1] > 0
+        bss_intervals[str(length)] = percentile_ci(1 - means[valid, 0] / means[valid, 1]) if valid.any() else None
+    primary = str(PRIMARY_BLOCK_LENGTH)
     res = {"n": int(len(d)), "weeks": int(d.end_date.nunique()),
            "label_counts": {l: int((d.label == l).sum()) for l in LABELS},
            "pred_counts": {l: int((np.array(LABELS)[d[P].to_numpy().argmax(1)] == l).sum()) for l in LABELS},
-           "hit_rate": float(hit.mean()), "base_rate_train_majority": float(bt.mean()),
-           "base_rate_test_majority": float(bte.mean()), "placebo_hit_rate": float(d.hit_pl.mean()),
-           "brier_model": float(bm.mean()), "brier_ref": float(br.mean()),
-           "bss": float(1 - bm.mean() / br.mean())}
-    res["edge_vs_train_base"] = res["hit_rate"] - res["base_rate_train_majority"]
-    res["edge_vs_test_base"] = res["hit_rate"] - res["base_rate_test_majority"]
-    ix = boot_idx(d, rng, block)
-    res["ci95_edge_vs_train_base"] = ci([hit[i].mean() - bt[i].mean() for i in ix])
-    res["ci95_edge_vs_test_base"] = ci([hit[i].mean() - bte[i].mean() for i in ix])
-    res["ci95_bss"] = ci([1 - bm[i].mean() / br[i].mean() for i in ix])
-    res["ci95_hit_minus_placebo"] = ci([hit[i].mean() - d.hit_pl.to_numpy()[i].mean() for i in ix])
+           "hit_rate": model["hit_rate"], "log_loss": model["log_loss"],
+           "base_rate_train_majority": float(bt.mean()),
+           "base_rate_test_majority": float(bte.mean()), "placebo_hit_rate": placebo["hit_rate"],
+           "brier_model": model["brier"], "brier_ref": float(br.mean()),
+           "bss": float(1 - bm.mean() / br.mean()) if br.mean() > 0 else None,
+           "edge_vs_train_base": float((hit - bt).mean()),
+           "edge_vs_test_base": float((hit - bte).mean()),
+           "ci95_edge_vs_train_base": train_compare["ci95_by_block_length"][primary],
+           "ci95_edge_vs_test_base": None,
+           "oracle_ci_note": "Evaluation-selected majority is descriptive; no post-selection interval reported",
+           "ci95_bss": bss_intervals[primary], "ci95_bss_by_block_length": bss_intervals,
+           "ci95_hit_minus_placebo": placebo_compare["ci95_by_block_length"][primary],
+           "paired_inference": {"accuracy_vs_train_majority": train_compare,
+                                "accuracy_vs_placebo": placebo_compare,
+                                "brier_vs_train_frequency": brier_compare},
+           "baselines": baseline_report(d, d[P].to_numpy())}
+    wins, losses = int(((hit == 1) & (hp == 0)).sum()), int(((hit == 0) & (hp == 1)).sum())
+    res["placebo_discordant_pairs"] = {"model_wins": wins, "placebo_wins": losses,
+        "ties": len(d) - wins - losses,
+        "exact_mcnemar_p_if_independent_rows": exact_mcnemar(wins, losses),
+        "note": "Row-level McNemar assumes independence and is descriptive for correlated stock rows; date sign flips are separately reported"}
     if cal is not None:
-        ch, cb = d.hit_cal.to_numpy(), d.brier_cal.to_numpy()
-        res["calibrated"] = {"hit_rate": float(ch.mean()), "brier": float(cb.mean()),
-                             "bss": float(1 - cb.mean() / br.mean()),
-                             "ci95_edge_vs_train_base": ci([ch[i].mean() - bt[i].mean() for i in ix]),
-                             "ci95_bss": ci([1 - cb[i].mean() / br[i].mean() for i in ix])}
-    res["success"] = {"ci_above_test_base": res["ci95_edge_vs_test_base"][0] > 0,
-                      "ci_above_train_base": res["ci95_edge_vs_train_base"][0] > 0,
-                      "beats_placebo": res["hit_rate"] > res["placebo_hit_rate"],
-                      "bss_positive": res["bss"] > 0}
-    res["success"]["all_met"] = (res["success"]["ci_above_test_base"] and res["success"]["beats_placebo"]
-                                 and res["success"]["bss_positive"])
+        cp = d[["q_up", "q_flat", "q_down"]].to_numpy()
+        cm = probability_metrics(cp, d.label)
+        cacc = paired_inference(cm["hit_rows"] - bt, dates, resamples=B, seed=SEED)
+        cbrier = paired_inference(br - cm["brier_rows"], dates, resamples=B, seed=SEED)
+        cbss = {}
+        for length in BLOCK_LENGTHS:
+            means = block_bootstrap_means(np.column_stack([cm["brier_rows"], br]), dates,
+                                         resamples=B, seed=SEED, block_length=length)
+            valid = means[:, 1] > 0
+            cbss[str(length)] = percentile_ci(1 - means[valid, 0] / means[valid, 1]) if valid.any() else None
+        res["calibrated"] = {"hit_rate": cm["hit_rate"], "brier": cm["brier"], "log_loss": cm["log_loss"],
+            "bss": float(1 - cm["brier"] / br.mean()) if br.mean() > 0 else None,
+            "ci95_edge_vs_train_base": cacc["ci95_by_block_length"][primary],
+            "ci95_bss": cbss[primary], "ci95_bss_by_block_length": cbss,
+            "paired_accuracy_vs_train_majority": cacc, "paired_brier_improvement": cbrier,
+            "baselines": baseline_report(d, cp)}
+    res["success"] = {
+        "ci_above_test_base": None,
+        "ci_above_train_base": res["ci95_edge_vs_train_base"][0] > 0,
+        "beats_placebo": res["hit_rate"] > res["placebo_hit_rate"],
+        "paired_placebo_p_below_0_05": placebo_compare["week_signflip"]["p_two_sided"] < .05,
+        "placebo_ci_above_zero": res["ci95_hit_minus_placebo"][0] > 0,
+        "bss_positive": res["bss"] is not None and res["bss"] > 0,
+        "bss_ci_above_zero": res["ci95_bss"] is not None and res["ci95_bss"][0] > 0,
+        "confirmatory_claim_allowed": False,
+    }
+    res["success"]["all_met"] = all(res["success"][key] for key in (
+        "ci_above_train_base", "placebo_ci_above_zero", "paired_placebo_p_below_0_05", "bss_ci_above_zero"))
+    res["inference"] = inference_metadata()
     return res
 
 
@@ -131,7 +198,7 @@ def main():
     df = add_refs(load())
     cal = calibrate(df)
     test = df[df.split == "test"]
-    out = {"bootstrap_resamples": B, "seed": SEED,
+    out = {"bootstrap_resamples": B, "seed": SEED, "inference": inference_metadata(),
            "base_rate_definitions": "per ticker: train-majority class of that ticker applied to the evaluated rows (honest); test-majority (or full-sample majority for full rows) of that ticker (look-ahead). Pooled rates average these per-row indicators. Ties broken Up, Flat, Down.",
            "brier_reference": "per ticker train-period class frequencies",
            "calibration": cal, "tickers": {}, "pooled": {}}
@@ -159,7 +226,7 @@ def main():
         sp[name] = {"spearman_rho": float(rho), "ci95_ticker_bootstrap": ci(boots)}
     out["exploratory_cross_ticker"] = {"note": "EXPLORATORY. n=12 tickers; volatility from train period only; outcome from test period.",
                                        "train_period_ann_vol": vf["train_period_ann_vol"], **sp}
-    # Exploratory 2: test-period tercile analysis, week-block bootstrap
+    # Exploratory 2: test-period tercile analysis, moving retained-week block bootstrap
     reg = {}
     for f in ("rv20", "rv20_pct", "vix"):
         reg[f] = {}
@@ -181,7 +248,11 @@ def main():
     out["exploratory_logit"] = {"note": "EXPLORATORY. Logit(correct) on test rows; features standardized with train mean/sd; ticker fixed effects; SEs clustered by week. rv20, spy_rv20 and vix are strongly correlated, so individual coefficients are unstable.",
                                 "n": int(len(test)), "coef": {k: {"coef": float(fit.params[k]), "ci95": [float(cis.loc[k, 0]), float(cis.loc[k, 1])], "p": float(fit.pvalues[k])} for k in feats},
                                 "feature_corr_test": Z.corr().round(3).to_dict()}
-    (ROOT / "results/metrics.json").write_text(json.dumps(out, indent=2) + "\n")
+    adjusted = holm_adjust([out["exploratory_logit"]["coef"][k]["p"] for k in feats])
+    for feature, value in zip(feats, adjusted):
+        out["exploratory_logit"]["coef"][feature]["p_holm_4_features"] = value
+    out["exploratory_logit"]["multiplicity"] = "Holm correction for these four coefficients only; all broader adaptive analyses remain exploratory"
+    (ROOT / "results/metrics.json").write_text(json.dumps(out, indent=2, allow_nan=False) + "\n")
     keep = ["file", "ticker", "split", "week_start", "end_date", "target_date", "next_week_full", "label", "fwd_ret", "sigma",
             "rv20", "rv20_pct", "vix", "spy_rv20", "rv20_regime", "rv20_pct_regime", "vix_regime", "spy_rv20_regime",
             *P, *PL, "q_up", "q_flat", "q_down", "pred_source"]
@@ -219,7 +290,7 @@ def main():
         a.set_xticks(range(3), [f"{l}\nn={reg[f][l]['n']}" for l in ("low", "mid", "high")])
         a.set_title(title, fontsize=10)
     ax[0].set_ylabel("Hit rate minus train-majority base")
-    fig.suptitle("EXPLORATORY: test-period edge by volatility tercile (train cutoffs, week-block bootstrap 95% CI)", fontsize=10)
+    fig.suptitle("EXPLORATORY: test-period edge by volatility tercile (train cutoffs, moving retained-week block bootstrap 95% CI)", fontsize=10)
     fig.tight_layout()
     fig.savefig(ROOT / "results/vol_regimes.png", dpi=120)
     print(json.dumps({"pooled": out["pooled"], "sp": sp}, indent=1)[:3000])

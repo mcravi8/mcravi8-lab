@@ -1,0 +1,4 @@
+# Verified against Experiment 04's local environment on 2026-10-10.
+-r requirements.txt
+torch==2.14.1
+torchvision==0.29.1

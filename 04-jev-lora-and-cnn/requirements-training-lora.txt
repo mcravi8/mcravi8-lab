@@ -1,0 +1,12 @@
+# Candidate versions from official PyPI metadata, checked 2026-10-10.
+# NOT a recovered historical pod environment or verified GPU-compatible lockfile.
+# Preflight checks exact versions; fit-only numerical parity must pass before training.
+# https://pypi.org/project/transformers/5.19.0/
+# https://pypi.org/project/peft/0.21.2/
+# https://pypi.org/project/safetensors/0.8.0/
+# https://pypi.org/project/accelerate/1.15.0/
+-r requirements-training-cnn.txt
+transformers==5.19.0
+peft==0.21.2
+safetensors==0.8.0
+accelerate==1.15.0

@@ -64,6 +64,7 @@ class ScoringTests(unittest.TestCase):
                 "end_date": f"2026-01-{number + 1:02d}",
                 "label": ("Up", "Flat", "Down")[number % 3],
                 "fwd_ret": 0.01 * (number % 3 - 1),
+                "sigma": 0.045,
             })
         with self.index.open("w", newline="") as stream:
             writer = csv.DictWriter(stream, fieldnames=self.rows[0])
@@ -154,6 +155,48 @@ class ScoringTests(unittest.TestCase):
                 self.assertEqual(sent.size, expected.size)
                 self.assertEqual(sent.tobytes(), expected.tobytes())
 
+    def test_blank_control_removes_all_chart_pixels(self) -> None:
+        with running_fake() as (server, url):
+            self.cli(url, "--blank", "--limit", "1")
+            rows = self.read_csv("preds_blank.csv", PRED_COLUMNS)
+            self.assertEqual(len(rows), 1)
+            sent = decode_png(server.requests[0]["body"]["state"][1]["image"])
+            self.assertEqual(sent.size, (32, 24))
+            self.assertEqual(sent.getextrema(), ((255, 255), (255, 255), (255, 255)))
+            metadata = json.loads((self.results / "preds_blank.meta.json").read_text())
+            self.assertEqual(metadata["control"], "blank")
+
+    def test_binary_direction_labels_probabilities_and_zero_exclusion(self) -> None:
+        with running_fake() as (server, url):
+            self.cli(url, "--task", "binary-direction", "--limit", "3")
+            rows = self.read_csv("preds_binary.csv", PRED_COLUMNS)
+            self.assertEqual(len(rows), 3)
+            self.assertTrue(all(float(row["p_flat"]) == 0 for row in rows))
+            self.assert_probabilities(rows)
+            truth = {row["file"]: row for row in self.rows}
+            for row in rows:
+                self.assertEqual(row["label"], "Up" if truth[row["file"]]["fwd_ret"] > 0 else "Down")
+            metadata = json.loads((self.results / "preds_binary.meta.json").read_text())
+            self.assertEqual(metadata["last_run"]["excluded_zero_returns"], 7)
+            for request in server.requests:
+                self.assertEqual(request["body"]["options"], ["Up", "Down"])
+                self.assertNotIn("sigma", request["body"]["question"])
+
+    def test_ternary_context_has_sigma_and_threshold_without_future_metadata(self) -> None:
+        with running_fake() as (server, url):
+            self.cli(url, "--task", "ternary-volatility", "--limit", "1")
+            rows = self.read_csv("preds_volatility.csv", PRED_COLUMNS)
+            self.assertEqual(rows[0]["label"], "Flat")
+            self.assert_probabilities(rows)
+            payload = server.requests[0]["body"]
+            question = payload["question"]
+            self.assertIn("sigma = 0.045", question)
+            self.assertIn("times sigma = 0.015", question)
+            self.assertIn("last 60 completed observations", question)
+            for private in ("fwd_ret", "2026-", "TSLA", "NVDA", "end_date", self.rows[0]["file"]):
+                self.assertNotIn(private, question)
+            self.assertEqual(set(payload), {"kind", "state", "question", "options", "thinking"})
+
     def test_ticker_probe_twenty_balanced_charts(self) -> None:
         with running_fake() as (server, url):
             self.cli(url, "--ticker-probe", "--limit", "20")
@@ -224,6 +267,29 @@ class ScoringTests(unittest.TestCase):
             self.cli(url, "--limit", "1", success=False)
             self.assertEqual(len(server.requests), 1)
 
+    def test_resume_rejects_changed_server_weight_revision(self) -> None:
+        with running_fake() as (server, url):
+            self.cli(url, "--limit", "1")
+            original = (self.results / "preds.meta.json").read_bytes()
+            with server.lock:
+                server.info["model_revision"] = "synthetic-fixture-weights-v2"
+            self.cli(url, "--limit", "2", success=False)
+            self.assertEqual(len(server.requests), 1)
+            self.assertEqual((self.results / "preds.meta.json").read_bytes(), original)
+
+    def test_missing_server_revision_requires_explicit_caller_pin(self) -> None:
+        with running_fake() as (server, url):
+            with server.lock:
+                server.info.pop("model_revision")
+            self.cli(url, "--limit", "1", success=False)
+            self.assertEqual(len(server.requests), 0)
+            self.assertFalse(self.results.exists())
+            self.cli(url, "--limit", "1", "--model-revision", "fixture-weights-hash")
+            metadata = json.loads((self.results / "preds.meta.json").read_text())
+            self.assertEqual(metadata["server_identity"]["model_revision"], "fixture-weights-hash")
+            self.assertEqual(metadata["server_identity"]["revision_source"], "caller-declared")
+            self.assertEqual(len(server.requests), 1)
+
     def test_fake_service_requires_dry_run_and_loopback(self) -> None:
         with self.assertRaises(ValueError):
             make_server("0.0.0.0")
@@ -234,7 +300,7 @@ class ScoringTests(unittest.TestCase):
                 "--retries", "0", "--timeout", "2",
             ], cwd=ROOT, text=True, capture_output=True, timeout=10)
             self.assertNotEqual(process.returncode, 0, process.stderr + process.stdout)
-            self.assertEqual(len(server.requests), 1)
+            self.assertEqual(len(server.requests), 0)
             self.assertFalse((self.results / "preds.csv").exists()
                              and len(self.read_csv("preds.csv")) > 0)
 

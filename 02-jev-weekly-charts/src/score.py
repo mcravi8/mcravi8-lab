@@ -23,20 +23,23 @@ from urllib.request import Request, urlopen
 
 from PIL import Image, ImageOps
 
-from jev_api import (API_PATHS, DIRECTION_OPTIONS, DIRECTION_QUESTION,
+from jev_api import (API_PATHS, DEFAULT_HORIZON, DEFAULT_VOL_LOOKBACK,
+                     DEFAULT_WINDOW_SESSIONS, DIRECTION_OPTIONS, TASKS,
                      TICKER_OPTIONS, TICKER_QUESTION, build_payload,
-                     parse_probabilities)
+                     parse_probabilities, server_identity, task_label,
+                     task_options, task_question, validate_native_identity)
 
 ROOT = Path(__file__).resolve().parents[1]
 PRED_FIELDS = ["file", "ticker", "end_date", "label", "p_up", "p_flat", "p_down", "latency_ms"]
 PROBE_FIELDS = ["file", "ticker", "end_date", "predicted_ticker", "p_tsla", "p_nvda", "latency_ms"]
-ERROR_FIELDS = ["file", "ticker", "end_date", "label", "mode", "api", "attempts", "error", "timestamp_utc"]
+ERROR_FIELDS = ["file", "ticker", "end_date", "label", "mode", "task", "control", "api", "attempts", "error", "timestamp_utc"]
 
 
 class RequestFailure(RuntimeError):
-    def __init__(self, message: str, retryable: bool = False):
+    def __init__(self, message: str, retryable: bool = False, status: int | None = None):
         super().__init__(message)
         self.retryable = retryable
+        self.status = status
 
 
 def local_path(value: str | Path) -> Path:
@@ -101,27 +104,29 @@ def probe_rows(rows: list[dict]) -> list[dict]:
     return selected
 
 
-def image_url(row: dict, placebo: bool) -> str:
+def image_url(row: dict, control: str) -> str:
     path = local_path(row["file"])
     content = path.read_bytes()
     with Image.open(io.BytesIO(content)) as image:
         if image.format != "PNG":
             raise ValueError("Expected PNG bytes")
         image.load()
-        if placebo:
+        if control != "image":
             buffer = io.BytesIO()
-            ImageOps.mirror(image.convert("RGB")).save(buffer, format="PNG")
+            transformed = (ImageOps.mirror(image.convert("RGB")) if control == "mirror"
+                           else Image.new("RGB", image.size, "white"))
+            transformed.save(buffer, format="PNG")
             content = buffer.getvalue()
     return "data:image/png;base64," + base64.b64encode(content).decode("ascii")
 
 
-def post_json(url: str, payload: dict, timeout: float, api_key: str) -> dict:
+def http_json(url: str, payload: dict | None, timeout: float, api_key: str) -> dict:
     headers = {"Content-Type": "application/json", "Accept": "application/json",
                "User-Agent": "jev-scorer/1.0"}  # Runpod proxy 403s Python-urllib UA
     if api_key:
         headers["Authorization"] = "Bearer " + api_key
-    request = Request(url, data=json.dumps(payload, allow_nan=False).encode("utf-8"),
-                      headers=headers, method="POST")
+    data = json.dumps(payload, allow_nan=False).encode("utf-8") if payload is not None else None
+    request = Request(url, data=data, headers=headers, method="POST" if payload is not None else "GET")
     try:
         with urlopen(request, timeout=timeout) as response:
             body = response.read(2_000_001)
@@ -133,27 +138,60 @@ def post_json(url: str, payload: dict, timeout: float, api_key: str) -> dict:
         return result
     except HTTPError as error:
         # Do not log server bodies: they can echo credentials or image payloads.
-        raise RequestFailure(f"HTTP {error.code}", error.code == 429 or error.code >= 500) from error
+        raise RequestFailure(f"HTTP {error.code}", error.code == 429 or error.code >= 500, error.code) from error
     except (URLError, TimeoutError, OSError) as error:
         raise RequestFailure(f"Transport failure: {type(error).__name__}", True) from error
     except (json.JSONDecodeError, UnicodeDecodeError) as error:
         raise RequestFailure("Server returned invalid JSON") from error
 
 
+def pin_server(args: argparse.Namespace) -> dict:
+    """Fetch server identity before writes; never silently infer a weight revision."""
+    info_url = endpoint(args.base_url, "decide", args.dry_run) + "/info"
+    attempts = 0
+    key = "" if args.dry_run else os.environ.get("JEV_API_KEY", "")
+    while True:
+        attempts += 1
+        try:
+            info = http_json(info_url, None, args.timeout, key)
+            if info.get("fake_server") and not args.dry_run:
+                raise ValueError("Fake server responses require --dry-run")
+            if args.dry_run and info.get("fake_server") is not True:
+                raise ValueError("--dry-run requires the synthetic fake server")
+            return server_identity(info, args.model_revision)
+        except RequestFailure as error:
+            if args.api == "chat-logprobs" and error.status in (404, 405):
+                if args.dry_run:
+                    raise ValueError("--dry-run requires the synthetic fake server info endpoint") from error
+                if not args.model_revision:
+                    raise ValueError("Chat server lacks /v1/decide/info; pass --model-revision explicitly") from error
+                return {"protocol": "jev27-bare-v1-chat-readout", "model": args.model,
+                        "model_revision": args.model_revision, "revision_source": "caller-declared"}
+            if not error.retryable or attempts > args.retries:
+                raise
+            time.sleep(min(2 ** (attempts - 1), 8))
+
+
 def score_row(row: dict, args: argparse.Namespace, url: str, options: tuple,
-              question: str, mode: str) -> tuple[dict | None, int, str]:
+              question: str, mode: str, control: str, identity: dict) -> tuple[dict | None, int, str]:
     started = time.perf_counter()
     attempts = 0
     try:
-        payload = build_payload(image_url(row, mode == "placebo"), options, question,
+        payload = build_payload(image_url(row, control), options, question,
                                 api=args.api, model=args.model)
         while True:
             attempts += 1
             try:
-                response = post_json(url, payload, args.timeout,
+                response = http_json(url, payload, args.timeout,
                                      "" if args.dry_run else os.environ.get("JEV_API_KEY", ""))
                 if response.get("fake_server") and not args.dry_run:
                     raise RequestFailure("Fake server responses require --dry-run")
+                if args.dry_run and response.get("fake_server") is not True:
+                    raise RequestFailure("--dry-run received a non-synthetic server response")
+                if args.api == "decide":
+                    validate_native_identity(response, identity)
+                elif response.get("model") != args.model:
+                    raise ValueError("Chat response model differs from requested decision LoRA")
                 probabilities = parse_probabilities(response, options, api=args.api)
                 break
             except RequestFailure as error:
@@ -165,8 +203,9 @@ def score_row(row: dict, args: argparse.Namespace, url: str, options: tuple,
             result.update(predicted_ticker=options[max(range(len(options)), key=probabilities.__getitem__)],
                           p_tsla=probabilities[0], p_nvda=probabilities[1])
         else:
-            result.update(label=row["label"], p_up=probabilities[0],
-                          p_flat=probabilities[1], p_down=probabilities[2])
+            by_option = dict(zip(options, probabilities))
+            result.update(label=row["label"], p_up=by_option["Up"],
+                          p_flat=by_option.get("Flat", 0.0), p_down=by_option["Down"])
         result["latency_ms"] = round((time.perf_counter() - started) * 1000, 3)
         return result, attempts, ""
     except Exception as error:
@@ -186,6 +225,11 @@ def write_json(path: Path, payload: dict) -> None:
 def append_csv(path: Path, fields: list[str], row: dict | None = None) -> None:
     with path.open("a+", newline="", encoding="utf-8") as handle:
         fcntl.flock(handle, fcntl.LOCK_EX)
+        handle.seek(0)
+        existing = csv.reader(handle)
+        header = next(existing, None)
+        if header is not None and header != fields:
+            raise ValueError(f"Existing CSV schema differs: {path.name}")
         handle.seek(0, os.SEEK_END)
         writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         if handle.tell() == 0:
@@ -222,7 +266,11 @@ def saved_rows(path: Path, fields: list[str], index: dict, options: tuple,
         try:
             probability_fields = ("p_tsla", "p_nvda") if mode == "ticker-probe" else ("p_up", "p_flat", "p_down")
             probabilities = [float(record[field]) for field in probability_fields]
-            parse_probabilities({"options": list(options), "probabilities": probabilities}, options)
+            parse_probabilities({"options": list(DIRECTION_OPTIONS) if mode != "ticker-probe" else list(options),
+                                 "probabilities": probabilities},
+                                DIRECTION_OPTIONS if mode != "ticker-probe" else options)
+            if options == ("Up", "Down") and probabilities[1] != 0:
+                raise ValueError("Binary direction predictions must have p_flat=0")
             latency = float(record["latency_ms"])
             if not math.isfinite(latency) or latency < 0 or None in record:
                 raise ValueError("Invalid latency or incomplete CSV row")
@@ -253,6 +301,13 @@ def arguments() -> argparse.Namespace:
     parser.add_argument("--api", choices=tuple(API_PATHS), default=os.environ.get("JEV_API", "decide"))
     parser.add_argument("--model", default=os.environ.get("JEV_MODEL", "jev-decision"),
                         help="LoRA model name for chat-logprobs; native /decide selects its own model")
+    parser.add_argument("--model-revision", default=os.environ.get("JEV_MODEL_REVISION", ""),
+                        help="Immutable served weight revision/hash, required if server info omits it")
+    parser.add_argument("--task", choices=TASKS, default="historical")
+    parser.add_argument("--window-sessions", type=int, default=DEFAULT_WINDOW_SESSIONS)
+    parser.add_argument("--horizon", choices=("next-5-trading-days", "next-calendar-week"), default=DEFAULT_HORIZON)
+    parser.add_argument("--vol-lookback", type=int, default=DEFAULT_VOL_LOOKBACK)
+    parser.add_argument("--flat-band", type=float, default=1 / 3)
     parser.add_argument("--batch-size", type=int, default=os.environ.get("JEV_BATCH_SIZE", "16"))
     parser.add_argument("--concurrency", type=int, default=os.environ.get("JEV_CONCURRENCY", "4"))
     parser.add_argument("--timeout", type=float, default=os.environ.get("JEV_TIMEOUT", "60"))
@@ -264,6 +319,7 @@ def arguments() -> argparse.Namespace:
     parser.add_argument("--dry-run", action="store_true", help="Loopback-only, synthetic output; default ten charts")
     modes = parser.add_mutually_exclusive_group()
     modes.add_argument("--placebo", action="store_true")
+    modes.add_argument("--blank", action="store_true", help="White PNG control with the same image dimensions")
     modes.add_argument("--ticker-probe", action="store_true")
     args = parser.parse_args()
     if not args.base_url:
@@ -276,6 +332,10 @@ def arguments() -> argparse.Namespace:
         parser.error("timeout must be positive and finite")
     if args.limit is not None and args.limit < 1:
         parser.error("limit must be positive")
+    if args.window_sessions < 1 or args.vol_lookback < 2 or not math.isfinite(args.flat_band) or args.flat_band <= 0:
+        parser.error("window must be positive, volatility lookback >=2, and flat band positive finite")
+    if args.ticker_probe and args.task != "historical":
+        parser.error("--ticker-probe must use the historical task")
     if args.dry_run and args.limit is None and not args.ticker_probe:
         args.limit = 10
     return args
@@ -285,23 +345,43 @@ def run(args: argparse.Namespace) -> int:
     url = endpoint(args.base_url, args.api, args.dry_run)
     index_path = local_path(args.index)
     rows = load_index(index_path)
-    mode = "ticker-probe" if args.ticker_probe else ("placebo" if args.placebo else "direction")
-    options = TICKER_OPTIONS if args.ticker_probe else DIRECTION_OPTIONS
-    question = TICKER_QUESTION if args.ticker_probe else DIRECTION_QUESTION
+    mode = "ticker-probe" if args.ticker_probe else ("placebo" if args.placebo else ("blank" if args.blank else "direction"))
+    control = "mirror" if args.placebo else ("blank" if args.blank else "image")
+    options = TICKER_OPTIONS if args.ticker_probe else task_options(args.task)
+    questions = {}
+    task_rows, excluded_zero = [], 0
+    for row in rows:
+        question = TICKER_QUESTION if args.ticker_probe else task_question(
+            row, args.task, window_sessions=args.window_sessions, horizon=args.horizon,
+            vol_lookback=args.vol_lookback, flat_band=args.flat_band)
+        label = row["label"] if args.ticker_probe else task_label(row, args.task, args.flat_band)
+        if label is None:
+            excluded_zero += 1
+            continue
+        task_rows.append({**row, "label": label})
+        questions[row["file"]] = question
+    if not task_rows:
+        raise ValueError("The selected task has no eligible index rows")
     fields = PROBE_FIELDS if args.ticker_probe else PRED_FIELDS
-    filenames = {"direction": "preds.csv", "placebo": "preds_placebo.csv", "ticker-probe": "ticker_probe.csv"}
+    stem = {"historical": "preds", "binary-direction": "preds_binary", "ternary-volatility": "preds_volatility"}[args.task]
+    filename = "ticker_probe.csv" if args.ticker_probe else stem + {"direction": "", "placebo": "_placebo", "blank": "_blank"}[mode] + ".csv"
     default_dir = "results/dry_run" if args.dry_run else "results"
     results_dir = local_path(args.results_dir or default_dir)
     if args.dry_run and results_dir == ROOT / "results":
         raise ValueError("--dry-run must use a separate synthetic output directory")
+    pinned = pin_server(args)
     results_dir.mkdir(parents=True, exist_ok=True)
-    output = results_dir / filenames[mode]
+    output = results_dir / filename
     meta_path = output.with_suffix(".meta.json")
     identity = {"index_file": index_path.relative_to(ROOT).as_posix(),
                 "index_sha256": hashlib.sha256(index_path.read_bytes()).hexdigest(),
                 "image_sha256": {row["file"]: hashlib.sha256(local_path(row["file"]).read_bytes()).hexdigest() for row in rows},
-                "mode": mode, "api": args.api, "model": args.model if args.api == "chat-logprobs" else None,
-                "question": question, "options": list(options), "synthetic": args.dry_run,
+                "mode": mode, "control": control, "task": args.task,
+                "task_settings": {"window_sessions": args.window_sessions, "horizon": args.horizon,
+                                  "vol_lookback": args.vol_lookback, "flat_band": args.flat_band},
+                "api": args.api, "model": args.model if args.api == "chat-logprobs" else pinned["model"],
+                "server_identity": pinned, "options": list(options), "synthetic": args.dry_run,
+                "question_sha256": {file: hashlib.sha256(question.encode()).hexdigest() for file, question in questions.items()},
                 "api_implementation_sha256": hashlib.sha256((ROOT / "src/jev_api.py").read_bytes()).hexdigest()}
     fingerprint = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
     cache = ROOT / ".cache"
@@ -323,21 +403,22 @@ def run(args: argparse.Namespace) -> int:
                     "timeout_seconds": args.timeout, "retries": args.retries,
                     "updated_at_utc": datetime.now(timezone.utc).isoformat()}
         write_json(meta_path, metadata)
-        by_file = {row["file"]: row for row in rows}
+        by_file = {row["file"]: row for row in task_rows}
         completed = saved_rows(output, fields, by_file, options, mode)
-        selected = probe_rows(rows) if args.ticker_probe else rows
+        selected = probe_rows(task_rows) if args.ticker_probe else task_rows
         if args.limit is not None:
             selected = selected[:args.limit]
         pending = [row for row in selected if row["file"] not in completed]
         skipped = len(selected) - len(pending)
         append_csv(output, fields)
-        errors_path = results_dir / "score_errors.csv"
+        errors_path = results_dir / ("score_errors.csv" if args.task == "historical" else stem + "_errors.csv")
         append_csv(errors_path, ERROR_FIELDS)
         succeeded = failed = 0
         with ThreadPoolExecutor(max_workers=args.concurrency) as executor:
             for start in range(0, len(pending), args.batch_size):
                 batch = pending[start:start + args.batch_size]
-                futures = {executor.submit(score_row, row, args, url, options, question, mode): row for row in batch}
+                futures = {executor.submit(score_row, row, args, url, options, questions[row["file"]],
+                                           mode, control, pinned): row for row in batch}
                 for future in as_completed(futures):
                     row = futures[future]
                     prediction, attempts, error = future.result()
@@ -347,11 +428,13 @@ def run(args: argparse.Namespace) -> int:
                     else:
                         append_csv(errors_path, ERROR_FIELDS, {
                             **{key: row[key] for key in ("file", "ticker", "end_date", "label")},
-                            "mode": mode, "api": args.api, "attempts": attempts, "error": error,
+                            "mode": mode, "task": args.task, "control": control,
+                            "api": args.api, "attempts": attempts, "error": error,
                             "timestamp_utc": datetime.now(timezone.utc).isoformat()})
                         failed += 1
                 print(f"{mode}: {succeeded} scored, {failed} failed, {skipped} already scored", flush=True)
-        summary = {"mode": mode, "synthetic": args.dry_run, "selected": len(selected),
+        summary = {"mode": mode, "task": args.task, "control": control, "synthetic": args.dry_run,
+                   "selected": len(selected), "excluded_zero_returns": excluded_zero,
                    "already_scored": skipped, "newly_scored": succeeded, "failed": failed,
                    "output": output.relative_to(ROOT).as_posix(), "errors": errors_path.relative_to(ROOT).as_posix()}
         write_json(meta_path, {**metadata, "last_run": summary})
@@ -362,7 +445,7 @@ def run(args: argparse.Namespace) -> int:
 def main() -> int:
     try:
         return run(arguments())
-    except (OSError, ValueError, json.JSONDecodeError) as error:
+    except (OSError, ValueError, RequestFailure, json.JSONDecodeError) as error:
         print(f"Scoring stopped: {error}", file=sys.stderr)
         return 2
 

@@ -98,7 +98,11 @@ def weekly_rows(frame: pd.DataFrame) -> list[dict]:
         if k - VOL_WEEKS + 1 < 1 or len(hist) != VOL_WEEKS:
             continue  # warmup
         sigma = float(np.std(hist, ddof=1))
+        if not np.isfinite(sigma) or sigma <= 0:
+            raise ValueError("Trailing weekly return volatility must be positive and finite")
         r = last_close[k + 1] / last_close[k] - 1
+        if not np.isfinite(r):
+            raise ValueError("Next-week return must be finite")
         label = "Flat" if abs(r) < FLAT_BAND * sigma else ("Up" if r > 0 else "Down")
         rows.append({"week_start": w.index[0].date().isoformat(),
                      "end_date": w.index[-1].date().isoformat(),

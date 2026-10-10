@@ -6,7 +6,7 @@ Can JEV-27B-VL, zero-shot, predict next-five-trading-day direction (Up, Flat, Do
 
 ## Status
 
-Stages 0, 1, and 2 are complete. Stage 3 now includes the HTTP scoring client and local fake-server validation. Ten rendered charts were scored with synthetic random probabilities, and resuming sent zero additional requests. No GPU or Runpod pod was started, no real JEV predictions were generated, and Stages 4 and 5 have not begun. The numbers below describe data and labels, not model performance.
+Stages 0-3 are complete. Historical real JEV predictions for all 252 charts, their mirrored placebos, and a 20-chart ticker probe are committed in `results/`. The original ten-chart fake-server run remains in `results/dry_run/` and is synthetic. Experiment 01 has no committed evaluation yet; the table below describes labels, not model accuracy. Later experiments and their corrected analyses are indexed in the repository README. The current review used only CPU work and did not start a pod.
 
 ## Reproduce Stages 1 and 2
 
@@ -151,12 +151,31 @@ The fake server returns random valid probabilities and only binds to loopback. `
 
 ## Validation
 
-The five pipeline tests cover the hand-calculated trailing sample standard deviation, the strict Flat boundary, the 20-session window and five-session stride/horizon, input validation, and future-price mutations. Changing later OHLCV leaves historical volatility and the earlier chart PNG bytes unchanged. Real-data labels were independently recomputed with explicit loops and matched all 252 index rows. The generated images and sample provenance were inspected. Ten scoring tests cover the exact image request and CSV schema, probability validation, ten-chart resume, interrupted CSV recovery, retry/error recovery, mode and image provenance, flipped pixels, the balanced ticker probe, and both System 1 APIs. Run all 15 tests with `.venv/bin/python -m unittest discover -s tests -v`; they use a local fake server and require no GPU.
+The CPU suite now covers causal rendering, strict label boundaries, HTTP retries and resume, corrupt probabilities, option-token calibration, native/chat fixture agreement, server identity changes, new task definitions, blank and mirrored pixels, ticker probing, and copied scorers in experiments 02-04. Weekly tests cover holiday targets and zero/nonfinite volatility. Run `.venv/bin/python -m unittest discover -s tests -v`. Golden fixtures check the documented mathematics; actual HF-vLLM numerical equivalence still needs the gated real-model test described in Experiment 04.
 
 ## Limitations and next steps
 
 Yahoo's adjusted history is retrospective and can be revised; it is not a point-in-time archive. Checksums identify this run's local data snapshots. Adjacent 20-session images overlap. The experiment is zero-shot, uses only TSLA and NVDA, and does not study trading P&L. Fine-tuning and extra tickers are out of scope.
 
-The next GPU step is to serve JEV on one 80 GB A100/H100 with the setup above and collect real probabilities. That step remains unexecuted. Keep future HF tokens and Runpod keys only in an ignored `.env` file.
+Historical inference has already run; the new explicit-task and blank-image controls below have not. The historical prompt leaves Flat undefined, so old results must not be relabeled as results from the revised prompt. Adjacent windows overlap, and ticker-probe failure would not prove that the model cannot identify or memorize the source. No trading P&L claim is made.
 
-Later evaluation will compare argmax hit rate and Brier score with the class-frequency baselines, bootstrap 95% hit-rate intervals with 1,000 resamples, plot calibration, and compare TSLA with NVDA. The brief defines model success only when the TSLA hit-rate confidence interval excludes the base rate. Planned sanity checks score horizontally flipped charts as a placebo and ask the model to identify the ticker on 20 charts. The [current model card](https://huggingface.co/autotrust/JEV-27B-VL#limitations), checked 2026-10-09, reports vision benchmark calibration while retaining a limitation that image calibration has not been measured systematically. Calibration on these stock charts remains unmeasured. The final stage will produce the three-panel LinkedIn figure and an honest model-results write-up.
+## Revised scoring tasks and controls
+
+`--task historical` preserves the old prompt. New runs must use a fresh results directory. The scorer now requests `/v1/decide/info`, validates the model, protocol and choice temperature, and pins identity in the resume fingerprint. If the server does not advertise a revision, provide `--model-revision` or `JEV_MODEL_REVISION` with the actual 40-character Hugging Face snapshot commit or 64-character weight hash. A caller-declared revision records provenance; it does not independently prove which weights the server loaded.
+
+- `--task binary-direction` asks Up or Down only, derives truth from the return sign, excludes exactly zero returns and writes `preds_binary.csv` with `p_flat=0`.
+- `--task ternary-volatility` states the precise Flat rule and the known volatility and threshold in each request, writing `preds_volatility.csv`. It requires a finite positive `sigma` column in the index. Experiment 01's original five-column index lacks sigma, so export a separately versioned index with causally computed sigma before using this task. Weekly experiment indexes already include it.
+- `--blank` replaces pixels with white while retaining the same task/context. `--placebo` mirrors the image. Their outputs and error files are separate. Neither may be combined with the other or with `--ticker-probe`.
+- `--window-sessions`, `--horizon`, `--vol-lookback` and `--flat-band` are part of the run fingerprint. Defaults here are 20, `next-5-trading-days`, 60 and 1/3; experiments 02-04 default to 5, `next-calendar-week`, 12 and 1/3.
+
+For a later authorized real run, with an already running and revision-pinned server:
+
+```sh
+export JEV_BASE_URL="https://<POD_ID>-8000.proxy.runpod.net"
+export JEV_MODEL_REVISION="<ACTUAL_HF_SNAPSHOT_COMMIT>"
+.venv/bin/python src/score.py --task binary-direction --results-dir results/revised_binary
+.venv/bin/python src/score.py --task binary-direction --blank --results-dir results/revised_binary
+.venv/bin/python src/score.py --task binary-direction --placebo --results-dir results/revised_binary
+```
+
+The stored historical files predate the stricter fingerprint and should remain unchanged. Starting a revised run in a fresh directory avoids mixing identities or prompts. Serving still uses the `jev-weights` volume in `US-MO-1`, port 8000, and `~/Desktop/runpod-setup/remote_serve.sh` as described above.

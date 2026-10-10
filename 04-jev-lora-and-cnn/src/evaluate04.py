@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 from data import ROOT, TICKERS
 import evaluate as ev
+from research.statistics import holm_adjust, inference_metadata, paired_inference, probability_metrics
 
 os.environ["MPLCONFIGDIR"] = str(ROOT / ".mplconfig")
 import matplotlib
@@ -24,9 +25,10 @@ def base_frame():
 def with_probs(probs):
     """probs: file + P + PL for test rows. Non-test rows get uniform placeholders
     (only their labels are used, for train-period base rates and frequencies)."""
-    df = base_frame().merge(probs, on="file", how="left")
+    df = base_frame().merge(probs, on="file", how="left", validate="1:1")
     test = df.split == "test"
-    assert df.loc[test, P + PL].notna().all().all(), "missing test predictions"
+    if not df.loc[test, P + PL].notna().all().all():
+        raise ValueError("Missing test predictions")
     df[P + PL] = df[P + PL].fillna(1 / 3)
     return ev.add_refs(df)
 
@@ -61,10 +63,32 @@ def main():
     cnn_t = cnn[cnn.fit_split == "test"]
     ens = cnn_t.groupby("file")[P + PL].mean().reset_index()
     models["CNN 5-seed ensemble (04)"] = ens
-    res = {"note": "Test period (2025-10-17 to 2026-10-02), 492 charts. Base rate = each ticker's train-majority class. Brier reference = each ticker's train class frequencies. Pooled CIs: week-block bootstrap (2000). Calibrated JEV placebo applies 03's train-fit calibration to placebo probabilities.",
+    res = {"note": "Exploratory historical period (2025-10-17 to 2026-10-02), 492 charts, 41 dates. Train-selected references are primary. Paired moving retained-week blocks: 1/2/4/8; four weeks primary. Oracle test-majority is descriptive. Calibrated placebo uses train-fit calibration.", "inference": inference_metadata(),
            "models": {}}
     for name, probs in models.items():
         res["models"][name] = summarize(with_probs(probs), rng)
+    # Paired head-to-head comparisons avoid comparing separate model intervals.
+    scored = {}
+    for name, probs in models.items():
+        test = with_probs(probs).query("split == 'test'").sort_values("file")
+        scored[name] = (test, probability_metrics(test[P].to_numpy(), test.label))
+    comparisons = {}
+    names = list(scored)
+    for number, challenger in enumerate(names):
+        d, model = scored[challenger]
+        for reference in names[:number]:
+            other_d, other = scored[reference]
+            if not d.file.equals(other_d.file) or not d.label.equals(other_d.label):
+                raise ValueError("Head-to-head comparisons require identical paired rows")
+            comparisons[f"{challenger} minus {reference}"] = {
+                "challenger": challenger, "reference": reference,
+                "accuracy": paired_inference(model["hit_rows"] - other["hit_rows"], d.end_date),
+                "brier_improvement": paired_inference(other["brier_rows"] - model["brier_rows"], d.end_date)}
+    family = [value[kind] for value in comparisons.values() for kind in ("accuracy", "brier_improvement")]
+    for result, adjusted in zip(family, holm_adjust([v["week_signflip"]["p_two_sided"] for v in family])):
+        result["holm_p_12_model_metric_comparisons"] = adjusted
+    res["paired_model_comparisons"] = comparisons
+    res["paired_model_comparison_family"] = "Holm adjustment across 6 model pairs x 2 metrics; this declared family does not correct adaptive historical holdout reuse"
     seeds = {}
     for s, g in cnn_t.groupby("seed"):
         seeds[int(s)] = summarize(with_probs(g[["file"] + P + PL]), rng)["pooled"]
@@ -83,7 +107,7 @@ def main():
     pe = np.array([p["placebo_hit_rate"] - p["base_rate_train_majority"] for p in pooled])
     ax[0].scatter(x + 0.15, pe, marker="x", color="grey", label="mirrored placebo")
     ax[0].axhline(0, color="grey", lw=0.8); ax[0].legend(fontsize=8)
-    ax[0].set_title("Pooled test hit rate minus train-majority base\n(95% week-block bootstrap CI)", fontsize=10)
+    ax[0].set_title("Pooled test hit rate minus train-majority base\n(95% moving 4-retained-week bootstrap CI)", fontsize=10)
     b_ = np.array([p["bss"] for p in pooled]); bci = np.array([p["ci95_bss"] for p in pooled])
     ax[1].bar(x, b_, color="tab:blue"); ax[1].errorbar(x, b_, yerr=[b_ - bci[:, 0], bci[:, 1] - b_], fmt="none", color="k", capsize=4)
     ax[1].axhline(0, color="grey", lw=0.8); ax[1].set_title("Pooled test Brier skill score vs train frequencies", fontsize=10)

@@ -1,0 +1,85 @@
+{
+  "source": "Yahoo Finance via yfinance",
+  "yfinance_version": "1.7.0",
+  "downloaded_at_utc": "2026-10-10T20:46:57.420329+00:00",
+  "requested_start": "2000-01-01",
+  "requested_as_of": "2026-10-09",
+  "last_complete_date": "2026-10-09",
+  "interval": "1d",
+  "auto_adjust": true,
+  "repair": false,
+  "tickers": {
+    "TSLA": {
+      "rows": 4096,
+      "first_session": "2010-06-29",
+      "last_session": "2026-10-09",
+      "sha256": "9ac166c2704b9d5cfa4de761e3406b60f5fd9084b63b750d4cb6b3a490dfe4a0"
+    },
+    "NVDA": {
+      "rows": 6733,
+      "first_session": "2000-01-03",
+      "last_session": "2026-10-09",
+      "sha256": "08d4e5f8d2a974e8cba6fb5a2e89cba66fb52b688e3c9dc7f91bc96af2c56519"
+    },
+    "PLTR": {
+      "rows": 1514,
+      "first_session": "2020-09-30",
+      "last_session": "2026-10-09",
+      "sha256": "d016a1b4b5d6acc1157ad692a47b9262d02e4045fde6621f380e5f8bebcf39b7"
+    },
+    "COIN": {
+      "rows": 1380,
+      "first_session": "2021-04-14",
+      "last_session": "2026-10-09",
+      "sha256": "f622b3a2e29b3010205185e0fe669572414d4fb1c8f705f278717735e6f3f568"
+    },
+    "AAPL": {
+      "rows": 6733,
+      "first_session": "2000-01-03",
+      "last_session": "2026-10-09",
+      "sha256": "a59e0e91fa128bf6863063414c894e244884a838bb645de8c22bde6316c23f02"
+    },
+    "MSFT": {
+      "rows": 6733,
+      "first_session": "2000-01-03",
+      "last_session": "2026-10-09",
+      "sha256": "e693804369d1c7580e8a02e1377de18657d6f7948c48ecc5adfc530f5e5b84e9"
+    },
+    "AMZN": {
+      "rows": 6733,
+      "first_session": "2000-01-03",
+      "last_session": "2026-10-09",
+      "sha256": "3e0de74a6dc837d8d6bad784a20e44e7501fa8410c9a0ac4e93da2221558f442"
+    },
+    "META": {
+      "rows": 3619,
+      "first_session": "2012-05-18",
+      "last_session": "2026-10-09",
+      "sha256": "af90256293411896e3ce4cedeaa63d2f6b3e2b109c6e84caa017f9839d2c69c4"
+    },
+    "KO": {
+      "rows": 6733,
+      "first_session": "2000-01-03",
+      "last_session": "2026-10-09",
+      "sha256": "aed2e04fb3c1d8cbdd3f4efce42729605f3a0b5f8a663151baac2c4b0d61a816"
+    },
+    "JNJ": {
+      "rows": 6733,
+      "first_session": "2000-01-03",
+      "last_session": "2026-10-09",
+      "sha256": "d4f2fc717f6605d2707c9b52fa3cf24c6b0336726c527d3d046622115d29d2d3"
+    },
+    "PG": {
+      "rows": 6733,
+      "first_session": "2000-01-03",
+      "last_session": "2026-10-09",
+      "sha256": "794309d867d4598e3f95c846e1efe792f957f993f3eea9d1ce4a3eb57c91cf79"
+    },
+    "SPY": {
+      "rows": 6733,
+      "first_session": "2000-01-03",
+      "last_session": "2026-10-09",
+      "sha256": "6a7c8bb83c22dcbb4c3712d3e5848f963dec394027646c89e4a0839cd6fdea94"
+    }
+  }
+}

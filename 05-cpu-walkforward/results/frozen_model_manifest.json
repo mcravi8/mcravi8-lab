@@ -1,0 +1,19 @@
+{
+  "protocol_sha256": "93eb54750f504e2c598f8420aa9af3997d789226eef20cdd16e762fe1df9b6ee",
+  "features_sha256": "2c87ee814f4fff094f255127487079182ac1c699bbc4074e80c436e9794bf737",
+  "sklearn_version": "1.9.1",
+  "train_start": "2021-10-15",
+  "train_last_target": "2026-10-09",
+  "train_rows": 2520,
+  "train_weeks": 210,
+  "task": "ternary_volatility",
+  "comparator_prior": [
+    0.38293650793650796,
+    0.2837301587301587,
+    0.3333333333333333
+  ],
+  "model_file": "models/prospective_context.json",
+  "model_sha256": "3505b1baf5e4c19d74adbb889f1ef47afc1ff42cf9d773e16534daddfd6a402c",
+  "reload_verified": true,
+  "prospective_status": "not evaluated: future observations unavailable"
+}

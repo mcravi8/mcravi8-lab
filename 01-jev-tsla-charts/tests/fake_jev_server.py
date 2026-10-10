@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import base64
 import io
+import hashlib
 import ipaddress
 import json
 import math
@@ -19,6 +20,21 @@ import threading
 from typing import Any
 
 from PIL import Image
+
+# Independent fixture copy of the pinned model assets, not imported from the client.
+HEAD_BIASES = (-0.00017852929886430502, -0.00010998119250871241, -0.00011865551641676575)
+TEMPERATURE = 1.0161280671450397
+RAW_TEMPLATE = ("{%- for m in messages -%}{%- for c in m['content'] -%}"
+                "{%- if c['type'] == 'text' -%}{{ c['text'] }}"
+                "{%- else -%}<|vision_start|><|image_pad|><|vision_end|>"
+                "{%- endif -%}{%- endfor -%}{%- endfor -%}")
+
+
+def softmax(logits: list[float]) -> list[float]:
+    maximum = max(logits)
+    weights = [math.exp(value - maximum) for value in logits]
+    total = sum(weights)
+    return [value / total for value in weights]
 
 
 def decode_png(data_url: str) -> Image.Image:
@@ -44,16 +60,20 @@ class FakeJevServer(ThreadingHTTPServer):
     def __init__(self, address: tuple[str, int], seed: int, fail_first: int):
         super().__init__(address, FakeJevHandler)
         self.requests: list[dict[str, Any]] = []
+        self.info_requests = 0
         self.fail_first = fail_first
         self.lock = threading.Lock()
-        self.rng = random.Random(seed)
+        self.seed = seed
+        self.info = {"protocol": "jev27-bare-v1", "model": "autotrust/JEV-27B-VL",
+                     "model_type": "qwen3_5", "native_choice_options": 16,
+                     "temperatures": {"choice": TEMPERATURE},
+                     "model_revision": "synthetic-fixture-weights-v1", "fake_server": True}
 
-    def probabilities(self, count: int) -> list[float]:
-        with self.lock:
-            values = [self.rng.uniform(0.01, 1.0) for _ in range(count)]
-        total = sum(values)
-        return [value / total for value in values]
-
+    def logits(self, image_url: str, question: str, options: list[str]) -> list[float]:
+        # Same inputs produce the same mock logits on both APIs, even concurrently.
+        material = json.dumps([self.seed, image_url, question, options]).encode()
+        rng = random.Random(int.from_bytes(hashlib.sha256(material).digest(), "big"))
+        return [rng.uniform(-2.0, 2.0) for _ in options]
 
 class FakeJevHandler(BaseHTTPRequestHandler):
     server: FakeJevServer
@@ -73,6 +93,11 @@ class FakeJevHandler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
         if self.path == "/health":
             self.send_json(200, {"status": "ok", "fake_server": True})
+        elif self.path == "/v1/decide/info":
+            with self.server.lock:
+                self.server.info_requests += 1
+                info = dict(self.server.info)
+            self.send_json(200, info)
         else:
             self.send_json(404, {"error": "Unknown fixture endpoint", "fake_server": True})
 
@@ -110,12 +135,17 @@ class FakeJevHandler(BaseHTTPRequestHandler):
             raise ValueError("Expected documented image decision state")
         decode_png(state[1]["image"])
         options = body.get("options")
-        if options not in (["Up", "Flat", "Down"], ["TSLA", "NVDA"]):
+        if options not in (["Up", "Flat", "Down"], ["Up", "Down"], ["TSLA", "NVDA"]):
             raise ValueError("Unexpected decision options")
         if not isinstance(body.get("question"), str) or not body["question"]:
             raise ValueError("Expected a question")
-        probabilities = self.server.probabilities(len(options))
+        logits = self.server.logits(state[1]["image"], body["question"], options)
+        probabilities = softmax([(value + bias) / TEMPERATURE for value, bias in zip(logits, HEAD_BIASES)])
         self.send_json(200, {"options": options, "probabilities": probabilities,
+                             "kind": "choice", "effective_kind": "choice", "adaptation": "native",
+                             "protocol": self.server.info["protocol"], "model": self.server.info["model"],
+                             **({"model_revision": self.server.info["model_revision"]}
+                                if "model_revision" in self.server.info else {}),
                              "fake_server": True})
 
     def chat(self, body: dict[str, Any]) -> None:
@@ -131,7 +161,8 @@ class FakeJevHandler(BaseHTTPRequestHandler):
         if (body.get("add_generation_prompt") is not False
                 or body.get("add_special_tokens") is not False
                 or body.get("top_k") != 0 or body.get("top_p") != 1.0
-                or not isinstance(body.get("chat_template"), str)):
+                or body.get("min_p") != 0.0 or body.get("repetition_penalty") != 1.0
+                or body.get("chat_template") != RAW_TEMPLATE):
             raise ValueError("Chat fixture requires the raw untruncated decision template")
         messages = body.get("messages")
         if not isinstance(messages, list):
@@ -147,14 +178,21 @@ class FakeJevHandler(BaseHTTPRequestHandler):
                        if item.get("type") == "text")
         if not text.startswith("[kind] choice\n[state] Chart: ") or not text.endswith("\n[decision]:"):
             raise ValueError("Expected the model-card raw decision prompt")
-        probabilities = self.server.probabilities(len(allowed))
+        question, option_block = text.split("\n[question] ", 1)[1].split("\n[options]\n", 1)
+        lines = option_block.removesuffix("\n[decision]:").splitlines()
+        options = [line.split(") ", 1)[1] for line in lines]
+        if options not in (["Up", "Flat", "Down"], ["Up", "Down"], ["TSLA", "NVDA"]):
+            raise ValueError("Unexpected choice option lines")
+        if len(options) != len(allowed) or lines != [f"{chr(65 + i)}) {value}" for i, value in enumerate(options)]:
+            raise ValueError("Choice labels must match allowed token ids")
+        probabilities = softmax(self.server.logits(images[0], question, options))
         top = [{"token": f"token_id:{token_id}", "logprob": math.log(probability),
                 "bytes": [65 + position]} for position, (token_id, probability)
                in enumerate(zip(allowed, probabilities))]
         best = max(range(len(allowed)), key=probabilities.__getitem__)
         self.send_json(200, {
             "id": "synthetic-jev", "object": "chat.completion",
-            "model": "autotrust/JEV-27B-VL", "fake_server": True,
+            "model": body.get("model"), "fake_server": True,
             "choices": [{"index": 0, "message": {"role": "assistant",
                          "content": chr(65 + best)}, "finish_reason": "length",
                          "logprobs": {"content": [{"token": top[best]["token"],

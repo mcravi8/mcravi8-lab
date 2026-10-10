@@ -13,7 +13,7 @@ https://huggingface.co/autotrust/JEV-27B-VL/blob/main/calibration.json
 from __future__ import annotations
 
 import math
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from typing import Any
 
 API_PATHS = {
@@ -27,6 +27,11 @@ DIRECTION_QUESTION = (
 )
 TICKER_OPTIONS = ("TSLA", "NVDA")
 TICKER_QUESTION = "Which ticker does this unlabeled stock chart show?"
+TASKS = ("historical", "binary-direction", "ternary-volatility")
+DEFAULT_WINDOW_SESSIONS = 20
+DEFAULT_HORIZON = "next-5-trading-days"
+DEFAULT_VOL_LOOKBACK = 60
+SYSTEM1_PROTOCOL = "jev27-bare-v1"
 
 # Native choice slots start at decision_head.json slot 8. Only A/B/C are
 # needed here; their token IDs are independent of the option text's tokens.
@@ -47,6 +52,129 @@ RAW_CHAT_TEMPLATE = (
     "{%- else -%}<|vision_start|><|image_pad|><|vision_end|>"
     "{%- endif -%}{%- endfor -%}{%- endfor -%}"
 )
+
+
+def task_options(task: str) -> tuple[str, ...]:
+    if task not in TASKS:
+        raise ValueError(f"Unknown direction task: {task}")
+    return ("Up", "Down") if task == "binary-direction" else DIRECTION_OPTIONS
+
+
+def _row_number(row: Mapping[str, Any], name: str) -> float:
+    try:
+        value = float(row[name])
+    except (KeyError, TypeError, ValueError) as error:
+        raise ValueError(f"Task requires a finite {name} column in the index") from error
+    if not math.isfinite(value):
+        raise ValueError(f"Task requires a finite {name} column in the index")
+    return value
+
+
+def task_label(row: Mapping[str, Any], task: str, flat_band: float = 1 / 3) -> str | None:
+    """Read/relabel evaluation truth locally; none of it is sent to the model."""
+    task_options(task)
+    if task == "historical":
+        return row["label"]
+    forward = _row_number(row, "fwd_ret")
+    if task == "binary-direction":
+        return None if forward == 0 else ("Up" if forward > 0 else "Down")
+    sigma = _row_number(row, "sigma")
+    if sigma <= 0 or not math.isfinite(flat_band) or flat_band <= 0:
+        raise ValueError("Ternary task requires positive finite sigma and flat_band")
+    threshold = flat_band * sigma
+    if not math.isfinite(threshold) or threshold <= 0:
+        raise ValueError("Ternary Flat threshold must be positive and finite")
+    return "Flat" if abs(forward) < threshold else ("Up" if forward > 0 else "Down")
+
+
+def task_question(row: Mapping[str, Any], task: str, *,
+                  window_sessions: int = DEFAULT_WINDOW_SESSIONS,
+                  horizon: str = DEFAULT_HORIZON,
+                  vol_lookback: int = DEFAULT_VOL_LOOKBACK,
+                  flat_band: float = 1 / 3) -> str:
+    """Only the image description and known trailing sigma enter future prompts."""
+    task_options(task)
+    if task == "historical":
+        return DIRECTION_QUESTION
+    if window_sessions < 1 or vol_lookback < 2:
+        raise ValueError("Window must be positive and volatility lookback at least two")
+    if horizon == "next-5-trading-days":
+        period = "over the next 5 trading sessions"
+        historical_period = "five-trading-session"
+    elif horizon == "next-calendar-week":
+        period = "to the final trading session of the next calendar trading week"
+        historical_period = "calendar-week"
+    else:
+        raise ValueError("Unsupported forecast horizon")
+    question = (f"This image contains {window_sessions} completed trading sessions of daily "
+                f"candlesticks and volume. Forecast the adjusted close-to-close return {period}, "
+                "measured from the last visible session's adjusted close. ")
+    if task == "binary-direction":
+        return question + ("Choose Up if that return is strictly positive or Down if it is "
+                           "strictly negative. There is no Flat option.")
+    sigma = _row_number(row, "sigma")
+    if sigma <= 0 or not math.isfinite(flat_band) or flat_band <= 0:
+        raise ValueError("Ternary task requires positive finite sigma and flat_band")
+    threshold = flat_band * sigma
+    if not math.isfinite(threshold) or threshold <= 0:
+        raise ValueError("Ternary Flat threshold must be positive and finite")
+    return question + (
+        f"The sample standard deviation of historical {historical_period} returns from "
+        f"the last {vol_lookback} completed observations, known at the forecast time, is "
+        f"sigma = {sigma:.12g} ({sigma * 100:.8g}%). The Flat threshold is "
+        f"{flat_band:.12g} times sigma = {threshold:.12g} ({threshold * 100:.8g}%). "
+        "Choose Flat exactly when abs(next-period return) is strictly less than that "
+        "threshold; otherwise choose Up for a positive return and Down for a negative "
+        "return. Equality at either threshold is Up or Down."
+    )
+
+
+def server_identity(info: dict[str, Any], declared_revision: str = "") -> dict[str, Any]:
+    """Pin native System 1 identity; a revision supplied by the caller is explicit."""
+    if not isinstance(info, dict) or info.get("protocol") != SYSTEM1_PROTOCOL:
+        raise ValueError("Server info must advertise the JEV System 1 protocol")
+    model = info.get("model")
+    if not isinstance(model, str) or not model:
+        raise ValueError("Server info must identify its served model")
+    temperatures = info.get("temperatures")
+    if not isinstance(temperatures, dict):
+        raise ValueError("Server info is missing calibration temperatures")
+    temperature = _number(temperatures.get("choice"), "server choice temperature")
+    if not math.isclose(temperature, CHOICE_TEMPERATURE, rel_tol=0, abs_tol=1e-9):
+        raise ValueError("Server choice calibration differs from the pinned JEV readout")
+    advertised = info.get("weights_sha256") or info.get("model_revision")
+    if advertised is not None and (not isinstance(advertised, str) or not advertised.strip()):
+        raise ValueError("Server model revision/hash is invalid")
+    if advertised and declared_revision and advertised != declared_revision:
+        raise ValueError("Declared model revision/hash differs from the server")
+    revision = advertised or declared_revision
+    if not revision:
+        raise ValueError("Server info lacks a weight revision/hash; pass --model-revision explicitly")
+    return {"protocol": info["protocol"], "model": model,
+            "model_type": info.get("model_type"), "choice_temperature": temperature,
+            "native_choice_options": info.get("native_choice_options"),
+            "model_revision": revision,
+            "revision_source": "server" if advertised else "caller-declared",
+            "decision_head_sha256": info.get("decision_head_sha256"),
+            "calibration_sha256": info.get("calibration_sha256")}
+
+
+def validate_native_identity(response: dict[str, Any], identity: dict[str, Any]) -> None:
+    """Reject another protocol/model and any System 2 mixture before saving it."""
+    if response.get("protocol") != identity["protocol"] or response.get("model") != identity["model"]:
+        raise ValueError("Native response model/protocol differs from pinned server identity")
+    if response.get("kind") != "choice" or response.get("effective_kind") != "choice":
+        raise ValueError("Native response is not a choice decision")
+    if response.get("adaptation") != "native":
+        raise ValueError("Native response uses an unexpected decision adaptation")
+    thinking = response.get("thinking", {})
+    if not isinstance(thinking, dict):
+        raise ValueError("Native response has invalid thinking metadata")
+    if response.get("system", 1) != 1 or thinking.get("used", False) or thinking.get("mode", "off") != "off":
+        raise ValueError("Native response included System 2 thinking")
+    revision = response.get("weights_sha256") or response.get("model_revision")
+    if revision is not None and revision != identity["model_revision"]:
+        raise ValueError("Native response weight revision/hash changed during scoring")
 
 
 def _options(options: Sequence[str]) -> list[str]:
@@ -132,6 +260,8 @@ def build_payload(
         # Override generation_config.json truncation of processed logprobs.
         "top_k": 0,
         "top_p": 1.0,
+        "min_p": 0.0,
+        "repetition_penalty": 1.0,
         "logprobs": True,
         "top_logprobs": len(requested),
         "allowed_token_ids": list(CHOICE_TOKEN_IDS[:len(requested)]),
@@ -183,7 +313,10 @@ def parse_probabilities(
         if token_id in expected_ids:
             if token_id in logprobs:
                 raise ValueError(f"JEV chat duplicated option token {token_id}")
-            logprobs[token_id] = _number(entry.get("logprob"), "option logprob")
+            value = _number(entry.get("logprob"), "option logprob")
+            if value > 1e-7:
+                raise ValueError("JEV option logprob cannot be positive")
+            logprobs[token_id] = value
     if any(token_id not in logprobs for token_id in expected_ids):
         raise ValueError("JEV chat response is missing a requested option logprob")
     logits = [

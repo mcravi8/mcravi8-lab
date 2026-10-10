@@ -1,0 +1,4416 @@
+{
+  "status": "exploratory development only; no independent confirmation",
+  "tasks": {
+    "ternary_volatility": {
+      "always_up": {
+        "hit_rate": 0.40455878432418024,
+        "brier": 1.1908824313516395,
+        "log_loss": 20.565811004540922,
+        "n": 7502,
+        "weeks": 718,
+        "balanced_accuracy": 0.3333333333333333,
+        "bss_vs_pooled_prior": -0.8033833850266812,
+        "brier_improvement_inference": {
+          "mean_difference": -0.5305223319743126,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.5677149450837622,
+              -0.49430501182565567
+            ],
+            "2": [
+              -0.5671735232335987,
+              -0.4925829590928737
+            ],
+            "4": [
+              -0.5632924187213817,
+              -0.4952215432612305
+            ],
+            "8": [
+              -0.5616955776239834,
+              -0.4960915287222739
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 718,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": 0.0,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              0.0,
+              0.0
+            ],
+            "2": [
+              0.0,
+              0.0
+            ],
+            "4": [
+              0.0,
+              0.0
+            ],
+            "8": [
+              0.0,
+              0.0
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 1.0,
+            "exact": true,
+            "nonzero_date_clusters": 0,
+            "resamples": 1,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.4301369863013699,
+            "brier": 1.1397260273972603,
+            "log_loss": 19.682371205866907,
+            "n": 365,
+            "brier_improvement": -0.4860418909106816,
+            "accuracy_improvement": 0.0
+          },
+          "2011": {
+            "hit_rate": 0.34595959595959597,
+            "brier": 1.3080808080808082,
+            "log_loss": 22.58975526838855,
+            "n": 396,
+            "brier_improvement": -0.6397888339415577,
+            "accuracy_improvement": 0.0
+          },
+          "2012": {
+            "hit_rate": 0.3468354430379747,
+            "brier": 1.3063291139240507,
+            "log_loss": 22.559504581992297,
+            "n": 395,
+            "brier_improvement": -0.6336682820990891,
+            "accuracy_improvement": 0.0
+          },
+          "2013": {
+            "hit_rate": 0.4627906976744186,
+            "brier": 1.0744186046511628,
+            "log_loss": 18.55455197028923,
+            "n": 430,
+            "brier_improvement": -0.4195851534453011,
+            "accuracy_improvement": 0.0
+          },
+          "2014": {
+            "hit_rate": 0.4720930232558139,
+            "brier": 1.0558139534883721,
+            "log_loss": 18.233261027080754,
+            "n": 430,
+            "brier_improvement": -0.41025151291715656,
+            "accuracy_improvement": 0.0
+          },
+          "2015": {
+            "hit_rate": 0.40930232558139534,
+            "brier": 1.1813953488372093,
+            "log_loss": 20.401974893737936,
+            "n": 430,
+            "brier_improvement": -0.5259021840594549,
+            "accuracy_improvement": 0.0
+          },
+          "2016": {
+            "hit_rate": 0.3886363636363636,
+            "brier": 1.2227272727272727,
+            "log_loss": 21.11575193234312,
+            "n": 440,
+            "brier_improvement": -0.5584939530509285,
+            "accuracy_improvement": 0.0
+          },
+          "2017": {
+            "hit_rate": 0.4232558139534884,
+            "brier": 1.1534883720930234,
+            "log_loss": 19.920038478925232,
+            "n": 430,
+            "brier_improvement": -0.49624704401705977,
+            "accuracy_improvement": 0.0
+          },
+          "2018": {
+            "hit_rate": 0.36904761904761907,
+            "brier": 1.2619047619047619,
+            "log_loss": 21.79232320155079,
+            "n": 420,
+            "brier_improvement": -0.591107008132471,
+            "accuracy_improvement": 0.0
+          },
+          "2019": {
+            "hit_rate": 0.4558139534883721,
+            "brier": 1.0883720930232559,
+            "log_loss": 18.795520177695582,
+            "n": 430,
+            "brier_improvement": -0.4409977285018928,
+            "accuracy_improvement": 0.0
+          },
+          "2020": {
+            "hit_rate": 0.4372093023255814,
+            "brier": 1.1255813953488372,
+            "log_loss": 19.438102064112528,
+            "n": 430,
+            "brier_improvement": -0.4736722552731206,
+            "accuracy_improvement": 0.0
+          },
+          "2021": {
+            "hit_rate": 0.44466403162055335,
+            "brier": 1.1106719367588933,
+            "log_loss": 19.180624835908898,
+            "n": 506,
+            "brier_improvement": -0.46097637393997815,
+            "accuracy_improvement": 0.0
+          },
+          "2022": {
+            "hit_rate": 0.32170542635658916,
+            "brier": 1.3565891472868217,
+            "log_loss": 23.42746460895104,
+            "n": 516,
+            "brier_improvement": -0.6709963721253995,
+            "accuracy_improvement": 0.0
+          },
+          "2023": {
+            "hit_rate": 0.4166666666666667,
+            "brier": 1.1666666666666667,
+            "log_loss": 20.147619563697894,
+            "n": 504,
+            "brier_improvement": -0.509071275550543,
+            "accuracy_improvement": 0.0
+          },
+          "2024": {
+            "hit_rate": 0.40674603174603174,
+            "brier": 1.1865079365079365,
+            "log_loss": 20.49026615491725,
+            "n": 504,
+            "brier_improvement": -0.5284388170004987,
+            "accuracy_improvement": 0.0
+          },
+          "2025": {
+            "hit_rate": 0.37601626016260165,
+            "brier": 1.2479674796747968,
+            "log_loss": 21.55163486430402,
+            "n": 492,
+            "brier_improvement": -0.5823630114349925,
+            "accuracy_improvement": 0.0
+          },
+          "2026": {
+            "hit_rate": 0.3723958333333333,
+            "brier": 1.2552083333333333,
+            "log_loss": 21.676679977014256,
+            "n": 384,
+            "brier_improvement": -0.5894211529342733,
+            "accuracy_improvement": 0.0
+          }
+        },
+        "years_with_positive_brier_improvement": 0
+      },
+      "logistic_context": {
+        "hit_rate": 0.3800319914689416,
+        "brier": 0.6717320182133548,
+        "log_loss": 1.1075224336561766,
+        "n": 7502,
+        "weeks": 718,
+        "balanced_accuracy": 0.34680218034617405,
+        "bss_vs_pooled_prior": -0.017220784306548387,
+        "brier_improvement_inference": {
+          "mean_difference": -0.011371918836027886,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.016399815125154548,
+              -0.0065811542169789215
+            ],
+            "2": [
+              -0.016442255775108636,
+              -0.006507275529925056
+            ],
+            "4": [
+              -0.01660232409260599,
+              -0.006094536570019778
+            ],
+            "8": [
+              -0.017021739407352653,
+              -0.0060348635869869275
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 718,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": -0.024526792855238604,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.040124091797979294,
+              -0.008635141422661773
+            ],
+            "2": [
+              -0.04123633306530981,
+              -0.009049053423438895
+            ],
+            "4": [
+              -0.04034205820008981,
+              -0.009155607166556081
+            ],
+            "8": [
+              -0.03987071670294522,
+              -0.01023079132695521
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 0.0028997100289971,
+            "exact": false,
+            "nonzero_date_clusters": 527,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.3561643835616438,
+            "brier": 0.6727904294424858,
+            "log_loss": 1.1065798295746274,
+            "n": 365,
+            "brier_improvement": -0.019106292955907156,
+            "accuracy_improvement": -0.07397260273972606
+          },
+          "2011": {
+            "hit_rate": 0.3383838383838384,
+            "brier": 0.6810039384732907,
+            "log_loss": 1.1219668071872935,
+            "n": 396,
+            "brier_improvement": -0.012711964334040204,
+            "accuracy_improvement": -0.007575757575757569
+          },
+          "2012": {
+            "hit_rate": 0.3367088607594937,
+            "brier": 0.6765870835292799,
+            "log_loss": 1.1140458468058052,
+            "n": 395,
+            "brier_improvement": -0.003926251704318262,
+            "accuracy_improvement": -0.010126582278481011
+          },
+          "2013": {
+            "hit_rate": 0.37209302325581395,
+            "brier": 0.6759337663789956,
+            "log_loss": 1.1148246869731313,
+            "n": 430,
+            "brier_improvement": -0.021100315173133932,
+            "accuracy_improvement": -0.09069767441860466
+          },
+          "2014": {
+            "hit_rate": 0.42093023255813955,
+            "brier": 0.6480690249723495,
+            "log_loss": 1.0692303367211904,
+            "n": 430,
+            "brier_improvement": -0.0025065844011339378,
+            "accuracy_improvement": -0.051162790697674376
+          },
+          "2015": {
+            "hit_rate": 0.3930232558139535,
+            "brier": 0.6468738928356871,
+            "log_loss": 1.0640265627083896,
+            "n": 430,
+            "brier_improvement": 0.008619271942067352,
+            "accuracy_improvement": -0.016279069767441867
+          },
+          "2016": {
+            "hit_rate": 0.39090909090909093,
+            "brier": 0.6675491669882121,
+            "log_loss": 1.0970656337415239,
+            "n": 440,
+            "brier_improvement": -0.0033158473118679588,
+            "accuracy_improvement": 0.002272727272727315
+          },
+          "2017": {
+            "hit_rate": 0.3627906976744186,
+            "brier": 0.6913297126092613,
+            "log_loss": 1.142476872356738,
+            "n": 430,
+            "brier_improvement": -0.034088384533297766,
+            "accuracy_improvement": -0.06046511627906975
+          },
+          "2018": {
+            "hit_rate": 0.35,
+            "brier": 0.6879241561094275,
+            "log_loss": 1.1328511334659888,
+            "n": 420,
+            "brier_improvement": -0.01712640233713658,
+            "accuracy_improvement": -0.01904761904761909
+          },
+          "2019": {
+            "hit_rate": 0.45348837209302323,
+            "brier": 0.6500194615080825,
+            "log_loss": 1.0753700849715127,
+            "n": 430,
+            "brier_improvement": -0.002645096986719442,
+            "accuracy_improvement": -0.0023255813953488857
+          },
+          "2020": {
+            "hit_rate": 0.4232558139534884,
+            "brier": 0.6577477916465824,
+            "log_loss": 1.0829894431975842,
+            "n": 430,
+            "brier_improvement": -0.005838651570865827,
+            "accuracy_improvement": -0.013953488372093037
+          },
+          "2021": {
+            "hit_rate": 0.4209486166007905,
+            "brier": 0.6626226984147079,
+            "log_loss": 1.1010828100222847,
+            "n": 506,
+            "brier_improvement": -0.012927135595792727,
+            "accuracy_improvement": -0.02371541501976282
+          },
+          "2022": {
+            "hit_rate": 0.3313953488372093,
+            "brier": 0.7092519817631475,
+            "log_loss": 1.1687859524053874,
+            "n": 516,
+            "brier_improvement": -0.02365920660172538,
+            "accuracy_improvement": 0.009689922480620117
+          },
+          "2023": {
+            "hit_rate": 0.36507936507936506,
+            "brier": 0.6779148671682733,
+            "log_loss": 1.1163813892903456,
+            "n": 504,
+            "brier_improvement": -0.020319476052149565,
+            "accuracy_improvement": -0.051587301587301626
+          },
+          "2024": {
+            "hit_rate": 0.3948412698412698,
+            "brier": 0.6637164510003888,
+            "log_loss": 1.095393001612147,
+            "n": 504,
+            "brier_improvement": -0.0056473314929509355,
+            "accuracy_improvement": -0.011904761904761918
+          },
+          "2025": {
+            "hit_rate": 0.3678861788617886,
+            "brier": 0.6793930987891434,
+            "log_loss": 1.1175300407759967,
+            "n": 492,
+            "brier_improvement": -0.013788630549339098,
+            "accuracy_improvement": -0.008130081300813052
+          },
+          "2026": {
+            "hit_rate": 0.375,
+            "brier": 0.6650846114375426,
+            "log_loss": 1.0964663507528007,
+            "n": 384,
+            "brier_improvement": 0.0007025689615173247,
+            "accuracy_improvement": 0.002604166666666685
+          }
+        },
+        "years_with_positive_brier_improvement": 2
+      },
+      "logistic_shape": {
+        "hit_rate": 0.37749933351106374,
+        "brier": 0.6725696161163879,
+        "log_loss": 1.1078200764412238,
+        "n": 7502,
+        "weeks": 718,
+        "balanced_accuracy": 0.337904428853986,
+        "bss_vs_pooled_prior": -0.01848917999523847,
+        "brier_improvement_inference": {
+          "mean_difference": -0.01220951673906092,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.016648851478192058,
+              -0.007942218931104845
+            ],
+            "2": [
+              -0.016625486553388268,
+              -0.007969269178692609
+            ],
+            "4": [
+              -0.01662229616703253,
+              -0.007789227062338739
+            ],
+            "8": [
+              -0.016662623415090276,
+              -0.007713938091335523
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 718,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": -0.027059450813116503,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.04214417894175277,
+              -0.011972742103713852
+            ],
+            "2": [
+              -0.0425364710698396,
+              -0.011824225541169332
+            ],
+            "4": [
+              -0.04241136946125603,
+              -0.011908098785256562
+            ],
+            "8": [
+              -0.04292083510152569,
+              -0.011843796017627169
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 0.00029997000299970003,
+            "exact": false,
+            "nonzero_date_clusters": 482,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.3698630136986301,
+            "brier": 0.6768640037518915,
+            "log_loss": 1.1133779669854755,
+            "n": 365,
+            "brier_improvement": -0.023179867265312848,
+            "accuracy_improvement": -0.060273972602739756
+          },
+          "2011": {
+            "hit_rate": 0.3484848484848485,
+            "brier": 0.6742869846265129,
+            "log_loss": 1.1107322822565708,
+            "n": 396,
+            "brier_improvement": -0.005995010487262475,
+            "accuracy_improvement": 0.0025252525252525415
+          },
+          "2012": {
+            "hit_rate": 0.35443037974683544,
+            "brier": 0.6808002667876965,
+            "log_loss": 1.1204229876471612,
+            "n": 395,
+            "brier_improvement": -0.008139434962734837,
+            "accuracy_improvement": 0.0075949367088607445
+          },
+          "2013": {
+            "hit_rate": 0.3511627906976744,
+            "brier": 0.671125438869863,
+            "log_loss": 1.1073620919723062,
+            "n": 430,
+            "brier_improvement": -0.016291987664001306,
+            "accuracy_improvement": -0.11162790697674418
+          },
+          "2014": {
+            "hit_rate": 0.41627906976744183,
+            "brier": 0.6515400812726623,
+            "log_loss": 1.0740803249220239,
+            "n": 430,
+            "brier_improvement": -0.005977640701446685,
+            "accuracy_improvement": -0.05581395348837209
+          },
+          "2015": {
+            "hit_rate": 0.4325581395348837,
+            "brier": 0.6431776339934673,
+            "log_loss": 1.0609242907087968,
+            "n": 430,
+            "brier_improvement": 0.012315530784287154,
+            "accuracy_improvement": 0.023255813953488358
+          },
+          "2016": {
+            "hit_rate": 0.3659090909090909,
+            "brier": 0.6777233134878096,
+            "log_loss": 1.1119505649297887,
+            "n": 440,
+            "brier_improvement": -0.013489993811465428,
+            "accuracy_improvement": -0.022727272727272707
+          },
+          "2017": {
+            "hit_rate": 0.35348837209302325,
+            "brier": 0.6952891301487311,
+            "log_loss": 1.1448412540363717,
+            "n": 430,
+            "brier_improvement": -0.03804780207276748,
+            "accuracy_improvement": -0.06976744186046513
+          },
+          "2018": {
+            "hit_rate": 0.3523809523809524,
+            "brier": 0.6850972299839901,
+            "log_loss": 1.1290416979663662,
+            "n": 420,
+            "brier_improvement": -0.014299476211699247,
+            "accuracy_improvement": -0.016666666666666663
+          },
+          "2019": {
+            "hit_rate": 0.4232558139534884,
+            "brier": 0.6538129981288863,
+            "log_loss": 1.079819577642822,
+            "n": 430,
+            "brier_improvement": -0.00643863360752317,
+            "accuracy_improvement": -0.032558139534883734
+          },
+          "2020": {
+            "hit_rate": 0.4069767441860465,
+            "brier": 0.6630247676265008,
+            "log_loss": 1.0963735957318974,
+            "n": 430,
+            "brier_improvement": -0.011115627550784213,
+            "accuracy_improvement": -0.030232558139534904
+          },
+          "2021": {
+            "hit_rate": 0.40711462450592883,
+            "brier": 0.6605321642614437,
+            "log_loss": 1.09223159623998,
+            "n": 506,
+            "brier_improvement": -0.010836601442528515,
+            "accuracy_improvement": -0.03754940711462451
+          },
+          "2022": {
+            "hit_rate": 0.3546511627906977,
+            "brier": 0.7079843511689892,
+            "log_loss": 1.1568359929734024,
+            "n": 516,
+            "brier_improvement": -0.022391576007567027,
+            "accuracy_improvement": 0.03294573643410853
+          },
+          "2023": {
+            "hit_rate": 0.36904761904761907,
+            "brier": 0.6711261559169703,
+            "log_loss": 1.1053198666769974,
+            "n": 504,
+            "brier_improvement": -0.013530764800846584,
+            "accuracy_improvement": -0.047619047619047616
+          },
+          "2024": {
+            "hit_rate": 0.376984126984127,
+            "brier": 0.6640188779314671,
+            "log_loss": 1.0946110853611388,
+            "n": 504,
+            "brier_improvement": -0.005949758424029228,
+            "accuracy_improvement": -0.029761904761904767
+          },
+          "2025": {
+            "hit_rate": 0.36585365853658536,
+            "brier": 0.6847129228687838,
+            "log_loss": 1.1268611611996673,
+            "n": 492,
+            "brier_improvement": -0.019108454628979477,
+            "accuracy_improvement": -0.010162601626016288
+          },
+          "2026": {
+            "hit_rate": 0.3645833333333333,
+            "brier": 0.668804364496769,
+            "log_loss": 1.1030481527027975,
+            "n": 384,
+            "brier_improvement": -0.0030171840977091247,
+            "accuracy_improvement": -0.0078125
+          }
+        },
+        "years_with_positive_brier_improvement": 1
+      },
+      "logistic_shuffled_labels": {
+        "hit_rate": 0.3724340175953079,
+        "brier": 0.6772874104486764,
+        "log_loss": 1.1161226510578806,
+        "n": 7502,
+        "weeks": 718,
+        "balanced_accuracy": 0.33296270028735026,
+        "bss_vs_pooled_prior": -0.025633455272828565,
+        "brier_improvement_inference": {
+          "mean_difference": -0.016927311071349385,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.021937118098329357,
+              -0.012025243498147587
+            ],
+            "2": [
+              -0.021572141068388728,
+              -0.012140196185604352
+            ],
+            "4": [
+              -0.021655287819327476,
+              -0.012267342917273272
+            ],
+            "8": [
+              -0.0219799353233236,
+              -0.011964967960144951
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 718,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": -0.0321247667288723,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.04803698366902429,
+              -0.016500268707367805
+            ],
+            "2": [
+              -0.04773637710563224,
+              -0.01689073316356349
+            ],
+            "4": [
+              -0.046765870786901684,
+              -0.017548935086961436
+            ],
+            "8": [
+              -0.04630354617335785,
+              -0.017653379024507747
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 502,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.3863013698630137,
+            "brier": 0.6597995679141354,
+            "log_loss": 1.0879954985183007,
+            "n": 365,
+            "brier_improvement": -0.006115431427556772,
+            "accuracy_improvement": -0.04383561643835615
+          },
+          "2011": {
+            "hit_rate": 0.34595959595959597,
+            "brier": 0.6941562411998158,
+            "log_loss": 1.1401140138288683,
+            "n": 396,
+            "brier_improvement": -0.025864267060565327,
+            "accuracy_improvement": 0.0
+          },
+          "2012": {
+            "hit_rate": 0.31139240506329113,
+            "brier": 0.7009008632218806,
+            "log_loss": 1.1505037013908284,
+            "n": 395,
+            "brier_improvement": -0.028240031396918996,
+            "accuracy_improvement": -0.03544303797468357
+          },
+          "2013": {
+            "hit_rate": 0.4,
+            "brier": 0.6555314580411068,
+            "log_loss": 1.0822607410230654,
+            "n": 430,
+            "brier_improvement": -0.0006980068352451241,
+            "accuracy_improvement": -0.06279069767441858
+          },
+          "2014": {
+            "hit_rate": 0.41627906976744183,
+            "brier": 0.665677246958258,
+            "log_loss": 1.0985302143053917,
+            "n": 430,
+            "brier_improvement": -0.02011480638704244,
+            "accuracy_improvement": -0.05581395348837209
+          },
+          "2015": {
+            "hit_rate": 0.3744186046511628,
+            "brier": 0.6783770141553577,
+            "log_loss": 1.1201919031983152,
+            "n": 430,
+            "brier_improvement": -0.022883849377603238,
+            "accuracy_improvement": -0.034883720930232565
+          },
+          "2016": {
+            "hit_rate": 0.37272727272727274,
+            "brier": 0.6737730572400551,
+            "log_loss": 1.110356412542143,
+            "n": 440,
+            "brier_improvement": -0.00953973756371096,
+            "accuracy_improvement": -0.015909090909090873
+          },
+          "2017": {
+            "hit_rate": 0.4325581395348837,
+            "brier": 0.6572264607161095,
+            "log_loss": 1.0890637182315848,
+            "n": 430,
+            "brier_improvement": 1.4867359854120465e-05,
+            "accuracy_improvement": 0.009302325581395321
+          },
+          "2018": {
+            "hit_rate": 0.3761904761904762,
+            "brier": 0.6811098154498019,
+            "log_loss": 1.1226807369966858,
+            "n": 420,
+            "brier_improvement": -0.010312061677510975,
+            "accuracy_improvement": 0.0071428571428571175
+          },
+          "2019": {
+            "hit_rate": 0.4627906976744186,
+            "brier": 0.6408566482361399,
+            "log_loss": 1.0634975449604525,
+            "n": 430,
+            "brier_improvement": 0.006517716285223241,
+            "accuracy_improvement": 0.006976744186046491
+          },
+          "2020": {
+            "hit_rate": 0.3627906976744186,
+            "brier": 0.7066003840354668,
+            "log_loss": 1.1657560200027655,
+            "n": 430,
+            "brier_improvement": -0.054691243959750224,
+            "accuracy_improvement": -0.07441860465116279
+          },
+          "2021": {
+            "hit_rate": 0.42292490118577075,
+            "brier": 0.6562820478770556,
+            "log_loss": 1.0865270504496727,
+            "n": 506,
+            "brier_improvement": -0.006586485058140412,
+            "accuracy_improvement": -0.021739130434782594
+          },
+          "2022": {
+            "hit_rate": 0.2771317829457364,
+            "brier": 0.7082775429000406,
+            "log_loss": 1.160444790221864,
+            "n": 516,
+            "brier_improvement": -0.022684767738618494,
+            "accuracy_improvement": -0.04457364341085274
+          },
+          "2023": {
+            "hit_rate": 0.34325396825396826,
+            "brier": 0.6825996342802787,
+            "log_loss": 1.1211289232317614,
+            "n": 504,
+            "brier_improvement": -0.02500424316415495,
+            "accuracy_improvement": -0.07341269841269843
+          },
+          "2024": {
+            "hit_rate": 0.36904761904761907,
+            "brier": 0.6762054893942107,
+            "log_loss": 1.1136311152171146,
+            "n": 504,
+            "brier_improvement": -0.018136369886772807,
+            "accuracy_improvement": -0.037698412698412676
+          },
+          "2025": {
+            "hit_rate": 0.33739837398373984,
+            "brier": 0.6969310518259965,
+            "log_loss": 1.145585495864725,
+            "n": 492,
+            "brier_improvement": -0.031326583586192114,
+            "accuracy_improvement": -0.038617886178861804
+          },
+          "2026": {
+            "hit_rate": 0.3541666666666667,
+            "brier": 0.6739629721906425,
+            "log_loss": 1.107287877938303,
+            "n": 384,
+            "brier_improvement": -0.008175791791582565,
+            "accuracy_improvement": -0.01822916666666663
+          }
+        },
+        "years_with_positive_brier_improvement": 2
+      },
+      "momentum": {
+        "hit_rate": 0.33524393495067983,
+        "brier": 1.3295121300986403,
+        "log_loss": 22.959861087899167,
+        "n": 7502,
+        "weeks": 718,
+        "balanced_accuracy": 0.3273310109298793,
+        "bss_vs_pooled_prior": -1.0133138439955358,
+        "brier_improvement_inference": {
+          "mean_difference": -0.6691520307213135,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.6994641953858932,
+              -0.6402333505490443
+            ],
+            "2": [
+              -0.6975095223514028,
+              -0.6409885562309281
+            ],
+            "4": [
+              -0.6979285641144086,
+              -0.6400222448052364
+            ],
+            "8": [
+              -0.6980938786664603,
+              -0.6399809072099475
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 718,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": -0.0693148493735004,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.09459401067407802,
+              -0.043585440823870496
+            ],
+            "2": [
+              -0.09315154580303216,
+              -0.04536800446439656
+            ],
+            "4": [
+              -0.09061025377919184,
+              -0.048014914061829735
+            ],
+            "8": [
+              -0.08983032515615041,
+              -0.04876855239262652
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 593,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.32602739726027397,
+            "brier": 1.347945205479452,
+            "log_loss": 23.278189022323364,
+            "n": 365,
+            "brier_improvement": -0.6942610689928734,
+            "accuracy_improvement": -0.1041095890410959
+          },
+          "2011": {
+            "hit_rate": 0.30808080808080807,
+            "brier": 1.3838383838383839,
+            "log_loss": 23.898042253044256,
+            "n": 396,
+            "brier_improvement": -0.7155464096991334,
+            "accuracy_improvement": -0.0378787878787879
+          },
+          "2012": {
+            "hit_rate": 0.3189873417721519,
+            "brier": 1.3620253164556961,
+            "log_loss": 23.521343924635374,
+            "n": 395,
+            "brier_improvement": -0.6893644846307345,
+            "accuracy_improvement": -0.027848101265822822
+          },
+          "2013": {
+            "hit_rate": 0.3511627906976744,
+            "brier": 1.2976744186046512,
+            "log_loss": 22.410043288790884,
+            "n": 430,
+            "brier_improvement": -0.6428409673987895,
+            "accuracy_improvement": -0.11162790697674418
+          },
+          "2014": {
+            "hit_rate": 0.3558139534883721,
+            "brier": 1.2883720930232558,
+            "log_loss": 22.24939781718665,
+            "n": 430,
+            "brier_improvement": -0.6428096524520402,
+            "accuracy_improvement": -0.11627906976744184
+          },
+          "2015": {
+            "hit_rate": 0.24651162790697675,
+            "brier": 1.5069767441860464,
+            "log_loss": 26.024566399886186,
+            "n": 430,
+            "brier_improvement": -0.851483579408292,
+            "accuracy_improvement": -0.1627906976744186
+          },
+          "2016": {
+            "hit_rate": 0.32727272727272727,
+            "brier": 1.3454545454545455,
+            "log_loss": 23.235176847485366,
+            "n": 440,
+            "brier_improvement": -0.6812212257782013,
+            "accuracy_improvement": -0.06136363636363634
+          },
+          "2017": {
+            "hit_rate": 0.37906976744186044,
+            "brier": 1.241860465116279,
+            "log_loss": 21.44617045916547,
+            "n": 430,
+            "brier_improvement": -0.5846191370403154,
+            "accuracy_improvement": -0.04418604651162794
+          },
+          "2018": {
+            "hit_rate": 0.3238095238095238,
+            "brier": 1.3523809523809525,
+            "log_loss": 23.354791657511033,
+            "n": 420,
+            "brier_improvement": -0.6815831986086616,
+            "accuracy_improvement": -0.045238095238095244
+          },
+          "2019": {
+            "hit_rate": 0.3581395348837209,
+            "brier": 1.283720930232558,
+            "log_loss": 22.16907508138453,
+            "n": 430,
+            "brier_improvement": -0.636346565711195,
+            "accuracy_improvement": -0.0976744186046512
+          },
+          "2020": {
+            "hit_rate": 0.32325581395348835,
+            "brier": 1.3534883720930233,
+            "log_loss": 23.3739161184163,
+            "n": 430,
+            "brier_improvement": -0.7015792320173068,
+            "accuracy_improvement": -0.11395348837209307
+          },
+          "2021": {
+            "hit_rate": 0.33992094861660077,
+            "brier": 1.3201581027667983,
+            "log_loss": 22.798322758695978,
+            "n": 506,
+            "brier_improvement": -0.6704625399478832,
+            "accuracy_improvement": -0.10474308300395258
+          },
+          "2022": {
+            "hit_rate": 0.33527131782945735,
+            "brier": 1.3294573643410852,
+            "log_loss": 22.958915316772018,
+            "n": 516,
+            "brier_improvement": -0.643864589179663,
+            "accuracy_improvement": 0.013565891472868186
+          },
+          "2023": {
+            "hit_rate": 0.35912698412698413,
+            "brier": 1.2817460317460319,
+            "log_loss": 22.134969792770136,
+            "n": 504,
+            "brier_improvement": -0.6241506406299081,
+            "accuracy_improvement": -0.05753968253968256
+          },
+          "2024": {
+            "hit_rate": 0.3869047619047619,
+            "brier": 1.2261904761904763,
+            "log_loss": 21.17555933735595,
+            "n": 504,
+            "brier_improvement": -0.5681213566830384,
+            "accuracy_improvement": -0.019841269841269826
+          },
+          "2025": {
+            "hit_rate": 0.3313008130081301,
+            "brier": 1.3373983739837398,
+            "log_loss": 23.096051694970757,
+            "n": 492,
+            "brier_improvement": -0.6717939057439355,
+            "accuracy_improvement": -0.044715447154471566
+          },
+          "2026": {
+            "hit_rate": 0.3072916666666667,
+            "brier": 1.3854166666666667,
+            "log_loss": 23.925298231891258,
+            "n": 384,
+            "brier_improvement": -0.7196294862676068,
+            "accuracy_improvement": -0.06510416666666663
+          }
+        },
+        "years_with_positive_brier_improvement": 0
+      },
+      "pooled_train_prior": {
+        "hit_rate": 0.40455878432418024,
+        "brier": 0.660360099377327,
+        "log_loss": 1.089482795133884,
+        "n": 7502,
+        "weeks": 718,
+        "balanced_accuracy": 0.3333333333333333,
+        "bss_vs_pooled_prior": 0.0,
+        "brier_improvement_inference": {
+          "mean_difference": 0.0,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              0.0,
+              0.0
+            ],
+            "2": [
+              0.0,
+              0.0
+            ],
+            "4": [
+              0.0,
+              0.0
+            ],
+            "8": [
+              0.0,
+              0.0
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 1.0,
+            "exact": true,
+            "nonzero_date_clusters": 0,
+            "resamples": 1,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": 0.0,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              0.0,
+              0.0
+            ],
+            "2": [
+              0.0,
+              0.0
+            ],
+            "4": [
+              0.0,
+              0.0
+            ],
+            "8": [
+              0.0,
+              0.0
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 1.0,
+            "exact": true,
+            "nonzero_date_clusters": 0,
+            "resamples": 1,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.4301369863013699,
+            "brier": 0.6536841364865786,
+            "log_loss": 1.079606407810704,
+            "n": 365,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2011": {
+            "hit_rate": 0.34595959595959597,
+            "brier": 0.6682919741392505,
+            "log_loss": 1.1002012222943145,
+            "n": 396,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2012": {
+            "hit_rate": 0.3468354430379747,
+            "brier": 0.6726608318249616,
+            "log_loss": 1.1081017779255935,
+            "n": 395,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2013": {
+            "hit_rate": 0.4627906976744186,
+            "brier": 0.6548334512058617,
+            "log_loss": 1.0809293438396583,
+            "n": 430,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2014": {
+            "hit_rate": 0.4720930232558139,
+            "brier": 0.6455624405712156,
+            "log_loss": 1.068073152807555,
+            "n": 430,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2015": {
+            "hit_rate": 0.40930232558139534,
+            "brier": 0.6554931647777544,
+            "log_loss": 1.0817501117321533,
+            "n": 430,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2016": {
+            "hit_rate": 0.3886363636363636,
+            "brier": 0.6642333196763441,
+            "log_loss": 1.0954141961367405,
+            "n": 440,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2017": {
+            "hit_rate": 0.4232558139534884,
+            "brier": 0.6572413280759636,
+            "log_loss": 1.0857046501397711,
+            "n": 430,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2018": {
+            "hit_rate": 0.36904761904761907,
+            "brier": 0.6707977537722909,
+            "log_loss": 1.1042328478859025,
+            "n": 420,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2019": {
+            "hit_rate": 0.4558139534883721,
+            "brier": 0.6473743645213631,
+            "log_loss": 1.070935773156422,
+            "n": 430,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2020": {
+            "hit_rate": 0.4372093023255814,
+            "brier": 0.6519091400757165,
+            "log_loss": 1.0773741368894303,
+            "n": 430,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2021": {
+            "hit_rate": 0.44466403162055335,
+            "brier": 0.6496955628189152,
+            "log_loss": 1.0742431310822085,
+            "n": 506,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2022": {
+            "hit_rate": 0.32170542635658916,
+            "brier": 0.6855927751614221,
+            "log_loss": 1.1258737076941978,
+            "n": 516,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2023": {
+            "hit_rate": 0.4166666666666667,
+            "brier": 0.6575953911161238,
+            "log_loss": 1.0856685410454443,
+            "n": 504,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2024": {
+            "hit_rate": 0.40674603174603174,
+            "brier": 0.6580691195074378,
+            "log_loss": 1.0859818328663011,
+            "n": 504,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2025": {
+            "hit_rate": 0.37601626016260165,
+            "brier": 0.6656044682398043,
+            "log_loss": 1.0971388741009707,
+            "n": 492,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2026": {
+            "hit_rate": 0.3723958333333333,
+            "brier": 0.6657871803990599,
+            "log_loss": 1.0974786641461993,
+            "n": 384,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          }
+        },
+        "years_with_positive_brier_improvement": 0
+      },
+      "reversal": {
+        "hit_rate": 0.3367102106105039,
+        "brier": 1.3265795787789922,
+        "log_loss": 22.909217720751204,
+        "n": 7502,
+        "weeks": 718,
+        "balanced_accuracy": 0.3342458156902985,
+        "bss_vs_pooled_prior": -1.0088730073635026,
+        "brier_improvement_inference": {
+          "mean_difference": -0.6662194794016653,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.6948636822841946,
+              -0.6382625537220482
+            ],
+            "2": [
+              -0.6954300703296065,
+              -0.6384779137110701
+            ],
+            "4": [
+              -0.6919330097934665,
+              -0.6375738149629758
+            ],
+            "8": [
+              -0.6934538253699957,
+              -0.63915506969276
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 718,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": -0.06784857371367635,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.09124919005906762,
+              -0.04408578587264909
+            ],
+            "2": [
+              -0.09298471207527718,
+              -0.04408748526918576
+            ],
+            "4": [
+              -0.09204860575697621,
+              -0.04363891048063222
+            ],
+            "8": [
+              -0.09265081047071691,
+              -0.044512814491256145
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 625,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.3726027397260274,
+            "brier": 1.2547945205479452,
+            "log_loss": 21.66953368338232,
+            "n": 365,
+            "brier_improvement": -0.6011103840613665,
+            "accuracy_improvement": -0.05753424657534245
+          },
+          "2011": {
+            "hit_rate": 0.34595959595959597,
+            "brier": 1.3080808080808082,
+            "log_loss": 22.58975526838855,
+            "n": 396,
+            "brier_improvement": -0.6397888339415577,
+            "accuracy_improvement": 0.0
+          },
+          "2012": {
+            "hit_rate": 0.3518987341772152,
+            "brier": 1.2962025316455696,
+            "log_loss": 22.384624701511733,
+            "n": 395,
+            "brier_improvement": -0.623541699820608,
+            "accuracy_improvement": 0.005063291139240478
+          },
+          "2013": {
+            "hit_rate": 0.3116279069767442,
+            "brier": 1.3767441860465117,
+            "log_loss": 23.775529797426888,
+            "n": 430,
+            "brier_improvement": -0.72191073484065,
+            "accuracy_improvement": -0.1511627906976744
+          },
+          "2014": {
+            "hit_rate": 0.32325581395348835,
+            "brier": 1.3534883720930233,
+            "log_loss": 23.3739161184163,
+            "n": 430,
+            "brier_improvement": -0.7079259315218077,
+            "accuracy_improvement": -0.14883720930232558
+          },
+          "2015": {
+            "hit_rate": 0.42093023255813955,
+            "brier": 1.158139534883721,
+            "log_loss": 20.00036121472735,
+            "n": 430,
+            "brier_improvement": -0.5026463701059665,
+            "accuracy_improvement": 0.011627906976744207
+          },
+          "2016": {
+            "hit_rate": 0.3,
+            "brier": 1.4,
+            "log_loss": 24.177143476437475,
+            "n": 440,
+            "brier_improvement": -0.7357666803236558,
+            "accuracy_improvement": -0.08863636363636362
+          },
+          "2017": {
+            "hit_rate": 0.3209302325581395,
+            "brier": 1.3581395348837209,
+            "log_loss": 23.454238854218417,
+            "n": 430,
+            "brier_improvement": -0.7008982068077573,
+            "accuracy_improvement": -0.10232558139534886
+          },
+          "2018": {
+            "hit_rate": 0.38571428571428573,
+            "brier": 1.2285714285714286,
+            "log_loss": 21.21667692830228,
+            "n": 420,
+            "brier_improvement": -0.5577736747991378,
+            "accuracy_improvement": 0.016666666666666663
+          },
+          "2019": {
+            "hit_rate": 0.29534883720930233,
+            "brier": 1.4093023255813955,
+            "log_loss": 24.33778894804171,
+            "n": 430,
+            "brier_improvement": -0.7619279610600324,
+            "accuracy_improvement": -0.16046511627906979
+          },
+          "2020": {
+            "hit_rate": 0.34418604651162793,
+            "brier": 1.3116279069767443,
+            "log_loss": 22.651011496197235,
+            "n": 430,
+            "brier_improvement": -0.6597187669010277,
+            "accuracy_improvement": -0.09302325581395349
+          },
+          "2021": {
+            "hit_rate": 0.3438735177865613,
+            "brier": 1.3122529644268774,
+            "log_loss": 22.661805855949304,
+            "n": 506,
+            "brier_improvement": -0.6625574016079623,
+            "accuracy_improvement": -0.10079051383399207
+          },
+          "2022": {
+            "hit_rate": 0.32558139534883723,
+            "brier": 1.3488372093023255,
+            "log_loss": 23.293593382614176,
+            "n": 516,
+            "brier_improvement": -0.6632444341409034,
+            "accuracy_improvement": 0.003875968992248069
+          },
+          "2023": {
+            "hit_rate": 0.2837301587301587,
+            "brier": 1.4325396825396826,
+            "log_loss": 24.73908388603721,
+            "n": 504,
+            "brier_improvement": -0.7749442914235588,
+            "accuracy_improvement": -0.13293650793650796
+          },
+          "2024": {
+            "hit_rate": 0.32341269841269843,
+            "brier": 1.3531746031746033,
+            "log_loss": 23.368497521159803,
+            "n": 504,
+            "brier_improvement": -0.6951054836671654,
+            "accuracy_improvement": -0.08333333333333331
+          },
+          "2025": {
+            "hit_rate": 0.3475609756097561,
+            "brier": 1.3048780487804879,
+            "log_loss": 22.53444557472831,
+            "n": 492,
+            "brier_improvement": -0.6392735805406835,
+            "accuracy_improvement": -0.028455284552845572
+          },
+          "2026": {
+            "hit_rate": 0.3489583333333333,
+            "brier": 1.3020833333333333,
+            "log_loss": 22.486182548769975,
+            "n": 384,
+            "brier_improvement": -0.6362961529342733,
+            "accuracy_improvement": -0.0234375
+          }
+        },
+        "years_with_positive_brier_improvement": 0
+      },
+      "ticker_train_prior": {
+        "hit_rate": 0.3950946414289523,
+        "brier": 0.6630703082588982,
+        "log_loss": 1.0942492432031536,
+        "n": 7502,
+        "weeks": 718,
+        "balanced_accuracy": 0.334014517202002,
+        "bss_vs_pooled_prior": -0.004104137854674672,
+        "brier_improvement_inference": {
+          "mean_difference": -0.0027102088815714057,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.0041625111543875624,
+              -0.001390695768333061
+            ],
+            "2": [
+              -0.00421743951252626,
+              -0.0012234743419676484
+            ],
+            "4": [
+              -0.004294906025625944,
+              -0.00125240191089257
+            ],
+            "8": [
+              -0.0042638494756750776,
+              -0.001317347710100649
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 0.00029997000299970003,
+            "exact": false,
+            "nonzero_date_clusters": 718,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": -0.009464142895227939,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.015953979345383933,
+              -0.003058449679409254
+            ],
+            "2": [
+              -0.016217116084910898,
+              -0.002880154743688878
+            ],
+            "4": [
+              -0.016084169553378744,
+              -0.0036066363109188934
+            ],
+            "8": [
+              -0.015693485868655318,
+              -0.0033186678336414787
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 0.004299570042995701,
+            "exact": false,
+            "nonzero_date_clusters": 317,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.4,
+            "brier": 0.6593979473928678,
+            "log_loss": 1.0877905675949524,
+            "n": 365,
+            "brier_improvement": -0.005713810906289196,
+            "accuracy_improvement": -0.03013698630136985
+          },
+          "2011": {
+            "hit_rate": 0.3484848484848485,
+            "brier": 0.679075983074541,
+            "log_loss": 1.128287304834211,
+            "n": 396,
+            "brier_improvement": -0.010784008935290523,
+            "accuracy_improvement": 0.0025252525252525415
+          },
+          "2012": {
+            "hit_rate": 0.3670886075949367,
+            "brier": 0.6702806410436761,
+            "log_loss": 1.1048759643249577,
+            "n": 395,
+            "brier_improvement": 0.002380190781285485,
+            "accuracy_improvement": 0.020253164556962022
+          },
+          "2013": {
+            "hit_rate": 0.39069767441860465,
+            "brier": 0.6640854391161234,
+            "log_loss": 1.0948439389674252,
+            "n": 430,
+            "brier_improvement": -0.009251987910261716,
+            "accuracy_improvement": -0.07209302325581396
+          },
+          "2014": {
+            "hit_rate": 0.45348837209302323,
+            "brier": 0.6495453879956455,
+            "log_loss": 1.0742257606918628,
+            "n": 430,
+            "brier_improvement": -0.00398294742442995,
+            "accuracy_improvement": -0.018604651162790697
+          },
+          "2015": {
+            "hit_rate": 0.38372093023255816,
+            "brier": 0.6600001916592062,
+            "log_loss": 1.0884718291087025,
+            "n": 430,
+            "brier_improvement": -0.00450702688145177,
+            "accuracy_improvement": -0.025581395348837188
+          },
+          "2016": {
+            "hit_rate": 0.3886363636363636,
+            "brier": 0.666074638213119,
+            "log_loss": 1.0980360456315954,
+            "n": 440,
+            "brier_improvement": -0.0018413185367748275,
+            "accuracy_improvement": 0.0
+          },
+          "2017": {
+            "hit_rate": 0.4232558139534884,
+            "brier": 0.6589051714709906,
+            "log_loss": 1.0881779949742103,
+            "n": 430,
+            "brier_improvement": -0.0016638433950270093,
+            "accuracy_improvement": 0.0
+          },
+          "2018": {
+            "hit_rate": 0.36904761904761907,
+            "brier": 0.6726551783264746,
+            "log_loss": 1.1072232473200836,
+            "n": 420,
+            "brier_improvement": -0.0018574245541836953,
+            "accuracy_improvement": 0.0
+          },
+          "2019": {
+            "hit_rate": 0.4558139534883721,
+            "brier": 0.6484413196322336,
+            "log_loss": 1.0731221222497636,
+            "n": 430,
+            "brier_improvement": -0.0010669551108705155,
+            "accuracy_improvement": 0.0
+          },
+          "2020": {
+            "hit_rate": 0.4372093023255814,
+            "brier": 0.653269875608437,
+            "log_loss": 1.0791447119577795,
+            "n": 430,
+            "brier_improvement": -0.0013607355327204251,
+            "accuracy_improvement": 0.0
+          },
+          "2021": {
+            "hit_rate": 0.44466403162055335,
+            "brier": 0.6494516792540355,
+            "log_loss": 1.0738861740385195,
+            "n": 506,
+            "brier_improvement": 0.00024388356487969887,
+            "accuracy_improvement": 0.0
+          },
+          "2022": {
+            "hit_rate": 0.3062015503875969,
+            "brier": 0.6885449510747588,
+            "log_loss": 1.130006365800397,
+            "n": 516,
+            "brier_improvement": -0.00295217591333663,
+            "accuracy_improvement": -0.015503875968992276
+          },
+          "2023": {
+            "hit_rate": 0.40476190476190477,
+            "brier": 0.6647678094354753,
+            "log_loss": 1.0971525345829312,
+            "n": 504,
+            "brier_improvement": -0.007172418319351559,
+            "accuracy_improvement": -0.011904761904761918
+          },
+          "2024": {
+            "hit_rate": 0.4007936507936508,
+            "brier": 0.6544625067087549,
+            "log_loss": 1.0806340849267198,
+            "n": 504,
+            "brier_improvement": 0.0036066127986829066,
+            "accuracy_improvement": -0.005952380952380931
+          },
+          "2025": {
+            "hit_rate": 0.3678861788617886,
+            "brier": 0.667077591201372,
+            "log_loss": 1.0994154393550186,
+            "n": 492,
+            "brier_improvement": -0.0014731229615676522,
+            "accuracy_improvement": -0.008130081300813052
+          },
+          "2026": {
+            "hit_rate": 0.3776041666666667,
+            "brier": 0.665827784158277,
+            "log_loss": 1.0976463219594776,
+            "n": 384,
+            "brier_improvement": -4.060375921710602e-05,
+            "accuracy_improvement": 0.00520833333333337
+          }
+        },
+        "years_with_positive_brier_improvement": 3
+      },
+      "uniform": {
+        "hit_rate": 0.40455878432418024,
+        "brier": 0.6666666666666667,
+        "log_loss": 1.0986122886681093,
+        "n": 7502,
+        "weeks": 718,
+        "balanced_accuracy": 0.3333333333333333,
+        "bss_vs_pooled_prior": -0.009550194348941554,
+        "brier_improvement_inference": {
+          "mean_difference": -0.006306567289339824,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.01082670910332721,
+              -0.0015260608151689001
+            ],
+            "2": [
+              -0.011023518597831412,
+              -0.0015791081853178805
+            ],
+            "4": [
+              -0.010784249979760204,
+              -0.001972592865344418
+            ],
+            "8": [
+              -0.010684572423880304,
+              -0.0022656260821546067
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 0.009599040095990401,
+            "exact": false,
+            "nonzero_date_clusters": 718,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": 0.0,
+          "n": 7502,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              0.0,
+              0.0
+            ],
+            "2": [
+              0.0,
+              0.0
+            ],
+            "4": [
+              0.0,
+              0.0
+            ],
+            "8": [
+              0.0,
+              0.0
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 1.0,
+            "exact": true,
+            "nonzero_date_clusters": 0,
+            "resamples": 1,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.4301369863013699,
+            "brier": 0.666666666666667,
+            "log_loss": 1.0986122886681096,
+            "n": 365,
+            "brier_improvement": -0.012982530180088325,
+            "accuracy_improvement": 0.0
+          },
+          "2011": {
+            "hit_rate": 0.34595959595959597,
+            "brier": 0.666666666666667,
+            "log_loss": 1.0986122886681096,
+            "n": 396,
+            "brier_improvement": 0.0016253074725834926,
+            "accuracy_improvement": 0.0
+          },
+          "2012": {
+            "hit_rate": 0.3468354430379747,
+            "brier": 0.6666666666666667,
+            "log_loss": 1.0986122886681096,
+            "n": 395,
+            "brier_improvement": 0.005994165158294873,
+            "accuracy_improvement": 0.0
+          },
+          "2013": {
+            "hit_rate": 0.4627906976744186,
+            "brier": 0.6666666666666669,
+            "log_loss": 1.0986122886681096,
+            "n": 430,
+            "brier_improvement": -0.01183321546080518,
+            "accuracy_improvement": 0.0
+          },
+          "2014": {
+            "hit_rate": 0.4720930232558139,
+            "brier": 0.6666666666666669,
+            "log_loss": 1.0986122886681096,
+            "n": 430,
+            "brier_improvement": -0.02110422609545126,
+            "accuracy_improvement": 0.0
+          },
+          "2015": {
+            "hit_rate": 0.40930232558139534,
+            "brier": 0.6666666666666669,
+            "log_loss": 1.0986122886681096,
+            "n": 430,
+            "brier_improvement": -0.011173501888912418,
+            "accuracy_improvement": 0.0
+          },
+          "2016": {
+            "hit_rate": 0.3886363636363636,
+            "brier": 0.6666666666666667,
+            "log_loss": 1.0986122886681093,
+            "n": 440,
+            "brier_improvement": -0.0024333469903226046,
+            "accuracy_improvement": 0.0
+          },
+          "2017": {
+            "hit_rate": 0.4232558139534884,
+            "brier": 0.6666666666666669,
+            "log_loss": 1.0986122886681096,
+            "n": 430,
+            "brier_improvement": -0.00942533859070327,
+            "accuracy_improvement": 0.0
+          },
+          "2018": {
+            "hit_rate": 0.36904761904761907,
+            "brier": 0.6666666666666669,
+            "log_loss": 1.0986122886681096,
+            "n": 420,
+            "brier_improvement": 0.004131087105624043,
+            "accuracy_improvement": 0.0
+          },
+          "2019": {
+            "hit_rate": 0.4558139534883721,
+            "brier": 0.6666666666666669,
+            "log_loss": 1.0986122886681096,
+            "n": 430,
+            "brier_improvement": -0.019292302145303752,
+            "accuracy_improvement": 0.0
+          },
+          "2020": {
+            "hit_rate": 0.4372093023255814,
+            "brier": 0.6666666666666669,
+            "log_loss": 1.0986122886681096,
+            "n": 430,
+            "brier_improvement": -0.01475752659095031,
+            "accuracy_improvement": 0.0
+          },
+          "2021": {
+            "hit_rate": 0.44466403162055335,
+            "brier": 0.6666666666666666,
+            "log_loss": 1.0986122886681096,
+            "n": 506,
+            "brier_improvement": -0.016971103847751468,
+            "accuracy_improvement": 0.0
+          },
+          "2022": {
+            "hit_rate": 0.32170542635658916,
+            "brier": 0.6666666666666666,
+            "log_loss": 1.0986122886681096,
+            "n": 516,
+            "brier_improvement": 0.01892610849475551,
+            "accuracy_improvement": 0.0
+          },
+          "2023": {
+            "hit_rate": 0.4166666666666667,
+            "brier": 0.6666666666666666,
+            "log_loss": 1.0986122886681096,
+            "n": 504,
+            "brier_improvement": -0.009071275550542879,
+            "accuracy_improvement": 0.0
+          },
+          "2024": {
+            "hit_rate": 0.40674603174603174,
+            "brier": 0.6666666666666666,
+            "log_loss": 1.0986122886681096,
+            "n": 504,
+            "brier_improvement": -0.00859754715922878,
+            "accuracy_improvement": 0.0
+          },
+          "2025": {
+            "hit_rate": 0.37601626016260165,
+            "brier": 0.6666666666666666,
+            "log_loss": 1.0986122886681096,
+            "n": 492,
+            "brier_improvement": -0.001062198426862282,
+            "accuracy_improvement": 0.0
+          },
+          "2026": {
+            "hit_rate": 0.3723958333333333,
+            "brier": 0.6666666666666669,
+            "log_loss": 1.0986122886681096,
+            "n": 384,
+            "brier_improvement": -0.0008794862676069215,
+            "accuracy_improvement": 0.0
+          }
+        },
+        "years_with_positive_brier_improvement": 4
+      }
+    },
+    "binary_direction": {
+      "always_up": {
+        "hit_rate": 0.5546061415220294,
+        "brier": 0.8907877169559413,
+        "log_loss": 15.38335888563712,
+        "n": 7490,
+        "weeks": 718,
+        "balanced_accuracy": 0.5,
+        "bss_vs_pooled_prior": -0.7960225642643819,
+        "brier_improvement_inference": {
+          "mean_difference": -0.3948096960334748,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.433389165778329,
+              -0.3568680008738005
+            ],
+            "2": [
+              -0.4333119208533896,
+              -0.35642487221475766
+            ],
+            "4": [
+              -0.4306430611101845,
+              -0.3610221963195944
+            ],
+            "8": [
+              -0.4302314960943565,
+              -0.36019559679748764
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 718,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": 0.0,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              0.0,
+              0.0
+            ],
+            "2": [
+              0.0,
+              0.0
+            ],
+            "4": [
+              0.0,
+              0.0
+            ],
+            "8": [
+              0.0,
+              0.0
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 1.0,
+            "exact": true,
+            "nonzero_date_clusters": 0,
+            "resamples": 1,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.5702479338842975,
+            "brier": 0.859504132231405,
+            "log_loss": 14.84311051682112,
+            "n": 363,
+            "brier_improvement": -0.36827683544737594,
+            "accuracy_improvement": 0.0
+          },
+          "2011": {
+            "hit_rate": 0.45454545454545453,
+            "brier": 1.0909090909090908,
+            "log_loss": 18.83933257904219,
+            "n": 396,
+            "brier_improvement": -0.5760917148803726,
+            "accuracy_improvement": 0.0
+          },
+          "2012": {
+            "hit_rate": 0.5101522842639594,
+            "brier": 0.9796954314720813,
+            "log_loss": 16.91874072136488,
+            "n": 394,
+            "brier_improvement": -0.4792046579936067,
+            "accuracy_improvement": 0.0
+          },
+          "2013": {
+            "hit_rate": 0.6144859813084113,
+            "brier": 0.7710280373831776,
+            "log_loss": 13.315182488692201,
+            "n": 428,
+            "brier_improvement": -0.27599405618960116,
+            "accuracy_improvement": 0.0
+          },
+          "2014": {
+            "hit_rate": 0.616822429906542,
+            "brier": 0.7663551401869159,
+            "log_loss": 13.23448441300316,
+            "n": 428,
+            "brier_improvement": -0.28419134209642766,
+            "accuracy_improvement": 0.0
+          },
+          "2015": {
+            "hit_rate": 0.544392523364486,
+            "brier": 0.9112149532710281,
+            "log_loss": 15.736124759363511,
+            "n": 428,
+            "brier_improvement": -0.4149312027992585,
+            "accuracy_improvement": 0.0
+          },
+          "2016": {
+            "hit_rate": 0.5522727272727272,
+            "brier": 0.8954545454545455,
+            "log_loss": 15.463952158630466,
+            "n": 440,
+            "brier_improvement": -0.40091036404501834,
+            "accuracy_improvement": 0.0
+          },
+          "2017": {
+            "hit_rate": 0.6293706293706294,
+            "brier": 0.7412587412587412,
+            "log_loss": 12.801084957554309,
+            "n": 429,
+            "brier_improvement": -0.26731224906316603,
+            "accuracy_improvement": 0.0
+          },
+          "2018": {
+            "hit_rate": 0.5261904761904762,
+            "brier": 0.9476190476190476,
+            "log_loss": 16.364801196636254,
+            "n": 420,
+            "brier_improvement": -0.44052076197848,
+            "accuracy_improvement": 0.0
+          },
+          "2019": {
+            "hit_rate": 0.6121495327102804,
+            "brier": 0.7757009345794392,
+            "log_loss": 13.395880564381246,
+            "n": 428,
+            "brier_improvement": -0.2979288107632661,
+            "accuracy_improvement": 0.0
+          },
+          "2020": {
+            "hit_rate": 0.5930232558139535,
+            "brier": 0.813953488372093,
+            "log_loss": 14.056478765370628,
+            "n": 430,
+            "brier_improvement": -0.3304551020797564,
+            "accuracy_improvement": 0.0
+          },
+          "2021": {
+            "hit_rate": 0.5849802371541502,
+            "brier": 0.8300395256916996,
+            "log_loss": 14.334274788401666,
+            "n": 506,
+            "brier_improvement": -0.344472165013315,
+            "accuracy_improvement": 0.0
+          },
+          "2022": {
+            "hit_rate": 0.42441860465116277,
+            "brier": 1.1511627906976745,
+            "log_loss": 19.87987711102417,
+            "n": 516,
+            "brier_improvement": -0.6067225495126014,
+            "accuracy_improvement": 0.0
+          },
+          "2023": {
+            "hit_rate": 0.5674603174603174,
+            "brier": 0.8650793650793651,
+            "log_loss": 14.939391377163748,
+            "n": 504,
+            "brier_improvement": -0.3731525969934287,
+            "accuracy_improvement": 0.0
+          },
+          "2024": {
+            "hit_rate": 0.5674603174603174,
+            "brier": 0.8650793650793651,
+            "log_loss": 14.939391377163748,
+            "n": 504,
+            "brier_improvement": -0.3737543684575914,
+            "accuracy_improvement": 0.0
+          },
+          "2025": {
+            "hit_rate": 0.5223577235772358,
+            "brier": 0.9552845528455285,
+            "log_loss": 16.49717978212197,
+            "n": 492,
+            "brier_improvement": -0.45521052283693564,
+            "accuracy_improvement": 0.0
+          },
+          "2026": {
+            "hit_rate": 0.5494791666666666,
+            "brier": 0.9010416666666666,
+            "log_loss": 15.560438323748825,
+            "n": 384,
+            "brier_improvement": -0.40538899372018433,
+            "accuracy_improvement": 0.0
+          }
+        },
+        "years_with_positive_brier_improvement": 0
+      },
+      "logistic_context": {
+        "hit_rate": 0.5324432576769025,
+        "brier": 0.5085266258267201,
+        "log_loss": 0.7027425886671386,
+        "n": 7490,
+        "weeks": 718,
+        "balanced_accuracy": 0.5043094316073381,
+        "bss_vs_pooled_prior": -0.02530072780425785,
+        "brier_improvement_inference": {
+          "mean_difference": -0.012548604904253769,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.01790154414178449,
+              -0.007387947160407045
+            ],
+            "2": [
+              -0.017859998859985328,
+              -0.007402949904479818
+            ],
+            "4": [
+              -0.017524894890058842,
+              -0.007435211706151044
+            ],
+            "8": [
+              -0.017862921660168996,
+              -0.007535436699773845
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 718,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": -0.022162883845126834,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.03811451977516434,
+              -0.006315406103398571
+            ],
+            "2": [
+              -0.03934917363171684,
+              -0.006018540244450193
+            ],
+            "4": [
+              -0.037825536647848275,
+              -0.005909236772497697
+            ],
+            "8": [
+              -0.03818166653904008,
+              -0.00685884764107184
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 0.0051994800519948,
+            "exact": false,
+            "nonzero_date_clusters": 502,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.4986225895316804,
+            "brier": 0.5100515850939001,
+            "log_loss": 0.7034362172841632,
+            "n": 363,
+            "brier_improvement": -0.018824288309871096,
+            "accuracy_improvement": -0.07162534435261708
+          },
+          "2011": {
+            "hit_rate": 0.4898989898989899,
+            "brier": 0.5201794494342271,
+            "log_loss": 0.7137866424527043,
+            "n": 396,
+            "brier_improvement": -0.0053620734055088715,
+            "accuracy_improvement": 0.03535353535353536
+          },
+          "2012": {
+            "hit_rate": 0.565989847715736,
+            "brier": 0.49192698890578185,
+            "log_loss": 0.6849573633268375,
+            "n": 394,
+            "brier_improvement": 0.008563784572692745,
+            "accuracy_improvement": 0.055837563451776595
+          },
+          "2013": {
+            "hit_rate": 0.5373831775700935,
+            "brier": 0.5130539054056125,
+            "log_loss": 0.7083373609843175,
+            "n": 428,
+            "brier_improvement": -0.01801992421203602,
+            "accuracy_improvement": -0.0771028037383178
+          },
+          "2014": {
+            "hit_rate": 0.5817757009345794,
+            "brier": 0.4848202959532124,
+            "log_loss": 0.6782125767498358,
+            "n": 428,
+            "brier_improvement": -0.0026564978627242053,
+            "accuracy_improvement": -0.03504672897196259
+          },
+          "2015": {
+            "hit_rate": 0.5514018691588785,
+            "brier": 0.49408577106209467,
+            "log_loss": 0.6871017686605553,
+            "n": 428,
+            "brier_improvement": 0.0021979794096749217,
+            "accuracy_improvement": 0.007009345794392496
+          },
+          "2016": {
+            "hit_rate": 0.5,
+            "brier": 0.5196423555688036,
+            "log_loss": 0.714004320659511,
+            "n": 440,
+            "brier_improvement": -0.0250981741592764,
+            "accuracy_improvement": -0.05227272727272725
+          },
+          "2017": {
+            "hit_rate": 0.5617715617715617,
+            "brier": 0.4914613294227386,
+            "log_loss": 0.684450230320973,
+            "n": 429,
+            "brier_improvement": -0.017514837227163405,
+            "accuracy_improvement": -0.06759906759906764
+          },
+          "2018": {
+            "hit_rate": 0.49523809523809526,
+            "brier": 0.5340090574643604,
+            "log_loss": 0.7310270589616813,
+            "n": 420,
+            "brier_improvement": -0.026910771823792867,
+            "accuracy_improvement": -0.030952380952380953
+          },
+          "2019": {
+            "hit_rate": 0.5607476635514018,
+            "brier": 0.4933435412395087,
+            "log_loss": 0.6868207489830748,
+            "n": 428,
+            "brier_improvement": -0.015571417423335565,
+            "accuracy_improvement": -0.051401869158878566
+          },
+          "2020": {
+            "hit_rate": 0.5255813953488372,
+            "brier": 0.520087259858142,
+            "log_loss": 0.716411546258899,
+            "n": 430,
+            "brier_improvement": -0.03658887356580537,
+            "accuracy_improvement": -0.06744186046511635
+          },
+          "2021": {
+            "hit_rate": 0.5790513833992095,
+            "brier": 0.5008918806014331,
+            "log_loss": 0.6952414181145109,
+            "n": 506,
+            "brier_improvement": -0.015324519923048507,
+            "accuracy_improvement": -0.005928853754940677
+          },
+          "2022": {
+            "hit_rate": 0.44573643410852715,
+            "brier": 0.5605362158437011,
+            "log_loss": 0.7578486974082348,
+            "n": 516,
+            "brier_improvement": -0.016095974658628,
+            "accuracy_improvement": 0.02131782945736438
+          },
+          "2023": {
+            "hit_rate": 0.5357142857142857,
+            "brier": 0.5101809255739304,
+            "log_loss": 0.7038091171293142,
+            "n": 504,
+            "brier_improvement": -0.018254157487993916,
+            "accuracy_improvement": -0.031746031746031744
+          },
+          "2024": {
+            "hit_rate": 0.5496031746031746,
+            "brier": 0.49137144240282044,
+            "log_loss": 0.6843642335761148,
+            "n": 504,
+            "brier_improvement": -4.644578104673336e-05,
+            "accuracy_improvement": -0.017857142857142794
+          },
+          "2025": {
+            "hit_rate": 0.5487804878048781,
+            "brier": 0.5003512189876884,
+            "log_loss": 0.6940446610276839,
+            "n": 492,
+            "brier_improvement": -0.00027718897909556617,
+            "accuracy_improvement": 0.026422764227642337
+          },
+          "2026": {
+            "hit_rate": 0.5208333333333334,
+            "brier": 0.5029985880025826,
+            "log_loss": 0.696221127125305,
+            "n": 384,
+            "brier_improvement": -0.007345915056100272,
+            "accuracy_improvement": -0.02864583333333326
+          }
+        },
+        "years_with_positive_brier_improvement": 2
+      },
+      "logistic_shape": {
+        "hit_rate": 0.5277703604806409,
+        "brier": 0.506735937745741,
+        "log_loss": 0.7005655900820386,
+        "n": 7490,
+        "weeks": 718,
+        "balanced_accuracy": 0.4986504296803289,
+        "bss_vs_pooled_prior": -0.021690309589255774,
+        "brier_improvement_inference": {
+          "mean_difference": -0.010757916823274665,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.015686892857566737,
+              -0.005876616375355631
+            ],
+            "2": [
+              -0.015500484638351332,
+              -0.005994196444297909
+            ],
+            "4": [
+              -0.015392238543015824,
+              -0.005941336322915321
+            ],
+            "8": [
+              -0.015692560621185486,
+              -0.005975268665438007
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 718,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": -0.026835781041388517,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.04292089431891769,
+              -0.00998598823044952
+            ],
+            "2": [
+              -0.04332384465940433,
+              -0.010687579480112536
+            ],
+            "4": [
+              -0.04317055644137872,
+              -0.010585826786192382
+            ],
+            "8": [
+              -0.044642058378691216,
+              -0.009949313111290511
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 0.0012998700129987,
+            "exact": false,
+            "nonzero_date_clusters": 464,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.4931129476584022,
+            "brier": 0.5175570566551683,
+            "log_loss": 0.7113817497836712,
+            "n": 363,
+            "brier_improvement": -0.026329759871139224,
+            "accuracy_improvement": -0.07713498622589532
+          },
+          "2011": {
+            "hit_rate": 0.4696969696969697,
+            "brier": 0.5125496629318433,
+            "log_loss": 0.705911391967126,
+            "n": 396,
+            "brier_improvement": 0.0022677130968749015,
+            "accuracy_improvement": 0.015151515151515194
+          },
+          "2012": {
+            "hit_rate": 0.5482233502538071,
+            "brier": 0.4989582875953009,
+            "log_loss": 0.6923707964706028,
+            "n": 394,
+            "brier_improvement": 0.0015324858831736732,
+            "accuracy_improvement": 0.03807106598984766
+          },
+          "2013": {
+            "hit_rate": 0.5023364485981309,
+            "brier": 0.5081342753152437,
+            "log_loss": 0.7017870922049922,
+            "n": 428,
+            "brier_improvement": -0.013100294121667244,
+            "accuracy_improvement": -0.11214953271028039
+          },
+          "2014": {
+            "hit_rate": 0.602803738317757,
+            "brier": 0.4837964149539872,
+            "log_loss": 0.6769776961696837,
+            "n": 428,
+            "brier_improvement": -0.0016326168634989702,
+            "accuracy_improvement": -0.014018691588784993
+          },
+          "2015": {
+            "hit_rate": 0.5420560747663551,
+            "brier": 0.49084917360348723,
+            "log_loss": 0.6835271910976668,
+            "n": 428,
+            "brier_improvement": 0.005434576868282359,
+            "accuracy_improvement": -0.002336448598130869
+          },
+          "2016": {
+            "hit_rate": 0.4863636363636364,
+            "brier": 0.5222660558800789,
+            "log_loss": 0.7165044869607293,
+            "n": 440,
+            "brier_improvement": -0.027721874470551744,
+            "accuracy_improvement": -0.06590909090909086
+          },
+          "2017": {
+            "hit_rate": 0.5477855477855478,
+            "brier": 0.49604924602621076,
+            "log_loss": 0.689161993361907,
+            "n": 429,
+            "brier_improvement": -0.022102753830635535,
+            "accuracy_improvement": -0.0815850815850816
+          },
+          "2018": {
+            "hit_rate": 0.5261904761904762,
+            "brier": 0.5171694865215898,
+            "log_loss": 0.711098780690012,
+            "n": 420,
+            "brier_improvement": -0.010071200881022202,
+            "accuracy_improvement": 0.0
+          },
+          "2019": {
+            "hit_rate": 0.5514018691588785,
+            "brier": 0.49795229092134063,
+            "log_loss": 0.6914284557077848,
+            "n": 428,
+            "brier_improvement": -0.020180167105167512,
+            "accuracy_improvement": -0.06074766355140193
+          },
+          "2020": {
+            "hit_rate": 0.5604651162790698,
+            "brier": 0.49970886385942515,
+            "log_loss": 0.6934636394329742,
+            "n": 430,
+            "brier_improvement": -0.016210477567088544,
+            "accuracy_improvement": -0.032558139534883734
+          },
+          "2021": {
+            "hit_rate": 0.5731225296442688,
+            "brier": 0.4992756317342499,
+            "log_loss": 0.693272608177951,
+            "n": 506,
+            "brier_improvement": -0.013708271055865306,
+            "accuracy_improvement": -0.011857707509881354
+          },
+          "2022": {
+            "hit_rate": 0.4476744186046512,
+            "brier": 0.5681222085705455,
+            "log_loss": 0.7666963442162539,
+            "n": 516,
+            "brier_improvement": -0.023681967385472458,
+            "accuracy_improvement": 0.023255813953488413
+          },
+          "2023": {
+            "hit_rate": 0.5238095238095238,
+            "brier": 0.5045993552834195,
+            "log_loss": 0.6979707312776442,
+            "n": 504,
+            "brier_improvement": -0.012672587197483043,
+            "accuracy_improvement": -0.04365079365079361
+          },
+          "2024": {
+            "hit_rate": 0.5456349206349206,
+            "brier": 0.4889495682285271,
+            "log_loss": 0.6818518707340058,
+            "n": 504,
+            "brier_improvement": 0.0023754283932466147,
+            "accuracy_improvement": -0.02182539682539686
+          },
+          "2025": {
+            "hit_rate": 0.5304878048780488,
+            "brier": 0.5022045710186182,
+            "log_loss": 0.6957492885034889,
+            "n": 492,
+            "brier_improvement": -0.0021305410100252997,
+            "accuracy_improvement": 0.008130081300813052
+          },
+          "2026": {
+            "hit_rate": 0.5182291666666666,
+            "brier": 0.49989673297433795,
+            "log_loss": 0.6931341830346921,
+            "n": 384,
+            "brier_improvement": -0.004244060027855656,
+            "accuracy_improvement": -0.03125
+          }
+        },
+        "years_with_positive_brier_improvement": 4
+      },
+      "logistic_shuffled_labels": {
+        "hit_rate": 0.5164218958611482,
+        "brier": 0.5137648516302572,
+        "log_loss": 0.7086461966152031,
+        "n": 7490,
+        "weeks": 718,
+        "balanced_accuracy": 0.48924572426796165,
+        "bss_vs_pooled_prior": -0.035862134928296374,
+        "brier_improvement_inference": {
+          "mean_difference": -0.01778683070779087,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.02351217887757242,
+              -0.0125509254593293
+            ],
+            "2": [
+              -0.023349401137599774,
+              -0.012565774546814398
+            ],
+            "4": [
+              -0.023241828184793135,
+              -0.012394118149773382
+            ],
+            "8": [
+              -0.023665797648254962,
+              -0.011931386043335422
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 718,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": -0.038184245660881175,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.054087761499357116,
+              -0.022458873638424
+            ],
+            "2": [
+              -0.05350234770030327,
+              -0.022891932621964758
+            ],
+            "4": [
+              -0.05335412191378815,
+              -0.02290976344272798
+            ],
+            "8": [
+              -0.05420116642038694,
+              -0.021809314297674198
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 501,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.48484848484848486,
+            "brier": 0.5298009704438914,
+            "log_loss": 0.724621665719243,
+            "n": 363,
+            "brier_improvement": -0.03857367365986236,
+            "accuracy_improvement": -0.08539944903581265
+          },
+          "2011": {
+            "hit_rate": 0.46464646464646464,
+            "brier": 0.5244680972342081,
+            "log_loss": 0.7187368696844074,
+            "n": 396,
+            "brier_improvement": -0.00965072120548982,
+            "accuracy_improvement": 0.01010101010101011
+          },
+          "2012": {
+            "hit_rate": 0.47715736040609136,
+            "brier": 0.5247135907094879,
+            "log_loss": 0.7190230927384611,
+            "n": 394,
+            "brier_improvement": -0.02422281723101327,
+            "accuracy_improvement": -0.032994923857868064
+          },
+          "2013": {
+            "hit_rate": 0.4485981308411215,
+            "brier": 0.5232750820617412,
+            "log_loss": 0.716731158305814,
+            "n": 428,
+            "brier_improvement": -0.02824110086816478,
+            "accuracy_improvement": -0.16588785046728977
+          },
+          "2014": {
+            "hit_rate": 0.5864485981308412,
+            "brier": 0.48337360679904146,
+            "log_loss": 0.6763515252456637,
+            "n": 428,
+            "brier_improvement": -0.0012098087085532505,
+            "accuracy_improvement": -0.030373831775700855
+          },
+          "2015": {
+            "hit_rate": 0.5630841121495327,
+            "brier": 0.4977237284066397,
+            "log_loss": 0.6912322709300626,
+            "n": 428,
+            "brier_improvement": -0.001439977934870107,
+            "accuracy_improvement": 0.01869158878504673
+          },
+          "2016": {
+            "hit_rate": 0.55,
+            "brier": 0.502136961368737,
+            "log_loss": 0.6959026913230645,
+            "n": 440,
+            "brier_improvement": -0.007592779959209817,
+            "accuracy_improvement": -0.002272727272727204
+          },
+          "2017": {
+            "hit_rate": 0.5571095571095571,
+            "brier": 0.5004660648594816,
+            "log_loss": 0.6952079974527826,
+            "n": 429,
+            "brier_improvement": -0.02651957266390642,
+            "accuracy_improvement": -0.07226107226107226
+          },
+          "2018": {
+            "hit_rate": 0.5047619047619047,
+            "brier": 0.5135717744424537,
+            "log_loss": 0.7077378075592349,
+            "n": 420,
+            "brier_improvement": -0.00647348880188614,
+            "accuracy_improvement": -0.021428571428571463
+          },
+          "2019": {
+            "hit_rate": 0.6074766355140186,
+            "brier": 0.4713524607039244,
+            "log_loss": 0.6644109176054833,
+            "n": 428,
+            "brier_improvement": 0.00641966311224873,
+            "accuracy_improvement": -0.004672897196261738
+          },
+          "2020": {
+            "hit_rate": 0.5837209302325581,
+            "brier": 0.5010335094338726,
+            "log_loss": 0.6967330428399705,
+            "n": 430,
+            "brier_improvement": -0.01753512314153599,
+            "accuracy_improvement": -0.009302325581395432
+          },
+          "2021": {
+            "hit_rate": 0.5513833992094862,
+            "brier": 0.5007962385183687,
+            "log_loss": 0.6949130898244772,
+            "n": 506,
+            "brier_improvement": -0.015228877839984167,
+            "accuracy_improvement": -0.03359683794466395
+          },
+          "2022": {
+            "hit_rate": 0.3992248062015504,
+            "brier": 0.5870992296513058,
+            "log_loss": 0.7919118969947591,
+            "n": 516,
+            "brier_improvement": -0.04265898846623273,
+            "accuracy_improvement": -0.025193798449612392
+          },
+          "2023": {
+            "hit_rate": 0.498015873015873,
+            "brier": 0.5162347154706279,
+            "log_loss": 0.7106250948175493,
+            "n": 504,
+            "brier_improvement": -0.024307947384691497,
+            "accuracy_improvement": -0.06944444444444442
+          },
+          "2024": {
+            "hit_rate": 0.5178571428571429,
+            "brier": 0.5138619931911145,
+            "log_loss": 0.7086245461981509,
+            "n": 504,
+            "brier_improvement": -0.022536996569340773,
+            "accuracy_improvement": -0.04960317460317454
+          },
+          "2025": {
+            "hit_rate": 0.4796747967479675,
+            "brier": 0.5231409562808971,
+            "log_loss": 0.7177337523461446,
+            "n": 492,
+            "brier_improvement": -0.023066926272304222,
+            "accuracy_improvement": -0.042682926829268275
+          },
+          "2026": {
+            "hit_rate": 0.5182291666666666,
+            "brier": 0.5105710089271555,
+            "log_loss": 0.7041325145635557,
+            "n": 384,
+            "brier_improvement": -0.014918335980673159,
+            "accuracy_improvement": -0.03125
+          }
+        },
+        "years_with_positive_brier_improvement": 1
+      },
+      "momentum": {
+        "hit_rate": 0.5058744993324432,
+        "brier": 0.9882510013351135,
+        "log_loss": 17.066490178580032,
+        "n": 7490,
+        "weeks": 718,
+        "balanced_accuracy": 0.49980646200420503,
+        "bss_vs_pooled_prior": -0.9925298292393516,
+        "brier_improvement_inference": {
+          "mean_difference": -0.4922729804126471,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.5231598125125136,
+              -0.46106102855609055
+            ],
+            "2": [
+              -0.5232011122037495,
+              -0.4614241390283351
+            ],
+            "4": [
+              -0.5232360297584616,
+              -0.4633309031190715
+            ],
+            "8": [
+              -0.5224314765918986,
+              -0.4601296301181457
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 718,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": -0.048731642189586116,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.07492342025433983,
+              -0.02216641450740231
+            ],
+            "2": [
+              -0.07362726469063327,
+              -0.023572212987548413
+            ],
+            "4": [
+              -0.07225746074877204,
+              -0.025856981162225103
+            ],
+            "8": [
+              -0.07064262958384242,
+              -0.026470731704035032
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 0.0004999500049995,
+            "exact": false,
+            "nonzero_date_clusters": 587,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.4573002754820937,
+            "brier": 1.0853994490358128,
+            "log_loss": 18.744184434703595,
+            "n": 363,
+            "brier_improvement": -0.5941721522517838,
+            "accuracy_improvement": -0.11294765840220383
+          },
+          "2011": {
+            "hit_rate": 0.4621212121212121,
+            "brier": 1.0757575757575757,
+            "log_loss": 18.57767518211105,
+            "n": 396,
+            "brier_improvement": -0.5609401997288574,
+            "accuracy_improvement": 0.007575757575757569
+          },
+          "2012": {
+            "hit_rate": 0.49746192893401014,
+            "brier": 1.0050761421319796,
+            "log_loss": 17.357050066477957,
+            "n": 394,
+            "brier_improvement": -0.504585368653505,
+            "accuracy_improvement": -0.012690355329949277
+          },
+          "2013": {
+            "hit_rate": 0.5350467289719626,
+            "brier": 0.9299065420560748,
+            "log_loss": 16.058917062119686,
+            "n": 428,
+            "brier_improvement": -0.43487256086249837,
+            "accuracy_improvement": -0.07943925233644866
+          },
+          "2014": {
+            "hit_rate": 0.5280373831775701,
+            "brier": 0.9439252336448598,
+            "log_loss": 16.301011289186818,
+            "n": 428,
+            "brier_improvement": -0.4617614355543716,
+            "accuracy_improvement": -0.08878504672897192
+          },
+          "2015": {
+            "hit_rate": 0.40654205607476634,
+            "brier": 1.1869158878504673,
+            "log_loss": 20.497311225017086,
+            "n": 428,
+            "brier_improvement": -0.6906321373786977,
+            "accuracy_improvement": -0.1378504672897196
+          },
+          "2016": {
+            "hit_rate": 0.5227272727272727,
+            "brier": 0.9545454545454546,
+            "log_loss": 16.484416006661917,
+            "n": 440,
+            "brier_improvement": -0.4600012731359274,
+            "accuracy_improvement": -0.02954545454545454
+          },
+          "2017": {
+            "hit_rate": 0.5594405594405595,
+            "brier": 0.8811188811188811,
+            "log_loss": 15.216384006149463,
+            "n": 429,
+            "brier_improvement": -0.40717238892330593,
+            "accuracy_improvement": -0.0699300699300699
+          },
+          "2018": {
+            "hit_rate": 0.48333333333333334,
+            "brier": 1.0333333333333334,
+            "log_loss": 17.84503447070385,
+            "n": 420,
+            "brier_improvement": -0.5262350476927659,
+            "accuracy_improvement": -0.04285714285714287
+          },
+          "2019": {
+            "hit_rate": 0.5397196261682243,
+            "brier": 0.9205607476635514,
+            "log_loss": 15.897520910741601,
+            "n": 428,
+            "brier_improvement": -0.4427886238473783,
+            "accuracy_improvement": -0.07242990654205606
+          },
+          "2020": {
+            "hit_rate": 0.4930232558139535,
+            "brier": 1.013953488372093,
+            "log_loss": 17.510356404861696,
+            "n": 430,
+            "brier_improvement": -0.5304551020797565,
+            "accuracy_improvement": -0.10000000000000003
+          },
+          "2021": {
+            "hit_rate": 0.5079051383399209,
+            "brier": 0.9841897233201581,
+            "log_loss": 16.99635439196198,
+            "n": 506,
+            "brier_improvement": -0.4986223626417735,
+            "accuracy_improvement": -0.07707509881422925
+          },
+          "2022": {
+            "hit_rate": 0.5251937984496124,
+            "brier": 0.9496124031007752,
+            "log_loss": 16.39922522626573,
+            "n": 516,
+            "brier_improvement": -0.40517216191570216,
+            "accuracy_improvement": 0.10077519379844968
+          },
+          "2023": {
+            "hit_rate": 0.5476190476190477,
+            "brier": 0.9047619047619048,
+            "log_loss": 15.624684559602452,
+            "n": 504,
+            "brier_improvement": -0.41283513667596833,
+            "accuracy_improvement": -0.01984126984126977
+          },
+          "2024": {
+            "hit_rate": 0.5297619047619048,
+            "brier": 0.9404761904761905,
+            "log_loss": 16.241448423797284,
+            "n": 504,
+            "brier_improvement": -0.44915119385441676,
+            "accuracy_improvement": -0.037698412698412676
+          },
+          "2025": {
+            "hit_rate": 0.5142276422764228,
+            "brier": 0.9715447154471545,
+            "log_loss": 16.777982842243198,
+            "n": 492,
+            "brier_improvement": -0.47147068543856163,
+            "accuracy_improvement": -0.008130081300812941
+          },
+          "2026": {
+            "hit_rate": 0.4557291666666667,
+            "brier": 1.0885416666666667,
+            "log_loss": 18.7984486107717,
+            "n": 384,
+            "brier_improvement": -0.5928889937201844,
+            "accuracy_improvement": -0.09374999999999994
+          }
+        },
+        "years_with_positive_brier_improvement": 0
+      },
+      "pooled_train_prior": {
+        "hit_rate": 0.5546061415220294,
+        "brier": 0.49597802092246634,
+        "log_loss": 0.689148990080843,
+        "n": 7490,
+        "weeks": 718,
+        "balanced_accuracy": 0.5,
+        "bss_vs_pooled_prior": 0.0,
+        "brier_improvement_inference": {
+          "mean_difference": 0.0,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              0.0,
+              0.0
+            ],
+            "2": [
+              0.0,
+              0.0
+            ],
+            "4": [
+              0.0,
+              0.0
+            ],
+            "8": [
+              0.0,
+              0.0
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 1.0,
+            "exact": true,
+            "nonzero_date_clusters": 0,
+            "resamples": 1,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": 0.0,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              0.0,
+              0.0
+            ],
+            "2": [
+              0.0,
+              0.0
+            ],
+            "4": [
+              0.0,
+              0.0
+            ],
+            "8": [
+              0.0,
+              0.0
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 1.0,
+            "exact": true,
+            "nonzero_date_clusters": 0,
+            "resamples": 1,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.5702479338842975,
+            "brier": 0.49122729678402904,
+            "log_loss": 0.6843551477093095,
+            "n": 363,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2011": {
+            "hit_rate": 0.45454545454545453,
+            "brier": 0.5148173760287182,
+            "log_loss": 0.7080278326035185,
+            "n": 396,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2012": {
+            "hit_rate": 0.5101522842639594,
+            "brier": 0.5004907734784746,
+            "log_loss": 0.6936394208066075,
+            "n": 394,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2013": {
+            "hit_rate": 0.6144859813084113,
+            "brier": 0.49503398119357644,
+            "log_loss": 0.6881803216339373,
+            "n": 428,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2014": {
+            "hit_rate": 0.616822429906542,
+            "brier": 0.4821637980904882,
+            "log_loss": 0.6752629223511856,
+            "n": 428,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2015": {
+            "hit_rate": 0.544392523364486,
+            "brier": 0.4962837504717696,
+            "log_loss": 0.6894281533518777,
+            "n": 428,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2016": {
+            "hit_rate": 0.5522727272727272,
+            "brier": 0.49454418140952716,
+            "log_loss": 0.6876814579180838,
+            "n": 440,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2017": {
+            "hit_rate": 0.6293706293706294,
+            "brier": 0.4739464921955752,
+            "log_loss": 0.6669587386420587,
+            "n": 429,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2018": {
+            "hit_rate": 0.5261904761904762,
+            "brier": 0.5070982856405676,
+            "log_loss": 0.700420966725875,
+            "n": 420,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2019": {
+            "hit_rate": 0.6121495327102804,
+            "brier": 0.4777721238161731,
+            "log_loss": 0.6707957848160525,
+            "n": 428,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2020": {
+            "hit_rate": 0.5930232558139535,
+            "brier": 0.4834983862923366,
+            "log_loss": 0.6765653621590668,
+            "n": 430,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2021": {
+            "hit_rate": 0.5849802371541502,
+            "brier": 0.4855673606783846,
+            "log_loss": 0.6786444938808737,
+            "n": 506,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2022": {
+            "hit_rate": 0.42441860465116277,
+            "brier": 0.5444402411850731,
+            "log_loss": 0.7381905206265084,
+            "n": 516,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2023": {
+            "hit_rate": 0.5674603174603174,
+            "brier": 0.49192676808593644,
+            "log_loss": 0.6850576537623749,
+            "n": 504,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2024": {
+            "hit_rate": 0.5674603174603174,
+            "brier": 0.4913249966217737,
+            "log_loss": 0.6844501465620585,
+            "n": 504,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2025": {
+            "hit_rate": 0.5223577235772358,
+            "brier": 0.5000740300085929,
+            "log_loss": 0.6932271833396938,
+            "n": 492,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          },
+          "2026": {
+            "hit_rate": 0.5494791666666666,
+            "brier": 0.4956526729464823,
+            "log_loss": 0.688795128615677,
+            "n": 384,
+            "brier_improvement": 0.0,
+            "accuracy_improvement": 0.0
+          }
+        },
+        "years_with_positive_brier_improvement": 0
+      },
+      "reversal": {
+        "hit_rate": 0.49492656875834445,
+        "brier": 1.010146862483311,
+        "log_loss": 17.444618304665838,
+        "n": 7490,
+        "weeks": 718,
+        "balanced_accuracy": 0.5008271909193878,
+        "bss_vs_pooled_prior": -1.0366766668501666,
+        "brier_improvement_inference": {
+          "mean_difference": -0.5141688415608446,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.5454586432084121,
+              -0.48387927551242876
+            ],
+            "2": [
+              -0.5457083438103157,
+              -0.4819549205941175
+            ],
+            "4": [
+              -0.5441296954990613,
+              -0.48190946468737256
+            ],
+            "8": [
+              -0.5478594304433488,
+              -0.48258817939651416
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 718,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": -0.059679572763684914,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.0861279273426044,
+              -0.03342868934120025
+            ],
+            "2": [
+              -0.08601229927115608,
+              -0.031450249213049716
+            ],
+            "4": [
+              -0.08772892232486385,
+              -0.031516946328487054
+            ],
+            "8": [
+              -0.08874054346729487,
+              -0.032047809880300836
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 9.999000099990002e-05,
+            "exact": false,
+            "nonzero_date_clusters": 613,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.5426997245179064,
+            "brier": 0.9146005509641874,
+            "log_loss": 15.79459196020709,
+            "n": 363,
+            "brier_improvement": -0.4233732541801583,
+            "accuracy_improvement": -0.02754820936639113
+          },
+          "2011": {
+            "hit_rate": 0.5404040404040404,
+            "brier": 0.9191919191919192,
+            "log_loss": 15.873882080489254,
+            "n": 396,
+            "brier_improvement": -0.404374543163201,
+            "accuracy_improvement": 0.08585858585858591
+          },
+          "2012": {
+            "hit_rate": 0.5025380710659898,
+            "brier": 0.9949238578680203,
+            "log_loss": 17.181726328432728,
+            "n": 394,
+            "brier_improvement": -0.4944330843895457,
+            "accuracy_improvement": -0.0076142131979696215
+          },
+          "2013": {
+            "hit_rate": 0.4649532710280374,
+            "brier": 1.0700934579439252,
+            "log_loss": 18.479859332790994,
+            "n": 428,
+            "brier_improvement": -0.5750594767503487,
+            "accuracy_improvement": -0.14953271028037385
+          },
+          "2014": {
+            "hit_rate": 0.4766355140186916,
+            "brier": 1.0467289719626167,
+            "log_loss": 18.076368954345778,
+            "n": 428,
+            "brier_improvement": -0.5645651738721285,
+            "accuracy_improvement": -0.14018691588785043
+          },
+          "2015": {
+            "hit_rate": 0.5981308411214953,
+            "brier": 0.8037383177570093,
+            "log_loss": 13.880069018515508,
+            "n": 428,
+            "brier_improvement": -0.30745456728523973,
+            "accuracy_improvement": 0.053738317757009324
+          },
+          "2016": {
+            "hit_rate": 0.4772727272727273,
+            "brier": 1.0454545454545454,
+            "log_loss": 18.054360388248767,
+            "n": 440,
+            "brier_improvement": -0.5509103640450183,
+            "accuracy_improvement": -0.07499999999999996
+          },
+          "2017": {
+            "hit_rate": 0.4405594405594406,
+            "brier": 1.118881118881119,
+            "log_loss": 19.322392388761223,
+            "n": 429,
+            "brier_improvement": -0.6449346266855438,
+            "accuracy_improvement": -0.1888111888111888
+          },
+          "2018": {
+            "hit_rate": 0.5190476190476191,
+            "brier": 0.9619047619047619,
+            "log_loss": 16.611506742314184,
+            "n": 420,
+            "brier_improvement": -0.45480647626419435,
+            "accuracy_improvement": -0.0071428571428571175
+          },
+          "2019": {
+            "hit_rate": 0.4602803738317757,
+            "brier": 1.0794392523364487,
+            "log_loss": 18.641255484169086,
+            "n": 428,
+            "brier_improvement": -0.6016671285202755,
+            "accuracy_improvement": -0.15186915887850466
+          },
+          "2020": {
+            "hit_rate": 0.5069767441860465,
+            "brier": 0.986046511627907,
+            "log_loss": 17.028419990048988,
+            "n": 430,
+            "brier_improvement": -0.5025481253355704,
+            "accuracy_improvement": -0.086046511627907
+          },
+          "2021": {
+            "hit_rate": 0.49209486166007904,
+            "brier": 1.0158102766798418,
+            "log_loss": 17.542422002948708,
+            "n": 506,
+            "brier_improvement": -0.5302429160014572,
+            "accuracy_improvement": -0.09288537549407111
+          },
+          "2022": {
+            "hit_rate": 0.4748062015503876,
+            "brier": 1.050387596899225,
+            "log_loss": 18.13955116864495,
+            "n": 516,
+            "brier_improvement": -0.5059473557141518,
+            "accuracy_improvement": 0.05038759689922484
+          },
+          "2023": {
+            "hit_rate": 0.4523809523809524,
+            "brier": 1.0952380952380953,
+            "log_loss": 18.91409183530823,
+            "n": 504,
+            "brier_improvement": -0.6033113271521588,
+            "accuracy_improvement": -0.11507936507936506
+          },
+          "2024": {
+            "hit_rate": 0.47023809523809523,
+            "brier": 1.0595238095238095,
+            "log_loss": 18.297327971113397,
+            "n": 504,
+            "brier_improvement": -0.5681988129020359,
+            "accuracy_improvement": -0.09722222222222221
+          },
+          "2025": {
+            "hit_rate": 0.48577235772357724,
+            "brier": 1.0284552845528456,
+            "log_loss": 17.760793552667483,
+            "n": 492,
+            "brier_improvement": -0.5283812545442528,
+            "accuracy_improvement": -0.036585365853658514
+          },
+          "2026": {
+            "hit_rate": 0.5442708333333334,
+            "brier": 0.9114583333333334,
+            "log_loss": 15.740327784138984,
+            "n": 384,
+            "brier_improvement": -0.4158056603868511,
+            "accuracy_improvement": -0.005208333333333259
+          }
+        },
+        "years_with_positive_brier_improvement": 0
+      },
+      "ticker_train_prior": {
+        "hit_rate": 0.5440587449933244,
+        "brier": 0.4983469113850622,
+        "log_loss": 0.6917001355699129,
+        "n": 7490,
+        "weeks": 718,
+        "balanced_accuracy": 0.4984008941137894,
+        "bss_vs_pooled_prior": -0.0047762004820093296,
+        "brier_improvement_inference": {
+          "mean_difference": -0.0023688904625958442,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.004001690990202955,
+              -0.0008020903551886642
+            ],
+            "2": [
+              -0.004003633622429335,
+              -0.0007295747172256639
+            ],
+            "4": [
+              -0.004157824378792295,
+              -0.0006548752157688959
+            ],
+            "8": [
+              -0.004280673231371316,
+              -0.0005991609061905393
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 0.004999500049995001,
+            "exact": false,
+            "nonzero_date_clusters": 718,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": -0.01054739652870494,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.018076624599937918,
+              -0.0031952583057159524
+            ],
+            "2": [
+              -0.017726313182941735,
+              -0.003742752634753791
+            ],
+            "4": [
+              -0.017388521058631864,
+              -0.0041209217034828645
+            ],
+            "8": [
+              -0.017745231177929872,
+              -0.0037454077969006996
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 0.005599440055994401,
+            "exact": false,
+            "nonzero_date_clusters": 282,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.5702479338842975,
+            "brier": 0.4918250545553093,
+            "log_loss": 0.68493683479874,
+            "n": 363,
+            "brier_improvement": -0.0005977577712802384,
+            "accuracy_improvement": 0.0
+          },
+          "2011": {
+            "hit_rate": 0.45454545454545453,
+            "brier": 0.5357585860949451,
+            "log_loss": 0.7318658479848376,
+            "n": 396,
+            "brier_improvement": -0.020941210066226845,
+            "accuracy_improvement": 0.0
+          },
+          "2012": {
+            "hit_rate": 0.5101522842639594,
+            "brier": 0.49941165542112764,
+            "log_loss": 0.6925583309521794,
+            "n": 394,
+            "brier_improvement": 0.0010791180573469505,
+            "accuracy_improvement": 0.0
+          },
+          "2013": {
+            "hit_rate": 0.530373831775701,
+            "brier": 0.5009599478871136,
+            "log_loss": 0.6943604076154176,
+            "n": 428,
+            "brier_improvement": -0.005925966693537177,
+            "accuracy_improvement": -0.08411214953271029
+          },
+          "2014": {
+            "hit_rate": 0.5700934579439252,
+            "brier": 0.483878766736631,
+            "log_loss": 0.6769265483116191,
+            "n": 428,
+            "brier_improvement": -0.0017149686461427893,
+            "accuracy_improvement": -0.04672897196261683
+          },
+          "2015": {
+            "hit_rate": 0.5210280373831776,
+            "brier": 0.505840340844438,
+            "log_loss": 0.6990975153406026,
+            "n": 428,
+            "brier_improvement": -0.009556590372668372,
+            "accuracy_improvement": -0.02336448598130836
+          },
+          "2016": {
+            "hit_rate": 0.525,
+            "brier": 0.49848531749891095,
+            "log_loss": 0.6916530054755805,
+            "n": 440,
+            "brier_improvement": -0.00394113608938379,
+            "accuracy_improvement": -0.027272727272727226
+          },
+          "2017": {
+            "hit_rate": 0.6293706293706294,
+            "brier": 0.4740611525196217,
+            "log_loss": 0.6670417073833627,
+            "n": 429,
+            "brier_improvement": -0.0001146603240465005,
+            "accuracy_improvement": 0.0
+          },
+          "2018": {
+            "hit_rate": 0.5261904761904762,
+            "brier": 0.507645293236325,
+            "log_loss": 0.7010283717416935,
+            "n": 420,
+            "brier_improvement": -0.0005470075957574316,
+            "accuracy_improvement": 0.0
+          },
+          "2019": {
+            "hit_rate": 0.6121495327102804,
+            "brier": 0.47795451383212695,
+            "log_loss": 0.6709707943582511,
+            "n": 428,
+            "brier_improvement": -0.0001823900159538261,
+            "accuracy_improvement": 0.0
+          },
+          "2020": {
+            "hit_rate": 0.5930232558139535,
+            "brier": 0.4853474737806438,
+            "log_loss": 0.6784609440804402,
+            "n": 430,
+            "brier_improvement": -0.0018490874883071995,
+            "accuracy_improvement": 0.0
+          },
+          "2021": {
+            "hit_rate": 0.5849802371541502,
+            "brier": 0.4872639658894779,
+            "log_loss": 0.680350507619936,
+            "n": 506,
+            "brier_improvement": -0.0016966052110933272,
+            "accuracy_improvement": 0.0
+          },
+          "2022": {
+            "hit_rate": 0.42441860465116277,
+            "brier": 0.5417142144538971,
+            "log_loss": 0.7355294034424834,
+            "n": 516,
+            "brier_improvement": 0.0027260267311759456,
+            "accuracy_improvement": 0.0
+          },
+          "2023": {
+            "hit_rate": 0.5476190476190477,
+            "brier": 0.498011329052949,
+            "log_loss": 0.6912084454336639,
+            "n": 504,
+            "brier_improvement": -0.006084560967012542,
+            "accuracy_improvement": -0.01984126984126977
+          },
+          "2024": {
+            "hit_rate": 0.5674603174603174,
+            "brier": 0.48882880282978663,
+            "log_loss": 0.6819191715203589,
+            "n": 504,
+            "brier_improvement": 0.002496193791987067,
+            "accuracy_improvement": 0.0
+          },
+          "2025": {
+            "hit_rate": 0.5487804878048781,
+            "brier": 0.4973091096329026,
+            "log_loss": 0.6904596731594619,
+            "n": 492,
+            "brier_improvement": 0.0027649203756902607,
+            "accuracy_improvement": 0.026422764227642337
+          },
+          "2026": {
+            "hit_rate": 0.5390625,
+            "brier": 0.49438096525660996,
+            "log_loss": 0.687509605123854,
+            "n": 384,
+            "brier_improvement": 0.0012717076898723367,
+            "accuracy_improvement": -0.01041666666666663
+          }
+        },
+        "years_with_positive_brier_improvement": 5
+      },
+      "uniform": {
+        "hit_rate": 0.5546061415220294,
+        "brier": 0.5,
+        "log_loss": 0.6931471805599453,
+        "n": 7490,
+        "weeks": 718,
+        "balanced_accuracy": 0.5,
+        "bss_vs_pooled_prior": -0.008109188125016598,
+        "brier_improvement_inference": {
+          "mean_difference": -0.004021979077533654,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              -0.009523912364528951,
+              0.0014021805629905071
+            ],
+            "2": [
+              -0.00967769933173007,
+              0.0019299274573892464
+            ],
+            "4": [
+              -0.009521532557661035,
+              0.0015694425161171975
+            ],
+            "8": [
+              -0.009421672446540106,
+              0.0017385683791626121
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 0.15758424157584242,
+            "exact": false,
+            "nonzero_date_clusters": 718,
+            "resamples": 10000,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "accuracy_improvement_inference": {
+          "mean_difference": 0.0,
+          "n": 7490,
+          "date_clusters": 718,
+          "ci95_by_block_length": {
+            "1": [
+              0.0,
+              0.0
+            ],
+            "2": [
+              0.0,
+              0.0
+            ],
+            "4": [
+              0.0,
+              0.0
+            ],
+            "8": [
+              0.0,
+              0.0
+            ]
+          },
+          "week_signflip": {
+            "p_two_sided": 1.0,
+            "exact": true,
+            "nonzero_date_clusters": 0,
+            "resamples": 1,
+            "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+          },
+          "bootstrap_resamples": 2000,
+          "seed": 17,
+          "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+          "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+          "first_date": "2010-01-08",
+          "last_date": "2026-10-02",
+          "calendar_gaps_over_7_days": 141,
+          "largest_calendar_gap_days": 28
+        },
+        "per_year": {
+          "2010": {
+            "hit_rate": 0.5702479338842975,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599453,
+            "n": 363,
+            "brier_improvement": -0.008772703215970956,
+            "accuracy_improvement": 0.0
+          },
+          "2011": {
+            "hit_rate": 0.45454545454545453,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599452,
+            "n": 396,
+            "brier_improvement": 0.014817376028718243,
+            "accuracy_improvement": 0.0
+          },
+          "2012": {
+            "hit_rate": 0.5101522842639594,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599452,
+            "n": 394,
+            "brier_improvement": 0.0004907734784745932,
+            "accuracy_improvement": 0.0
+          },
+          "2013": {
+            "hit_rate": 0.6144859813084113,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599453,
+            "n": 428,
+            "brier_improvement": -0.0049660188064235555,
+            "accuracy_improvement": 0.0
+          },
+          "2014": {
+            "hit_rate": 0.616822429906542,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599453,
+            "n": 428,
+            "brier_improvement": -0.017836201909511795,
+            "accuracy_improvement": 0.0
+          },
+          "2015": {
+            "hit_rate": 0.544392523364486,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599453,
+            "n": 428,
+            "brier_improvement": -0.0037162495282304087,
+            "accuracy_improvement": 0.0
+          },
+          "2016": {
+            "hit_rate": 0.5522727272727272,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599454,
+            "n": 440,
+            "brier_improvement": -0.0054558185904728385,
+            "accuracy_improvement": 0.0
+          },
+          "2017": {
+            "hit_rate": 0.6293706293706294,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599453,
+            "n": 429,
+            "brier_improvement": -0.02605350780442478,
+            "accuracy_improvement": 0.0
+          },
+          "2018": {
+            "hit_rate": 0.5261904761904762,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599453,
+            "n": 420,
+            "brier_improvement": 0.007098285640567581,
+            "accuracy_improvement": 0.0
+          },
+          "2019": {
+            "hit_rate": 0.6121495327102804,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599453,
+            "n": 428,
+            "brier_improvement": -0.022227876183826878,
+            "accuracy_improvement": 0.0
+          },
+          "2020": {
+            "hit_rate": 0.5930232558139535,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599453,
+            "n": 430,
+            "brier_improvement": -0.0165016137076634,
+            "accuracy_improvement": 0.0
+          },
+          "2021": {
+            "hit_rate": 0.5849802371541502,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599454,
+            "n": 506,
+            "brier_improvement": -0.014432639321615426,
+            "accuracy_improvement": 0.0
+          },
+          "2022": {
+            "hit_rate": 0.42441860465116277,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599453,
+            "n": 516,
+            "brier_improvement": 0.04444024118507306,
+            "accuracy_improvement": 0.0
+          },
+          "2023": {
+            "hit_rate": 0.5674603174603174,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599454,
+            "n": 504,
+            "brier_improvement": -0.008073231914063561,
+            "accuracy_improvement": 0.0
+          },
+          "2024": {
+            "hit_rate": 0.5674603174603174,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599454,
+            "n": 504,
+            "brier_improvement": -0.008675003378226298,
+            "accuracy_improvement": 0.0
+          },
+          "2025": {
+            "hit_rate": 0.5223577235772358,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599453,
+            "n": 492,
+            "brier_improvement": 7.403000859285136e-05,
+            "accuracy_improvement": 0.0
+          },
+          "2026": {
+            "hit_rate": 0.5494791666666666,
+            "brier": 0.5,
+            "log_loss": 0.6931471805599453,
+            "n": 384,
+            "brier_improvement": -0.004347327053517702,
+            "accuracy_improvement": 0.0
+          }
+        },
+        "years_with_positive_brier_improvement": 5
+      }
+    }
+  },
+  "provenance": {
+    "protocol_sha256": "93eb54750f504e2c598f8420aa9af3997d789226eef20cdd16e762fe1df9b6ee",
+    "features_sha256": "2c87ee814f4fff094f255127487079182ac1c699bbc4074e80c436e9794bf737",
+    "predictions_sha256": "5a2a1243e459b458816a7d673e65402ed26f473d713fc3eb1baf6234c19ade66",
+    "shared_statistics_sha256": "46991303a5bf066e41867e9d12dbd0d965c3f38231ecad28208f52818cf64d74",
+    "code_sha256": {
+      "baselines.py": "ffbc89e5416c8492317a7f1ee5342e872242585595be01b677d411063f31f9bb",
+      "data.py": "f5b192d05677c1b850a172bd9612dfdfd28177c25461cd3295d71e9367ba2525",
+      "features.py": "621cc7a639af11ceb74b42c5ecdf37811ff1838d50d196f2b80717fac2d9f63e"
+    },
+    "numpy_version": "2.4.6",
+    "pandas_version": "2.3.3",
+    "sklearn_version": "1.9.1",
+    "frozen_prospective_model": {
+      "protocol_sha256": "93eb54750f504e2c598f8420aa9af3997d789226eef20cdd16e762fe1df9b6ee",
+      "features_sha256": "2c87ee814f4fff094f255127487079182ac1c699bbc4074e80c436e9794bf737",
+      "sklearn_version": "1.9.1",
+      "train_start": "2021-10-15",
+      "train_last_target": "2026-10-09",
+      "train_rows": 2520,
+      "train_weeks": 210,
+      "task": "ternary_volatility",
+      "comparator_prior": [
+        0.38293650793650796,
+        0.2837301587301587,
+        0.3333333333333333
+      ],
+      "model_file": "models/prospective_context.json",
+      "model_sha256": "3505b1baf5e4c19d74adbb889f1ef47afc1ff42cf9d773e16534daddfd6a402c",
+      "reload_verified": true,
+      "prospective_status": "not evaluated: future observations unavailable"
+    },
+    "splits": [
+      {
+        "task": "ternary_volatility",
+        "fold": 2010,
+        "train_rows": 1728,
+        "test_rows": 365,
+        "train_weeks": 216,
+        "test_weeks": 44,
+        "last_train_target": "2009-12-24",
+        "first_test_input": "2010-01-04"
+      },
+      {
+        "task": "ternary_volatility",
+        "fold": 2011,
+        "train_rows": 1732,
+        "test_rows": 396,
+        "train_weeks": 215,
+        "test_weeks": 44,
+        "last_train_target": "2010-12-23",
+        "first_test_input": "2011-01-03"
+      },
+      {
+        "task": "ternary_volatility",
+        "fold": 2012,
+        "train_rows": 1793,
+        "test_rows": 395,
+        "train_weeks": 217,
+        "test_weeks": 42,
+        "last_train_target": "2011-12-30",
+        "first_test_input": "2012-01-09"
+      },
+      {
+        "task": "ternary_volatility",
+        "fold": 2013,
+        "train_rows": 1844,
+        "test_rows": 430,
+        "train_weeks": 216,
+        "test_weeks": 43,
+        "last_train_target": "2012-12-28",
+        "first_test_input": "2013-01-07"
+      },
+      {
+        "task": "ternary_volatility",
+        "fold": 2014,
+        "train_rows": 1930,
+        "test_rows": 430,
+        "train_weeks": 216,
+        "test_weeks": 43,
+        "last_train_target": "2013-12-27",
+        "first_test_input": "2014-01-06"
+      },
+      {
+        "task": "ternary_volatility",
+        "fold": 2015,
+        "train_rows": 2016,
+        "test_rows": 430,
+        "train_weeks": 216,
+        "test_weeks": 43,
+        "last_train_target": "2014-12-26",
+        "first_test_input": "2015-01-05"
+      },
+      {
+        "task": "ternary_volatility",
+        "fold": 2016,
+        "train_rows": 2081,
+        "test_rows": 440,
+        "train_weeks": 215,
+        "test_weeks": 44,
+        "last_train_target": "2015-12-24",
+        "first_test_input": "2016-01-04"
+      },
+      {
+        "task": "ternary_volatility",
+        "fold": 2017,
+        "train_rows": 2125,
+        "test_rows": 430,
+        "train_weeks": 215,
+        "test_weeks": 43,
+        "last_train_target": "2016-12-30",
+        "first_test_input": "2017-01-09"
+      },
+      {
+        "task": "ternary_volatility",
+        "fold": 2018,
+        "train_rows": 2160,
+        "test_rows": 420,
+        "train_weeks": 216,
+        "test_weeks": 42,
+        "last_train_target": "2017-12-29",
+        "first_test_input": "2018-01-08"
+      },
+      {
+        "task": "ternary_volatility",
+        "fold": 2019,
+        "train_rows": 2150,
+        "test_rows": 430,
+        "train_weeks": 215,
+        "test_weeks": 43,
+        "last_train_target": "2018-12-28",
+        "first_test_input": "2019-01-07"
+      },
+      {
+        "task": "ternary_volatility",
+        "fold": 2020,
+        "train_rows": 2150,
+        "test_rows": 430,
+        "train_weeks": 215,
+        "test_weeks": 43,
+        "last_train_target": "2019-12-27",
+        "first_test_input": "2020-01-06"
+      },
+      {
+        "task": "ternary_volatility",
+        "fold": 2021,
+        "train_rows": 2150,
+        "test_rows": 506,
+        "train_weeks": 215,
+        "test_weeks": 44,
+        "last_train_target": "2020-12-24",
+        "first_test_input": "2021-01-04"
+      },
+      {
+        "task": "ternary_volatility",
+        "fold": 2022,
+        "train_rows": 2204,
+        "test_rows": 516,
+        "train_weeks": 214,
+        "test_weeks": 43,
+        "last_train_target": "2021-12-23",
+        "first_test_input": "2022-01-03"
+      },
+      {
+        "task": "ternary_volatility",
+        "fold": 2023,
+        "train_rows": 2302,
+        "test_rows": 504,
+        "train_weeks": 215,
+        "test_weeks": 42,
+        "last_train_target": "2022-12-30",
+        "first_test_input": "2023-01-09"
+      },
+      {
+        "task": "ternary_volatility",
+        "fold": 2024,
+        "train_rows": 2386,
+        "test_rows": 504,
+        "train_weeks": 215,
+        "test_weeks": 42,
+        "last_train_target": "2023-12-29",
+        "first_test_input": "2024-01-08"
+      },
+      {
+        "task": "ternary_volatility",
+        "fold": 2025,
+        "train_rows": 2460,
+        "test_rows": 492,
+        "train_weeks": 214,
+        "test_weeks": 41,
+        "last_train_target": "2024-12-27",
+        "first_test_input": "2025-01-13"
+      },
+      {
+        "task": "ternary_volatility",
+        "fold": 2026,
+        "train_rows": 2522,
+        "test_rows": 384,
+        "train_weeks": 212,
+        "test_weeks": 32,
+        "last_train_target": "2025-12-26",
+        "first_test_input": "2026-01-05"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2010,
+        "train_rows": 1719,
+        "test_rows": 363,
+        "train_weeks": 216,
+        "test_weeks": 44,
+        "last_train_target": "2009-12-24",
+        "first_test_input": "2010-01-04"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2011,
+        "train_rows": 1725,
+        "test_rows": 396,
+        "train_weeks": 215,
+        "test_weeks": 44,
+        "last_train_target": "2010-12-23",
+        "first_test_input": "2011-01-03"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2012,
+        "train_rows": 1787,
+        "test_rows": 394,
+        "train_weeks": 217,
+        "test_weeks": 42,
+        "last_train_target": "2011-12-30",
+        "first_test_input": "2012-01-09"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2013,
+        "train_rows": 1840,
+        "test_rows": 428,
+        "train_weeks": 216,
+        "test_weeks": 43,
+        "last_train_target": "2012-12-28",
+        "first_test_input": "2013-01-07"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2014,
+        "train_rows": 1925,
+        "test_rows": 428,
+        "train_weeks": 216,
+        "test_weeks": 43,
+        "last_train_target": "2013-12-27",
+        "first_test_input": "2014-01-06"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2015,
+        "train_rows": 2009,
+        "test_rows": 428,
+        "train_weeks": 216,
+        "test_weeks": 43,
+        "last_train_target": "2014-12-26",
+        "first_test_input": "2015-01-05"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2016,
+        "train_rows": 2074,
+        "test_rows": 440,
+        "train_weeks": 215,
+        "test_weeks": 44,
+        "last_train_target": "2015-12-24",
+        "first_test_input": "2016-01-04"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2017,
+        "train_rows": 2118,
+        "test_rows": 429,
+        "train_weeks": 215,
+        "test_weeks": 43,
+        "last_train_target": "2016-12-30",
+        "first_test_input": "2017-01-09"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2018,
+        "train_rows": 2153,
+        "test_rows": 420,
+        "train_weeks": 216,
+        "test_weeks": 42,
+        "last_train_target": "2017-12-29",
+        "first_test_input": "2018-01-08"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2019,
+        "train_rows": 2145,
+        "test_rows": 428,
+        "train_weeks": 215,
+        "test_weeks": 43,
+        "last_train_target": "2018-12-28",
+        "first_test_input": "2019-01-07"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2020,
+        "train_rows": 2145,
+        "test_rows": 430,
+        "train_weeks": 215,
+        "test_weeks": 43,
+        "last_train_target": "2019-12-27",
+        "first_test_input": "2020-01-06"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2021,
+        "train_rows": 2147,
+        "test_rows": 506,
+        "train_weeks": 215,
+        "test_weeks": 44,
+        "last_train_target": "2020-12-24",
+        "first_test_input": "2021-01-04"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2022,
+        "train_rows": 2201,
+        "test_rows": 516,
+        "train_weeks": 214,
+        "test_weeks": 43,
+        "last_train_target": "2021-12-23",
+        "first_test_input": "2022-01-03"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2023,
+        "train_rows": 2300,
+        "test_rows": 504,
+        "train_weeks": 215,
+        "test_weeks": 42,
+        "last_train_target": "2022-12-30",
+        "first_test_input": "2023-01-09"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2024,
+        "train_rows": 2384,
+        "test_rows": 504,
+        "train_weeks": 215,
+        "test_weeks": 42,
+        "last_train_target": "2023-12-29",
+        "first_test_input": "2024-01-08"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2025,
+        "train_rows": 2460,
+        "test_rows": 492,
+        "train_weeks": 214,
+        "test_weeks": 41,
+        "last_train_target": "2024-12-27",
+        "first_test_input": "2025-01-13"
+      },
+      {
+        "task": "binary_direction",
+        "fold": 2026,
+        "train_rows": 2522,
+        "test_rows": 384,
+        "train_weeks": 212,
+        "test_weeks": 32,
+        "last_train_target": "2025-12-26",
+        "first_test_input": "2026-01-05"
+      }
+    ]
+  }
+}

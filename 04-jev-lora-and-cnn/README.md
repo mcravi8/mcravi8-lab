@@ -1,65 +1,79 @@
-# Experiment 04: JEV LoRA fine-tune vs CNN baseline
+# Experiment 04: JEV LoRA and CNN
 
-## Question
-Experiment 03 found no edge for zero-shot JEV on weekly charts of 12 tickers. Does task-specific training help? We fine-tune JEV-27B-VL with a LoRA adapter and train a small CNN from scratch on the same charts, then compare both to 03's zero-shot and calibrated JEV.
+Do task-specific training recipes improve weekly direction forecasts? The historical LoRA and CNN runs did not establish added skill over a simple probability prior. This finding is limited to the tested settings.
 
-## Design
-- Data, charts, splits, labels and prompt identical to 03 (12 tickers, weekly 5-day charts, Up/Flat/Down next week). Test period 2025-10-17 to 2026-10-02: 492 charts (41 weeks x 12 tickers).
-- JEV LoRA (`src/lora_train.py`, run on a Runpod H100 80GB HBM3): System 1 decision LoRA merged into the base, new LoRA rank 16 (108.8M trainable params), lr 1e-4, grad accumulation 8, cross-entropy over the A/B/C choice-token logits through the same readout as /v1/decide. Validation = last ~20% of train weeks; early stopping on validation log loss, evaluated twice per epoch.
-- CNN (`src/cnn.py`): small CNN trained from scratch, 5 seeds; reported as the 5-seed probability-averaged ensemble and per seed.
-- Evaluation (`src/evaluate04.py`, reusing 03's `src/evaluate.py` unchanged): hit rate vs each ticker's train-majority class, 95% week-block bootstrap CIs (2000 resamples) pooled, mirrored-chart placebo hit rate, Brier vs train class frequencies, Brier skill score (BSS), share of charts predicted Flat. Calibrated JEV applies 03's train-fit calibration.
-- Success criteria (same as 03): hit-rate CI above test-majority base, hit > placebo, BSS > 0.
-- Compute: pod ran about 12:45 to 1:26 PM PT on 2026-10-10 (~41 min at $3.99/hr, ~$2.70). LoRA training itself took 832 s.
+## Historical design and audit
 
-## Training curves
-![training curves](results/training_curves.png)
+The 12 tickers, images, labels and outer split match Experiment 03. Canonical training partitions are 612 fit charts across 51 dates, 156 validation charts across 13 dates, and 492 test charts across 41 dates. Targets must finish before the next partition's first input week. Validation chooses checkpoints; test labels never select them.
 
-JEV LoRA validation log loss (ln 3 = 1.0986):
+Historical LoRA used JEV's decision adapter merged into the base, then a new rank-16 adapter (108.8 million trainable parameters), learning rate 1e-4 and accumulation 8. The best checkpoint was at half an epoch: validation log loss 1.0991, near uniform's 1.0986. CNN results average five seeds. Historical curves and predictions are retained.
 
-| epoch | train loss | val log loss | val acc |
-|---|---|---|---|
-| 0.0 | - | 1.5067 | 0.365 |
-| 0.5 | 1.1652 | **1.0991** | 0.378 |
-| 1.0 | 1.1088 | 1.1336 | 0.282 |
-| 1.5 | 1.0827 | 1.1358 | 0.365 |
+**The old HF-vLLM comparison differed by up to 0.151833 in option probability and did not stop training.** Consequently, old LoRA-versus-vLLM differences are not a verified controlled implementation comparison. The new gate fixes the workflow; it does not retroactively validate that run. No record of the old full GPU package environment or saved CNN weights was recovered.
 
-Best checkpoint is epoch 0.5, whose validation log loss is essentially uniform (1.0991 vs 1.0986). Train loss kept falling while validation got worse: the adapter first removed zero-shot JEV's overconfidence and then overfit.
+![Historical training curves](results/training_curves.png)
 
-## Results (pooled, 492 test charts)
-Train-majority base rate 0.370; test-majority base rate 0.396; Brier reference 0.666.
+## Corrected historical results
 
-![model comparison](results/model_comparison.png)
+CIs use paired circular moving blocks of four consecutive retained forecast weeks, carrying all tickers in a date together. JSON also reports block lengths 1, 2 and 8, paired Brier/accuracy differences, and date-level sign-flip tests. Holiday gaps mean four retained dates can span more than four calendar weeks. Blocks address dependence approximately; stationarity is an assumption, and sign-flip tests additionally assume independent symmetric date differences. Exact enumeration does not remove those assumptions.
 
-| model | hit | edge vs train base [95% CI] | placebo hit | Brier | BSS [95% CI] | % Flat |
-|---|---|---|---|---|---|---|
-| JEV zero-shot (03) | 0.372 | +0.002 [-0.059, +0.063] | 0.374 | 0.878 | -0.318 [-0.427, -0.212] | 0.4% |
-| JEV calibrated (03) | 0.358 | -0.012 [-0.071, +0.047] | 0.362 | 0.661 | +0.007 [-0.012, +0.029] | 0.6% |
-| JEV LoRA (04) | 0.376 | +0.006 [-0.041, +0.053] | 0.386 | 0.662 | +0.006 [-0.007, +0.020] | 0.0% |
-| CNN 5-seed ensemble (04) | 0.372 | +0.002 [-0.043, +0.051] | 0.378 | 0.664 | +0.002 [-0.012, +0.015] | 0.0% |
+The primary references are selected or fitted on training labels. Test-majority rates are descriptive look-ahead benchmarks only, with no CI or success claim based on them. All historical results are exploratory because the test period informed successive experiments. Intervals remain unadjusted and exploratory. Selected families have Holm-adjusted p-values: four volatility coefficients in 03, and six model pairs across two metrics in 04. These limited adjustments do not correct the broader adaptive research process.
 
-CNN per seed (pooled):
+| Model | Hit | Hit minus ticker train base 95% CI | Mirrored hit | Brier | BSS vs ticker prior | Up/Flat/Down predictions |
+| --- | ---: | --- | ---: | ---: | ---: | --- |
+| JEV zero-shot (03) | 0.372 | [-0.063, +0.067] | 0.374 | 0.877935 | -0.318 | 254/2/236 |
+| JEV calibrated (03) | 0.358 | [-0.077, +0.051] | 0.362 | 0.661129 | +0.007 | 289/3/200 |
+| JEV LoRA (04) | 0.376 | [-0.033, +0.045] | 0.386 | 0.661842 | +0.006 | 490/0/2 |
+| CNN 5-seed ensemble (04) | 0.372 | [-0.037, +0.043] | 0.378 | 0.664412 | +0.002 | 486/0/6 |
 
-| seed | hit | edge [95% CI] | placebo hit | Brier | BSS | % Flat |
-|---|---|---|---|---|---|---|
-| 0 | 0.337 | -0.033 [-0.077, +0.014] | 0.388 | 0.669 | -0.004 | 21.3% |
-| 1 | 0.364 | -0.006 [-0.081, +0.069] | 0.392 | 0.666 | +0.000 | 0.0% |
-| 2 | 0.380 | +0.010 [-0.039, +0.059] | 0.382 | 0.664 | +0.003 | 0.0% |
-| 3 | 0.339 | -0.030 [-0.083, +0.026] | 0.350 | 0.668 | -0.004 | 44.5% |
-| 4 | 0.380 | +0.010 [-0.039, +0.059] | 0.380 | 0.663 | +0.004 | 0.0% |
-| mean (sd) | 0.360 (0.021) | -0.010 | 0.378 | 0.666 | -0.000 (0.004) | 13.2% |
+The pooled training-frequency baseline scores 187/492 = **38.01%**, with Brier **0.663186**. Always-Up has the same accuracy but much worse Brier, so deterministic accuracy and probabilistic skill must be distinguished. None of the calibrated/trained models has a positive Brier improvement over the pooled constant whose four-week interval excludes zero. Paired head-to-head comparisons, block-length sensitivity and per-seed results are in `results/metrics.json`.
 
-Predicted class counts (Up/Flat/Down): zero-shot 254/2/236, calibrated 289/3/200, LoRA 490/0/2, CNN ensemble 486/0/6.
+LoRA versus mirrored images has **0 wins, 5 losses and 487 ties**, with the five losses on five different dates. The exact two-sided date-sign-flip result is **p = 0.0625**. The previous “significantly below placebo” claim was unsupported: its percentile-bootstrap interval excluded zero despite only five discordant dates. Mirroring is also weak evidence when a model predicts Up almost always.
 
-Per ticker (41 charts each, i.i.d. bootstrap CIs as in 03): no model has a ticker CI excluding zero. LoRA and the CNN ensemble match the base rate exactly (CI [0, 0]) on most tickers because they predict Up almost always. The largest edges are on NVDA, whose train majority was not Up (base 0.244): LoRA +0.146 [-0.098, +0.390], CNN +0.122, calibrated JEV +0.171; these come from predicting Up in an Up-heavy test year, not from chart reading. Full per-ticker numbers are in `results/metrics.json`.
+![Corrected historical comparison](results/model_comparison.png)
 
-## Success criteria
-No model meets them. All four hit-rate CIs include the test-majority base (upper bounds +0.008 to +0.030 vs test base). LoRA and CNN are at or below their placebo (LoRA hit minus placebo CI [-0.020, -0.004], i.e. significantly below placebo). BSS CIs all include zero; only zero-shot is clearly negative.
+## Reproducible training preparation
 
-## Limitations
-- One test year, 41 weeks; CIs of about +/-5 points pooled and +/-15 to 25 points per ticker.
-- LoRA: single run, single hyperparameter setting, best at a half-epoch checkpoint; no seed variance estimate. The recipe is our own (the model card documents none).
-- Mirrored placebo for LoRA and CNN is not a strong control when a model predicts one class almost always.
-- Same 12 tickers and labeling as 03; results do not generalize beyond that setup.
+Run commands from `04-jev-lora-and-cnn` in a Python 3.11 environment with `requirements.txt` installed. Preparation and evaluation require the preserved local data/chart snapshot, including ignored `charts/index.csv`; a fresh clone does not contain it.
 
-## Conclusion
-Training on the charts did not create an edge. Both the LoRA-tuned JEV and the CNN converged to near-uniform probabilities that almost always pick Up, which repairs zero-shot JEV's poor Brier score (BSS -0.318 to about 0) but carries no information beyond base rates. Combined with 03, there is no evidence that weekly price charts of these tickers contain a signal these models can learn.
+These changes were tested on CPU. No new CNN optimization, HF model execution or pod launch was performed. The local bundle has 1,260 verified chart identities and 69 representative fit-only parity fixtures, covering tickers, available classes and dates.
+
+```sh
+python src/prepare_training.py
+python -m unittest discover -s tests -v
+```
+
+`data/training_bundle/` contains the canonical split index, copied images, reference probabilities, parity fixtures and a manifest of input, code and package hashes. `verify_bundle` rejects altered identities, files, splits or fixtures. Historical bundles are explicitly marked as having unverified old server identity.
+
+Training dependencies are separate: `requirements-training-cnn.txt` pins PyTorch 2.14.1 and torchvision 0.29.1. `requirements-training-lora.txt` additionally pins transformers 5.19.0, peft 0.21.2, safetensors 0.8.0 and accelerate 1.15.0. These are a **candidate environment**, not a recovered old runtime or a GPU-validated compatibility claim. Python 3.11 is required. Local preflight correctly stops on missing HF packages before importing torch or allocating a model.
+
+A corrected ternary experiment first needs fresh vLLM references collected with matching task settings, revision, images and questions. With a later authorized, already running server:
+
+```sh
+python src/score.py --task ternary-volatility --results-dir results/revised_reference
+python src/score.py --task ternary-volatility --blank --results-dir results/revised_reference
+python src/score.py --task ternary-volatility --placebo --results-dir results/revised_reference
+python src/prepare_training.py --task ternary-volatility   --reference results/revised_reference/preds_volatility.csv   --reference-metadata results/revised_reference/preds_volatility.meta.json   --out data/training_bundle_ternary
+```
+
+Set `JEV_BASE_URL` and the actual `JEV_MODEL_REVISION` as described in Experiment 01. Preparation rejects historical references supplied as revised task outputs. Keep binary-direction scoring a separate study; this trainer is three-class only.
+
+On a separately authorized compatible CUDA machine, with the complete local JEV snapshot and exported bundle:
+
+```sh
+python -m pip install -r requirements-training-lora.txt
+python src/lora_train.py --mode preflight --data data/training_bundle_ternary --model-dir /workspace/models/JEV-27B-VL
+python src/lora_train.py --mode parity --data data/training_bundle_ternary --model-dir /workspace/models/JEV-27B-VL
+python src/lora_train.py --mode train --data data/training_bundle_ternary --model-dir /workspace/models/JEV-27B-VL
+```
+
+The default mode is CPU preflight. Parity and training are explicit GPU operations. Training stops if any fit-only fixture differs from its matching vLLM reference by more than **0.01** absolute probability; the CLI cannot loosen that limit. Resolve failures without tuning on test rows. Before fine-tuning, save HF zero-shot validation, test and mirrored-test probabilities from the same inference path. Full and partial accumulation groups average by their actual size. Outputs default to `results/revised_training/`, preserving historical files. Checkpoints record model, runtime and input hashes. The on-save LoRA check reloads the new adapter onto the same merged base and requires probabilities to match within 1e-7; this verifies adapter serialization. A separate fresh-process reload reconstructs the original base/decision merge and checks the bound bundle, task and weight hashes before loading the adapter. Its actual GPU probability equivalence remains unverified.
+
+For the CNN, first install `python -m pip install -r requirements-training-cnn.txt`. Then `python src/cnn.py --device cpu --out results/revised_cnn` explicitly trains all five seeds on CPU. Each checkpoint is saved and reloaded before predictions. CPU tests verify random-weight round trips without training. To reload a saved checkpoint, use `--checkpoint <PATH> --checkpoint-sha256 <SHA256> --device cpu --out <FRESH_DIRECTORY>`.
+
+LoRA reload on an authorized CUDA machine:
+
+```sh
+python src/lora_reload.py --model-dir /workspace/models/JEV-27B-VL   --checkpoint results/revised_training/lora_r16 --data data/training_bundle_ternary   --out results/reloaded/lora_test.csv --split test
+```
+
+CPU historical evaluation remains `python src/evaluate04.py`. The new blank-image inference, actual parity pass and revised training remain unexecuted. Fixing task definition and reproducibility may change results; it does not promise a forecasting edge. One adaptive historical test year cannot establish that all chart signals are absent.

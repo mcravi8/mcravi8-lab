@@ -1,10 +1,29 @@
 {
   "bootstrap_resamples": 2000,
   "seed": 0,
+  "inference": {
+    "primary_reference": "Training-selected majority class and training-fitted class frequencies",
+    "primary_block_length": 4,
+    "sensitivity_block_lengths": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "oracle_reference": "Evaluation-majority benchmark is descriptive and uses future labels; no inferential CI or success decision is based on it",
+    "bss_degeneracy": "Undefined BSS resamples with zero reference loss are omitted; all-degenerate intervals are null",
+    "paired_comparisons": "All forecast differences share the same labels and dates",
+    "historical_status": "Exploratory: experiments 02-04 adaptively reuse the same historical test period; no untouched confirmatory test",
+    "multiplicity": "Unadjusted exploratory intervals and paired tests, not familywise discovery guarantees",
+    "training_uncertainty": "Intervals condition on trained predictions and reference priors; models and calibration are not refitted within resamples",
+    "bootstrap_assumption": "Approximate stationarity within evaluated period; report 1/2/4/8 retained-week sensitivity",
+    "signflip_assumption": "Symmetry and independence of date aggregates; exact enumeration does not remove these assumptions"
+  },
   "tickers": {
     "TSLA": {
       "holdout": {
         "n": 41,
+        "weeks": 41,
         "label_counts": {
           "Up": 15,
           "Flat": 14,
@@ -16,6 +35,7 @@
           "Down": 17
         },
         "hit_rate": 0.43902439024390244,
+        "log_loss": 1.4221763091072774,
         "base_rate_eval_majority": {
           "class": "Up",
           "rate": 0.36585365853658536
@@ -24,13 +44,11 @@
           "class": "Up",
           "rate": 0.36585365853658536
         },
-        "ci95_hit_minus_eval_base": [
-          -0.09756097560975607,
-          0.24390243902439027
-        ],
+        "ci95_hit_minus_eval_base": null,
+        "oracle_ci_note": "Evaluation-selected majority is descriptive; no post-selection interval reported",
         "ci95_hit_minus_train_base": [
-          -0.09756097560975607,
-          0.24390243902439027
+          -0.12195121951219512,
+          0.2926829268292683
         ],
         "placebo_hit_rate": 0.4146341463414634,
         "train_class_freq": {
@@ -41,21 +59,523 @@
         "brier_model": 0.8155304346146581,
         "brier_ref": 0.6652057926829268,
         "bss": -0.22598216008528382,
+        "ci95_bss": [
+          -0.502779487152288,
+          0.05496470138874613
+        ],
+        "ci95_bss_by_block_length": {
+          "1": [
+            -0.5115045798833706,
+            0.07700420727534428
+          ],
+          "2": [
+            -0.49502576505448986,
+            0.047141852189789
+          ],
+          "4": [
+            -0.502779487152288,
+            0.05496470138874613
+          ],
+          "8": [
+            -0.45317393231323994,
+            0.012122370709227373
+          ]
+        },
+        "ci95_hit_minus_placebo": [
+          -0.14634146341463414,
+          0.17073170731707318
+        ],
+        "paired_inference": {
+          "accuracy_vs_train_majority": {
+            "mean_difference": 0.07317073170731707,
+            "n": 41,
+            "date_clusters": 41,
+            "ci95_by_block_length": {
+              "1": [
+                -0.0975609756097561,
+                0.24390243902439024
+              ],
+              "2": [
+                -0.12195121951219512,
+                0.2682926829268293
+              ],
+              "4": [
+                -0.12195121951219512,
+                0.2926829268292683
+              ],
+              "8": [
+                -0.0975609756097561,
+                0.2682926829268293
+              ]
+            },
+            "week_signflip": {
+              "p_two_sided": 0.5810546875,
+              "exact": true,
+              "nonzero_date_clusters": 13,
+              "resamples": 8192,
+              "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+            },
+            "bootstrap_resamples": 2000,
+            "seed": 0,
+            "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+            "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+            "first_date": "2025-10-17",
+            "last_date": "2026-10-02",
+            "calendar_gaps_over_7_days": 9,
+            "largest_calendar_gap_days": 21
+          },
+          "accuracy_vs_placebo": {
+            "mean_difference": 0.024390243902439025,
+            "n": 41,
+            "date_clusters": 41,
+            "ci95_by_block_length": {
+              "1": [
+                -0.14634146341463414,
+                0.21951219512195122
+              ],
+              "2": [
+                -0.14634146341463414,
+                0.1951219512195122
+              ],
+              "4": [
+                -0.14634146341463414,
+                0.17073170731707318
+              ],
+              "8": [
+                -0.12195121951219512,
+                0.14634146341463414
+              ]
+            },
+            "week_signflip": {
+              "p_two_sided": 1.0,
+              "exact": true,
+              "nonzero_date_clusters": 15,
+              "resamples": 32768,
+              "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+            },
+            "bootstrap_resamples": 2000,
+            "seed": 0,
+            "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+            "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+            "first_date": "2025-10-17",
+            "last_date": "2026-10-02",
+            "calendar_gaps_over_7_days": 9,
+            "largest_calendar_gap_days": 21
+          },
+          "brier_vs_train_frequency": {
+            "mean_difference": -0.15032464193173115,
+            "n": 41,
+            "date_clusters": 41,
+            "ci95_by_block_length": {
+              "1": [
+                -0.3433040197188431,
+                0.05025256199852842
+              ],
+              "2": [
+                -0.3288386605000968,
+                0.031165812725934213
+              ],
+              "4": [
+                -0.3323842633592286,
+                0.03721555857557145
+              ],
+              "8": [
+                -0.2996038148259922,
+                0.008136765713187636
+              ]
+            },
+            "week_signflip": {
+              "p_two_sided": 0.1421857814218578,
+              "exact": false,
+              "nonzero_date_clusters": 41,
+              "resamples": 10000,
+              "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+            },
+            "bootstrap_resamples": 2000,
+            "seed": 0,
+            "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+            "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+            "first_date": "2025-10-17",
+            "last_date": "2026-10-02",
+            "calendar_gaps_over_7_days": 9,
+            "largest_calendar_gap_days": 21
+          }
+        },
+        "placebo_discordant_pairs": {
+          "model_wins": 8,
+          "placebo_wins": 7,
+          "ties": 26,
+          "exact_mcnemar_p_if_independent_rows": 1.0
+        },
+        "baselines": {
+          "ticker_train_frequency": {
+            "hit_rate": 0.36585365853658536,
+            "brier": 0.6652057926829268,
+            "log_loss": 1.0964478012225267,
+            "information": "ticker identity and training labels",
+            "paired_accuracy": {
+              "mean_difference": 0.07317073170731707,
+              "n": 41,
+              "date_clusters": 41,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.0975609756097561,
+                  0.24390243902439024
+                ],
+                "2": [
+                  -0.12195121951219512,
+                  0.2682926829268293
+                ],
+                "4": [
+                  -0.12195121951219512,
+                  0.2926829268292683
+                ],
+                "8": [
+                  -0.0975609756097561,
+                  0.2682926829268293
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.5810546875,
+                "exact": true,
+                "nonzero_date_clusters": 13,
+                "resamples": 8192,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2025-10-17",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 9,
+              "largest_calendar_gap_days": 21
+            },
+            "paired_brier_improvement": {
+              "mean_difference": -0.15032464193173115,
+              "n": 41,
+              "date_clusters": 41,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.3433040197188431,
+                  0.05025256199852842
+                ],
+                "2": [
+                  -0.3288386605000968,
+                  0.031165812725934213
+                ],
+                "4": [
+                  -0.3323842633592286,
+                  0.03721555857557145
+                ],
+                "8": [
+                  -0.2996038148259922,
+                  0.008136765713187636
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.1421857814218578,
+                "exact": false,
+                "nonzero_date_clusters": 41,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2025-10-17",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 9,
+              "largest_calendar_gap_days": 21
+            }
+          },
+          "pooled_train_frequency": {
+            "hit_rate": 0.36585365853658536,
+            "brier": 0.6658131669207317,
+            "log_loss": 1.0973411277210443,
+            "information": "training labels only; no chart or ticker identity",
+            "paired_accuracy": {
+              "mean_difference": 0.07317073170731707,
+              "n": 41,
+              "date_clusters": 41,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.0975609756097561,
+                  0.24390243902439024
+                ],
+                "2": [
+                  -0.12195121951219512,
+                  0.2682926829268293
+                ],
+                "4": [
+                  -0.12195121951219512,
+                  0.2926829268292683
+                ],
+                "8": [
+                  -0.0975609756097561,
+                  0.2682926829268293
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.5810546875,
+                "exact": true,
+                "nonzero_date_clusters": 13,
+                "resamples": 8192,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2025-10-17",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 9,
+              "largest_calendar_gap_days": 21
+            },
+            "paired_brier_improvement": {
+              "mean_difference": -0.14971726769392626,
+              "n": 41,
+              "date_clusters": 41,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.34771282988456803,
+                  0.056075785920647395
+                ],
+                "2": [
+                  -0.3291179451051951,
+                  0.032851642243233115
+                ],
+                "4": [
+                  -0.33239132020918677,
+                  0.03544305123451127
+                ],
+                "8": [
+                  -0.2965839832867092,
+                  0.0060593889699243975
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.15128487151284872,
+                "exact": false,
+                "nonzero_date_clusters": 41,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2025-10-17",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 9,
+              "largest_calendar_gap_days": 21
+            }
+          },
+          "uniform": {
+            "hit_rate": 0.36585365853658536,
+            "brier": 0.6666666666666669,
+            "log_loss": 1.0986122886681098,
+            "information": "training labels only; no chart or ticker identity",
+            "paired_accuracy": {
+              "mean_difference": 0.07317073170731707,
+              "n": 41,
+              "date_clusters": 41,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.0975609756097561,
+                  0.24390243902439024
+                ],
+                "2": [
+                  -0.12195121951219512,
+                  0.2682926829268293
+                ],
+                "4": [
+                  -0.12195121951219512,
+                  0.2926829268292683
+                ],
+                "8": [
+                  -0.0975609756097561,
+                  0.2682926829268293
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.5810546875,
+                "exact": true,
+                "nonzero_date_clusters": 13,
+                "resamples": 8192,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2025-10-17",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 9,
+              "largest_calendar_gap_days": 21
+            },
+            "paired_brier_improvement": {
+              "mean_difference": -0.14886376794799128,
+              "n": 41,
+              "date_clusters": 41,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.35005132925149635,
+                  0.05845107224310625
+                ],
+                "2": [
+                  -0.32754875354077173,
+                  0.0339339685315362
+                ],
+                "4": [
+                  -0.330659516390416,
+                  0.033806030398809216
+                ],
+                "8": [
+                  -0.29554927999666414,
+                  0.005579247649673248
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.15698430156984303,
+                "exact": false,
+                "nonzero_date_clusters": 41,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2025-10-17",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 9,
+              "largest_calendar_gap_days": 21
+            }
+          },
+          "always_up": {
+            "hit_rate": 0.36585365853658536,
+            "brier": 1.2682926829268293,
+            "log_loss": 21.902638689455554,
+            "information": "training labels only; no chart or ticker identity",
+            "paired_accuracy": {
+              "mean_difference": 0.07317073170731707,
+              "n": 41,
+              "date_clusters": 41,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.0975609756097561,
+                  0.24390243902439024
+                ],
+                "2": [
+                  -0.12195121951219512,
+                  0.2682926829268293
+                ],
+                "4": [
+                  -0.12195121951219512,
+                  0.2926829268292683
+                ],
+                "8": [
+                  -0.0975609756097561,
+                  0.2682926829268293
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.5810546875,
+                "exact": true,
+                "nonzero_date_clusters": 13,
+                "resamples": 8192,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2025-10-17",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 9,
+              "largest_calendar_gap_days": 21
+            },
+            "paired_brier_improvement": {
+              "mean_difference": 0.45276224831217127,
+              "n": 41,
+              "date_clusters": 41,
+              "ci95_by_block_length": {
+                "1": [
+                  0.16708826589616171,
+                  0.7535310106626879
+                ],
+                "2": [
+                  0.14876240934151003,
+                  0.7657997885581173
+                ],
+                "4": [
+                  0.13924672265601626,
+                  0.8088468160752041
+                ],
+                "8": [
+                  0.16233172593340103,
+                  0.7831731091985182
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.004899510048995101,
+                "exact": false,
+                "nonzero_date_clusters": 41,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2025-10-17",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 9,
+              "largest_calendar_gap_days": 21
+            }
+          }
+        },
         "mean_probs": {
           "Up": 0.5057191768584867,
           "Flat": 0.0939332611692403,
           "Down": 0.4003475619722728
         },
+        "inference": {
+          "primary_reference": "Training-selected majority class and training-fitted class frequencies",
+          "primary_block_length": 4,
+          "sensitivity_block_lengths": [
+            1,
+            2,
+            4,
+            8
+          ],
+          "oracle_reference": "Evaluation-majority benchmark is descriptive and uses future labels; no inferential CI or success decision is based on it",
+          "bss_degeneracy": "Undefined BSS resamples with zero reference loss are omitted; all-degenerate intervals are null",
+          "paired_comparisons": "All forecast differences share the same labels and dates",
+          "historical_status": "Exploratory: experiments 02-04 adaptively reuse the same historical test period; no untouched confirmatory test",
+          "multiplicity": "Unadjusted exploratory intervals and paired tests, not familywise discovery guarantees",
+          "training_uncertainty": "Intervals condition on trained predictions and reference priors; models and calibration are not refitted within resamples",
+          "bootstrap_assumption": "Approximate stationarity within evaluated period; report 1/2/4/8 retained-week sensitivity",
+          "signflip_assumption": "Symmetry and independence of date aggregates; exact enumeration does not remove these assumptions"
+        },
         "success": {
-          "ci_excludes_zero_above_eval_base": false,
+          "ci_excludes_zero_above_eval_base": null,
           "ci_excludes_zero_above_train_base": false,
           "beats_placebo": true,
+          "placebo_ci_above_zero": false,
+          "paired_placebo_p_below_0_05": false,
           "bss_positive": false,
-          "all_met_eval_base": false
+          "bss_ci_above_zero": false,
+          "confirmatory_claim_allowed": false,
+          "all_met_train_base": false,
+          "all_met_eval_base": null
         }
       },
       "full_sample": {
         "n": 105,
+        "weeks": 105,
         "label_counts": {
           "Up": 39,
           "Flat": 34,
@@ -67,6 +587,7 @@
           "Down": 43
         },
         "hit_rate": 0.4,
+        "log_loss": 1.5361119495586677,
         "base_rate_eval_majority": {
           "class": "Up",
           "rate": 0.37142857142857144
@@ -75,13 +596,11 @@
           "class": "Up",
           "rate": 0.37142857142857144
         },
-        "ci95_hit_minus_eval_base": [
-          -0.0761904761904762,
-          0.13333333333333336
-        ],
+        "ci95_hit_minus_eval_base": null,
+        "oracle_ci_note": "Evaluation-selected majority is descriptive; no post-selection interval reported",
         "ci95_hit_minus_train_base": [
-          -0.0761904761904762,
-          0.13333333333333336
+          -0.08571428571428572,
+          0.14285714285714285
         ],
         "placebo_hit_rate": 0.3523809523809524,
         "train_class_freq": {
@@ -92,23 +611,525 @@
         "brier_model": 0.8742967859075366,
         "brier_ref": 0.6645089285714286,
         "bss": -0.31570359451318897,
+        "ci95_bss": [
+          -0.526664325961001,
+          -0.1105406289311728
+        ],
+        "ci95_bss_by_block_length": {
+          "1": [
+            -0.4948156718365545,
+            -0.13820426471473005
+          ],
+          "2": [
+            -0.507251569798493,
+            -0.11868722038632042
+          ],
+          "4": [
+            -0.526664325961001,
+            -0.1105406289311728
+          ],
+          "8": [
+            -0.5295346702879784,
+            -0.12283913918266415
+          ]
+        },
+        "ci95_hit_minus_placebo": [
+          -0.0761904761904762,
+          0.17142857142857143
+        ],
+        "paired_inference": {
+          "accuracy_vs_train_majority": {
+            "mean_difference": 0.02857142857142857,
+            "n": 105,
+            "date_clusters": 105,
+            "ci95_by_block_length": {
+              "1": [
+                -0.0761904761904762,
+                0.13333333333333333
+              ],
+              "2": [
+                -0.0761904761904762,
+                0.14285714285714285
+              ],
+              "4": [
+                -0.08571428571428572,
+                0.14285714285714285
+              ],
+              "8": [
+                -0.09523809523809523,
+                0.1523809523809524
+              ]
+            },
+            "week_signflip": {
+              "p_two_sided": 0.7290270972902709,
+              "exact": false,
+              "nonzero_date_clusters": 33,
+              "resamples": 10000,
+              "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+            },
+            "bootstrap_resamples": 2000,
+            "seed": 0,
+            "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+            "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+            "first_date": "2024-04-05",
+            "last_date": "2026-10-02",
+            "calendar_gaps_over_7_days": 23,
+            "largest_calendar_gap_days": 28
+          },
+          "accuracy_vs_placebo": {
+            "mean_difference": 0.047619047619047616,
+            "n": 105,
+            "date_clusters": 105,
+            "ci95_by_block_length": {
+              "1": [
+                -0.06690476190476188,
+                0.1619047619047619
+              ],
+              "2": [
+                -0.08571428571428572,
+                0.17142857142857143
+              ],
+              "4": [
+                -0.0761904761904762,
+                0.17142857142857143
+              ],
+              "8": [
+                -0.057380952380952366,
+                0.15261904761904632
+              ]
+            },
+            "week_signflip": {
+              "p_two_sided": 0.5463453654634537,
+              "exact": false,
+              "nonzero_date_clusters": 43,
+              "resamples": 10000,
+              "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+            },
+            "bootstrap_resamples": 2000,
+            "seed": 0,
+            "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+            "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+            "first_date": "2024-04-05",
+            "last_date": "2026-10-02",
+            "calendar_gaps_over_7_days": 23,
+            "largest_calendar_gap_days": 28
+          },
+          "brier_vs_train_frequency": {
+            "mean_difference": -0.20978785733610816,
+            "n": 105,
+            "date_clusters": 105,
+            "ci95_by_block_length": {
+              "1": [
+                -0.32955855661746236,
+                -0.09106695720866007
+              ],
+              "2": [
+                -0.33906595369152964,
+                -0.07895943187886346
+              ],
+              "4": [
+                -0.3475525710996714,
+                -0.07275728675622042
+              ],
+              "8": [
+                -0.3508957665223752,
+                -0.08134771385968269
+              ]
+            },
+            "week_signflip": {
+              "p_two_sided": 0.0013998600139986002,
+              "exact": false,
+              "nonzero_date_clusters": 105,
+              "resamples": 10000,
+              "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+            },
+            "bootstrap_resamples": 2000,
+            "seed": 0,
+            "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+            "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+            "first_date": "2024-04-05",
+            "last_date": "2026-10-02",
+            "calendar_gaps_over_7_days": 23,
+            "largest_calendar_gap_days": 28
+          }
+        },
+        "placebo_discordant_pairs": {
+          "model_wins": 24,
+          "placebo_wins": 19,
+          "ties": 62,
+          "exact_mcnemar_p_if_independent_rows": 0.542384011856484
+        },
+        "baselines": {
+          "ticker_train_frequency": {
+            "hit_rate": 0.37142857142857144,
+            "brier": 0.6645089285714286,
+            "log_loss": 1.095431374425069,
+            "information": "ticker identity and training labels",
+            "paired_accuracy": {
+              "mean_difference": 0.02857142857142857,
+              "n": 105,
+              "date_clusters": 105,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.0761904761904762,
+                  0.13333333333333333
+                ],
+                "2": [
+                  -0.0761904761904762,
+                  0.14285714285714285
+                ],
+                "4": [
+                  -0.08571428571428572,
+                  0.14285714285714285
+                ],
+                "8": [
+                  -0.09523809523809523,
+                  0.1523809523809524
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.7290270972902709,
+                "exact": false,
+                "nonzero_date_clusters": 33,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2024-04-05",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 23,
+              "largest_calendar_gap_days": 28
+            },
+            "paired_brier_improvement": {
+              "mean_difference": -0.20978785733610816,
+              "n": 105,
+              "date_clusters": 105,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.32955855661746236,
+                  -0.09106695720866007
+                ],
+                "2": [
+                  -0.33906595369152964,
+                  -0.07895943187886346
+                ],
+                "4": [
+                  -0.3475525710996714,
+                  -0.07275728675622042
+                ],
+                "8": [
+                  -0.3508957665223752,
+                  -0.08134771385968269
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.0013998600139986002,
+                "exact": false,
+                "nonzero_date_clusters": 105,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2024-04-05",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 23,
+              "largest_calendar_gap_days": 28
+            }
+          },
+          "pooled_train_frequency": {
+            "hit_rate": 0.37142857142857144,
+            "brier": 0.6656389508928572,
+            "log_loss": 1.097081782686146,
+            "information": "training labels only; no chart or ticker identity",
+            "paired_accuracy": {
+              "mean_difference": 0.02857142857142857,
+              "n": 105,
+              "date_clusters": 105,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.0761904761904762,
+                  0.13333333333333333
+                ],
+                "2": [
+                  -0.0761904761904762,
+                  0.14285714285714285
+                ],
+                "4": [
+                  -0.08571428571428572,
+                  0.14285714285714285
+                ],
+                "8": [
+                  -0.09523809523809523,
+                  0.1523809523809524
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.7290270972902709,
+                "exact": false,
+                "nonzero_date_clusters": 33,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2024-04-05",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 23,
+              "largest_calendar_gap_days": 28
+            },
+            "paired_brier_improvement": {
+              "mean_difference": -0.2086578350146796,
+              "n": 105,
+              "date_clusters": 105,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.3319118389326779,
+                  -0.08622385151121138
+                ],
+                "2": [
+                  -0.3406363870219234,
+                  -0.07560805237466528
+                ],
+                "4": [
+                  -0.3432279387834307,
+                  -0.07538991157501498
+                ],
+                "8": [
+                  -0.3481642825494475,
+                  -0.0812421542542095
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.0015998400159984002,
+                "exact": false,
+                "nonzero_date_clusters": 105,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2024-04-05",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 23,
+              "largest_calendar_gap_days": 28
+            }
+          },
+          "uniform": {
+            "hit_rate": 0.37142857142857144,
+            "brier": 0.6666666666666669,
+            "log_loss": 1.0986122886681096,
+            "information": "training labels only; no chart or ticker identity",
+            "paired_accuracy": {
+              "mean_difference": 0.02857142857142857,
+              "n": 105,
+              "date_clusters": 105,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.0761904761904762,
+                  0.13333333333333333
+                ],
+                "2": [
+                  -0.0761904761904762,
+                  0.14285714285714285
+                ],
+                "4": [
+                  -0.08571428571428572,
+                  0.14285714285714285
+                ],
+                "8": [
+                  -0.09523809523809523,
+                  0.1523809523809524
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.7290270972902709,
+                "exact": false,
+                "nonzero_date_clusters": 33,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2024-04-05",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 23,
+              "largest_calendar_gap_days": 28
+            },
+            "paired_brier_improvement": {
+              "mean_difference": -0.20763011924086994,
+              "n": 105,
+              "date_clusters": 105,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.33157145318318154,
+                  -0.0848526282436071
+                ],
+                "2": [
+                  -0.34166816647266784,
+                  -0.07548052087215415
+                ],
+                "4": [
+                  -0.3420019236595222,
+                  -0.07498174119934407
+                ],
+                "8": [
+                  -0.3481300211789398,
+                  -0.0813386000693593
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.0016998300169983002,
+                "exact": false,
+                "nonzero_date_clusters": 105,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2024-04-05",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 23,
+              "largest_calendar_gap_days": 28
+            }
+          },
+          "always_up": {
+            "hit_rate": 0.37142857142857144,
+            "brier": 1.2571428571428571,
+            "log_loss": 21.710088019658144,
+            "information": "training labels only; no chart or ticker identity",
+            "paired_accuracy": {
+              "mean_difference": 0.02857142857142857,
+              "n": 105,
+              "date_clusters": 105,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.0761904761904762,
+                  0.13333333333333333
+                ],
+                "2": [
+                  -0.0761904761904762,
+                  0.14285714285714285
+                ],
+                "4": [
+                  -0.08571428571428572,
+                  0.14285714285714285
+                ],
+                "8": [
+                  -0.09523809523809523,
+                  0.1523809523809524
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.7290270972902709,
+                "exact": false,
+                "nonzero_date_clusters": 33,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2024-04-05",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 23,
+              "largest_calendar_gap_days": 28
+            },
+            "paired_brier_improvement": {
+              "mean_difference": 0.38284607123532044,
+              "n": 105,
+              "date_clusters": 105,
+              "ci95_by_block_length": {
+                "1": [
+                  0.1944316924306877,
+                  0.5687649513270252
+                ],
+                "2": [
+                  0.19541846997382692,
+                  0.582327910042354
+                ],
+                "4": [
+                  0.1802780476309781,
+                  0.5935425632683675
+                ],
+                "8": [
+                  0.17275688383565624,
+                  0.5930926261994737
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.00019998000199980003,
+                "exact": false,
+                "nonzero_date_clusters": 105,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2024-04-05",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 23,
+              "largest_calendar_gap_days": 28
+            }
+          }
+        },
         "mean_probs": {
           "Up": 0.5070264320485401,
           "Flat": 0.1003672346682082,
           "Down": 0.3926063332832516
         },
+        "inference": {
+          "primary_reference": "Training-selected majority class and training-fitted class frequencies",
+          "primary_block_length": 4,
+          "sensitivity_block_lengths": [
+            1,
+            2,
+            4,
+            8
+          ],
+          "oracle_reference": "Evaluation-majority benchmark is descriptive and uses future labels; no inferential CI or success decision is based on it",
+          "bss_degeneracy": "Undefined BSS resamples with zero reference loss are omitted; all-degenerate intervals are null",
+          "paired_comparisons": "All forecast differences share the same labels and dates",
+          "historical_status": "Exploratory: experiments 02-04 adaptively reuse the same historical test period; no untouched confirmatory test",
+          "multiplicity": "Unadjusted exploratory intervals and paired tests, not familywise discovery guarantees",
+          "training_uncertainty": "Intervals condition on trained predictions and reference priors; models and calibration are not refitted within resamples",
+          "bootstrap_assumption": "Approximate stationarity within evaluated period; report 1/2/4/8 retained-week sensitivity",
+          "signflip_assumption": "Symmetry and independence of date aggregates; exact enumeration does not remove these assumptions"
+        },
         "success": {
-          "ci_excludes_zero_above_eval_base": false,
+          "ci_excludes_zero_above_eval_base": null,
           "ci_excludes_zero_above_train_base": false,
           "beats_placebo": true,
+          "placebo_ci_above_zero": false,
+          "paired_placebo_p_below_0_05": false,
           "bss_positive": false,
-          "all_met_eval_base": false
+          "bss_ci_above_zero": false,
+          "confirmatory_claim_allowed": false,
+          "all_met_train_base": false,
+          "all_met_eval_base": null
         }
       }
     },
     "NVDA": {
       "holdout": {
         "n": 41,
+        "weeks": 41,
         "label_counts": {
           "Up": 16,
           "Flat": 10,
@@ -120,6 +1141,7 @@
           "Down": 20
         },
         "hit_rate": 0.3170731707317073,
+        "log_loss": 1.655780178551486,
         "base_rate_eval_majority": {
           "class": "Up",
           "rate": 0.3902439024390244
@@ -128,13 +1150,11 @@
           "class": "Flat",
           "rate": 0.24390243902439024
         },
-        "ci95_hit_minus_eval_base": [
-          -0.24390243902439024,
-          0.09756097560975613
-        ],
+        "ci95_hit_minus_eval_base": null,
+        "oracle_ci_note": "Evaluation-selected majority is descriptive; no post-selection interval reported",
         "ci95_hit_minus_train_base": [
-          -0.14634146341463417,
-          0.2926829268292683
+          -0.14634146341463414,
+          0.3170731707317073
         ],
         "placebo_hit_rate": 0.43902439024390244,
         "train_class_freq": {
@@ -145,21 +1165,523 @@
         "brier_model": 0.9826839341963978,
         "brier_ref": 0.670874618902439,
         "bss": -0.46478031290568644,
+        "ci95_bss": [
+          -0.7362949764871924,
+          -0.19240191696107894
+        ],
+        "ci95_bss_by_block_length": {
+          "1": [
+            -0.7656087186948712,
+            -0.17056639655265102
+          ],
+          "2": [
+            -0.7751023784902915,
+            -0.1424136465238071
+          ],
+          "4": [
+            -0.7362949764871924,
+            -0.19240191696107894
+          ],
+          "8": [
+            -0.6782214729752936,
+            -0.2395677560667701
+          ]
+        },
+        "ci95_hit_minus_placebo": [
+          -0.2926829268292683,
+          0.04878048780487805
+        ],
+        "paired_inference": {
+          "accuracy_vs_train_majority": {
+            "mean_difference": 0.07317073170731707,
+            "n": 41,
+            "date_clusters": 41,
+            "ci95_by_block_length": {
+              "1": [
+                -0.14634146341463414,
+                0.2926829268292683
+              ],
+              "2": [
+                -0.17073170731707318,
+                0.34146341463414637
+              ],
+              "4": [
+                -0.14634146341463414,
+                0.3170731707317073
+              ],
+              "8": [
+                -0.12195121951219512,
+                0.3170731707317073
+              ]
+            },
+            "week_signflip": {
+              "p_two_sided": 0.6757324267573243,
+              "exact": false,
+              "nonzero_date_clusters": 23,
+              "resamples": 10000,
+              "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+            },
+            "bootstrap_resamples": 2000,
+            "seed": 0,
+            "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+            "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+            "first_date": "2025-10-17",
+            "last_date": "2026-10-02",
+            "calendar_gaps_over_7_days": 9,
+            "largest_calendar_gap_days": 21
+          },
+          "accuracy_vs_placebo": {
+            "mean_difference": -0.12195121951219512,
+            "n": 41,
+            "date_clusters": 41,
+            "ci95_by_block_length": {
+              "1": [
+                -0.3170731707317073,
+                0.07317073170731707
+              ],
+              "2": [
+                -0.3170731707317073,
+                0.07317073170731707
+              ],
+              "4": [
+                -0.2926829268292683,
+                0.04878048780487805
+              ],
+              "8": [
+                -0.24390243902439024,
+                0.0
+              ]
+            },
+            "week_signflip": {
+              "p_two_sided": 0.359283447265625,
+              "exact": true,
+              "nonzero_date_clusters": 19,
+              "resamples": 524288,
+              "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+            },
+            "bootstrap_resamples": 2000,
+            "seed": 0,
+            "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+            "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+            "first_date": "2025-10-17",
+            "last_date": "2026-10-02",
+            "calendar_gaps_over_7_days": 9,
+            "largest_calendar_gap_days": 21
+          },
+          "brier_vs_train_frequency": {
+            "mean_difference": -0.31180931529395883,
+            "n": 41,
+            "date_clusters": 41,
+            "ci95_by_block_length": {
+              "1": [
+                -0.508492700871375,
+                -0.11582095671898532
+              ],
+              "2": [
+                -0.5154558586925274,
+                -0.09629944139033982
+              ],
+              "4": [
+                -0.49101682286985676,
+                -0.12929483227706784
+              ],
+              "8": [
+                -0.45291238787059795,
+                -0.1623116634406847
+              ]
+            },
+            "week_signflip": {
+              "p_two_sided": 0.0037996200379962005,
+              "exact": false,
+              "nonzero_date_clusters": 41,
+              "resamples": 10000,
+              "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+            },
+            "bootstrap_resamples": 2000,
+            "seed": 0,
+            "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+            "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+            "first_date": "2025-10-17",
+            "last_date": "2026-10-02",
+            "calendar_gaps_over_7_days": 9,
+            "largest_calendar_gap_days": 21
+          }
+        },
+        "placebo_discordant_pairs": {
+          "model_wins": 7,
+          "placebo_wins": 12,
+          "ties": 22,
+          "exact_mcnemar_p_if_independent_rows": 0.359283447265625
+        },
+        "baselines": {
+          "ticker_train_frequency": {
+            "hit_rate": 0.24390243902439024,
+            "brier": 0.670874618902439,
+            "log_loss": 1.105034846510361,
+            "information": "ticker identity and training labels",
+            "paired_accuracy": {
+              "mean_difference": 0.07317073170731707,
+              "n": 41,
+              "date_clusters": 41,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.14634146341463414,
+                  0.2926829268292683
+                ],
+                "2": [
+                  -0.17073170731707318,
+                  0.34146341463414637
+                ],
+                "4": [
+                  -0.14634146341463414,
+                  0.3170731707317073
+                ],
+                "8": [
+                  -0.12195121951219512,
+                  0.3170731707317073
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.6757324267573243,
+                "exact": false,
+                "nonzero_date_clusters": 23,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2025-10-17",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 9,
+              "largest_calendar_gap_days": 21
+            },
+            "paired_brier_improvement": {
+              "mean_difference": -0.31180931529395883,
+              "n": 41,
+              "date_clusters": 41,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.508492700871375,
+                  -0.11582095671898532
+                ],
+                "2": [
+                  -0.5154558586925274,
+                  -0.09629944139033982
+                ],
+                "4": [
+                  -0.49101682286985676,
+                  -0.12929483227706784
+                ],
+                "8": [
+                  -0.45291238787059795,
+                  -0.1623116634406847
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.0037996200379962005,
+                "exact": false,
+                "nonzero_date_clusters": 41,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2025-10-17",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 9,
+              "largest_calendar_gap_days": 21
+            }
+          },
+          "pooled_train_frequency": {
+            "hit_rate": 0.3902439024390244,
+            "brier": 0.6650509717987805,
+            "log_loss": 1.096206493193364,
+            "information": "training labels only; no chart or ticker identity",
+            "paired_accuracy": {
+              "mean_difference": -0.07317073170731707,
+              "n": 41,
+              "date_clusters": 41,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.24390243902439024,
+                  0.0975609756097561
+                ],
+                "2": [
+                  -0.21951219512195122,
+                  0.0975609756097561
+                ],
+                "4": [
+                  -0.21951219512195122,
+                  0.04878048780487805
+                ],
+                "8": [
+                  -0.17073170731707318,
+                  0.0
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.5810546875,
+                "exact": true,
+                "nonzero_date_clusters": 13,
+                "resamples": 8192,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2025-10-17",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 9,
+              "largest_calendar_gap_days": 21
+            },
+            "paired_brier_improvement": {
+              "mean_difference": -0.3176329623976174,
+              "n": 41,
+              "date_clusters": 41,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.5083866899470519,
+                  -0.12834211721963104
+                ],
+                "2": [
+                  -0.5154847929390867,
+                  -0.11025370667094006
+                ],
+                "4": [
+                  -0.4919976795618346,
+                  -0.137788037998411
+                ],
+                "8": [
+                  -0.4541752462456745,
+                  -0.1771226960589035
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.0026997300269973002,
+                "exact": false,
+                "nonzero_date_clusters": 41,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2025-10-17",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 9,
+              "largest_calendar_gap_days": 21
+            }
+          },
+          "uniform": {
+            "hit_rate": 0.3902439024390244,
+            "brier": 0.6666666666666669,
+            "log_loss": 1.0986122886681098,
+            "information": "training labels only; no chart or ticker identity",
+            "paired_accuracy": {
+              "mean_difference": -0.07317073170731707,
+              "n": 41,
+              "date_clusters": 41,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.24390243902439024,
+                  0.0975609756097561
+                ],
+                "2": [
+                  -0.21951219512195122,
+                  0.0975609756097561
+                ],
+                "4": [
+                  -0.21951219512195122,
+                  0.04878048780487805
+                ],
+                "8": [
+                  -0.17073170731707318,
+                  0.0
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.5810546875,
+                "exact": true,
+                "nonzero_date_clusters": 13,
+                "resamples": 8192,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2025-10-17",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 9,
+              "largest_calendar_gap_days": 21
+            },
+            "paired_brier_improvement": {
+              "mean_difference": -0.3160172675297312,
+              "n": 41,
+              "date_clusters": 41,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.5076865512317952,
+                  -0.12500499379342558
+                ],
+                "2": [
+                  -0.5149420093198196,
+                  -0.10802063262862464
+                ],
+                "4": [
+                  -0.4930980048575352,
+                  -0.13608024732780513
+                ],
+                "8": [
+                  -0.4541029964997395,
+                  -0.17224076963774204
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.0028997100289971,
+                "exact": false,
+                "nonzero_date_clusters": 41,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2025-10-17",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 9,
+              "largest_calendar_gap_days": 21
+            }
+          },
+          "always_up": {
+            "hit_rate": 0.3902439024390244,
+            "brier": 1.2195121951219512,
+            "log_loss": 21.06022950909188,
+            "information": "training labels only; no chart or ticker identity",
+            "paired_accuracy": {
+              "mean_difference": -0.07317073170731707,
+              "n": 41,
+              "date_clusters": 41,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.24390243902439024,
+                  0.0975609756097561
+                ],
+                "2": [
+                  -0.21951219512195122,
+                  0.0975609756097561
+                ],
+                "4": [
+                  -0.21951219512195122,
+                  0.04878048780487805
+                ],
+                "8": [
+                  -0.17073170731707318,
+                  0.0
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.5810546875,
+                "exact": true,
+                "nonzero_date_clusters": 13,
+                "resamples": 8192,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2025-10-17",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 9,
+              "largest_calendar_gap_days": 21
+            },
+            "paired_brier_improvement": {
+              "mean_difference": 0.2368282609255533,
+              "n": 41,
+              "date_clusters": 41,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.046363316134837504,
+                  0.5086971937124185
+                ],
+                "2": [
+                  -0.025206730413022526,
+                  0.49907403227214886
+                ],
+                "4": [
+                  0.009107195883664862,
+                  0.45604080815606346
+                ],
+                "8": [
+                  0.08325623516620236,
+                  0.3924866856279188
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.1126887311268873,
+                "exact": false,
+                "nonzero_date_clusters": 41,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2025-10-17",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 9,
+              "largest_calendar_gap_days": 21
+            }
+          }
+        },
         "mean_probs": {
           "Up": 0.4825497266510723,
           "Flat": 0.09306660310527493,
           "Down": 0.4243836702436527
         },
+        "inference": {
+          "primary_reference": "Training-selected majority class and training-fitted class frequencies",
+          "primary_block_length": 4,
+          "sensitivity_block_lengths": [
+            1,
+            2,
+            4,
+            8
+          ],
+          "oracle_reference": "Evaluation-majority benchmark is descriptive and uses future labels; no inferential CI or success decision is based on it",
+          "bss_degeneracy": "Undefined BSS resamples with zero reference loss are omitted; all-degenerate intervals are null",
+          "paired_comparisons": "All forecast differences share the same labels and dates",
+          "historical_status": "Exploratory: experiments 02-04 adaptively reuse the same historical test period; no untouched confirmatory test",
+          "multiplicity": "Unadjusted exploratory intervals and paired tests, not familywise discovery guarantees",
+          "training_uncertainty": "Intervals condition on trained predictions and reference priors; models and calibration are not refitted within resamples",
+          "bootstrap_assumption": "Approximate stationarity within evaluated period; report 1/2/4/8 retained-week sensitivity",
+          "signflip_assumption": "Symmetry and independence of date aggregates; exact enumeration does not remove these assumptions"
+        },
         "success": {
-          "ci_excludes_zero_above_eval_base": false,
+          "ci_excludes_zero_above_eval_base": null,
           "ci_excludes_zero_above_train_base": false,
           "beats_placebo": false,
+          "placebo_ci_above_zero": false,
+          "paired_placebo_p_below_0_05": false,
           "bss_positive": false,
-          "all_met_eval_base": false
+          "bss_ci_above_zero": false,
+          "confirmatory_claim_allowed": false,
+          "all_met_train_base": false,
+          "all_met_eval_base": null
         }
       },
       "full_sample": {
         "n": 105,
+        "weeks": 105,
         "label_counts": {
           "Up": 36,
           "Flat": 32,
@@ -171,6 +1693,7 @@
           "Down": 48
         },
         "hit_rate": 0.3333333333333333,
+        "log_loss": 1.5889125618570776,
         "base_rate_eval_majority": {
           "class": "Down",
           "rate": 0.3523809523809524
@@ -179,13 +1702,11 @@
           "class": "Flat",
           "rate": 0.3047619047619048
         },
-        "ci95_hit_minus_eval_base": [
-          -0.1333333333333333,
-          0.09547619047618923
-        ],
+        "ci95_hit_minus_eval_base": null,
+        "oracle_ci_note": "Evaluation-selected majority is descriptive; no post-selection interval reported",
         "ci95_hit_minus_train_base": [
           -0.12380952380952381,
-          0.18095238095238098
+          0.18095238095238095
         ],
         "placebo_hit_rate": 0.3333333333333333,
         "train_class_freq": {
@@ -196,17 +1717,518 @@
         "brier_model": 0.9233932607114044,
         "brier_ref": 0.6679129464285715,
         "bss": -0.3825054083004733,
+        "ci95_bss": [
+          -0.5508339762304991,
+          -0.22293697798813011
+        ],
+        "ci95_bss_by_block_length": {
+          "1": [
+            -0.561928351128918,
+            -0.20579056567387474
+          ],
+          "2": [
+            -0.5648038168701514,
+            -0.19526273453025844
+          ],
+          "4": [
+            -0.5508339762304991,
+            -0.22293697798813011
+          ],
+          "8": [
+            -0.5542866259636573,
+            -0.20554280246277545
+          ]
+        },
+        "ci95_hit_minus_placebo": [
+          -0.11428571428571428,
+          0.11428571428571428
+        ],
+        "paired_inference": {
+          "accuracy_vs_train_majority": {
+            "mean_difference": 0.02857142857142857,
+            "n": 105,
+            "date_clusters": 105,
+            "ci95_by_block_length": {
+              "1": [
+                -0.12380952380952381,
+                0.18095238095238095
+              ],
+              "2": [
+                -0.12380952380952381,
+                0.19047619047619047
+              ],
+              "4": [
+                -0.12380952380952381,
+                0.18095238095238095
+              ],
+              "8": [
+                -0.1523809523809524,
+                0.19047619047619047
+              ]
+            },
+            "week_signflip": {
+              "p_two_sided": 0.8086191380861913,
+              "exact": false,
+              "nonzero_date_clusters": 67,
+              "resamples": 10000,
+              "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+            },
+            "bootstrap_resamples": 2000,
+            "seed": 0,
+            "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+            "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+            "first_date": "2024-04-05",
+            "last_date": "2026-10-02",
+            "calendar_gaps_over_7_days": 23,
+            "largest_calendar_gap_days": 28
+          },
+          "accuracy_vs_placebo": {
+            "mean_difference": 0.0,
+            "n": 105,
+            "date_clusters": 105,
+            "ci95_by_block_length": {
+              "1": [
+                -0.12380952380952381,
+                0.12380952380952381
+              ],
+              "2": [
+                -0.12380952380952381,
+                0.12380952380952381
+              ],
+              "4": [
+                -0.11428571428571428,
+                0.11428571428571428
+              ],
+              "8": [
+                -0.11428571428571428,
+                0.12380952380952381
+              ]
+            },
+            "week_signflip": {
+              "p_two_sided": 1.0,
+              "exact": false,
+              "nonzero_date_clusters": 44,
+              "resamples": 10000,
+              "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+            },
+            "bootstrap_resamples": 2000,
+            "seed": 0,
+            "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+            "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+            "first_date": "2024-04-05",
+            "last_date": "2026-10-02",
+            "calendar_gaps_over_7_days": 23,
+            "largest_calendar_gap_days": 28
+          },
+          "brier_vs_train_frequency": {
+            "mean_difference": -0.2554803142828329,
+            "n": 105,
+            "date_clusters": 105,
+            "ci95_by_block_length": {
+              "1": [
+                -0.37307800761152754,
+                -0.13854039247613795
+              ],
+              "2": [
+                -0.37702628158829354,
+                -0.1308834196204959
+              ],
+              "4": [
+                -0.3671298775051274,
+                -0.14885869550850206
+              ],
+              "8": [
+                -0.3692263730494933,
+                -0.13728250861962055
+              ]
+            },
+            "week_signflip": {
+              "p_two_sided": 0.00039996000399960006,
+              "exact": false,
+              "nonzero_date_clusters": 105,
+              "resamples": 10000,
+              "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+            },
+            "bootstrap_resamples": 2000,
+            "seed": 0,
+            "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+            "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+            "first_date": "2024-04-05",
+            "last_date": "2026-10-02",
+            "calendar_gaps_over_7_days": 23,
+            "largest_calendar_gap_days": 28
+          }
+        },
+        "placebo_discordant_pairs": {
+          "model_wins": 22,
+          "placebo_wins": 22,
+          "ties": 61,
+          "exact_mcnemar_p_if_independent_rows": 1.0
+        },
+        "baselines": {
+          "ticker_train_frequency": {
+            "hit_rate": 0.3047619047619048,
+            "brier": 0.6679129464285715,
+            "log_loss": 1.1005184059342674,
+            "information": "ticker identity and training labels",
+            "paired_accuracy": {
+              "mean_difference": 0.02857142857142857,
+              "n": 105,
+              "date_clusters": 105,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.12380952380952381,
+                  0.18095238095238095
+                ],
+                "2": [
+                  -0.12380952380952381,
+                  0.19047619047619047
+                ],
+                "4": [
+                  -0.12380952380952381,
+                  0.18095238095238095
+                ],
+                "8": [
+                  -0.1523809523809524,
+                  0.19047619047619047
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.8086191380861913,
+                "exact": false,
+                "nonzero_date_clusters": 67,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2024-04-05",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 23,
+              "largest_calendar_gap_days": 28
+            },
+            "paired_brier_improvement": {
+              "mean_difference": -0.2554803142828329,
+              "n": 105,
+              "date_clusters": 105,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.37307800761152754,
+                  -0.13854039247613795
+                ],
+                "2": [
+                  -0.37702628158829354,
+                  -0.1308834196204959
+                ],
+                "4": [
+                  -0.3671298775051274,
+                  -0.14885869550850206
+                ],
+                "8": [
+                  -0.3692263730494933,
+                  -0.13728250861962055
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.00039996000399960006,
+                "exact": false,
+                "nonzero_date_clusters": 105,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2024-04-05",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 23,
+              "largest_calendar_gap_days": 28
+            }
+          },
+          "pooled_train_frequency": {
+            "hit_rate": 0.34285714285714286,
+            "brier": 0.6665318080357143,
+            "log_loss": 1.0984109259900003,
+            "information": "training labels only; no chart or ticker identity",
+            "paired_accuracy": {
+              "mean_difference": -0.009523809523809525,
+              "n": 105,
+              "date_clusters": 105,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.11428571428571428,
+                  0.10476190476190476
+                ],
+                "2": [
+                  -0.12380952380952381,
+                  0.10476190476190476
+                ],
+                "4": [
+                  -0.10476190476190476,
+                  0.09523809523809523
+                ],
+                "8": [
+                  -0.09523809523809523,
+                  0.0761904761904762
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 1.0,
+                "exact": false,
+                "nonzero_date_clusters": 33,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2024-04-05",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 23,
+              "largest_calendar_gap_days": 28
+            },
+            "paired_brier_improvement": {
+              "mean_difference": -0.25686145267569,
+              "n": 105,
+              "date_clusters": 105,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.3716069444832286,
+                  -0.1424944057331617
+                ],
+                "2": [
+                  -0.37563874044949386,
+                  -0.13428132945819693
+                ],
+                "4": [
+                  -0.3666042378010281,
+                  -0.1522218905688593
+                ],
+                "8": [
+                  -0.36864541363089,
+                  -0.14149873924016285
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.00019998000199980003,
+                "exact": false,
+                "nonzero_date_clusters": 105,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2024-04-05",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 23,
+              "largest_calendar_gap_days": 28
+            }
+          },
+          "uniform": {
+            "hit_rate": 0.34285714285714286,
+            "brier": 0.6666666666666669,
+            "log_loss": 1.0986122886681096,
+            "information": "training labels only; no chart or ticker identity",
+            "paired_accuracy": {
+              "mean_difference": -0.009523809523809525,
+              "n": 105,
+              "date_clusters": 105,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.11428571428571428,
+                  0.10476190476190476
+                ],
+                "2": [
+                  -0.12380952380952381,
+                  0.10476190476190476
+                ],
+                "4": [
+                  -0.10476190476190476,
+                  0.09523809523809523
+                ],
+                "8": [
+                  -0.09523809523809523,
+                  0.0761904761904762
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 1.0,
+                "exact": false,
+                "nonzero_date_clusters": 33,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2024-04-05",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 23,
+              "largest_calendar_gap_days": 28
+            },
+            "paired_brier_improvement": {
+              "mean_difference": -0.2567265940447376,
+              "n": 105,
+              "date_clusters": 105,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.3723512391257539,
+                  -0.1421701934300787
+                ],
+                "2": [
+                  -0.375821229963663,
+                  -0.13373476045517746
+                ],
+                "4": [
+                  -0.3666172505162956,
+                  -0.15120905574743054
+                ],
+                "8": [
+                  -0.3689388145952545,
+                  -0.14042803308630553
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 0.00019998000199980003,
+                "exact": false,
+                "nonzero_date_clusters": 105,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2024-04-05",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 23,
+              "largest_calendar_gap_days": 28
+            }
+          },
+          "always_up": {
+            "hit_rate": 0.34285714285714286,
+            "brier": 1.3142857142857143,
+            "log_loss": 22.696910202369878,
+            "information": "training labels only; no chart or ticker identity",
+            "paired_accuracy": {
+              "mean_difference": -0.009523809523809525,
+              "n": 105,
+              "date_clusters": 105,
+              "ci95_by_block_length": {
+                "1": [
+                  -0.11428571428571428,
+                  0.10476190476190476
+                ],
+                "2": [
+                  -0.12380952380952381,
+                  0.10476190476190476
+                ],
+                "4": [
+                  -0.10476190476190476,
+                  0.09523809523809523
+                ],
+                "8": [
+                  -0.09523809523809523,
+                  0.0761904761904762
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 1.0,
+                "exact": false,
+                "nonzero_date_clusters": 33,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2024-04-05",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 23,
+              "largest_calendar_gap_days": 28
+            },
+            "paired_brier_improvement": {
+              "mean_difference": 0.39089245357431,
+              "n": 105,
+              "date_clusters": 105,
+              "ci95_by_block_length": {
+                "1": [
+                  0.21142451914380864,
+                  0.5857945867739519
+                ],
+                "2": [
+                  0.20455903654066263,
+                  0.576153510584703
+                ],
+                "4": [
+                  0.22222387504622562,
+                  0.5598313852830866
+                ],
+                "8": [
+                  0.24282436834453808,
+                  0.5409251596794573
+                ]
+              },
+              "week_signflip": {
+                "p_two_sided": 9.999000099990002e-05,
+                "exact": false,
+                "nonzero_date_clusters": 105,
+                "resamples": 10000,
+                "assumption": "Independent symmetric date-level paired differences; serial dependence is not removed by sign flips"
+              },
+              "bootstrap_resamples": 2000,
+              "seed": 0,
+              "bootstrap": "Circular moving blocks of consecutive retained forecast dates, all tickers together; row-weighted statistic",
+              "block_unit": "retained forecast weeks; holiday gaps can span more calendar weeks",
+              "first_date": "2024-04-05",
+              "last_date": "2026-10-02",
+              "calendar_gaps_over_7_days": 23,
+              "largest_calendar_gap_days": 28
+            }
+          }
+        },
         "mean_probs": {
           "Up": 0.48146339883088246,
           "Flat": 0.11015025106557874,
           "Down": 0.40838635010353874
         },
+        "inference": {
+          "primary_reference": "Training-selected majority class and training-fitted class frequencies",
+          "primary_block_length": 4,
+          "sensitivity_block_lengths": [
+            1,
+            2,
+            4,
+            8
+          ],
+          "oracle_reference": "Evaluation-majority benchmark is descriptive and uses future labels; no inferential CI or success decision is based on it",
+          "bss_degeneracy": "Undefined BSS resamples with zero reference loss are omitted; all-degenerate intervals are null",
+          "paired_comparisons": "All forecast differences share the same labels and dates",
+          "historical_status": "Exploratory: experiments 02-04 adaptively reuse the same historical test period; no untouched confirmatory test",
+          "multiplicity": "Unadjusted exploratory intervals and paired tests, not familywise discovery guarantees",
+          "training_uncertainty": "Intervals condition on trained predictions and reference priors; models and calibration are not refitted within resamples",
+          "bootstrap_assumption": "Approximate stationarity within evaluated period; report 1/2/4/8 retained-week sensitivity",
+          "signflip_assumption": "Symmetry and independence of date aggregates; exact enumeration does not remove these assumptions"
+        },
         "success": {
-          "ci_excludes_zero_above_eval_base": false,
+          "ci_excludes_zero_above_eval_base": null,
           "ci_excludes_zero_above_train_base": false,
           "beats_placebo": false,
+          "placebo_ci_above_zero": false,
+          "paired_placebo_p_below_0_05": false,
           "bss_positive": false,
-          "all_met_eval_base": false
+          "bss_ci_above_zero": false,
+          "confirmatory_claim_allowed": false,
+          "all_met_train_base": false,
+          "all_met_eval_base": null
         }
       }
     }
