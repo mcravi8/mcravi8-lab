@@ -1,0 +1,1682 @@
+{
+  "bootstrap_resamples": 2000,
+  "seed": 0,
+  "base_rate_definitions": "per ticker: train-majority class of that ticker applied to the evaluated rows (honest); test-majority (or full-sample majority for full rows) of that ticker (look-ahead). Pooled rates average these per-row indicators. Ties broken Up, Flat, Down.",
+  "brier_reference": "per ticker train-period class frequencies",
+  "calibration": {
+    "model": "multinomial logistic regression on log(p_up, p_flat, p_down), fit on pooled TRAIN rows, effectively unregularized (C=1e6)",
+    "classes": [
+      "Up",
+      "Flat",
+      "Down"
+    ],
+    "coef": [
+      [
+        0.08790279491094538,
+        -0.1536435888486189,
+        -0.007796848571748141
+      ],
+      [
+        0.03852904396623179,
+        0.05442719554559559,
+        -0.025725411787106394
+      ],
+      [
+        -0.12643183887717763,
+        0.09921639330302241,
+        0.03352226035885397
+      ]
+    ],
+    "intercept": [
+      -0.18535543066397342,
+      0.05434161051701995,
+      0.13101382014695176
+    ],
+    "test_pred_counts": {
+      "Up": 289,
+      "Flat": 3,
+      "Down": 200
+    }
+  },
+  "tickers": {
+    "TSLA": {
+      "holdout": {
+        "n": 41,
+        "weeks": 41,
+        "label_counts": {
+          "Up": 15,
+          "Flat": 14,
+          "Down": 12
+        },
+        "pred_counts": {
+          "Up": 24,
+          "Flat": 0,
+          "Down": 17
+        },
+        "hit_rate": 0.43902439024390244,
+        "base_rate_train_majority": 0.36585365853658536,
+        "base_rate_test_majority": 0.36585365853658536,
+        "placebo_hit_rate": 0.4146341463414634,
+        "brier_model": 0.8155304346146581,
+        "brier_ref": 0.6652057926829268,
+        "bss": -0.22598216008528382,
+        "edge_vs_train_base": 0.07317073170731708,
+        "edge_vs_test_base": 0.07317073170731708,
+        "ci95_edge_vs_train_base": [
+          -0.09756097560975607,
+          0.24390243902439027
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.09756097560975607,
+          0.24390243902439027
+        ],
+        "ci95_bss": [
+          -0.5115045798833705,
+          0.07700420727534427
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.14634146341463417,
+          0.2195121951219512
+        ],
+        "calibrated": {
+          "hit_rate": 0.34146341463414637,
+          "brier": 0.6468004075086373,
+          "bss": 0.02766870850606451,
+          "ci95_edge_vs_train_base": [
+            -0.1707317073170732,
+            0.12195121951219515
+          ],
+          "ci95_bss": [
+            -0.012795137330441336,
+            0.06716903462865571
+          ]
+        },
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met": false
+        }
+      },
+      "full_sample": {
+        "n": 105,
+        "weeks": 105,
+        "label_counts": {
+          "Up": 39,
+          "Flat": 34,
+          "Down": 32
+        },
+        "pred_counts": {
+          "Up": 62,
+          "Flat": 0,
+          "Down": 43
+        },
+        "hit_rate": 0.4,
+        "base_rate_train_majority": 0.37142857142857144,
+        "base_rate_test_majority": 0.37142857142857144,
+        "placebo_hit_rate": 0.3523809523809524,
+        "brier_model": 0.8742967859075366,
+        "brier_ref": 0.6645089285714286,
+        "bss": -0.31570359451318897,
+        "edge_vs_train_base": 0.02857142857142858,
+        "edge_vs_test_base": 0.02857142857142858,
+        "ci95_edge_vs_train_base": [
+          -0.0761904761904762,
+          0.13333333333333336
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.0761904761904762,
+          0.13333333333333336
+        ],
+        "ci95_bss": [
+          -0.49359220314517865,
+          -0.13380309030380022
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.07619047619047614,
+          0.16190476190476194
+        ],
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met": false
+        }
+      }
+    },
+    "NVDA": {
+      "holdout": {
+        "n": 41,
+        "weeks": 41,
+        "label_counts": {
+          "Up": 16,
+          "Flat": 10,
+          "Down": 15
+        },
+        "pred_counts": {
+          "Up": 21,
+          "Flat": 0,
+          "Down": 20
+        },
+        "hit_rate": 0.3170731707317073,
+        "base_rate_train_majority": 0.24390243902439024,
+        "base_rate_test_majority": 0.3902439024390244,
+        "placebo_hit_rate": 0.43902439024390244,
+        "brier_model": 0.9826839341963978,
+        "brier_ref": 0.670874618902439,
+        "bss": -0.46478031290568644,
+        "edge_vs_train_base": 0.07317073170731708,
+        "edge_vs_test_base": -0.07317073170731708,
+        "ci95_edge_vs_train_base": [
+          -0.14634146341463417,
+          0.2926829268292683
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.24390243902439024,
+          0.09756097560975613
+        ],
+        "ci95_bss": [
+          -0.7507914236168827,
+          -0.18755235303885096
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.3170731707317074,
+          0.07317073170731708
+        ],
+        "calibrated": {
+          "hit_rate": 0.4146341463414634,
+          "brier": 0.6739077966436561,
+          "bss": -0.004521228938694,
+          "ci95_edge_vs_train_base": [
+            -0.07317073170731708,
+            0.4146341463414634
+          ],
+          "ci95_bss": [
+            -0.06931728685456882,
+            0.059521158010333766
+          ]
+        },
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": false,
+          "bss_positive": false,
+          "all_met": false
+        }
+      },
+      "full_sample": {
+        "n": 105,
+        "weeks": 105,
+        "label_counts": {
+          "Up": 36,
+          "Flat": 32,
+          "Down": 37
+        },
+        "pred_counts": {
+          "Up": 57,
+          "Flat": 0,
+          "Down": 48
+        },
+        "hit_rate": 0.3333333333333333,
+        "base_rate_train_majority": 0.3047619047619048,
+        "base_rate_test_majority": 0.3523809523809524,
+        "placebo_hit_rate": 0.3333333333333333,
+        "brier_model": 0.9233932607114044,
+        "brier_ref": 0.6679129464285715,
+        "bss": -0.3825054083004733,
+        "edge_vs_train_base": 0.028571428571428525,
+        "edge_vs_test_base": -0.01904761904761909,
+        "ci95_edge_vs_train_base": [
+          -0.12380952380952381,
+          0.18095238095238098
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.1333333333333333,
+          0.09547619047618923
+        ],
+        "ci95_bss": [
+          -0.5628504343826127,
+          -0.2024826996384999
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.1142857142857143,
+          0.11452380952380826
+        ],
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": false,
+          "bss_positive": false,
+          "all_met": false
+        }
+      }
+    },
+    "PLTR": {
+      "holdout": {
+        "n": 41,
+        "weeks": 41,
+        "label_counts": {
+          "Up": 14,
+          "Flat": 14,
+          "Down": 13
+        },
+        "pred_counts": {
+          "Up": 19,
+          "Flat": 1,
+          "Down": 21
+        },
+        "hit_rate": 0.2682926829268293,
+        "base_rate_train_majority": 0.34146341463414637,
+        "base_rate_test_majority": 0.34146341463414637,
+        "placebo_hit_rate": 0.36585365853658536,
+        "brier_model": 0.9820785865904945,
+        "brier_ref": 0.6825100038109756,
+        "bss": -0.43892189287599925,
+        "edge_vs_train_base": -0.07317073170731708,
+        "edge_vs_test_base": -0.07317073170731708,
+        "ci95_edge_vs_train_base": [
+          -0.2682926829268293,
+          0.09817073170731377
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.2682926829268293,
+          0.09817073170731377
+        ],
+        "ci95_bss": [
+          -0.73466329611814,
+          -0.1503461744879961
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.29268292682926833,
+          0.09756097560975607
+        ],
+        "calibrated": {
+          "hit_rate": 0.2682926829268293,
+          "brier": 0.6775347415700429,
+          "bss": 0.007289654676344681,
+          "ci95_edge_vs_train_base": [
+            -0.2439024390243902,
+            0.07317073170731708
+          ],
+          "ci95_bss": [
+            -0.07420301844320487,
+            0.07932736833006857
+          ]
+        },
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": false,
+          "bss_positive": false,
+          "all_met": false
+        }
+      },
+      "full_sample": {
+        "n": 105,
+        "weeks": 105,
+        "label_counts": {
+          "Up": 42,
+          "Flat": 35,
+          "Down": 28
+        },
+        "pred_counts": {
+          "Up": 58,
+          "Flat": 3,
+          "Down": 44
+        },
+        "hit_rate": 0.3047619047619048,
+        "base_rate_train_majority": 0.4,
+        "base_rate_test_majority": 0.4,
+        "placebo_hit_rate": 0.38095238095238093,
+        "brier_model": 0.9668754128016069,
+        "brier_ref": 0.66025390625,
+        "bss": -0.464399382796695,
+        "edge_vs_train_base": -0.09523809523809523,
+        "edge_vs_test_base": -0.09523809523809523,
+        "ci95_edge_vs_train_base": [
+          -0.2,
+          0.0
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.2,
+          0.0
+        ],
+        "ci95_bss": [
+          -0.6426279743199768,
+          -0.29374496171298786
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.2,
+          0.038095238095238126
+        ],
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": false,
+          "bss_positive": false,
+          "all_met": false
+        }
+      }
+    },
+    "COIN": {
+      "holdout": {
+        "n": 41,
+        "weeks": 41,
+        "label_counts": {
+          "Up": 12,
+          "Flat": 14,
+          "Down": 15
+        },
+        "pred_counts": {
+          "Up": 14,
+          "Flat": 0,
+          "Down": 27
+        },
+        "hit_rate": 0.2926829268292683,
+        "base_rate_train_majority": 0.36585365853658536,
+        "base_rate_test_majority": 0.36585365853658536,
+        "placebo_hit_rate": 0.34146341463414637,
+        "brier_model": 1.0263063546233602,
+        "brier_ref": 0.666432450457317,
+        "bss": -0.5400005715794476,
+        "edge_vs_train_base": -0.07317073170731708,
+        "edge_vs_test_base": -0.07317073170731708,
+        "ci95_edge_vs_train_base": [
+          -0.1951219512195122,
+          0.04878048780487804
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.1951219512195122,
+          0.04878048780487804
+        ],
+        "ci95_bss": [
+          -0.7950755899288224,
+          -0.2762860208656583
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.2682926829268293,
+          0.17073170731707316
+        ],
+        "calibrated": {
+          "hit_rate": 0.3170731707317073,
+          "brier": 0.673935678288923,
+          "bss": -0.011258797236624929,
+          "ci95_edge_vs_train_base": [
+            -0.1951219512195122,
+            0.09756097560975613
+          ],
+          "ci95_bss": [
+            -0.08070425822530479,
+            0.05377600718260886
+          ]
+        },
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": false,
+          "bss_positive": false,
+          "all_met": false
+        }
+      },
+      "full_sample": {
+        "n": 105,
+        "weeks": 105,
+        "label_counts": {
+          "Up": 29,
+          "Flat": 35,
+          "Down": 41
+        },
+        "pred_counts": {
+          "Up": 50,
+          "Flat": 0,
+          "Down": 55
+        },
+        "hit_rate": 0.29523809523809524,
+        "base_rate_train_majority": 0.3904761904761905,
+        "base_rate_test_majority": 0.3904761904761905,
+        "placebo_hit_rate": 0.3142857142857143,
+        "brier_model": 0.9318278468274589,
+        "brier_ref": 0.6605236235119047,
+        "bss": -0.4107411357569173,
+        "edge_vs_train_base": -0.09523809523809523,
+        "edge_vs_test_base": -0.09523809523809523,
+        "ci95_edge_vs_train_base": [
+          -0.2095238095238095,
+          0.009523809523809545
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.2095238095238095,
+          0.009523809523809545
+        ],
+        "ci95_bss": [
+          -0.5854484336608868,
+          -0.23028037296648177
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.1523809523809524,
+          0.12380952380952381
+        ],
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": false,
+          "bss_positive": false,
+          "all_met": false
+        }
+      }
+    },
+    "AAPL": {
+      "holdout": {
+        "n": 41,
+        "weeks": 41,
+        "label_counts": {
+          "Up": 19,
+          "Flat": 12,
+          "Down": 10
+        },
+        "pred_counts": {
+          "Up": 26,
+          "Flat": 0,
+          "Down": 15
+        },
+        "hit_rate": 0.43902439024390244,
+        "base_rate_train_majority": 0.4634146341463415,
+        "base_rate_test_majority": 0.4634146341463415,
+        "placebo_hit_rate": 0.36585365853658536,
+        "brier_model": 0.7744276476825663,
+        "brier_ref": 0.6461866425304879,
+        "bss": -0.1984581492583668,
+        "edge_vs_train_base": -0.024390243902439046,
+        "edge_vs_test_base": -0.024390243902439046,
+        "ci95_edge_vs_train_base": [
+          -0.1707317073170732,
+          0.1463414634146341
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.1707317073170732,
+          0.1463414634146341
+        ],
+        "ci95_bss": [
+          -0.46621254915408405,
+          0.10498616701930796
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.12195121951219512,
+          0.2682926829268293
+        ],
+        "calibrated": {
+          "hit_rate": 0.4146341463414634,
+          "brier": 0.6385708117630091,
+          "bss": 0.011785806555293266,
+          "ci95_edge_vs_train_base": [
+            -0.1951219512195122,
+            0.09756097560975613
+          ],
+          "ci95_bss": [
+            -0.034814025124828396,
+            0.05878418407500278
+          ]
+        },
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met": false
+        }
+      },
+      "full_sample": {
+        "n": 105,
+        "weeks": 105,
+        "label_counts": {
+          "Up": 45,
+          "Flat": 31,
+          "Down": 29
+        },
+        "pred_counts": {
+          "Up": 69,
+          "Flat": 0,
+          "Down": 36
+        },
+        "hit_rate": 0.3619047619047619,
+        "base_rate_train_majority": 0.42857142857142855,
+        "base_rate_test_majority": 0.42857142857142855,
+        "placebo_hit_rate": 0.4095238095238095,
+        "brier_model": 0.8914059033378698,
+        "brier_ref": 0.65380859375,
+        "bss": -0.36340499629272394,
+        "edge_vs_train_base": -0.06666666666666665,
+        "edge_vs_test_base": -0.06666666666666665,
+        "ci95_edge_vs_train_base": [
+          -0.17142857142857137,
+          0.03809523809523807
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.17142857142857137,
+          0.03809523809523807
+        ],
+        "ci95_bss": [
+          -0.5304996857856784,
+          -0.18956286379991666
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.17142857142857143,
+          0.0761904761904762
+        ],
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": false,
+          "bss_positive": false,
+          "all_met": false
+        }
+      }
+    },
+    "MSFT": {
+      "holdout": {
+        "n": 41,
+        "weeks": 41,
+        "label_counts": {
+          "Up": 16,
+          "Flat": 12,
+          "Down": 13
+        },
+        "pred_counts": {
+          "Up": 19,
+          "Flat": 0,
+          "Down": 22
+        },
+        "hit_rate": 0.3170731707317073,
+        "base_rate_train_majority": 0.3170731707317073,
+        "base_rate_test_majority": 0.3902439024390244,
+        "placebo_hit_rate": 0.4878048780487805,
+        "brier_model": 0.9256153626869356,
+        "brier_ref": 0.6706007050304879,
+        "bss": -0.3802779444510931,
+        "edge_vs_train_base": 0.0,
+        "edge_vs_test_base": -0.07317073170731708,
+        "ci95_edge_vs_train_base": [
+          -0.17073170731707316,
+          0.17073170731707316
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.2682926829268293,
+          0.12195121951219512
+        ],
+        "ci95_bss": [
+          -0.6570545417476897,
+          -0.10833868029009582
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.3658536585365854,
+          0.024390243902439046
+        ],
+        "calibrated": {
+          "hit_rate": 0.24390243902439024,
+          "brier": 0.6731830601062146,
+          "bss": -0.003850808769443992,
+          "ci95_edge_vs_train_base": [
+            -0.24390243902439027,
+            0.09756097560975613
+          ],
+          "ci95_bss": [
+            -0.054379778111035705,
+            0.04533454313312284
+          ]
+        },
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": false,
+          "bss_positive": false,
+          "all_met": false
+        }
+      },
+      "full_sample": {
+        "n": 105,
+        "weeks": 105,
+        "label_counts": {
+          "Up": 36,
+          "Flat": 33,
+          "Down": 36
+        },
+        "pred_counts": {
+          "Up": 61,
+          "Flat": 0,
+          "Down": 44
+        },
+        "hit_rate": 0.37142857142857144,
+        "base_rate_train_majority": 0.34285714285714286,
+        "base_rate_test_majority": 0.34285714285714286,
+        "placebo_hit_rate": 0.3523809523809524,
+        "brier_model": 0.8685245308360433,
+        "brier_ref": 0.6675083705357143,
+        "bss": -0.301144029308579,
+        "edge_vs_train_base": 0.02857142857142858,
+        "edge_vs_test_base": 0.02857142857142858,
+        "ci95_edge_vs_train_base": [
+          -0.08571428571428569,
+          0.1523809523809524
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.0761904761904762,
+          0.1333333333333333
+        ],
+        "ci95_bss": [
+          -0.4842680519110488,
+          -0.12274051150413422
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.09523809523809529,
+          0.14285714285714285
+        ],
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met": false
+        }
+      }
+    },
+    "AMZN": {
+      "holdout": {
+        "n": 41,
+        "weeks": 41,
+        "label_counts": {
+          "Up": 14,
+          "Flat": 15,
+          "Down": 12
+        },
+        "pred_counts": {
+          "Up": 19,
+          "Flat": 0,
+          "Down": 22
+        },
+        "hit_rate": 0.3902439024390244,
+        "base_rate_train_majority": 0.36585365853658536,
+        "base_rate_test_majority": 0.36585365853658536,
+        "placebo_hit_rate": 0.34146341463414637,
+        "brier_model": 0.9189601992304497,
+        "brier_ref": 0.6731731135670732,
+        "bss": -0.36511720493555755,
+        "edge_vs_train_base": 0.024390243902439046,
+        "edge_vs_test_base": 0.024390243902439046,
+        "ci95_edge_vs_train_base": [
+          -0.2439024390243903,
+          0.2926829268292683
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.2439024390243903,
+          0.2926829268292683
+        ],
+        "ci95_bss": [
+          -0.748242745743452,
+          -0.01854071941119246
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.1463414634146341,
+          0.24390243902439024
+        ],
+        "calibrated": {
+          "hit_rate": 0.4146341463414634,
+          "brier": 0.6523962671944878,
+          "bss": 0.030864046638005238,
+          "ci95_edge_vs_train_base": [
+            -0.21951219512195125,
+            0.3170731707317073
+          ],
+          "ci95_bss": [
+            -0.07827780149810273,
+            0.12977485149717835
+          ]
+        },
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met": false
+        }
+      },
+      "full_sample": {
+        "n": 105,
+        "weeks": 105,
+        "label_counts": {
+          "Up": 31,
+          "Flat": 42,
+          "Down": 32
+        },
+        "pred_counts": {
+          "Up": 53,
+          "Flat": 0,
+          "Down": 52
+        },
+        "hit_rate": 0.37142857142857144,
+        "base_rate_train_majority": 0.4,
+        "base_rate_test_majority": 0.4,
+        "placebo_hit_rate": 0.26666666666666666,
+        "brier_model": 0.9468324325117037,
+        "brier_ref": 0.6613699776785714,
+        "bss": -0.4316229409673449,
+        "edge_vs_train_base": -0.02857142857142858,
+        "edge_vs_test_base": -0.02857142857142858,
+        "ci95_edge_vs_train_base": [
+          -0.19047619047619047,
+          0.13333333333333336
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.19047619047619047,
+          0.13333333333333336
+        ],
+        "ci95_bss": [
+          -0.6695095219403966,
+          -0.21103295573612654
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.009523809523809492,
+          0.21904761904761907
+        ],
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met": false
+        }
+      }
+    },
+    "META": {
+      "holdout": {
+        "n": 41,
+        "weeks": 41,
+        "label_counts": {
+          "Up": 14,
+          "Flat": 9,
+          "Down": 18
+        },
+        "pred_counts": {
+          "Up": 21,
+          "Flat": 0,
+          "Down": 20
+        },
+        "hit_rate": 0.43902439024390244,
+        "base_rate_train_majority": 0.34146341463414637,
+        "base_rate_test_majority": 0.43902439024390244,
+        "placebo_hit_rate": 0.3170731707317073,
+        "brier_model": 0.6957905516117603,
+        "brier_ref": 0.6486280487804879,
+        "bss": -0.07271116770226715,
+        "edge_vs_train_base": 0.09756097560975607,
+        "edge_vs_test_base": 0.0,
+        "ci95_edge_vs_train_base": [
+          -0.09756097560975607,
+          0.29268292682926833
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.1951219512195122,
+          0.1951219512195122
+        ],
+        "ci95_bss": [
+          -0.3073578209860603,
+          0.1681058748960469
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.0975609756097561,
+          0.3414634146341463
+        ],
+        "calibrated": {
+          "hit_rate": 0.36585365853658536,
+          "brier": 0.6574359813232978,
+          "bss": -0.013579327257540186,
+          "ci95_edge_vs_train_base": [
+            -0.14634146341463417,
+            0.1951219512195122
+          ],
+          "ci95_bss": [
+            -0.06807819781627598,
+            0.03678880515515336
+          ]
+        },
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met": false
+        }
+      },
+      "full_sample": {
+        "n": 105,
+        "weeks": 105,
+        "label_counts": {
+          "Up": 38,
+          "Flat": 25,
+          "Down": 42
+        },
+        "pred_counts": {
+          "Up": 56,
+          "Flat": 0,
+          "Down": 49
+        },
+        "hit_rate": 0.45714285714285713,
+        "base_rate_train_majority": 0.3619047619047619,
+        "base_rate_test_majority": 0.4,
+        "placebo_hit_rate": 0.3333333333333333,
+        "brier_model": 0.7671008418790587,
+        "brier_ref": 0.6532738095238095,
+        "bss": -0.17424092424311488,
+        "edge_vs_train_base": 0.09523809523809523,
+        "edge_vs_test_base": 0.057142857142857106,
+        "ci95_edge_vs_train_base": [
+          -0.019047619047619035,
+          0.20952380952380956
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.06666666666666665,
+          0.17142857142857143
+        ],
+        "ci95_bss": [
+          -0.32704610386619376,
+          -0.018021292336314523
+        ],
+        "ci95_hit_minus_placebo": [
+          0.0,
+          0.2573809523809511
+        ],
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met": false
+        }
+      }
+    },
+    "KO": {
+      "holdout": {
+        "n": 41,
+        "weeks": 41,
+        "label_counts": {
+          "Up": 19,
+          "Flat": 11,
+          "Down": 11
+        },
+        "pred_counts": {
+          "Up": 21,
+          "Flat": 0,
+          "Down": 20
+        },
+        "hit_rate": 0.36585365853658536,
+        "base_rate_train_majority": 0.4634146341463415,
+        "base_rate_test_majority": 0.4634146341463415,
+        "placebo_hit_rate": 0.3170731707317073,
+        "brier_model": 0.8815724243567739,
+        "brier_ref": 0.6534989519817073,
+        "bss": -0.3490035778687075,
+        "edge_vs_train_base": -0.09756097560975613,
+        "edge_vs_test_base": -0.09756097560975613,
+        "ci95_edge_vs_train_base": [
+          -0.2682926829268293,
+          0.07378048780487478
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.2682926829268293,
+          0.07378048780487478
+        ],
+        "ci95_bss": [
+          -0.6275077924538704,
+          -0.04683307267664462
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.12195121951219515,
+          0.21951219512195125
+        ],
+        "calibrated": {
+          "hit_rate": 0.4146341463414634,
+          "brier": 0.6437791089070882,
+          "bss": 0.014873540416773467,
+          "ci95_edge_vs_train_base": [
+            -0.21951219512195125,
+            0.12195121951219512
+          ],
+          "ci95_bss": [
+            -0.023242101199881782,
+            0.05472846102301939
+          ]
+        },
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met": false
+        }
+      },
+      "full_sample": {
+        "n": 105,
+        "weeks": 105,
+        "label_counts": {
+          "Up": 43,
+          "Flat": 30,
+          "Down": 32
+        },
+        "pred_counts": {
+          "Up": 53,
+          "Flat": 1,
+          "Down": 51
+        },
+        "hit_rate": 0.38095238095238093,
+        "base_rate_train_majority": 0.4095238095238095,
+        "base_rate_test_majority": 0.4095238095238095,
+        "placebo_hit_rate": 0.3142857142857143,
+        "brier_model": 0.8664434553791313,
+        "brier_ref": 0.6596400669642857,
+        "bss": -0.31350944063566466,
+        "edge_vs_train_base": -0.02857142857142858,
+        "edge_vs_test_base": -0.02857142857142858,
+        "ci95_edge_vs_train_base": [
+          -0.13333333333333336,
+          0.0761904761904762
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.13333333333333336,
+          0.0761904761904762
+        ],
+        "ci95_bss": [
+          -0.5014531600715497,
+          -0.1277288404002792
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.05714285714285716,
+          0.19071428571428445
+        ],
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met": false
+        }
+      }
+    },
+    "JNJ": {
+      "holdout": {
+        "n": 41,
+        "weeks": 41,
+        "label_counts": {
+          "Up": 17,
+          "Flat": 9,
+          "Down": 15
+        },
+        "pred_counts": {
+          "Up": 23,
+          "Flat": 0,
+          "Down": 18
+        },
+        "hit_rate": 0.36585365853658536,
+        "base_rate_train_majority": 0.4146341463414634,
+        "base_rate_test_majority": 0.4146341463414634,
+        "placebo_hit_rate": 0.4146341463414634,
+        "brier_model": 0.8984433738416625,
+        "brier_ref": 0.6532131288109756,
+        "bss": -0.3754214883541489,
+        "edge_vs_train_base": -0.04878048780487804,
+        "edge_vs_test_base": -0.04878048780487804,
+        "ci95_edge_vs_train_base": [
+          -0.21951219512195125,
+          0.12195121951219512
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.21951219512195125,
+          0.12195121951219512
+        ],
+        "ci95_bss": [
+          -0.6694383442136104,
+          -0.06652838425295912
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.26829268292682934,
+          0.17073170731707316
+        ],
+        "calibrated": {
+          "hit_rate": 0.3902439024390244,
+          "brier": 0.6572989188224101,
+          "bss": -0.006254911040860067,
+          "ci95_edge_vs_train_base": [
+            -0.1957317073170732,
+            0.14634146341463417
+          ],
+          "ci95_bss": [
+            -0.08252040662337568,
+            0.05539998336721927
+          ]
+        },
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": false,
+          "bss_positive": false,
+          "all_met": false
+        }
+      },
+      "full_sample": {
+        "n": 105,
+        "weeks": 105,
+        "label_counts": {
+          "Up": 46,
+          "Flat": 25,
+          "Down": 34
+        },
+        "pred_counts": {
+          "Up": 59,
+          "Flat": 1,
+          "Down": 45
+        },
+        "hit_rate": 0.4,
+        "base_rate_train_majority": 0.4380952380952381,
+        "base_rate_test_majority": 0.4380952380952381,
+        "placebo_hit_rate": 0.3333333333333333,
+        "brier_model": 0.8261352023656934,
+        "brier_ref": 0.6476236979166666,
+        "bss": -0.27564078495471733,
+        "edge_vs_train_base": -0.03809523809523807,
+        "edge_vs_test_base": -0.03809523809523807,
+        "ci95_edge_vs_train_base": [
+          -0.14285714285714285,
+          0.06666666666666665
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.14285714285714285,
+          0.06666666666666665
+        ],
+        "ci95_bss": [
+          -0.4480491345230198,
+          -0.10540978356850954
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.06666666666666665,
+          0.2
+        ],
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met": false
+        }
+      }
+    },
+    "PG": {
+      "holdout": {
+        "n": 41,
+        "weeks": 41,
+        "label_counts": {
+          "Up": 14,
+          "Flat": 14,
+          "Down": 13
+        },
+        "pred_counts": {
+          "Up": 24,
+          "Flat": 0,
+          "Down": 17
+        },
+        "hit_rate": 0.4146341463414634,
+        "base_rate_train_majority": 0.34146341463414637,
+        "base_rate_test_majority": 0.34146341463414637,
+        "placebo_hit_rate": 0.34146341463414637,
+        "brier_model": 0.847460697000866,
+        "brier_ref": 0.6994450266768293,
+        "bss": -0.2116187329650221,
+        "edge_vs_train_base": 0.07317073170731703,
+        "edge_vs_test_base": 0.07317073170731703,
+        "ci95_edge_vs_train_base": [
+          -0.07317073170731708,
+          0.21951219512195125
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.07317073170731708,
+          0.21951219512195125
+        ],
+        "ci95_bss": [
+          -0.42766756018046237,
+          0.017962290064170057
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.12195121951219512,
+          0.24451219512194794
+        ],
+        "calibrated": {
+          "hit_rate": 0.3170731707317073,
+          "brier": 0.6755571862566502,
+          "bss": 0.034152563116609636,
+          "ci95_edge_vs_train_base": [
+            -0.17134146341463416,
+            0.12195121951219512
+          ],
+          "ci95_bss": [
+            -0.055358130811183605,
+            0.10428565707035788
+          ]
+        },
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met": false
+        }
+      },
+      "full_sample": {
+        "n": 105,
+        "weeks": 105,
+        "label_counts": {
+          "Up": 45,
+          "Flat": 29,
+          "Down": 31
+        },
+        "pred_counts": {
+          "Up": 53,
+          "Flat": 0,
+          "Down": 52
+        },
+        "hit_rate": 0.44761904761904764,
+        "base_rate_train_majority": 0.42857142857142855,
+        "base_rate_test_majority": 0.42857142857142855,
+        "placebo_hit_rate": 0.3238095238095238,
+        "brier_model": 0.7980834245809115,
+        "brier_ref": 0.6579380580357143,
+        "bss": -0.21300693102266144,
+        "edge_vs_train_base": 0.01904761904761909,
+        "edge_vs_test_base": 0.01904761904761909,
+        "ci95_edge_vs_train_base": [
+          -0.08571428571428569,
+          0.1333333333333333
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.08571428571428569,
+          0.1333333333333333
+        ],
+        "ci95_bss": [
+          -0.37645163576997115,
+          -0.04792082113961391
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.00952380952380949,
+          0.2571428571428571
+        ],
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met": false
+        }
+      }
+    },
+    "SPY": {
+      "holdout": {
+        "n": 41,
+        "weeks": 41,
+        "label_counts": {
+          "Up": 17,
+          "Flat": 13,
+          "Down": 11
+        },
+        "pred_counts": {
+          "Up": 23,
+          "Flat": 1,
+          "Down": 17
+        },
+        "hit_rate": 0.4146341463414634,
+        "base_rate_train_majority": 0.4146341463414634,
+        "base_rate_test_majority": 0.4146341463414634,
+        "placebo_hit_rate": 0.34146341463414637,
+        "brier_model": 0.7863460144677786,
+        "brier_ref": 0.6625381097560976,
+        "bss": -0.18686910668015577,
+        "edge_vs_train_base": 0.0,
+        "edge_vs_test_base": 0.0,
+        "ci95_edge_vs_train_base": [
+          -0.17073170731707316,
+          0.17073170731707316
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.17073170731707316,
+          0.17073170731707316
+        ],
+        "ci95_bss": [
+          -0.4318661134890701,
+          0.0753985705399197
+        ],
+        "ci95_hit_minus_placebo": [
+          -0.09756097560975607,
+          0.24390243902439024
+        ],
+        "calibrated": {
+          "hit_rate": 0.3902439024390244,
+          "brier": 0.6631509558346899,
+          "bss": -0.0009249974749645506,
+          "ci95_edge_vs_train_base": [
+            -0.14634146341463417,
+            0.09756097560975613
+          ],
+          "ci95_bss": [
+            -0.06268279436278842,
+            0.04971673486815608
+          ]
+        },
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met": false
+        }
+      },
+      "full_sample": {
+        "n": 105,
+        "weeks": 105,
+        "label_counts": {
+          "Up": 45,
+          "Flat": 29,
+          "Down": 31
+        },
+        "pred_counts": {
+          "Up": 68,
+          "Flat": 1,
+          "Down": 36
+        },
+        "hit_rate": 0.49523809523809526,
+        "base_rate_train_majority": 0.42857142857142855,
+        "base_rate_test_majority": 0.42857142857142855,
+        "placebo_hit_rate": 0.3523809523809524,
+        "brier_model": 0.7312291465888726,
+        "brier_ref": 0.6539434523809524,
+        "bss": -0.1181840630509099,
+        "edge_vs_train_base": 0.06666666666666671,
+        "edge_vs_test_base": 0.06666666666666671,
+        "ci95_edge_vs_train_base": [
+          -0.028571428571428525,
+          0.17142857142857137
+        ],
+        "ci95_edge_vs_test_base": [
+          -0.028571428571428525,
+          0.17142857142857137
+        ],
+        "ci95_bss": [
+          -0.2899201253571504,
+          0.058125910086767894
+        ],
+        "ci95_hit_minus_placebo": [
+          0.019047619047619035,
+          0.26666666666666666
+        ],
+        "success": {
+          "ci_above_test_base": false,
+          "ci_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met": false
+        }
+      }
+    }
+  },
+  "pooled": {
+    "holdout": {
+      "n": 492,
+      "weeks": 41,
+      "label_counts": {
+        "Up": 187,
+        "Flat": 147,
+        "Down": 158
+      },
+      "pred_counts": {
+        "Up": 254,
+        "Flat": 2,
+        "Down": 236
+      },
+      "hit_rate": 0.3719512195121951,
+      "base_rate_train_majority": 0.3699186991869919,
+      "base_rate_test_majority": 0.39634146341463417,
+      "placebo_hit_rate": 0.37398373983739835,
+      "brier_model": 0.8779346317419754,
+      "brier_ref": 0.6660255494156504,
+      "bss": -0.3181695995179874,
+      "edge_vs_train_base": 0.0020325203252032353,
+      "edge_vs_test_base": -0.024390243902439046,
+      "ci95_edge_vs_train_base": [
+        -0.05691056910569103,
+        0.06097560975609756
+      ],
+      "ci95_edge_vs_test_base": [
+        -0.07723577235772355,
+        0.03053861788617861
+      ],
+      "ci95_bss": [
+        -0.4211159139146095,
+        -0.2142156236861314
+      ],
+      "ci95_hit_minus_placebo": [
+        -0.07113821138211385,
+        0.06707317073170727
+      ],
+      "calibrated": {
+        "hit_rate": 0.35772357723577236,
+        "brier": 0.6611292428515922,
+        "bss": 0.007351529634792575,
+        "ci95_edge_vs_train_base": [
+          -0.07113821138211385,
+          0.044715447154471566
+        ],
+        "ci95_bss": [
+          -0.013513349078356362,
+          0.0271907961571384
+        ]
+      },
+      "success": {
+        "ci_above_test_base": false,
+        "ci_above_train_base": false,
+        "beats_placebo": false,
+        "bss_positive": false,
+        "all_met": false
+      }
+    },
+    "full_sample": {
+      "n": 1260,
+      "weeks": 105,
+      "label_counts": {
+        "Up": 475,
+        "Flat": 380,
+        "Down": 405
+      },
+      "pred_counts": {
+        "Up": 699,
+        "Flat": 6,
+        "Down": 555
+      },
+      "hit_rate": 0.38492063492063494,
+      "base_rate_train_majority": 0.39206349206349206,
+      "base_rate_test_majority": 0.39920634920634923,
+      "placebo_hit_rate": 0.3388888888888889,
+      "brier_model": 0.8660123536439409,
+      "brier_ref": 0.6590254526289683,
+      "bss": -0.31408028352966566,
+      "edge_vs_train_base": -0.0071428571428571175,
+      "edge_vs_test_base": -0.01428571428571429,
+      "ci95_edge_vs_train_base": [
+        -0.046031746031746035,
+        0.032539682539682535
+      ],
+      "ci95_edge_vs_test_base": [
+        -0.053194444444444475,
+        0.02462301587301579
+      ],
+      "ci95_bss": [
+        -0.3799152273378838,
+        -0.24887984714173128
+      ],
+      "ci95_hit_minus_placebo": [
+        -1.9841269841268642e-05,
+        0.09206349206349207
+      ],
+      "success": {
+        "ci_above_test_base": false,
+        "ci_above_train_base": false,
+        "beats_placebo": true,
+        "bss_positive": false,
+        "all_met": false
+      }
+    }
+  },
+  "exploratory_cross_ticker": {
+    "note": "EXPLORATORY. n=12 tickers; volatility from train period only; outcome from test period.",
+    "train_period_ann_vol": {
+      "TSLA": 0.6789766290515874,
+      "NVDA": 0.5282424804865546,
+      "PLTR": 0.6550645610606195,
+      "COIN": 0.8074602692831843,
+      "AAPL": 0.30202620036534267,
+      "MSFT": 0.23061640906760483,
+      "AMZN": 0.31808324323978865,
+      "META": 0.3545889435959215,
+      "KO": 0.15658640110995856,
+      "JNJ": 0.18606740607139144,
+      "PG": 0.17529662873085114,
+      "SPY": 0.17565895066866447
+    },
+    "edge_vs_train_base": {
+      "spearman_rho": 0.1898093165880407,
+      "ci95_ticker_bootstrap": [
+        -0.5833745600500431,
+        0.8119389575576951
+      ]
+    },
+    "bss": {
+      "spearman_rho": -0.44055944055944063,
+      "ci95_ticker_bootstrap": [
+        -0.842857142857143,
+        0.20863704640683056
+      ]
+    }
+  },
+  "exploratory_vol_regimes": {
+    "note": "EXPLORATORY, test period, pooled across tickers, terciles from TRAIN cutoffs (results/vol_features.json). 3 measures x 3 terciles x 2 metrics = 18 intervals: expect about 1 to exclude zero by chance; no multiplicity correction applied.",
+    "rv20": {
+      "low": {
+        "n": 139,
+        "weeks": 41,
+        "hit_rate": 0.381294964028777,
+        "base_rate_train_majority": 0.381294964028777,
+        "edge_vs_train_base": 0.0,
+        "ci95_edge_vs_train_base": [
+          -0.09168269230769231,
+          0.09167996453900702
+        ],
+        "bss": -0.3134587165808649,
+        "ci95_bss": [
+          -0.4711275871910201,
+          -0.1563402511151658
+        ]
+      },
+      "mid": {
+        "n": 190,
+        "weeks": 41,
+        "hit_rate": 0.41578947368421054,
+        "base_rate_train_majority": 0.39473684210526316,
+        "edge_vs_train_base": 0.02105263157894738,
+        "ci95_edge_vs_train_base": [
+          -0.10216087675765097,
+          0.12872085595656335
+        ],
+        "bss": -0.2141545054715439,
+        "ci95_bss": [
+          -0.3968347872975431,
+          -0.04105929344449356
+        ]
+      },
+      "high": {
+        "n": 163,
+        "weeks": 41,
+        "hit_rate": 0.3128834355828221,
+        "base_rate_train_majority": 0.3312883435582822,
+        "edge_vs_train_base": -0.018404907975460072,
+        "ci95_edge_vs_train_base": [
+          -0.11543103448275865,
+          0.06944883966244726
+        ],
+        "bss": -0.4411543195271923,
+        "ci95_bss": [
+          -0.5891357499555234,
+          -0.29508874919531813
+        ]
+      }
+    },
+    "rv20_pct": {
+      "low": {
+        "n": 127,
+        "weeks": 38,
+        "hit_rate": 0.4015748031496063,
+        "base_rate_train_majority": 0.31496062992125984,
+        "edge_vs_train_base": 0.08661417322834647,
+        "ci95_edge_vs_train_base": [
+          -0.020848214285714265,
+          0.19676017524024858
+        ],
+        "bss": -0.24657008008722414,
+        "ci95_bss": [
+          -0.4199359739133386,
+          -0.0696132171556994
+        ]
+      },
+      "mid": {
+        "n": 229,
+        "weeks": 41,
+        "hit_rate": 0.33624454148471616,
+        "base_rate_train_majority": 0.4017467248908297,
+        "edge_vs_train_base": -0.06550218340611352,
+        "ci95_edge_vs_train_base": [
+          -0.1457663510240035,
+          0.025759470050382507
+        ],
+        "bss": -0.3884009186938939,
+        "ci95_bss": [
+          -0.49933510771114553,
+          -0.26547566025189717
+        ]
+      },
+      "high": {
+        "n": 136,
+        "weeks": 38,
+        "hit_rate": 0.40441176470588236,
+        "base_rate_train_majority": 0.36764705882352944,
+        "edge_vs_train_base": 0.03676470588235292,
+        "ci95_edge_vs_train_base": [
+          -0.04669863013698632,
+          0.125
+        ],
+        "bss": -0.2678447765976899,
+        "ci95_bss": [
+          -0.4419212433609589,
+          -0.07133491907359495
+        ]
+      }
+    },
+    "vix": {
+      "low": {
+        "n": 120,
+        "weeks": 10,
+        "hit_rate": 0.25,
+        "base_rate_train_majority": 0.30833333333333335,
+        "edge_vs_train_base": -0.05833333333333335,
+        "ci95_edge_vs_train_base": [
+          -0.15833333333333333,
+          0.041666666666666685
+        ],
+        "bss": -0.5441402766116612,
+        "ci95_bss": [
+          -0.6834962900291506,
+          -0.4240732332296982
+        ]
+      },
+      "mid": {
+        "n": 156,
+        "weeks": 13,
+        "hit_rate": 0.3974358974358974,
+        "base_rate_train_majority": 0.391025641025641,
+        "edge_vs_train_base": 0.0064102564102563875,
+        "ci95_edge_vs_train_base": [
+          -0.07692307692307693,
+          0.09615384615384615
+        ],
+        "bss": -0.2783759446367289,
+        "ci95_bss": [
+          -0.4931129080591082,
+          -0.09013792606973595
+        ]
+      },
+      "high": {
+        "n": 216,
+        "weeks": 18,
+        "hit_rate": 0.4212962962962963,
+        "base_rate_train_majority": 0.3888888888888889,
+        "edge_vs_train_base": 0.032407407407407385,
+        "ci95_edge_vs_train_base": [
+          -0.06481481481481483,
+          0.13425925925925924
+        ],
+        "bss": -0.21767764339160123,
+        "ci95_bss": [
+          -0.3555464135152147,
+          -0.08195166864762726
+        ]
+      }
+    }
+  },
+  "exploratory_logit": {
+    "note": "EXPLORATORY. Logit(correct) on test rows; features standardized with train mean/sd; ticker fixed effects; SEs clustered by week. rv20, spy_rv20 and vix are strongly correlated, so individual coefficients are unstable.",
+    "n": 492,
+    "coef": {
+      "rv20": {
+        "coef": -0.19303218344795187,
+        "ci95": [
+          -1.023669987356709,
+          0.6376056204608054
+        ],
+        "p": 0.6487663596900384
+      },
+      "rv20_pct": {
+        "coef": 0.012845406880744887,
+        "ci95": [
+          -0.4145755920799883,
+          0.440266405841478
+        ],
+        "p": 0.9530290783048925
+      },
+      "vix": {
+        "coef": 0.23629035528519432,
+        "ci95": [
+          -0.07481877752509464,
+          0.5473994880954833
+        ],
+        "p": 0.13658974103374213
+      },
+      "spy_rv20": {
+        "coef": 0.21406113894955348,
+        "ci95": [
+          -0.7243458414931385,
+          1.1524681193922455
+        ],
+        "p": 0.6548102744394737
+      }
+    },
+    "feature_corr_test": {
+      "rv20": {
+        "rv20": 1.0,
+        "rv20_pct": 0.168,
+        "vix": -0.026,
+        "spy_rv20": 0.11
+      },
+      "rv20_pct": {
+        "rv20": 0.168,
+        "rv20_pct": 1.0,
+        "vix": 0.037,
+        "spy_rv20": 0.272
+      },
+      "vix": {
+        "rv20": -0.026,
+        "rv20_pct": 0.037,
+        "vix": 1.0,
+        "spy_rv20": 0.278
+      },
+      "spy_rv20": {
+        "rv20": 0.11,
+        "rv20_pct": 0.272,
+        "vix": 0.278,
+        "spy_rv20": 1.0
+      }
+    }
+  }
+}
