@@ -1,30 +1,66 @@
-# AI x finance experiments
+# mcravi8-lab: AI x finance experiments
 
-Small, reproducible AI x finance experiments with honest results.
+Small, reproducible experiments testing whether AI models can forecast stock-price direction from charts. Code, forecasts, evaluation methods and negative results are documented together.
+
+[![CPU research checks](https://github.com/mcravi8/mcravi8-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/mcravi8/mcravi8-lab/actions/workflows/tests.yml)
+
+## Latest findings
+
+**The tested models have not established a forecasting advantage.** The latest CPU study improved the research controls, but its numerical models underperformed a simple forecast based on training-period class frequencies.
+
+Experiment 05 uses 12 tickers with adjusted price history back to 2000, or the IPO where later. It evaluates 17 annual development folds from 2010 through 2026; 2026 is partial. Each model fits the preceding five years, with training targets purged before the next test input period. The table compares the pooled training-frequency prior with logistic regression using chart geometry plus known return and volatility context.
+
+| Target | Test observations | Prior accuracy | Logistic accuracy | Prior Brier | Logistic Brier |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Up / Flat / Down | 7,502 | 40.46% | 38.00% | 0.660360 | 0.671732 |
+| Up / Down | 7,490 | 55.46% | 53.24% | 0.495978 | 0.508527 |
+
+Lower Brier is better. The context model improved Brier in only 2 of 17 years for each target. Both tasks cover 718 retained forecast dates; observations from the same date are correlated. These are exploratory development results, not independent confirmation or evidence that all charts and models are uninformative. See [Experiment 05](05-cpu-walkforward/README.md) for all baselines, confidence intervals, annual results and limitations.
+
+The historical LoRA placebo conclusion was also corrected: 0 wins, 5 losses and 487 ties across five discordant dates give an exact paired p-value of **0.0625**. The earlier claim that LoRA was significantly below its mirrored-image placebo was unsupported. See [Experiment 04](04-jev-lora-and-cnn/README.md).
+
+## Experiments
 
 | Experiment | Question | Current status |
 | --- | --- | --- |
 | [01: TSLA and NVDA](01-jev-tsla-charts/README.md) | Can JEV predict from 20-session charts? | Historical real predictions, placebo and ticker probe collected. |
 | [02: Weekly charts](02-jev-weekly-charts/README.md) | Does one-week chart geometry help? | Historical analysis corrected for paired and serial dependence. |
-| [03: Twelve tickers](03-jev-12-tickers/README.md) | Does pooling or calibration help? | Exploratory reused test period; no demonstrated added skill. |
-| [04: LoRA and CNN](04-jev-lora-and-cnn/README.md) | Does task-specific training help? | Historical results retained; future training now requires parity and checkpoint checks. |
-| [05: CPU walk-forward study](05-cpu-walkforward/README.md) | Can simple numerical models beat train-only priors over longer histories? | 17 annual development folds completed; future protocol and model frozen. |
+| [03: Twelve tickers](03-jev-12-tickers/README.md) | Does pooling or calibration help? | Reused historical test period; no demonstrated added skill. |
+| [04: LoRA and CNN](04-jev-lora-and-cnn/README.md) | Does task-specific training help? | Historical results retained; revised training requires parity and checkpoint checks. |
+| [05: CPU walk-forward study](05-cpu-walkforward/README.md) | Can numerical models beat training-frequency priors over longer histories? | CPU study complete; future protocol and model frozen. |
 
-The tested models have not established a forecasting advantage. Experiment 05's numerical models also underperformed the pooled training-frequency baseline. This is evidence about these specific inputs, targets and recipes, not proof that all charts or models are uninformative.
+## Completed review and implementation
 
-The 2025-2026 test period informed successive experiments, so results from 02-04 are exploratory. Experiment 05 reserves future chart weeks from 2026-10-16 through 2027-10-08; those outcomes have not been evaluated. Its protocol was pushed in commit `0d2fae5` before inspecting the new CPU results.
+- Corrected evaluation uses training-selected references, paired accuracy and Brier comparisons, and moving-block intervals with 1/2/4/8 retained-week sensitivity. Test-majority benchmarks are descriptive only.
+- Scoring supports separate binary and explicit volatility-based Flat tasks, blank and mirrored image controls, and model-identity checks that prevent incompatible runs from being mixed on resume. Historical predictions remain unchanged.
+- Revised training validates data bundles and splits, uses representative fit-only parity fixtures, and blocks LoRA training above a 0.01 absolute HF-vLLM probability discrepancy. Checkpoints record provenance and validate reload inputs.
+- The longer CPU study includes simple priors, momentum/reversal rules, numerical feature comparisons, a shuffled-label control, and a fixed future protocol.
+- All **60 CPU tests passed**, including checkpoint round trips and localhost fake-server scoring. [GitHub CI passed for research commit `82cd983`](https://github.com/mcravi8/mcravi8-lab/actions/runs/38085970817).
 
-## Checks
+## Pending work and future holdout
 
-From the repository root, in a Python 3.11 environment with `05-cpu-walkforward/requirements.txt` installed:
+The latest review and CPU study started **no GPU or Runpod pod**. Real-model execution with the revised prompts and controls, an actual HF-vLLM parity pass, revised training, and fresh-process LoRA probability equivalence remain unverified. Their run steps and gates are documented in Experiments 01 and 04. Passing the fake-server and CPU tests verifies software behavior; it does not establish real-model correctness or forecasting skill.
+
+The 2025-2026 test period informed successive experiments, so results from 02-04 are exploratory. Experiment 05 reserves future chart weeks ending **2026-10-16 through 2027-10-08**. Its [protocol](05-cpu-walkforward/protocol.json) was pushed in [commit `0d2fae5`](https://github.com/mcravi8/mcravi8-lab/commit/0d2fae5) before inspecting the new CPU results. The primary model and comparator are frozen; future forecast collection and evaluation have not started. Success requires a positive paired Brier improvement with the prespecified four-week 95% interval wholly above zero.
+
+## Run the checks
+
+From the repository root, use Python 3.11 and install the research dependencies. On Linux, install the CPU-only PyTorch wheel for the checkpoint test:
 
 ```sh
-python -m unittest discover -s 01-jev-tsla-charts/tests -v
-python -m unittest discover -s tests -v
-python -m unittest discover -s 04-jev-lora-and-cnn/tests -v
-python -m unittest discover -s 05-cpu-walkforward/tests -v
+python3.11 -m venv .venv
+.venv/bin/python -m pip install -r 05-cpu-walkforward/requirements.txt
+.venv/bin/python -m pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
+.venv/bin/python -m unittest discover -s 01-jev-tsla-charts/tests -v
+.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python -m unittest discover -s 04-jev-lora-and-cnn/tests -v
+.venv/bin/python -m unittest discover -s 05-cpu-walkforward/tests -v
 ```
 
-Run each suite separately because historical experiments share module names. The checkpoint test additionally needs PyTorch 2.14.1; GitHub Actions installs its CPU-only wheel. Tests use synthetic OHLCV, localhost HTTP fixtures and CPU tensors. They do not download model weights or start a GPU. The workflow runs on pushes and pull requests.
+On macOS, install `torch==2.14.1` from the default package index instead; the checkpoint test explicitly uses CPU. Without PyTorch, that one test is skipped. Run each suite separately because historical experiments share module names. The suite comprises 31 pipeline/scoring/protocol tests, 8 statistical tests, 13 training tests and 8 baseline tests. Tests use synthetic OHLCV, localhost HTTP fixtures and CPU tensors, without downloading model weights. GitHub Actions runs all four suites on pushes and pull requests.
 
-Regenerated market data, chart inputs, model weights, checkpoints and secrets are excluded from Git. Results, checksums and selected figures are committed. Keep the local input snapshots: Yahoo's adjusted history can change, so a fresh download is not guaranteed to reproduce their hashes.
+## Reproducibility
+
+The data cutoff is **2026-10-09**. Experiment READMEs contain the corresponding data, rendering, scoring and evaluation commands. Regenerated market data, chart inputs, model weights, checkpoints and secrets are excluded from Git; results, checksums and selected figures are committed. Preserve local input snapshots and the frozen prospective model: a fresh clone does not contain them, and Yahoo's adjusted history can change between downloads.
+
+The ticker universe is hand selected, the data are retrospective, and the studies do not test trading execution, transaction costs or P&L.
