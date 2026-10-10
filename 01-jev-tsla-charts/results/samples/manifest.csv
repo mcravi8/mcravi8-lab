@@ -1,0 +1,4 @@
+sample_file,source_file,ticker,end_date,label,fwd_ret,temporal_fraction,sha256
+results/samples/sample_01.png,charts/chart_000032.png,TSLA,2024-11-13,Flat,0.035701335070154272,0.25,33ad8e0f977c010170aae226cf8c4b1a7fa713d5cbf67b3604beb3f36435edb9
+results/samples/sample_02.png,charts/chart_000189.png,NVDA,2025-07-01,Up,0.062491849255809084,0.5,cc41e07ddada574d3d1f130bac24e878a9cb96751e83b40b5b61e92f76b46b99
+results/samples/sample_03.png,charts/chart_000094.png,TSLA,2026-02-11,Down,-0.038667191219100561,0.75,dd5fff2254e98c9c51e165574714df0e2c1b3a48848e1cc7d0f11a471366d758

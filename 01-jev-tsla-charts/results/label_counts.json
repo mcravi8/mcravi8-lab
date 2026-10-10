@@ -1,0 +1,20 @@
+{
+  "TSLA": {
+    "Up": 34,
+    "Flat": 61,
+    "Down": 31,
+    "total": 126
+  },
+  "NVDA": {
+    "Up": 51,
+    "Flat": 44,
+    "Down": 31,
+    "total": 126
+  },
+  "combined": {
+    "Up": 85,
+    "Flat": 105,
+    "Down": 62,
+    "total": 252
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "window_sessions": 20,
+  "step_sessions": 5,
+  "horizon_sessions": 5,
+  "stride_first_end_position": 19,
+  "first_warmed_end_position": 64,
+  "volatility": "60 overlapping trailing 5-session close returns; sample std, ddof=1",
+  "flat_rule": "abs(fwd_ret) < 0.5 * trailing_volatility",
+  "image_size": [
+    640,
+    480
+  ],
+  "image_mode": "RGB",
+  "background": "white",
+  "up_color": "#16856b",
+  "down_color": "#d34b52",
+  "matplotlib_version": "3.11.2",
+  "input_sha256": {
+    "TSLA": "023ad1d6f1a8d2ab0391084681bbbf74b51fbe11fb05de57b92266c33231ac56",
+    "NVDA": "f61578797735e1c872697bf4f6b34f9fcba84cad44d8ed8b3fa016e253d6e6e0"
+  },
+  "sample_selection": "TSLA quarter, NVDA midpoint, TSLA three-quarter; floor((n-1)*fraction)",
+  "date_ranges": {
+    "TSLA": {
+      "first_end_date": "2024-04-04",
+      "last_end_date": "2026-10-01"
+    },
+    "NVDA": {
+      "first_end_date": "2024-04-04",
+      "last_end_date": "2026-10-01"
+    }
+  },
+  "counts": {
+    "TSLA": {
+      "Up": 34,
+      "Flat": 61,
+      "Down": 31,
+      "total": 126
+    },
+    "NVDA": {
+      "Up": 51,
+      "Flat": 44,
+      "Down": 31,
+      "total": 126
+    },
+    "combined": {
+      "Up": 85,
+      "Flat": 105,
+      "Down": 62,
+      "total": 252
+    }
+  }
+}
