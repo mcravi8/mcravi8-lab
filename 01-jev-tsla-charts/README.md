@@ -14,11 +14,21 @@ Can JEV-27B-VL, zero-shot, predict next-five-trading-day direction (Up, Flat, Do
 
 ## Setup
 
-Python 3.11. Download and rendering commands will be documented as those stages are completed. Keep any future HF token and RunPod key in an ignored .env file.
+Python 3.11. Run from this experiment directory:
+
+```sh
+python3.11 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python src/data.py
+```
+
+The download defaults to 2024-01-01 through the current New York date. For a fixed cutoff, use `src/data.py --as-of YYYY-MM-DD`. Since yfinance's end date is exclusive, the script requests the next day. It omits an in-progress current session until 16:15 New York time. The [yfinance API documentation](https://ranaroussi.github.io/yfinance/reference/api/yfinance.download.html) defines the date and adjustment options. Daily OHLC are explicitly adjusted (`auto_adjust=True`) so NVDA's split is handled consistently. Volume is the share count returned by Yahoo. Missing values, duplicate dates, and malformed OHLCV stop the download instead of being filled. `data/manifest.json` records the data range, package version, and Parquet checksums.
+
+Keep any future HF token and RunPod key in an ignored .env file.
 
 ## Status and results
 
-Stage 0: repository scaffold. No data, model predictions, or performance results yet.
+Stage 1 complete. Downloaded 696 daily sessions per ticker, from 2024-01-02 through 2026-10-09. No model predictions or performance results yet.
 
 ## Limitations and planned checks
 
