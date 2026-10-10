@@ -1,0 +1,103 @@
+{
+  "schema_version": 2,
+  "status": "Positive detector thresholds frozen before scanning; None framing corrected after CPU feasibility and before inference.",
+  "seed": 606220,
+  "external": {
+    "repository": "BennyThadikaran/stock-pattern",
+    "revision": "85c710daa5809f8f85c9e6f3f98ceea200317566",
+    "license": "GPL-3.0",
+    "source_sha256": "0dc2760dd69a5ade73ab1c7b3c7ea5174a4004a8d26aad9af9a6b2268a52f3d8",
+    "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "lookback": 120,
+    "scan_stride": 1,
+    "bars_left_argument": 6,
+    "bars_right_argument": 6,
+    "actual_pivot_left": 7,
+    "actual_pivot_right": 5,
+    "completion_search_bars": 15,
+    "breakout_atr_buffer": 0.1,
+    "flag_max_bars_argument": 5
+  },
+  "independent": {
+    "method": "Causal closing-price directional-change pivots, two fixed ATR scales; normalized shape tests and independently calculated breakout boundaries. No external pivot or candidate inputs, volume tests, or copied external algorithms.",
+    "atr_window": 20,
+    "reversal_atr_multipliers": [
+      1.5,
+      2.5
+    ],
+    "minimum_reversal_fraction": 0.008,
+    "minimum_pivot_gap": 3,
+    "minimum_formation_bars": 25,
+    "maximum_formation_bars": 100,
+    "maximum_wait_for_break": 20,
+    "breakout_atr_buffer": 0.15,
+    "reversal_pair_tolerance_fraction_of_height": 0.2,
+    "shoulder_tolerance_fraction_of_height": 0.25,
+    "head_prominence_fraction_of_height": 0.12,
+    "neckline_tilt_fraction_of_height": 0.25,
+    "minimum_height_atr": 2.5,
+    "triangle_max_final_width_fraction": 0.7,
+    "triangle_slope_tolerance_height_per_bar": 0.002,
+    "flag_consolidation_bars": [
+      4,
+      6,
+      8,
+      10,
+      12,
+      15
+    ],
+    "flag_pole_lookback": 35,
+    "flag_min_pole_atr": 4.0,
+    "flag_max_retracement": 0.5,
+    "flag_max_channel_width_fraction_of_pole": 0.4
+  },
+  "agreement": {
+    "completion_distance_bars": 5,
+    "minimum_span_iou": 0.5,
+    "single_label_exclusion": "Reject a paired candidate if either detector has another class with completion within 10 bars and pattern-span IoU >=0.3.",
+    "rate": "Event positive Jaccard: one-to-one matched events / (A + B - matched), separately per class; None uses fixed candidate windows negative under both. Agreement is not expert label validity."
+  },
+  "framing": {
+    "padding_fraction": 0.15,
+    "padding_allowed": [
+      0.1,
+      0.2
+    ],
+    "n_bars_allowed": [
+      60,
+      120
+    ],
+    "fixed_bars": 100,
+    "maximum_pattern_span": 86,
+    "minimum_pattern_span": 44,
+    "same_end_date": true,
+    "completion": "Each detector must independently confirm its breakout; all evidence ends no later than the last rendered bar. Both confirmations must remain beyond their boundaries at chart end."
+  },
+  "splits": {
+    "train_end": "2018-12-31",
+    "test_start": "2019-04-01",
+    "embargo_months": 3,
+    "scope": "All visible variable/fixed bars AND external detector history must fit one split."
+  },
+  "sampling": {
+    "target_per_class": 100,
+    "target_per_split": 50,
+    "stratify": [
+      "ticker",
+      "year"
+    ],
+    "overlap": "No selected variable or fixed window may share any session with another selected window of the same ticker, across all real 06b classes. Repeated event proposals are collapsed first. Rare classes selected first, then deterministic ticker/year round-robin."
+  },
+  "none": {
+    "window_bars": 120,
+    "stride": 10,
+    "definition": "Neither detector has a completed event in the prior120 visible sessions; exclude windows affected by external scan errors. No claim of absence of all possible patterns.",
+    "length_policy": "Match None variable-frame lengths to the pooled eligible positive lengths within the same temporal split, using a deterministic hash per candidate. Verify absence over120 bars; always also provide genuine fixed100 bars."
+  },
+  "review": {
+    "per_class": 12,
+    "selection": "First six deterministic selected IDs per split; use available rows if fewer. No visually selected replacements.",
+    "subtle_flags": "Algorithmic warnings for weak breakout margin, detector completion disagreement, wide shoulder/peak discrepancy, or low pattern height. Human visual review stays pending until the user reviews grids."
+  },
+  "feasibility_revision": "Initial scan retained150 parents but fixed100-only None framing would expose a label shortcut in the variable arm. Final None lengths match the positive pool; detector thresholds, agreement, completion, targets and splits remain unchanged. Initial counts/rates retained in real_feasibility_v1.json."
+}

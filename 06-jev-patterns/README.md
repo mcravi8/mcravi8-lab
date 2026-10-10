@@ -1,6 +1,6 @@
 # Experiment 06: Can JEV-27B-VL recognize chart patterns?
 
-**Day 1 is complete, CPU-only:** shared infrastructure, 1,200 candle charts and 1,200 synthetic charts are implemented and generated. No JEV inference, GPU training, or Runpod resource has been started. [PLAN.md](PLAN.md) preserves the original design.
+**CPU preparation:** shared infrastructure, 1,200 candle charts and 1,200 synthetic charts are implemented and generated. Day 2 adds 150 real pattern parents (300 paired images); all positive classes miss the target. No JEV inference, GPU training, or Runpod resource has been started. [PLAN.md](PLAN.md) preserves the original design.
 
 This experiment studies recognition of visible patterns, rather than future returns. It uses **AutoTrust's [JEV-27B-VL](https://huggingface.co/autotrust/JEV-27B-VL)**, with model weights, calibration and native System 1 serving code from Hugging Face. A later authorized session may serve the model on Runpod. Local validation uses a fake server and CPU tensors only.
 
@@ -117,7 +117,7 @@ The candle definitions contain 157 words; chart-pattern definitions contain 255 
 - [06a candles](06a-candles/README.md): TA-Lib plus independent pandas labels, exact agreement, exclusive labels, ticker/year-stratified selection, twenty-candle images and a fixed visual audit.
 - [06b synthetic](06b-chart-patterns/README.md): 200 clean templates and five paired noise levels (1,000 noisy images), seven classes, sixty to 120 bars, 1024 x 640 images.
 
-Day 2 adds real multi-bar pattern labels: verify the external detector's supported classes and license, implement independent zigzag rules, require agreement and a completed pattern, apply exclusive-label and date/window checks, target 80–120 examples per class, and hand-review 10–15 per class. Freeze the final inference-arm manifest and two prompt paraphrases per arm before scoring. Prepare the fixed 100-bar framing control and the 200-chart style subset.
+Day 2 real detection is complete across all 50 input snapshots: **150 parents (82 train / 68 test)**, with 6 H&S, 2 inverse, 1 Double Top, 1 Double Bottom, 4 Triangle, 36 Bull Flag and 100 None. All positive classes are rare; inverse and both doubles have no test examples. See the [real protocol, license, agreement rates and review grids](06b-chart-patterns/README.md#day-2-real-market-dataset). Fixed-100 historical frames are paired with variable frames, and user visual review remains pending. Frozen arms and the future GPU runbook are the next CPU preparation stage.
 
 One geometric correction to the preserved plan: a **horizontal mirror reverses time**; it does not exchange Head and Shoulders with Inverse or Double Top with Double Bottom. Price inversion creates those counterparts. Horizontal controls therefore have no assumed class swap. The current shared mirror is horizontal.
 

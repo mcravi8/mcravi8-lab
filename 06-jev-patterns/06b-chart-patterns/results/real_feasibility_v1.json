@@ -1,0 +1,129 @@
+{
+  "note": "Initial CPU feasibility pass before final None-framing correction; no inference occurred.",
+  "counts": {
+    "classes": {
+      "Head and Shoulders": {
+        "eligible_train": 5,
+        "eligible_test": 1,
+        "selected_train": 5,
+        "selected_test": 1,
+        "selected": 6,
+        "below_target_80": true
+      },
+      "Inverse Head and Shoulders": {
+        "eligible_train": 2,
+        "eligible_test": 0,
+        "selected_train": 2,
+        "selected_test": 0,
+        "selected": 2,
+        "below_target_80": true
+      },
+      "Double Top": {
+        "eligible_train": 1,
+        "eligible_test": 0,
+        "selected_train": 1,
+        "selected_test": 0,
+        "selected": 1,
+        "below_target_80": true
+      },
+      "Double Bottom": {
+        "eligible_train": 1,
+        "eligible_test": 0,
+        "selected_train": 1,
+        "selected_test": 0,
+        "selected": 1,
+        "below_target_80": true
+      },
+      "Triangle": {
+        "eligible_train": 1,
+        "eligible_test": 3,
+        "selected_train": 1,
+        "selected_test": 3,
+        "selected": 4,
+        "below_target_80": true
+      },
+      "Bull Flag": {
+        "eligible_train": 24,
+        "eligible_test": 16,
+        "selected_train": 22,
+        "selected_test": 14,
+        "selected": 36,
+        "below_target_80": true
+      },
+      "None": {
+        "eligible_train": 575,
+        "eligible_test": 376,
+        "selected_train": 50,
+        "selected_test": 50,
+        "selected": 100,
+        "below_target_80": false
+      }
+    },
+    "total": 150,
+    "subtle_flagged": 143,
+    "human_visual_review": "pending"
+  },
+  "agreement": {
+    "interpretation": "Event positive Jaccard: one-to-one matched events / (A + B - matched), separately per class; None uses fixed candidate windows negative under both. Agreement is not expert label validity.",
+    "classes": {
+      "Head and Shoulders": {
+        "external_events": 102,
+        "zigzag_events": 221,
+        "matched_events": 20,
+        "positive_jaccard": 0.066006600660066,
+        "denominator": "one-to-one union of completed detector events before span, split, exclusivity and sample filters"
+      },
+      "Inverse Head and Shoulders": {
+        "external_events": 119,
+        "zigzag_events": 236,
+        "matched_events": 20,
+        "positive_jaccard": 0.05970149253731343,
+        "denominator": "one-to-one union of completed detector events before span, split, exclusivity and sample filters"
+      },
+      "Double Top": {
+        "external_events": 46,
+        "zigzag_events": 487,
+        "matched_events": 11,
+        "positive_jaccard": 0.0210727969348659,
+        "denominator": "one-to-one union of completed detector events before span, split, exclusivity and sample filters"
+      },
+      "Double Bottom": {
+        "external_events": 52,
+        "zigzag_events": 610,
+        "matched_events": 16,
+        "positive_jaccard": 0.02476780185758514,
+        "denominator": "one-to-one union of completed detector events before span, split, exclusivity and sample filters"
+      },
+      "Triangle": {
+        "external_events": 65,
+        "zigzag_events": 1774,
+        "matched_events": 23,
+        "positive_jaccard": 0.012665198237885462,
+        "denominator": "one-to-one union of completed detector events before span, split, exclusivity and sample filters"
+      },
+      "Bull Flag": {
+        "external_events": 293,
+        "zigzag_events": 4106,
+        "matched_events": 144,
+        "positive_jaccard": 0.03384253819036428,
+        "denominator": "one-to-one union of completed detector events before span, split, exclusivity and sample filters"
+      },
+      "None": {
+        "eligible_windows": 23309,
+        "external_none": 18305,
+        "zigzag_none": 1116,
+        "both_none": 951,
+        "positive_jaccard": 0.05148890092041148,
+        "denominator": "union of negative decisions on prespecified 100-bar candidate windows"
+      }
+    },
+    "external_errors": 0,
+    "excluded": {
+      "span_or_padding": 123,
+      "multiple_labels": 24,
+      "completion_not_retained": 31,
+      "split_or_history_boundary": 1,
+      "insufficient_context_or_tail": 1
+    }
+  }
+}

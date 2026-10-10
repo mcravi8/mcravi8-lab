@@ -1,0 +1,63 @@
+{
+  "interpretation": "Event positive Jaccard: one-to-one matched events / (A + B - matched), separately per class; None uses fixed candidate windows negative under both. Agreement is not expert label validity.",
+  "classes": {
+    "Head and Shoulders": {
+      "external_events": 102,
+      "zigzag_events": 221,
+      "matched_events": 20,
+      "positive_jaccard": 0.066006600660066,
+      "denominator": "one-to-one union of completed detector events before span, split, exclusivity and sample filters"
+    },
+    "Inverse Head and Shoulders": {
+      "external_events": 119,
+      "zigzag_events": 236,
+      "matched_events": 20,
+      "positive_jaccard": 0.05970149253731343,
+      "denominator": "one-to-one union of completed detector events before span, split, exclusivity and sample filters"
+    },
+    "Double Top": {
+      "external_events": 46,
+      "zigzag_events": 487,
+      "matched_events": 11,
+      "positive_jaccard": 0.0210727969348659,
+      "denominator": "one-to-one union of completed detector events before span, split, exclusivity and sample filters"
+    },
+    "Double Bottom": {
+      "external_events": 52,
+      "zigzag_events": 610,
+      "matched_events": 16,
+      "positive_jaccard": 0.02476780185758514,
+      "denominator": "one-to-one union of completed detector events before span, split, exclusivity and sample filters"
+    },
+    "Triangle": {
+      "external_events": 65,
+      "zigzag_events": 1774,
+      "matched_events": 23,
+      "positive_jaccard": 0.012665198237885462,
+      "denominator": "one-to-one union of completed detector events before span, split, exclusivity and sample filters"
+    },
+    "Bull Flag": {
+      "external_events": 293,
+      "zigzag_events": 4106,
+      "matched_events": 144,
+      "positive_jaccard": 0.03384253819036428,
+      "denominator": "one-to-one union of completed detector events before span, split, exclusivity and sample filters"
+    },
+    "None": {
+      "eligible_windows": 23113,
+      "external_none": 17352,
+      "zigzag_none": 617,
+      "both_none": 506,
+      "positive_jaccard": 0.028975548302124492,
+      "denominator": "union of negative decisions on prespecified 120-bar absence-screen windows"
+    }
+  },
+  "external_errors": 0,
+  "excluded": {
+    "span_or_padding": 123,
+    "multiple_labels": 24,
+    "completion_not_retained": 31,
+    "split_or_history_boundary": 1,
+    "insufficient_context_or_tail": 1
+  }
+}

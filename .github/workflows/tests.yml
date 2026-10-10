@@ -35,5 +35,7 @@ jobs:
         run: python -m unittest discover -s 04-jev-lora-and-cnn/tests -v
       - name: Walk-forward and causal feature tests
         run: python -m unittest discover -s 05-cpu-walkforward/tests -v
+      - name: Fetch checksum-pinned external chart detector
+        run: python 06-jev-patterns/06b-chart-patterns/src/external_detector.py --fetch
       - name: Pattern labels, rendering, native scoring and multiclass metrics
         run: python -m unittest discover -s 06-jev-patterns/tests -v

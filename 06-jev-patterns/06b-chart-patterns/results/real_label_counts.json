@@ -1,0 +1,63 @@
+{
+  "classes": {
+    "Head and Shoulders": {
+      "eligible_train": 5,
+      "eligible_test": 1,
+      "selected_train": 5,
+      "selected_test": 1,
+      "selected": 6,
+      "below_target_80": true
+    },
+    "Inverse Head and Shoulders": {
+      "eligible_train": 2,
+      "eligible_test": 0,
+      "selected_train": 2,
+      "selected_test": 0,
+      "selected": 2,
+      "below_target_80": true
+    },
+    "Double Top": {
+      "eligible_train": 1,
+      "eligible_test": 0,
+      "selected_train": 1,
+      "selected_test": 0,
+      "selected": 1,
+      "below_target_80": true
+    },
+    "Double Bottom": {
+      "eligible_train": 1,
+      "eligible_test": 0,
+      "selected_train": 1,
+      "selected_test": 0,
+      "selected": 1,
+      "below_target_80": true
+    },
+    "Triangle": {
+      "eligible_train": 1,
+      "eligible_test": 3,
+      "selected_train": 1,
+      "selected_test": 3,
+      "selected": 4,
+      "below_target_80": true
+    },
+    "Bull Flag": {
+      "eligible_train": 24,
+      "eligible_test": 16,
+      "selected_train": 22,
+      "selected_test": 14,
+      "selected": 36,
+      "below_target_80": true
+    },
+    "None": {
+      "eligible_train": 318,
+      "eligible_test": 188,
+      "selected_train": 50,
+      "selected_test": 50,
+      "selected": 100,
+      "below_target_80": false
+    }
+  },
+  "total": 150,
+  "subtle_flagged": 143,
+  "human_visual_review": "pending"
+}
