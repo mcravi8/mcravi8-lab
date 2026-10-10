@@ -1,0 +1,61 @@
+{
+ "args": {
+  "data": "/root/d04",
+  "out": "/workspace/exp04",
+  "rank": 16,
+  "lr": 0.0001,
+  "accum": 8,
+  "epochs": 3,
+  "evals_per_epoch": 2,
+  "patience": 2,
+  "smoke": false,
+  "diag": false,
+  "skip_merge": ""
+ },
+ "choice_ids": [
+  32,
+  33,
+  34
+ ],
+ "temperature": 1.0161280671450397,
+ "merged_decision_lora_modules": 401,
+ "zero_shot_sanity_max_abs_diff": 0.15183274513435363,
+ "best": {
+  "examples_seen": 306,
+  "epoch": 0.5,
+  "train_loss": 1.1652181629164546,
+  "val_logloss": 1.099056363105774,
+  "val_acc": 0.3782051282051282
+ },
+ "history": [
+  {
+   "examples_seen": 0,
+   "epoch": 0.0,
+   "train_loss": null,
+   "val_logloss": 1.5067083835601807,
+   "val_acc": 0.36538461538461536
+  },
+  {
+   "examples_seen": 306,
+   "epoch": 0.5,
+   "train_loss": 1.1652181629164546,
+   "val_logloss": 1.099056363105774,
+   "val_acc": 0.3782051282051282
+  },
+  {
+   "examples_seen": 612,
+   "epoch": 1.0,
+   "train_loss": 1.108751974464242,
+   "val_logloss": 1.1335949897766113,
+   "val_acc": 0.28205128205128205
+  },
+  {
+   "examples_seen": 918,
+   "epoch": 1.5,
+   "train_loss": 1.0827381652749442,
+   "val_logloss": 1.1357672214508057,
+   "val_acc": 0.36538461538461536
+  }
+ ],
+ "seconds": 832.4857938289642
+}
