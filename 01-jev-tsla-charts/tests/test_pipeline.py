@@ -40,11 +40,15 @@ class PipelineTests(unittest.TestCase):
         self.assertAlmostEqual(float(result.iloc[64]), expected, places=14)
 
     def test_strict_flat_boundary(self) -> None:
-        self.assertEqual(label_return(0, 0.04), "Flat")
-        self.assertEqual(label_return(0.01999, 0.04), "Flat")
-        self.assertEqual(label_return(-0.01999, 0.04), "Flat")
-        self.assertEqual(label_return(0.02, 0.04), "Up")
-        self.assertEqual(label_return(-0.02, 0.04), "Down")
+        # A 0.75 std gives an exact 0.25 boundary at the one-third band.
+        self.assertEqual(label_return(0, 0.75), "Flat")
+        self.assertEqual(label_return(0.24999, 0.75), "Flat")
+        self.assertEqual(label_return(-0.24999, 0.75), "Flat")
+        self.assertEqual(label_return(0.25, 0.75), "Up")
+        self.assertEqual(label_return(-0.25, 0.75), "Down")
+        # These returns were Flat under the former half-std band.
+        self.assertEqual(label_return(0.30, 0.75), "Up")
+        self.assertEqual(label_return(-0.30, 0.75), "Down")
         for forward, sigma in ((0, 0), (0.01, -0.1), (0.01, float("nan")),
                                (float("inf"), 0.1)):
             with self.subTest(forward=forward, sigma=sigma), self.assertRaises(ValueError):

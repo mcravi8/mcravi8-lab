@@ -31,22 +31,25 @@ Each image contains exactly 20 trading sessions of candlesticks plus volume. It 
 Let `t` be the last visible session. The image uses rows `t-19` through `t`; the target is `r = close[t+5] / close[t] - 1`. The Flat threshold uses only completed historical five-session close returns:
 
 ```python
+FLAT_BAND = 1 / 3
 past_5d = close.pct_change(5, fill_method=None)
 sigma = past_5d.rolling(60, min_periods=60).std(ddof=1)
-threshold = 0.5 * sigma.iloc[t]
+threshold = FLAT_BAND * sigma.iloc[t]
 ```
 
-Flat means `abs(r) < threshold`. Otherwise the sign of `r` determines Up or Down; equality at the threshold is Up or Down. Undefined or zero volatility fails rather than inventing a label. The 60-return sample standard deviation needs 65 observed closes. The five-session stride is anchored to the first complete 20-session image (end position 19); warmup candidates are skipped until end position 64, and candidates without five future sessions are omitted. Only the past enters the image and its scales; future prices are used only for the target in the external index.
+The named constant `FLAT_BAND = 1 / 3` makes the Flat band one-third of the trailing five-session return standard deviation over the 60-session lookback. Flat means `abs(r) < threshold`. Otherwise the sign of `r` determines Up or Down; equality at the threshold is Up or Down. Undefined or zero volatility fails rather than inventing a label. The 60-return sample standard deviation needs 65 observed closes. The five-session stride is anchored to the first complete 20-session image (end position 19); warmup candidates are skipped until end position 64, and candidates without five future sessions are omitted. Only the past enters the image and its scales; future prices are used only for the target in the external index.
 
 ## Data and label results
 
 Run cutoff: 2026-10-09. Each ticker has 696 daily sessions from 2024-01-02 through 2026-10-09. Eligible chart end dates run from 2024-04-04 through 2026-10-01.
 
-| Ticker | Up | Flat | Down | Total charts |
-| --- | ---: | ---: | ---: | ---: |
-| TSLA | 34 | 61 | 31 | 126 |
-| NVDA | 51 | 44 | 31 | 126 |
-| Combined | 85 | 105 | 62 | 252 |
+| Ticker | Up | Flat | Down | Total charts | Majority class | Base rate |
+| --- | ---: | ---: | ---: | ---: | --- | ---: |
+| TSLA | 45 | 41 | 40 | 126 | Up | 35.71% |
+| NVDA | 58 | 30 | 38 | 126 | Up | 46.03% |
+| Combined | 103 | 71 | 78 | 252 | Up | 40.87% |
+
+The majority-class base rate is the largest label count divided by the ticker's total chart count: the hit rate obtained by always predicting that class. For TSLA it is 45/126; for NVDA it is 58/126.
 
 The brief's approximate 200 charts per ticker is larger than the exact date range and five-session stride allow. This run preserves those settings, the full volatility warmup, and the five-session outcome requirement, producing 126 per ticker.
 

@@ -5,7 +5,8 @@
   "stride_first_end_position": 19,
   "first_warmed_end_position": 64,
   "volatility": "60 overlapping trailing 5-session close returns; sample std, ddof=1",
-  "flat_rule": "abs(fwd_ret) < 0.5 * trailing_volatility",
+  "flat_band": 0.3333333333333333,
+  "flat_rule": "abs(fwd_ret) < flat_band * trailing_volatility",
   "image_size": [
     640,
     480
@@ -32,21 +33,21 @@
   },
   "counts": {
     "TSLA": {
-      "Up": 34,
-      "Flat": 61,
-      "Down": 31,
+      "Up": 45,
+      "Flat": 41,
+      "Down": 40,
       "total": 126
     },
     "NVDA": {
-      "Up": 51,
-      "Flat": 44,
-      "Down": 31,
+      "Up": 58,
+      "Flat": 30,
+      "Down": 38,
       "total": 126
     },
     "combined": {
-      "Up": 85,
-      "Flat": 105,
-      "Down": 62,
+      "Up": 103,
+      "Flat": 71,
+      "Down": 78,
       "total": 252
     }
   }

@@ -26,7 +26,7 @@ WINDOW = 20
 STEP = 5
 HORIZON = 5
 VOL_LOOKBACK = 60
-FLAT_SIGMA = 0.5
+FLAT_BAND = 1 / 3
 LABELS = ("Up", "Flat", "Down")
 IMAGE_SIZE = (640, 480)
 UP_COLOR = "#16856b"
@@ -44,7 +44,7 @@ def label_return(fwd_ret: float, sigma: float) -> str:
     """The Flat boundary is strict; degenerate volatility is undefined."""
     if not np.isfinite(fwd_ret) or not np.isfinite(sigma) or sigma <= 0:
         raise ValueError("Labels require a finite return and positive finite volatility")
-    if abs(fwd_ret) < FLAT_SIGMA * sigma:
+    if abs(fwd_ret) < FLAT_BAND * sigma:
         return "Flat"
     return "Up" if fwd_ret > 0 else "Down"
 
@@ -174,7 +174,8 @@ def main() -> None:
         "stride_first_end_position": WINDOW - 1,
         "first_warmed_end_position": HORIZON + VOL_LOOKBACK - 1,
         "volatility": "60 overlapping trailing 5-session close returns; sample std, ddof=1",
-        "flat_rule": "abs(fwd_ret) < 0.5 * trailing_volatility",
+        "flat_band": FLAT_BAND,
+        "flat_rule": "abs(fwd_ret) < flat_band * trailing_volatility",
         "image_size": list(IMAGE_SIZE), "image_mode": "RGB", "background": "white",
         "up_color": UP_COLOR, "down_color": DOWN_COLOR,
         "matplotlib_version": matplotlib.__version__,
