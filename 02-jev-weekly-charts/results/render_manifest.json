@@ -1,0 +1,47 @@
+{
+  "window_sessions": 5,
+  "vol_weeks": 12,
+  "flat_band": 0.3333333333333333,
+  "train_end": "2025-10-03",
+  "gap_dropped": [
+    "2025-10-10"
+  ],
+  "test_start": "2025-10-17",
+  "test_end": "2026-10-02",
+  "first_chart": "2024-04-05",
+  "holiday_short_next_weeks": 44,
+  "input_sha256": {
+    "TSLA": "023ad1d6f1a8d2ab0391084681bbbf74b51fbe11fb05de57b92266c33231ac56",
+    "NVDA": "ed486d97fc7bfdf2dd0deca18db4cbc3625a8cf6122770842f8deebe585a9e74"
+  },
+  "counts": {
+    "TSLA": {
+      "train": {
+        "Up": 24,
+        "Flat": 20,
+        "Down": 20,
+        "total": 64
+      },
+      "test": {
+        "Up": 15,
+        "Flat": 14,
+        "Down": 12,
+        "total": 41
+      }
+    },
+    "NVDA": {
+      "train": {
+        "Up": 20,
+        "Flat": 22,
+        "Down": 22,
+        "total": 64
+      },
+      "test": {
+        "Up": 16,
+        "Flat": 10,
+        "Down": 15,
+        "total": 41
+      }
+    }
+  }
+}
