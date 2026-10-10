@@ -15,10 +15,7 @@ import pandas as pd
 import yfinance as yf
 
 ROOT = Path(__file__).resolve().parents[1]
-GROUPS = {"high": ("TSLA", "NVDA", "PLTR", "COIN"),
-          "medium": ("AAPL", "MSFT", "AMZN", "META"),
-          "low": ("KO", "JNJ", "PG", "SPY")}
-TICKERS = tuple(t for g in GROUPS.values() for t in g)
+TICKERS = ("TSLA", "NVDA", "PLTR", "COIN", "AAPL", "MSFT", "AMZN", "META", "KO", "JNJ", "PG", "SPY")
 OHLCV = ["Open", "High", "Low", "Close", "Volume"]
 NEW_YORK = ZoneInfo("America/New_York")
 
