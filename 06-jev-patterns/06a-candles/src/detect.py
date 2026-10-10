@@ -13,6 +13,8 @@ import json
 from pathlib import Path
 import shutil
 import sys
+import tempfile
+from datetime import datetime, timezone
 
 import numpy as np
 import pandas as pd
@@ -204,10 +206,200 @@ def write_contact_sheets(review: pd.DataFrame, results: Path) -> None:
         sheet.save(results / f"audit_contact_{page}.png")
 
 
+
+def clarity(frame: pd.DataFrame, label: str) -> tuple[bool, dict]:
+    """Frozen geometric margins using only the twenty bars shown in the image."""
+    config_path = PART / "clear_rules.json"
+    cfg = json.loads(config_path.read_text())
+    if cfg["original_label_rules_sha256"] != digest(RULES_PATH):
+        raise ValueError("Clarity rules refer to different frozen label definitions")
+    validate_ohlcv(frame)
+    if len(frame) != cfg["visible_bars_only"] or label not in CLASSES:
+        raise ValueError("Clarity requires a known label and exactly twenty visible bars")
+    flags = pandas_detector(frame).iloc[-1]
+    recognized = list(flags.index[flags])
+    if recognized != ([] if label == "None" else [label]):
+        raise ValueError("Clarity metadata disagrees with the original single-label rule")
+    o, h, l, c = [frame[name].to_numpy(dtype=float) for name in ["Open", "High", "Low", "Close"]]
+    body, ranges = np.abs(c-o), h-l
+    body_low, body_high = np.minimum(c,o), np.maximum(c,o)
+    upper, lower = h-body_high, body_low-l
+    i, first, middle = len(frame)-1, len(frame)-3, len(frame)-2
+    mean_body = lambda j: float(body[j-10:j].mean())
+    mean_range = lambda j: float(ranges[j-10:j].mean())
+    tiny = .1 * mean_range(i)
+    near = .2 * float(ranges[i-6:i-1].mean())
+    span = RULES["prior_trend"]["span"].get(label,1)
+    before = i-span
+    trend_move = float(c[before]-c[before-5])
+    trend_range = float(ranges[before-9:before+1].mean())
+    positive_scale = mean_range(i)>0 and mean_body(i)>0 and ranges[i]>0
+    checks, near_patterns = {"nondegenerate_reference_and_candle": bool(positive_scale)}, []
+    metrics = {"body":float(body[i]), "mean_prior_body":mean_body(i), "mean_prior_range":mean_range(i),
+               "lower_wick":float(lower[i]), "upper_wick":float(upper[i]),
+               "talib_tiny_threshold":tiny, "talib_near_allowance":near,
+               "prior_five_session_move":trend_move, "prepattern_mean_range":trend_range}
+    if label == "Doji":
+        checks["doji_body_well_inside_threshold"] = body[i] <= cfg["doji"]["max_fraction_of_talib_body_threshold"] * tiny
+    elif label in ["Hammer", "Shooting Star"]:
+        rule=cfg["hammer_shooting_star"]
+        hammer=label=="Hammer"
+        long_wick, short_wick = (lower[i],upper[i]) if hammer else (upper[i],lower[i])
+        checks.update({"body_clearly_short": body[i] <= rule["max_body_to_prior_mean_body"] * mean_body(i),
+                       "long_wick_clearly_long": long_wick >= rule["min_long_wick_to_body"] * body[i],
+                       "short_wick_clearly_tiny": short_wick <= rule["max_short_wick_to_talib_tiny_threshold"] * tiny,
+                       "prior_trend_clearly_directional": (-trend_move if hammer else trend_move) >= rule["min_prior_trend_move_to_daily_range"] * trend_range})
+        if hammer:
+            checks["body_clearly_near_previous_low"] = body_low[i] <= l[i-1] + rule["hammer_max_fraction_of_near_allowance"] * near
+        else:
+            checks["body_gap_clearly_positive"] = body_low[i]-body_high[i-1] >= rule["shooting_min_body_gap_to_prior_mean_range"] * mean_range(i)
+    elif label in ["Bullish Engulfing", "Bearish Engulfing"]:
+        rule=cfg["engulfing"]
+        low_extension=float(body_low[i-1]-body_low[i])
+        high_extension=float(body_high[i]-body_high[i-1])
+        checks.update({"previous_body_not_nearly_zero": body[i-1] >= rule["min_previous_body_to_its_prior_mean_body"] * mean_body(i-1),
+                       "current_body_clearly_larger": body[i] >= rule["min_current_body_to_previous_body"] * body[i-1],
+                       "lower_endpoint_clearly_extended": low_extension >= rule["min_extension_at_each_endpoint_to_previous_body"] * body[i-1],
+                       "upper_endpoint_clearly_extended": high_extension >= rule["min_extension_at_each_endpoint_to_previous_body"] * body[i-1]})
+        metrics.update({"previous_body":float(body[i-1]),"previous_mean_body":mean_body(i-1),
+                        "lower_endpoint_extension":low_extension,"upper_endpoint_extension":high_extension})
+    elif label in ["Morning Star", "Evening Star"]:
+        rule=cfg["stars"]; morning=label=="Morning Star"
+        gap=float(body_low[first]-body_high[middle]) if morning else float(body_low[middle]-body_high[first])
+        penetration=float(c[i]-c[first]) if morning else float(c[first]-c[i])
+        checks.update({"first_body_clearly_long": body[first] >= rule["min_first_body_to_its_prior_mean_body"] * mean_body(first),
+                       "middle_body_clearly_short": body[middle] <= rule["max_middle_body_to_its_prior_mean_body"] * mean_body(middle),
+                       "middle_body_clearly_smaller_than_first": body[middle] <= rule["max_middle_body_to_first_body"] * body[first],
+                       "third_body_clearly_long": body[i] >= rule["min_third_body_to_its_prior_mean_body"] * mean_body(i),
+                       "middle_body_gap_clearly_positive": gap >= rule["min_body_gap_to_middle_prior_mean_range"] * mean_range(middle),
+                       "third_close_clearly_penetrates_first": penetration >= rule["min_penetration_fraction"] * body[first],
+                       "prior_trend_clearly_directional": (-trend_move if morning else trend_move) >= rule["min_prior_trend_move_to_daily_range"] * trend_range})
+        metrics.update({"first_body":float(body[first]),"middle_body":float(body[middle]),
+                        "middle_body_gap":gap,"penetration_distance":penetration})
+    else:
+        rule=cfg["none"]
+        up=c>=o
+        allow=rule["engulf_endpoint_overlap_allowance_to_previous_body"] * body[i-1]
+        near_engulf=(body_low[i] <= body_low[i-1]+allow) and (body_high[i] >= body_high[i-1]-allow)
+        shared_star=(body[first] >= rule["star_min_first_and_third_body_to_prior_mean_body"]*mean_body(first)
+                     and body[middle] <= rule["star_max_middle_body_to_prior_mean_body"]*mean_body(middle)
+                     and body[i] >= rule["star_min_first_and_third_body_to_prior_mean_body"]*mean_body(i))
+        gap_allow=rule["star_body_gap_overlap_allowance_to_middle_prior_mean_range"]*mean_range(middle)
+        near_flags={
+            "Doji": body[i] <= rule["doji_max_fraction_of_talib_body_threshold"]*tiny,
+            "Hammer": body[i] <= rule["wick_max_body_to_prior_mean_body"]*mean_body(i) and lower[i] >= rule["wick_min_long_wick_to_body"]*body[i] and upper[i] <= rule["wick_max_short_wick_to_talib_tiny_threshold"]*tiny,
+            "Shooting Star": body[i] <= rule["wick_max_body_to_prior_mean_body"]*mean_body(i) and upper[i] >= rule["wick_min_long_wick_to_body"]*body[i] and lower[i] <= rule["wick_max_short_wick_to_talib_tiny_threshold"]*tiny,
+            "Bullish Engulfing": bool(up[i] and not up[i-1] and near_engulf),
+            "Bearish Engulfing": bool(not up[i] and up[i-1] and near_engulf),
+            "Morning Star": shared_star and not up[first] and up[i] and body_high[middle] <= body_low[first]+gap_allow and c[i]-c[first] >= rule["star_min_penetration_fraction"]*body[first],
+            "Evening Star": shared_star and up[first] and not up[i] and body_low[middle] >= body_high[first]-gap_allow and c[first]-c[i] >= rule["star_min_penetration_fraction"]*body[first]}
+        near_patterns=[name for name,value in near_flags.items() if value]
+        checks.update({"no_near_"+name: not value for name,value in near_flags.items()})
+    checks={name:bool(value) for name,value in checks.items()}
+    return all(checks.values()), {"criteria":checks,"metrics":metrics,"near_patterns":near_patterns}
+
+
+def annotate_clarity(index: pd.DataFrame, raw: dict, *, include_audit: bool = True) -> tuple[pd.DataFrame, dict, dict]:
+    out=index.copy()
+    clear, reasons, diagnostics = [], [], {}
+    for row in out.itertuples():
+        frame=raw[row.ticker].iloc[row.bar_index-19:row.bar_index+1]
+        if len(frame)!=20 or str(frame.index[0].date())!=row.window_start or str(frame.index[-1].date())!=row.end_date:
+            raise ValueError("Visible bars differ from preserved index")
+        flag, detail=clarity(frame,row.label)
+        clear.append(flag)
+        reasons.append(";".join(key for key,passed in detail["criteria"].items() if not passed))
+        diagnostics[row.id]={"label":row.label,"clear":flag,**detail}
+    out["clear"]=clear
+    out["clarity_reason"]=reasons
+    out["clarity_rule_version"]=1
+    summary={"rules_sha256":digest(PART/"clear_rules.json"),"total":len(out),
+             "clear":int(out.clear.sum()),"not_clear":int((~out.clear).sum()),
+             "per_class":{},"scope":"Frozen heuristic margins for secondary analysis; original labels, splits and primary 1200-row sample unchanged. Not a proven error-rate estimate."}
+    for label in CLASSES:
+        subset=out[out.label==label]
+        summary["per_class"][label]={split:{"total":len(part),"clear":int(part.clear.sum())}
+                                    for split,part in subset.groupby("split",sort=True)}
+    audit_path=PART/"results/hand_review.json"
+    if include_audit and audit_path.exists():
+        audit=json.loads(audit_path.read_text())
+        reviewed=[item for item in audit["items"] if item.get("visual_status")!="pending"]
+        subtle=sum(item.get("visual_status")=="subtle_or_ambiguous" for item in reviewed)
+        summary["visual_audit"]={"reviewed":len(reviewed),"subtle_or_ambiguous":subtle,
+                                  "observed_subtle_or_ambiguous_fraction":subtle/len(reviewed) if reviewed else None,
+                                  "reviewer":"AI-assisted visual inspection; not independent human expert validation",
+                                  "interpretation":"Empirical clarity observation in this 50-chart audit, not a proven label error rate or population accuracy estimate."}
+    return out,diagnostics,summary
+
+
+def augment_clarity() -> None:
+    """Add fixed clarity flags, preserving labels, sampling and the completed audit."""
+    from shared.src.render import render_chart
+    results=PART/"results"
+    index_path=results/"index.csv"
+    before=pd.read_csv(index_path,keep_default_na=False)
+    before_index_hash=digest(index_path)
+    manifest=json.loads((results/"render_manifest.json").read_text())
+    if before_index_hash != manifest["index_sha256"]:
+        raise ValueError("Existing index differs from its pinned manifest")
+    if digest(ROOT/"shared/results/data_manifest.json") != manifest["data_manifest_sha256"]:
+        raise ValueError("Augmentation requires the original pinned input-data snapshot")
+    chart_hashes=json.loads((results/"chart_hashes.json").read_text())
+    audit_path=results/"hand_review.json"
+    before_audit_hash=digest(audit_path)
+    raw={ticker:load(ticker) for ticker in sorted(before.ticker.unique())}
+    updated,diagnostics,summary=annotate_clarity(before,raw)
+    original_columns=[name for name in before if name not in ["clear","clarity_reason","clarity_rule_version"]]
+    pd.testing.assert_frame_equal(before[original_columns],updated[original_columns])
+    # Re-render into temporary ignored storage. Verify all original image hashes
+    # before replacing any chart, so a semantic renderer change fails closed.
+    with tempfile.TemporaryDirectory(prefix="clarity-render-",dir=PART/"data") as directory:
+        temporary=Path(directory)
+        for row in updated.itertuples():
+            if digest(PART/row.file)!=chart_hashes[row.id]:
+                raise ValueError("Existing chart differs from its original checksum")
+            frame=raw[row.ticker].iloc[row.bar_index-19:row.bar_index+1]
+            output=temporary/f"{row.id}.png"
+            render_chart(frame,output,n_bars=20,size=(640,480),style="candle",mirror=False)
+            if digest(output)!=chart_hashes[row.id]:
+                raise ValueError(f"Default renderer changed canonical chart {row.id}; audit cannot be reused")
+        for row in updated.itertuples():
+            (temporary/f"{row.id}.png").replace(PART/row.file)
+    samples=json.loads((results/"samples/manifest.json").read_text())
+    for sample in samples:
+        row=updated[updated.id==sample["id"]].iloc[0]
+        target=PART/sample["sample"]
+        if digest(target)!=chart_hashes[row.id]:
+            raise ValueError("Existing sample differs from its pinned source chart")
+        shutil.copyfile(PART/row.file,target)
+        if digest(target)!=chart_hashes[row.id]:
+            raise ValueError("Regenerated sample differs from original")
+    if digest(audit_path)!=before_audit_hash:
+        raise ValueError("Completed visual audit changed during annotation")
+    updated.to_csv(index_path,index=False)
+    (results/"clarity_diagnostics.json").write_text(json.dumps({"rules_sha256":summary["rules_sha256"],"items":diagnostics},indent=2,allow_nan=False)+"\n")
+    (results/"clarity_summary.json").write_text(json.dumps(summary,indent=2,allow_nan=False)+"\n")
+    original=manifest.get("original_dataset_provenance",{key:manifest[key] for key in ["source_sha256","index_sha256","renderer_sha256","rules_sha256"]})
+    manifest["original_dataset_provenance"]=original
+    manifest.update({"index_sha256":digest(index_path),"source_sha256":digest(Path(__file__)),
+                     "renderer_sha256":digest(ROOT/"shared/src/render.py"),
+                     "clarity_augmentation":{"rules_sha256":summary["rules_sha256"],"prior_index_sha256":before_index_hash,
+                         "diagnostics_sha256":digest(results/"clarity_diagnostics.json"),"summary_sha256":digest(results/"clarity_summary.json"),
+                         "original_columns_unchanged":True,"chart_hashes_unchanged":True,"charts_rerendered":len(updated),
+                         "samples_regenerated":len(samples),"preserved_audit_sha256":before_audit_hash,
+                         "completed_at_utc":datetime.now(timezone.utc).isoformat(),"no_jev_results_used":True}})
+    (results/"render_manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")
+    print(json.dumps(summary,indent=2))
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--labels-only", action="store_true")
+    mode=parser.add_mutually_exclusive_group()
+    mode.add_argument("--labels-only", action="store_true")
+    mode.add_argument("--augment-clarity", action="store_true", help="Preserve the existing sample and visual audit; append fixed clarity flags and verify regenerated images")
     args = parser.parse_args()
+    if args.augment_clarity:
+        augment_clarity()
+        return
     results = PART / "results"
     results.mkdir(exist_ok=True, parents=True)
     frozen = {"rules_sha256": digest(RULES_PATH), "source_sha256": digest(Path(__file__)),
@@ -237,6 +429,9 @@ def main() -> None:
                                     "target": target, "deficit": max(0, target-len(picked)),
                                     "tickers": int(picked.ticker.nunique()), "years": int(picked.year.nunique())}
     index = pd.concat(selected, ignore_index=True).sort_values(["split", "label", "ticker", "end_date"]).reset_index(drop=True)
+    index, clarity_diagnostics, clarity_summary = annotate_clarity(index, raw, include_audit=False)
+    (results / "clarity_diagnostics.json").write_text(json.dumps({"rules_sha256":clarity_summary["rules_sha256"],"items":clarity_diagnostics},indent=2,allow_nan=False)+"\n")
+    (results / "clarity_summary.json").write_text(json.dumps(clarity_summary,indent=2,allow_nan=False)+"\n")
     (PART / "data").mkdir(exist_ok=True)
     pool.to_csv(PART / "data/candidates.csv", index=False)
     index.to_csv(results / "index.csv", index=False)
@@ -251,6 +446,8 @@ def main() -> None:
                    "numpy_version": np.__version__, "pandas_version": pd.__version__,
                    "data_manifest_sha256": digest(ROOT / "shared/results/data_manifest.json"),
                    "index_sha256": digest(results / "index.csv"), "selected": len(index),
+                   "clarity_rules_sha256": digest(PART/"clear_rules.json"),
+                   "clarity_diagnostics_sha256": digest(results/"clarity_diagnostics.json"),
                    "rendered": False, "no_gpu_or_model_calls": True})
     if not args.labels_only:
         from shared.src.render import render_chart

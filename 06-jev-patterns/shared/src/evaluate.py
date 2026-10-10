@@ -198,6 +198,20 @@ def read_predictions(path, metadata_path=None):
     return frame, options, metadata
 
 
+def select_clear_subset(frame):
+    """Apply frozen geometric clarity flags; never infer clarity from predictions."""
+    if "clear" not in frame:
+        raise ValueError("Clear-subset analysis requires an explicit clear column")
+    values = frame["clear"].map(lambda value: str(value).strip().lower())
+    if not values.isin(["true", "false"]).all():
+        raise ValueError("The clear column must contain only boolean True/False flags")
+    subset = frame.loc[values.eq("true")].copy().reset_index(drop=True)
+    if subset.empty:
+        raise ValueError("No charts belong to the clear subset")
+    subset["clear"] = True
+    return subset
+
+
 def infer_synthetic_dataset(frame, metadata):
     """Dataset grouping is separate from whether predictions came from a fake server."""
     if "synthetic_dataset" in metadata:
@@ -244,17 +258,24 @@ def main():
     parser.add_argument("--compare", type=Path)
     parser.add_argument("--out", required=True, type=Path)
     parser.add_argument("--synthetic", action="store_true")
+    parser.add_argument("--clear-only", action="store_true", help="Analyze the prespecified clear geometry subset")
     parser.add_argument("--resamples", type=int, default=2000)
     args = parser.parse_args()
     frame, options, metadata = read_predictions(args.predictions)
+    full_count = len(frame)
+    if args.clear_only:
+        frame = select_clear_subset(frame)
     synthetic = args.synthetic or infer_synthetic_dataset(frame, metadata)
     metrics = evaluate_frame(frame, options, synthetic=synthetic, bootstrap_resamples=args.resamples)
+    metrics["subset"] = {"name": "clear" if args.clear_only else "all", "selected": len(frame), "available": full_count}
     metrics["input_metadata"] = metadata
     metrics["synthetic_dataset"] = synthetic
     fake = metadata.get("prediction_origin") == "fake_server" or (metadata.get("synthetic") is True and metadata.get("prediction_origin") != "baseline")
     metrics["evidence_status"] = "Infrastructure smoke-check predictions; no model-performance evidence" if fake else "Evaluation of recorded predictions"
     if args.compare:
         right, other_options, other_metadata = read_predictions(args.compare)
+        if args.clear_only:
+            right = select_clear_subset(right)
         if other_options != options:
             raise ValueError("Paired arms use different ordered options")
         if infer_synthetic_dataset(right, other_metadata) != infer_synthetic_dataset(frame, metadata):

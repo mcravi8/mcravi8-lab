@@ -47,8 +47,8 @@ The historical LoRA placebo conclusion was also corrected: 0 wins, 5 losses and 
 - Scoring supports separate binary and explicit volatility-based Flat tasks, blank and mirrored image controls, and model-identity checks that prevent incompatible runs from being mixed on resume. Historical predictions remain unchanged.
 - Revised training validates data bundles and splits, uses representative fit-only parity fixtures, and blocks LoRA training above a 0.01 absolute HF-vLLM probability discrepancy. Checkpoints record provenance and validate reload inputs.
 - The longer CPU study includes simple priors, momentum/reversal rules, numerical feature comparisons, a shuffled-label control, and a fixed future protocol.
-- Experiment 06 adds 50-name data validation, agreement-filtered candle labels, synthetic pattern/noise controls, generalized native scoring with a mandatory repeatability gate, and multiclass evaluation. All **55 new CPU tests passed locally**.
-- The **60 historical CPU tests passed** again in the Experiment 06 environment, including checkpoint round trips and localhost fake-server scoring. [GitHub CI passed for research commit `82cd983`](https://github.com/mcravi8/mcravi8-lab/actions/runs/38085970817).
+- Experiment 06 adds 50-name data validation, candle labels with a visual-clarity audit and stricter analysis subset, varied synthetic pattern/noise controls, generalized native scoring with a mandatory repeatability gate, and multiclass evaluation. All **74 Experiment 06 CPU tests passed locally**, including fixed numeric shortcut checks on two separate cohorts.
+- The **60 historical CPU tests passed** again in the Experiment 06 environment, including checkpoint round trips and localhost fake-server scoring. [GitHub CPU CI](https://github.com/mcravi8/mcravi8-lab/actions/workflows/tests.yml) runs all five suites on each push.
 
 ## Pending work and future holdout
 

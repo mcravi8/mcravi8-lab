@@ -1,17 +1,17 @@
 {
   "rules_sha256": "5490cd94e193e0c36dbedd01ab8a3e1ddd7404d56057a04904a4a4ca51810e63",
-  "source_sha256": "d3bb73bdfc8382aebe786c2d7cf1b3e033f6b6e1c7e77143f781db4bf4502b01",
+  "source_sha256": "27ca0371782eaea79c4324ecdabaa4bc22d2c4b43022c106a54ef2de9abe2112",
   "context_sha256": "ad6f93748c5faf7069f604baeee3bd7e906d7986afc6454516b2cf52e2818246",
   "talib_python_version": "0.8.1",
   "talib_c_version": "b'0.8.1 (Sep 21 2026 16:38:04)'",
   "numpy_version": "2.4.6",
   "pandas_version": "2.3.3",
   "data_manifest_sha256": "0f01c1ff972b70167981802046fbc5aaf3ec05897c1240b5688462df8f81539a",
-  "index_sha256": "e5d180976ce0dea0f3d15849fbb1f542c139969ac076e21bebe1ff8b8f7c9f3e",
+  "index_sha256": "a4e138f2689bb66efa29893f67d5990260c36c8c06a2e5a453ea9c6bfbbc7522",
   "selected": 1200,
   "rendered": true,
   "no_gpu_or_model_calls": true,
-  "renderer_sha256": "e7bd429d29d49433b10529fc5c7e1f7d0fe9248ed52c364aac485e05d90b4906",
+  "renderer_sha256": "2481ad89e155e6a77a434cbd4f983d30f47ade57d978d1d867454e2d03777b6d",
   "chart_hashes_sha256": "6b09c76040bc45b922552c3703fdd01225b1acb84c498811202a921665f62444",
   "size": [
     640,
@@ -19,5 +19,24 @@
   ],
   "n_bars": 20,
   "style": "candle",
-  "mirror": false
+  "mirror": false,
+  "original_dataset_provenance": {
+    "source_sha256": "d3bb73bdfc8382aebe786c2d7cf1b3e033f6b6e1c7e77143f781db4bf4502b01",
+    "index_sha256": "e5d180976ce0dea0f3d15849fbb1f542c139969ac076e21bebe1ff8b8f7c9f3e",
+    "renderer_sha256": "e7bd429d29d49433b10529fc5c7e1f7d0fe9248ed52c364aac485e05d90b4906",
+    "rules_sha256": "5490cd94e193e0c36dbedd01ab8a3e1ddd7404d56057a04904a4a4ca51810e63"
+  },
+  "clarity_augmentation": {
+    "rules_sha256": "db0d4026db685700f2679cb9ed69e4f0d7f2b07d5fa855ebc0cddb6e8397fdf0",
+    "prior_index_sha256": "e5d180976ce0dea0f3d15849fbb1f542c139969ac076e21bebe1ff8b8f7c9f3e",
+    "diagnostics_sha256": "3a19af9741abc76c6aa6b4219f3f4a31f42acfa7c71d3134f270590d2af28591",
+    "summary_sha256": "560150a7d94af95f27feeb6fae65667e8761cadc80ddb16ac7ae838b6099da90",
+    "original_columns_unchanged": true,
+    "chart_hashes_unchanged": true,
+    "charts_rerendered": 1200,
+    "samples_regenerated": 9,
+    "preserved_audit_sha256": "8b5a627e1ca5abeb27c46a649e486e1895a449e072fae9d9bd10c08814c77e93",
+    "completed_at_utc": "2026-10-10T23:16:34.279967+00:00",
+    "no_jev_results_used": true
+  }
 }

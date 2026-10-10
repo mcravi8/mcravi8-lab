@@ -1,0 +1,537 @@
+{
+  "description": "Preserved development audits. Original source is in Git at the stated revision; v2 was an uncommitted intermediate generator. Final v3 adapts the negative families after the v2 forest failed, so the reused cohort is a regression check, not an untouched holdout. A second independently seeded cohort was declared before v3 audit results.",
+  "original_generator": {
+    "primary_gate_passed": false,
+    "forest_gate_passed": false,
+    "all_gates_passed": false,
+    "diagnostic_near_perfect": true,
+    "primary_logistic": {
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "none_recall": 1.0,
+      "pattern_recall": 1.0,
+      "roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          80,
+          0
+        ],
+        [
+          0,
+          480
+        ]
+      ],
+      "confusion_order": [
+        "None",
+        "any declared pattern"
+      ]
+    },
+    "forest_diagnostic": {
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "none_recall": 1.0,
+      "pattern_recall": 1.0,
+      "roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          80,
+          0
+        ],
+        [
+          0,
+          480
+        ]
+      ],
+      "confusion_order": [
+        "None",
+        "any declared pattern"
+      ]
+    },
+    "train_counts": {
+      "None": 120,
+      "patterns": 720
+    },
+    "heldout_counts": {
+      "None": 80,
+      "patterns": 480
+    },
+    "source_class_counts": {
+      "train": {
+        "Head and Shoulders": 120,
+        "Bull Flag": 120,
+        "Inverse Head and Shoulders": 120,
+        "None": 120,
+        "Triangle": 120,
+        "Double Top": 120,
+        "Double Bottom": 120
+      },
+      "heldout": {
+        "Inverse Head and Shoulders": 80,
+        "Double Bottom": 80,
+        "Bull Flag": 80,
+        "None": 80,
+        "Double Top": 80,
+        "Head and Shoulders": 80,
+        "Triangle": 80
+      }
+    },
+    "parent_template_overlap": 0,
+    "parent_seed_overlap": 0,
+    "train_parent_identity_sha256": "894d2ade1ce6d5ef308f31f77f718466179a25f74e165e32f6c248169068f736",
+    "heldout_parent_identity_sha256": "9c28d31ed077b0f8d64f0ad8f848e296bf60e2ed62dca14bbb631e8f25ff7f97",
+    "all_pattern_dummy_accuracy": 0.8571428571428571,
+    "all_pattern_dummy_balanced_accuracy": 0.5,
+    "standardized_logistic_top_coefficients": [
+      {
+        "feature": "mean_wick_over_range",
+        "coefficient": -1.0447340752627836
+      },
+      {
+        "feature": "path_efficiency",
+        "coefficient": -1.0198472486583832
+      },
+      {
+        "feature": "total_variation_over_range",
+        "coefficient": 0.9535205720858879
+      },
+      {
+        "feature": "step_std_over_range",
+        "coefficient": 0.7139747952917095
+      },
+      {
+        "feature": "turning_fraction",
+        "coefficient": 0.5923013839312304
+      },
+      {
+        "feature": "body_std_over_range",
+        "coefficient": 0.5828198994830271
+      },
+      {
+        "feature": "mean_body_over_range",
+        "coefficient": 0.5563875000094649
+      },
+      {
+        "feature": "return_std",
+        "coefficient": 0.4672379514005612
+      },
+      {
+        "feature": "curvature_std_over_range",
+        "coefficient": 0.4636955225119644
+      },
+      {
+        "feature": "n_bars",
+        "coefficient": 0.34369900490381255
+      }
+    ],
+    "forest_top_importances": [
+      {
+        "feature": "path_efficiency",
+        "importance": 0.11760417506775203
+      },
+      {
+        "feature": "turning_fraction",
+        "importance": 0.11728586477055764
+      },
+      {
+        "feature": "mean_wick_over_range",
+        "importance": 0.0951163427080062
+      },
+      {
+        "feature": "total_variation_over_range",
+        "importance": 0.09012857798260904
+      },
+      {
+        "feature": "curvature_std_over_range",
+        "importance": 0.08738477255618884
+      },
+      {
+        "feature": "body_std_over_range",
+        "importance": 0.08242533430257414
+      },
+      {
+        "feature": "step_std_over_range",
+        "importance": 0.08215602297205432
+      },
+      {
+        "feature": "return_std",
+        "importance": 0.07236940467625215
+      },
+      {
+        "feature": "mean_body_over_range",
+        "importance": 0.05996684419635533
+      },
+      {
+        "feature": "close_shape_25",
+        "importance": 0.025155371658074247
+      }
+    ],
+    "audit_parent_namespace": "audit_seed_20261017",
+    "evaluation_generator_seed": 60617,
+    "evaluation_parents": 200,
+    "evaluation_seed_overlap": 0,
+    "evaluation_seed_sha256": "47364ce7e4656538e46aed46cd2b1ad7cf93b0a693b0e9176104280948c90feb",
+    "generator_sha256": "b9d298e2ca3a58abcbc28b76cb97cce30612f8f47a1b53b3fd55e801c6b8680e",
+    "generator_protocol_sha256": "4c36f40843384fd33c51a719995f5480b66e75e4d3cc1be2e9e53c08b5b2949d",
+    "audit_source_sha256": "80ee1fc56d762b2dcbe4991b49fb49eb19dcfb7a026fabd895860c62cf1a674a",
+    "frozen_audit_protocol": {
+      "frozen_at": "2026-10-10 before revised generator inspection",
+      "audit_templates": 1400,
+      "generator_seed": 20261017,
+      "split_seed": 1701,
+      "test_fraction": 0.4,
+      "noise_level": 0.0,
+      "shape_grid_positions": 32,
+      "primary_model": {
+        "kind": "StandardScaler + LogisticRegression",
+        "C": 1.0,
+        "class_weight": "balanced",
+        "max_iter": 1000,
+        "random_state": 1701
+      },
+      "forest_diagnostic": {
+        "n_estimators": 200,
+        "max_depth": 4,
+        "min_samples_leaf": 10,
+        "class_weight": "balanced",
+        "random_state": 1701,
+        "n_jobs": 1
+      },
+      "primary_gate": "Heldout binary balanced accuracy must be strictly below 0.90",
+      "balanced_accuracy_limit": 0.9,
+      "forest_gate": "Heldout binary balanced accuracy must be strictly below 0.90 with the already-frozen depth4 forest",
+      "diagnostic_trigger": "Either fixed classifier balanced accuracy >=0.90 blocks finalization",
+      "split_unit": "Independent parent template_id and generator seed; no noise/style siblings",
+      "stratification": "Seven source classes, each with 120 train and 80 heldout parents",
+      "interpretation": "Conditional shortcut regression audit, not a general no-leakage proof. Separation can arise from easy legitimate geometry as well as nuisances.",
+      "features": [
+        "close_shape_00",
+        "close_shape_01",
+        "close_shape_02",
+        "close_shape_03",
+        "close_shape_04",
+        "close_shape_05",
+        "close_shape_06",
+        "close_shape_07",
+        "close_shape_08",
+        "close_shape_09",
+        "close_shape_10",
+        "close_shape_11",
+        "close_shape_12",
+        "close_shape_13",
+        "close_shape_14",
+        "close_shape_15",
+        "close_shape_16",
+        "close_shape_17",
+        "close_shape_18",
+        "close_shape_19",
+        "close_shape_20",
+        "close_shape_21",
+        "close_shape_22",
+        "close_shape_23",
+        "close_shape_24",
+        "close_shape_25",
+        "close_shape_26",
+        "close_shape_27",
+        "close_shape_28",
+        "close_shape_29",
+        "close_shape_30",
+        "close_shape_31",
+        "turning_fraction",
+        "path_efficiency",
+        "total_variation_over_range",
+        "step_std_over_range",
+        "curvature_std_over_range",
+        "step_lag1_correlation",
+        "terminal_motion_over_range",
+        "n_bars",
+        "first_close",
+        "range_over_first_close",
+        "net_return",
+        "return_mean",
+        "return_std",
+        "mean_body_over_range",
+        "body_std_over_range",
+        "mean_wick_over_range",
+        "wick_std_over_range",
+        "open_gap_over_range",
+        "mean_volume",
+        "volume_cv",
+        "volume_lag1_correlation"
+      ]
+    },
+    "runtime": {
+      "numpy": "2.4.6",
+      "pandas": "2.3.3",
+      "scikit_learn": "1.9.1"
+    },
+    "git_reference": "3735373e409ec35590148cba693672ac48297ea6"
+  },
+  "intermediate_v2": {
+    "primary_gate_passed": true,
+    "forest_gate_passed": false,
+    "all_gates_passed": false,
+    "diagnostic_near_perfect": true,
+    "primary_logistic": {
+      "accuracy": 0.8357142857142857,
+      "balanced_accuracy": 0.784375,
+      "none_recall": 0.7125,
+      "pattern_recall": 0.85625,
+      "roc_auc": 0.8648697916666667,
+      "confusion_matrix": [
+        [
+          57,
+          23
+        ],
+        [
+          69,
+          411
+        ]
+      ],
+      "confusion_order": [
+        "None",
+        "any declared pattern"
+      ]
+    },
+    "forest_diagnostic": {
+      "accuracy": 0.9839285714285714,
+      "balanced_accuracy": 0.9541666666666666,
+      "none_recall": 0.9125,
+      "pattern_recall": 0.9958333333333333,
+      "roc_auc": 0.992578125,
+      "confusion_matrix": [
+        [
+          73,
+          7
+        ],
+        [
+          2,
+          478
+        ]
+      ],
+      "confusion_order": [
+        "None",
+        "any declared pattern"
+      ]
+    },
+    "train_counts": {
+      "None": 120,
+      "patterns": 720
+    },
+    "heldout_counts": {
+      "None": 80,
+      "patterns": 480
+    },
+    "source_class_counts": {
+      "train": {
+        "Head and Shoulders": 120,
+        "Bull Flag": 120,
+        "Inverse Head and Shoulders": 120,
+        "None": 120,
+        "Triangle": 120,
+        "Double Top": 120,
+        "Double Bottom": 120
+      },
+      "heldout": {
+        "Inverse Head and Shoulders": 80,
+        "Double Bottom": 80,
+        "Bull Flag": 80,
+        "None": 80,
+        "Double Top": 80,
+        "Head and Shoulders": 80,
+        "Triangle": 80
+      }
+    },
+    "parent_template_overlap": 0,
+    "parent_seed_overlap": 0,
+    "train_parent_identity_sha256": "4b9ec770c521f4e27908f52f28cabe1e16c9d1cc511078afe52ab0241e62b52d",
+    "heldout_parent_identity_sha256": "e680d0cce85dfbe6c61600e84214334bbfed3035383c470899eb6f2096b9aaef",
+    "all_pattern_dummy_accuracy": 0.8571428571428571,
+    "all_pattern_dummy_balanced_accuracy": 0.5,
+    "standardized_logistic_top_coefficients": [
+      {
+        "feature": "close_shape_19",
+        "coefficient": 1.8858884685636497
+      },
+      {
+        "feature": "range_over_first_close",
+        "coefficient": -1.6747993811606352
+      },
+      {
+        "feature": "curvature_std_over_range",
+        "coefficient": 1.619497297942453
+      },
+      {
+        "feature": "body_std_over_range",
+        "coefficient": -1.4523094185458496
+      },
+      {
+        "feature": "close_shape_08",
+        "coefficient": -1.4521239878201175
+      },
+      {
+        "feature": "close_shape_22",
+        "coefficient": -1.4289983631953234
+      },
+      {
+        "feature": "close_shape_26",
+        "coefficient": -1.4227599254769492
+      },
+      {
+        "feature": "close_shape_18",
+        "coefficient": -1.416071835507722
+      },
+      {
+        "feature": "turning_fraction",
+        "coefficient": -1.3704636381081734
+      },
+      {
+        "feature": "return_std",
+        "coefficient": 1.2577066299176258
+      }
+    ],
+    "forest_top_importances": [
+      {
+        "feature": "close_shape_25",
+        "importance": 0.09381449280186124
+      },
+      {
+        "feature": "total_variation_over_range",
+        "importance": 0.08847937028651437
+      },
+      {
+        "feature": "turning_fraction",
+        "importance": 0.06989002870749801
+      },
+      {
+        "feature": "close_shape_24",
+        "importance": 0.06825370772110077
+      },
+      {
+        "feature": "close_shape_29",
+        "importance": 0.05658508295158935
+      },
+      {
+        "feature": "close_shape_06",
+        "importance": 0.04925767454176075
+      },
+      {
+        "feature": "close_shape_30",
+        "importance": 0.04496733455636681
+      },
+      {
+        "feature": "close_shape_31",
+        "importance": 0.04294564435099197
+      },
+      {
+        "feature": "step_lag1_correlation",
+        "importance": 0.03833303887971747
+      },
+      {
+        "feature": "path_efficiency",
+        "importance": 0.037783995558637616
+      }
+    ],
+    "audit_parent_namespace": "audit_seed_20261017",
+    "evaluation_generator_seed": 60618,
+    "evaluation_parents": 200,
+    "evaluation_seed_overlap": 0,
+    "evaluation_seed_sha256": "c58fab05a7893079a6d3a2b96a8b974bc111878e561e40d3ebe2ade335790ba8",
+    "generator_sha256": "ae41ddbd7819f520071cd27ffcd57f8e779f0ba6546cabf9ad6fba1e15eaa590",
+    "generator_protocol_sha256": "aa692faeef2ba3a1464cac6c140a33500aaebab75fbd987cabc0b3ba1b6d6a86",
+    "audit_source_sha256": "80ee1fc56d762b2dcbe4991b49fb49eb19dcfb7a026fabd895860c62cf1a674a",
+    "frozen_audit_protocol": {
+      "frozen_at": "2026-10-10 before revised generator inspection",
+      "audit_templates": 1400,
+      "generator_seed": 20261017,
+      "split_seed": 1701,
+      "test_fraction": 0.4,
+      "noise_level": 0.0,
+      "shape_grid_positions": 32,
+      "primary_model": {
+        "kind": "StandardScaler + LogisticRegression",
+        "C": 1.0,
+        "class_weight": "balanced",
+        "max_iter": 1000,
+        "random_state": 1701
+      },
+      "forest_diagnostic": {
+        "n_estimators": 200,
+        "max_depth": 4,
+        "min_samples_leaf": 10,
+        "class_weight": "balanced",
+        "random_state": 1701,
+        "n_jobs": 1
+      },
+      "primary_gate": "Heldout binary balanced accuracy must be strictly below 0.90",
+      "balanced_accuracy_limit": 0.9,
+      "forest_gate": "Heldout binary balanced accuracy must be strictly below 0.90 with the already-frozen depth4 forest",
+      "diagnostic_trigger": "Either fixed classifier balanced accuracy >=0.90 blocks finalization",
+      "split_unit": "Independent parent template_id and generator seed; no noise/style siblings",
+      "stratification": "Seven source classes, each with 120 train and 80 heldout parents",
+      "interpretation": "Conditional shortcut regression audit, not a general no-leakage proof. Separation can arise from easy legitimate geometry as well as nuisances.",
+      "features": [
+        "close_shape_00",
+        "close_shape_01",
+        "close_shape_02",
+        "close_shape_03",
+        "close_shape_04",
+        "close_shape_05",
+        "close_shape_06",
+        "close_shape_07",
+        "close_shape_08",
+        "close_shape_09",
+        "close_shape_10",
+        "close_shape_11",
+        "close_shape_12",
+        "close_shape_13",
+        "close_shape_14",
+        "close_shape_15",
+        "close_shape_16",
+        "close_shape_17",
+        "close_shape_18",
+        "close_shape_19",
+        "close_shape_20",
+        "close_shape_21",
+        "close_shape_22",
+        "close_shape_23",
+        "close_shape_24",
+        "close_shape_25",
+        "close_shape_26",
+        "close_shape_27",
+        "close_shape_28",
+        "close_shape_29",
+        "close_shape_30",
+        "close_shape_31",
+        "turning_fraction",
+        "path_efficiency",
+        "total_variation_over_range",
+        "step_std_over_range",
+        "curvature_std_over_range",
+        "step_lag1_correlation",
+        "terminal_motion_over_range",
+        "n_bars",
+        "first_close",
+        "range_over_first_close",
+        "net_return",
+        "return_mean",
+        "return_std",
+        "mean_body_over_range",
+        "body_std_over_range",
+        "mean_wick_over_range",
+        "wick_std_over_range",
+        "open_gap_over_range",
+        "mean_volume",
+        "volume_cv",
+        "volume_lag1_correlation"
+      ]
+    },
+    "runtime": {
+      "numpy": "2.4.6",
+      "pandas": "2.3.3",
+      "scikit_learn": "1.9.1"
+    },
+    "interpretation": "Conditional shortcut regression audit, not a general no-leakage proof. Separation can arise from easy legitimate geometry as well as nuisances.",
+    "model_inference_run": false,
+    "audit_only_fitting": "Fixed CPU shortcut classifiers; not a fitted chart-pattern baseline or a model-scoring split"
+  }
+}

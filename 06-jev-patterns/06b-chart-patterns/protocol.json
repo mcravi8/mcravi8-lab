@@ -1,28 +1,81 @@
 {
-  "schema_version": 1,
-  "status": "frozen before chart generation and model inference",
-  "seed": 60617,
-  "classes": ["Head and Shoulders", "Inverse Head and Shoulders", "Double Top", "Double Bottom", "Triangle", "Bull Flag", "None"],
+  "schema_version": 3,
+  "status": "frozen before v3 generation and unchanged regression plus fresh confirmation leakage audits",
+  "seed": 60618,
+  "classes": [
+    "Head and Shoulders",
+    "Inverse Head and Shoulders",
+    "Double Top",
+    "Double Bottom",
+    "Triangle",
+    "Bull Flag",
+    "None"
+  ],
   "clean_templates": 200,
-  "noise_levels": [0.0, 0.015, 0.035, 0.07, 0.12, 0.2],
-  "noise_definition": "Nested Brownian bridges, maximum absolute perturbation normalized to one clean template price range. Bridges are zero at each defining pivot; all five positive amplitudes reuse the same bridge. Final post-breakout padding is unperturbed.",
+  "noise_levels": [
+    0.0,
+    0.035,
+    0.08,
+    0.16,
+    0.3,
+    0.55
+  ],
+  "noise_definition": "One global Brownian bridge per parent, zero only at chart endpoints. At every severity, perturb log close by severity times the clean log-price range times the same maximum-absolute-one bridge. Major pivots and completion may become obscured at high noise. All variants retain their source-family label.",
   "bars_min": 60,
   "bars_max": 120,
-  "image_size": [1024, 640],
+  "image_size": [
+    1024,
+    640
+  ],
   "style": "candle",
-  "padding_fraction_each_side": 0.1,
   "split": "evaluation_only",
   "replication_unit": "template_id",
-  "framing_control": {"fixed_bars": 100, "method": "Time-axis interpolation of the same OHLCV template and noise realization. This holds bar count constant; it is not a new historical window."},
-  "definitions": {
-    "Head and Shoulders": "Three peaks. Middle is highest; shoulders differ by <= 0.03 of template height. Two intervening troughs define a near-horizontal neckline. Final decline crosses below that neckline; terminal padding remains below it.",
-    "Inverse Head and Shoulders": "Price inversion of Head and Shoulders. Three troughs, deepest in the middle, similar outer troughs, then a rise above the two-peak neckline.",
-    "Double Top": "Two peaks differ by <= 0.03 of template height, separated by a deep trough. Price subsequently crosses below the trough and remains below during terminal padding.",
-    "Double Bottom": "Price inversion of Double Top. Two similarly low troughs separated by a high peak, followed by a break above the intervening peak.",
-    "Triangle": "Alternating upper and lower pivots converge. Symmetric, ascending and descending constructions share one label. The final segment crosses the converging boundary and stays outside it.",
-    "Bull Flag": "A steep rising pole, then a downward-sloping approximately parallel channel with smaller oscillations, followed by an upward break above the flag and pole high.",
-    "None": "Monotonic linear or gently curved paths without the reversal or consolidation geometry of the other six whole-window classes. Noisy variants retain this generator label, not a claim that an independent detector must still reject every local pattern."
+  "framing_control": {
+    "fixed_bars": 100,
+    "method": "Time-axis interpolation of the same OHLCV template and noise realization. This holds bar count constant; it is not a new historical window."
   },
-  "interpretation": "Labels identify the clean source geometry. Noise increases visual ambiguity; no trained or rule-based detector is used to relabel variants. This balanced artificial set is a visual recognition sanity test, not market prevalence or forecast evidence.",
-  "mirror": "Horizontal flipping reverses time; it does not exchange Head and Shoulders with Inverse, or Double Top with Double Bottom. Only vertical price inversion creates those counterparts."
+  "definitions": {
+    "Head and Shoulders": "Three peaks; middle highest. Shoulders vary from 0.60 through 0.83 in normalized latent log-price units, with asymmetry at most 0.03; neckline troughs vary from 0.18 through 0.35 with a small random tilt. Pivot timing varies. Final clean prices and the independent margin remain below the neckline.",
+    "Inverse Head and Shoulders": "Inverse construction in latent log-price space: three troughs, deepest in the middle, comparable outer troughs and a final upward neckline break.",
+    "Double Top": "Two similar peaks (latent difference<=0.03), a substantial randomized trough, variable durations, then a break below the trough.",
+    "Double Bottom": "Inverse Double Top construction: two similar troughs, a substantial intervening peak, then an upward break.",
+    "Triangle": "Symmetric/ascending/descending alternating bounds converge, with randomized heights and pivot timing. Clean final segment crosses outside the last bound.",
+    "Bull Flag": "Steep positive pole, smaller downward roughly parallel channel with varied width/slope/timing, then an upward break above the pole.",
+    "None": "Screened stochastic random walks, choppy ranges, trends with random pullbacks, incomplete formations, and structurally broken reversals/consolidations. All use the same nuisance distributions, clean log-return volatility distribution, baseline microtexture and OHLCV style as positives."
+  },
+  "interpretation": "Labels identify source geometry, not guaranteed visual class after corruption. This balanced constructed recognition set is not market prevalence or predictive evidence. None screening is conservative; image-level incidental patterns remain possible.",
+  "mirror": "Horizontal flipping reverses time; it does not exchange Head and Shoulders with Inverse, or Double Top with Double Bottom. Only vertical price inversion creates those counterparts.",
+  "volume_color": "neutral",
+  "clean_definition": "Clean means no added corruption. Every clean parent includes a shared daily AR(1), rho 0.45, microtexture projected to zero at source knots and normalized globally, plus stochastic opening gaps and wicks. None source paths are themselves stochastic.",
+  "nuisance_distributions": {
+    "bars": "Discrete uniform 60 through 120 for all classes",
+    "base_price": "Log-uniform 40 through 220",
+    "clean_log_return_std": "Log-uniform 0.004 through 0.018, imposed exactly (sample ddof=1) for every parent",
+    "microtexture_fraction_of_latent_range": "Uniform 0.035 through 0.11; common AR(1) daily process projected to zero at source knots for all classes, normalized globally",
+    "opening_gap_std_fraction_of_target_vol": "Uniform 0.08 through 0.30",
+    "wick_scale_fraction_of_target_vol": "Uniform 0.12 through 0.40, with per-bar lognormal multipliers",
+    "volume_level": "Log-uniform 400000 through 3000000",
+    "volume_logstd": "Uniform 0.12 through 0.35; volume independent of geometry and colored neutral gray",
+    "lead_in_and_out": "Independent signed endpoint displacements, uniform -0.14 through 0.14 source range, plus bridge amplitude 0.015 through 0.06; bounded to 0.16 range and independent of class/pattern direction",
+    "padding": "Uniform among integer left/right padding pairs, each 10 through 20 percent of pattern span",
+    "pivot_durations": "Class geometry interval proportions jittered independently by uniform 0.65 through 1.35 multipliers, then normalized"
+  },
+  "none_families": [
+    "random_walk",
+    "choppy_range",
+    "trend_with_pullbacks",
+    "incomplete_formation",
+    "broken_reversal",
+    "broken_consolidation"
+  ],
+  "none_screen": "Reject source control paths with an obvious completed whole-window H&S/inverse, double top/bottom, converging triangle or valid pole/down-channel/up-break flag. Frozen geometric tolerances only; no classifier-based acceptance. Screen operates synthetic source knots, not noisy images or real data. Stochastic paths and hard negatives can still have incidental local or ambiguous shapes.",
+  "leakage_audit": "A separate cohort of fresh parent seeds may be fitted only to diagnose generator leakage. Primary evaluation parents and their variants remain evaluation-only. After the failed v2 audit, the explicit v3 negative mixture was frozen before rerunning unchanged classifiers on regression seed 20261017/split 1701 plus a predeclared fresh confirmation seed 20261023/split 2301. Both balanced-accuracy gates remain strictly below 0.90; failed prior results are retained.",
+  "sample_selection": "Noise grid: first parent of each class at levels 0, 0.08, 0.55. Diversity grid: first three parents per positive class; first six None parents, one per source family, in two rows.",
+  "none_mixture": "Six equally cycled source families, fixed for coverage of plausible negatives rather than a classifier score. With 28 primary None parents the first four families have 5 each and the last two have 4 each. The three stochastic families remain; three geometric hard-negative families add incomplete and structurally invalid formations.",
+  "none_hard_negative_rules": {
+    "incomplete_formation": "Draw one of the six positive source families, retain its principal geometry but end without the required confirmed break. Triangle endpoints remain inside a still-converging envelope; an unconfirmed flag can exceed its channel but stays below its pole high. Independent margins remain too small to confirm a break.",
+    "broken_reversal": "Three comparable peaks/troughs (triple top/bottom outside the taxonomy) or clearly unequal double peaks/troughs. These may finish with completed-looking downward/upward exits; source geometry violates the target definition.",
+    "broken_consolidation": "Expanding upper/lower bounds rather than a converging triangle, or an upward-sloping parallel consolidation after a positive pole rather than the required downward flag. These may finish with an outward/upward exit, so lack of completion is not the only negative cue."
+  },
+  "development_note": "Before v3 classifier evaluation, geometric review replaced a reversed-pole negative with a rising consolidation: a reversed initial pole could create a new positive pole on its rebound. This correctness fix was made without v3 classifier feedback."
 }

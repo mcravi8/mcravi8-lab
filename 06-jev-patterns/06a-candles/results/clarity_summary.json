@@ -1,0 +1,96 @@
+{
+  "rules_sha256": "db0d4026db685700f2679cb9ed69e4f0d7f2b07d5fa855ebc0cddb6e8397fdf0",
+  "total": 1200,
+  "clear": 371,
+  "not_clear": 829,
+  "per_class": {
+    "Doji": {
+      "test": {
+        "total": 75,
+        "clear": 34
+      },
+      "train": {
+        "total": 75,
+        "clear": 34
+      }
+    },
+    "Hammer": {
+      "test": {
+        "total": 75,
+        "clear": 8
+      },
+      "train": {
+        "total": 75,
+        "clear": 9
+      }
+    },
+    "Shooting Star": {
+      "test": {
+        "total": 75,
+        "clear": 7
+      },
+      "train": {
+        "total": 75,
+        "clear": 13
+      }
+    },
+    "Bullish Engulfing": {
+      "test": {
+        "total": 75,
+        "clear": 24
+      },
+      "train": {
+        "total": 75,
+        "clear": 26
+      }
+    },
+    "Bearish Engulfing": {
+      "test": {
+        "total": 75,
+        "clear": 26
+      },
+      "train": {
+        "total": 75,
+        "clear": 19
+      }
+    },
+    "Morning Star": {
+      "test": {
+        "total": 75,
+        "clear": 8
+      },
+      "train": {
+        "total": 75,
+        "clear": 17
+      }
+    },
+    "Evening Star": {
+      "test": {
+        "total": 75,
+        "clear": 15
+      },
+      "train": {
+        "total": 75,
+        "clear": 20
+      }
+    },
+    "None": {
+      "test": {
+        "total": 75,
+        "clear": 56
+      },
+      "train": {
+        "total": 75,
+        "clear": 55
+      }
+    }
+  },
+  "scope": "Frozen heuristic margins for secondary analysis; original labels, splits and primary 1200-row sample unchanged. Not a proven error-rate estimate.",
+  "visual_audit": {
+    "reviewed": 50,
+    "subtle_or_ambiguous": 10,
+    "observed_subtle_or_ambiguous_fraction": 0.2,
+    "reviewer": "AI-assisted visual inspection; not independent human expert validation",
+    "interpretation": "Empirical clarity observation in this 50-chart audit, not a proven label error rate or population accuracy estimate."
+  }
+}

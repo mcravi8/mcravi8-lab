@@ -19,10 +19,11 @@ from matplotlib.figure import Figure
 from matplotlib.patches import Rectangle
 
 UP_COLOR, DOWN_COLOR = "#16856b", "#d34b52"
+NEUTRAL_VOLUME_COLOR = "#929292"
 STYLES = ("candle", "ohlc", "line")
 
 
-def render_chart(frame: pd.DataFrame, path: Path, n_bars=20, size=(640, 480), style="candle", mirror=False):
+def render_chart(frame: pd.DataFrame, path: Path, n_bars=20, size=(640, 480), style="candle", mirror=False, volume_color="direction"):
     """Render exactly the supplied visible bars; horizontal mirror reverses pixels."""
     validate_ohlcv(frame)
     if isinstance(n_bars, bool) or not isinstance(n_bars, int) or n_bars < 2 or len(frame) != n_bars:
@@ -30,6 +31,8 @@ def render_chart(frame: pd.DataFrame, path: Path, n_bars=20, size=(640, 480), st
     style = style.lower()
     if style not in STYLES or len(size) != 2 or any(isinstance(x, bool) or not isinstance(x, int) or x < 64 for x in size):
         raise ValueError("Expected candle/ohlc/line and integer width/height >= 64")
+    if volume_color not in ("direction", "neutral"):
+        raise ValueError("Expected direction or neutral volume color")
     width, height = size
     fig = Figure(figsize=(width / 100, height / 100), dpi=100, facecolor="white")
     canvas = FigureCanvasAgg(fig)
@@ -57,7 +60,8 @@ def render_chart(frame: pd.DataFrame, path: Path, n_bars=20, size=(640, 480), st
             else:
                 price.add_patch(Rectangle((i - .31, min(bar.Open, bar.Close)), .62,
                     abs(bar.Close - bar.Open), facecolor=color, edgecolor=color, linewidth=.8))
-        volume.bar(i, bar.Volume, width=.62, color=color, linewidth=0)
+        volume.bar(i, bar.Volume, width=.62,
+                   color=NEUTRAL_VOLUME_COLOR if volume_color == "neutral" else color, linewidth=0)
     canvas.draw()
     image = Image.fromarray(np.asarray(canvas.buffer_rgba())[:, :, :3].copy())
     if mirror:
@@ -79,9 +83,10 @@ def main():
     p.add_argument("--size", type=int, nargs=2, default=[640, 480])
     p.add_argument("--style", choices=STYLES, default="candle")
     p.add_argument("--mirror", action="store_true")
+    p.add_argument("--volume-color", choices=("direction", "neutral"), default="direction")
     args = p.parse_args()
     frame = pd.read_parquet(args.bars) if args.bars.suffix == ".parquet" else pd.read_csv(args.bars, index_col=0, parse_dates=True)
-    render_chart(frame, args.out, args.n_bars, tuple(args.size), args.style, args.mirror)
+    render_chart(frame, args.out, args.n_bars, tuple(args.size), args.style, args.mirror, args.volume_color)
 
 
 if __name__ == "__main__":

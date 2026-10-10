@@ -25,6 +25,22 @@ def frame(probabilities=P, labels=LABELS):
 
 
 class EvaluationTests(unittest.TestCase):
+    def test_clear_subset_uses_only_explicit_flags_and_retains_class_order(self):
+        rows=frame();rows['clear']=[True,False,False,True]
+        subset=evaluate.select_clear_subset(rows)
+        self.assertEqual(subset.file.tolist(),[rows.file.iloc[0],rows.file.iloc[3]])
+        result=evaluate.evaluate_frame(subset,ORDER,bootstrap_resamples=5)
+        self.assertEqual(result['n'],2);self.assertEqual(result['accuracy'],1.)
+        self.assertEqual(result['options'],ORDER)
+        with self.assertRaisesRegex(ValueError,'explicit clear'):
+            evaluate.select_clear_subset(frame())
+        for flags in [['False']*4,['True','','False','False'],[1,0,0,1]]:
+            with self.assertRaises(ValueError):
+                evaluate.select_clear_subset(rows.assign(clear=flags))
+        altered=rows.copy();altered['clear']=[False,True,False,True]
+        with self.assertRaisesRegex(ValueError,'coverage'):
+            evaluate.compare_arms(subset,evaluate.select_clear_subset(altered),ORDER,bootstrap_resamples=5)
+
     def test_hand_computed_metrics(self):
         m = evaluate.evaluate_arrays(P, LABELS, ORDER)
         self.assertEqual(m["confusion_matrix"], [[1, 1, 0], [0, 0, 0], [1, 0, 1]])

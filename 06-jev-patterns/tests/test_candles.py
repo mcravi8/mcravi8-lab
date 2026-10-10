@@ -162,5 +162,75 @@ class CandleTests(unittest.TestCase):
         self.assertEqual(stats["either_positive"],2)
 
 
+class ClarityTests(unittest.TestCase):
+    def test_well_inside_rules_is_clear_for_every_class(self):
+        for label in detect.CLASSES:
+            with self.subTest(label=label):
+                frame=fixture(label)
+                if label=="Evening Star":
+                    frame.loc[frame.index[-1],["Low","Close"]]=[100.4,100.7]
+                clear,diagnostics=detect.clarity(frame.tail(20),label)
+                self.assertTrue(clear,diagnostics)
+
+    def test_near_original_boundaries_are_not_clear(self):
+        for label in detect.PATTERNS:
+            frame=fixture(label)
+            final=frame.index[-1]
+            if label=="Doji":
+                frame.loc[final,"Close"]=85.15
+            elif label=="Hammer":
+                frame.loc[final,"Low"]=frame.Open.iloc[-1]-.36
+            elif label=="Shooting Star":
+                frame.loc[final,"High"]=frame.Close.iloc[-1]+.36
+            elif label=="Bullish Engulfing":
+                frame.loc[final,"Open"]=98.95
+            elif label=="Bearish Engulfing":
+                frame.loc[final,"Close"]=98.95
+            elif label=="Morning Star":
+                frame.loc[final,"Close"]=98.7
+            # Original Evening Star fixture penetrates40%, above the30% label
+            # threshold but below the frozen50% clarity threshold.
+            with self.subTest(label=label):
+                flags=detect.pandas_detector(frame).iloc[-1]
+                self.assertEqual(list(flags.index[flags]),[label])
+                clear,diagnostics=detect.clarity(frame.tail(20),label)
+                self.assertFalse(clear,diagnostics)
+                self.assertTrue(any(not passed for passed in diagnostics["criteria"].values()))
+
+    def test_none_rejects_hammer_like_shape_failing_only_placement(self):
+        frame=fixture("Hammer")
+        final=frame.index[-1]
+        o=frame.Low.iloc[-2]+1
+        frame.loc[final,["Open","High","Low","Close"]]=[o,o+.4,o-1,o+.35]
+        self.assertFalse(detect.pandas_detector(frame).iloc[-1].any())
+        clear,diagnostics=detect.clarity(frame.tail(20),"None")
+        self.assertFalse(clear)
+        self.assertIn("Hammer",diagnostics["near_patterns"])
+
+    def test_clarity_is_causal_and_preserves_original_index_fields(self):
+        frame=fixture("Hammer")
+        end=frame.index[-1]
+        before=pd.DataFrame([{"id":"fixture","ticker":"XYZ","file":"charts/fixture.png",
+                              "label":"Hammer","split":"train","bar_index":len(frame)-1,
+                              "window_start":str(frame.index[-20].date()),"end_date":str(end.date())}])
+        a,diagnostics,_=detect.annotate_clarity(before,{"XYZ":frame})
+        future=fixture("None")
+        future.index=pd.bdate_range(end+pd.offsets.BDay(1),periods=len(future))
+        future.iloc[:,:4]*=100
+        b,new_diagnostics,_=detect.annotate_clarity(before,{"XYZ":pd.concat([frame,future])})
+        pd.testing.assert_frame_equal(a,b)
+        pd.testing.assert_frame_equal(a[before.columns],before)
+        self.assertEqual(diagnostics,new_diagnostics)
+        self.assertEqual(a.label.tolist(),["Hammer"])
+        self.assertEqual(a.split.tolist(),["train"])
+
+    def test_wrong_label_and_hidden_history_are_rejected(self):
+        frame=fixture("Hammer")
+        with self.assertRaisesRegex(ValueError,"twenty"):
+            detect.clarity(frame,"Hammer")
+        with self.assertRaisesRegex(ValueError,"original single-label"):
+            detect.clarity(frame.tail(20),"None")
+
+
 if __name__ == "__main__":
     unittest.main()

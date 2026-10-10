@@ -1,10 +1,10 @@
 # Experiment 06b: synthetic chart-pattern recognition
 
-Day 1 prepares an evaluation-only image set for **autotrust/JEV-27B-VL**, the Hugging Face model used by the earlier experiments. No model inference, GPU session, or Runpod resource is started here. Real-market pattern detection is Day 2 work.
+This CPU dataset prepares a visual-recognition test for **[autotrust/JEV-27B-VL on Hugging Face](https://huggingface.co/autotrust/JEV-27B-VL)**. No model inference, GPU session, or Runpod resource is started. Real-market pattern detection remains Day 2 work.
 
-The [frozen generator protocol](protocol.json) was written before generating images or inspecting model outputs. There are 200 seeded clean templates, each rendered clean and with five increasing noise levels, for 1,200 images. Every image is 1024 x 640, with 60 to 120 daily-style OHLCV bars, candlesticks, volume, and no ticker, price, date, class, or other text. The independent sampling unit is `template_id`: the six versions of one template must remain together in future confidence intervals and comparisons.
+Protocol **v3**, seed **60618**, replaces the original generator's overly simple None paths and deterministic nuisance cues. Its [parameters and geometric rules](protocol.json) record the initial revision, a failed intermediate classifier check, and the final negative-family design fixed before a second, freshly seeded confirmation check. The 200 parent templates each receive five paired corruptions, producing 1,200 images at 1024 × 640 with 60–120 candlesticks and volume. Scored images contain no text.
 
-| Source class | Clean templates | Noisy variants | Total |
+| Source class | Clean parents | Noisy variants | Total |
 |---|---:|---:|---:|
 | Head and Shoulders | 29 | 145 | 174 |
 | Inverse Head and Shoulders | 29 | 145 | 174 |
@@ -15,34 +15,54 @@ The [frozen generator protocol](protocol.json) was written before generating ima
 | None | 28 | 140 | 168 |
 | **All** | **200** | **1,000** | **1,200** |
 
-There are no rare or missing synthetic classes. These constructed counts do not estimate market prevalence. Triangle merges symmetric, ascending, and descending constructions. None consists of monotonic straight or gently curved paths, so it is a deliberately simple sanity control rather than a representative sample of market nonpatterns.
+None now comprises **5 random walks, 5 choppy ranges, 5 trends with random pullbacks, 5 incomplete formations, 4 broken reversals, and 4 broken consolidations**. The latter families include triple tops/bottoms and unequal double peaks/troughs, diverging bounds, and rising consolidations that fail the defined downward Bull Flag rule. They can have completed-looking exits, so an absent breakout is not a universal negative cue. This six-family mixture was fixed for coverage before its classifier results. A frozen screen rejects obvious completed whole-window target shapes in their source control points; the primary dataset rejected one candidate path. The screen is deliberately limited to synthetic control paths, and does not implement Day 2's real-data detector or establish that every image lacks an incidental local pattern. Acceptance never uses the leakage classifier's output.
 
-The clean close path interpolates explicit geometric pivots. Head and Shoulders and Double Top have similar outer peaks, then a completed neckline/trough break; their inverse classes invert prices. Triangles have converging upper/lower bounds and an exit. Bull Flag has an upward pole, a smaller downward parallel channel, then an upward break. Ten percent of bars precede and follow the formation, with breakout retained throughout the right margin. Price scale, amplitude, bar count, and volume vary with a fixed seed. The generator provides exact **source labels**; it does not claim detector agreement or that every heavily perturbed image stays unambiguous.
+Every family uses the same independent distributions for bar count, nominal price, target volatility, microtexture, candle gaps/wicks, and volume. Each clean parent's sample standard deviation of daily **log returns** is scaled exactly to an independent log-uniform draw between 0.004 and 0.018. This matches the population distribution rather than assigning identical finite-sample values to every class. [Population statistics](results/population_stats.json) report the realized per-class ranges and medians, lengths, positions, and margin directions.
 
-Noise amplitudes are `0.015, 0.035, 0.07, 0.12, 0.20` times the clean close range. Each template reuses one Brownian-bridge noise realization at all five amplitudes. Noise is zero at defining pivots and in the final post-breakout margin. This creates a paired severity ladder while retaining the construction's principal pivots and completed breakout. Severe noise can produce incidental local shapes. Report results by noise level and use template-group bootstrap blocks, not the 1,200 correlated images as independent examples.
+Positive patterns vary pivot timing, height, neckline tilt, shoulder asymmetry, channel width/slope, and triangle subtype within their geometric definitions. Shared daily microtexture is added to every clean family, including None. Pattern location and both margins vary independently: each margin spans 10–20% of the pattern length, and its direction is unrelated to the class or preceding segment. A separately seeded volume process uses **neutral gray bars**, so volume colors cannot duplicate the price direction. Clean positive parents retain a completed break and stay beyond it through the right margin.
 
-[Review grid](results/samples/synthetic_grid.png) shows one template per class at noise 0, 0.035, and 0.20. Captions occur only in the review grid. The seven separate clean examples are `results/samples/sample_01.png` through `sample_07.png`; scored charts contain no captions.
+“Clean” means **no added corruption**; it does not mean a perfectly smooth line. The five added levels are **0.035, 0.08, 0.16, 0.30, and 0.55** times the clean log-price range. Each parent reuses one global Brownian bridge, pinned only at the chart endpoints. Major pivots and even apparent completion can disappear at high noise. Labels identify the source family, not a claim that a severely corrupted picture still clearly exhibits it. All six versions retain `template_id` and remain together in confidence intervals or paired analyses.
+
+The [noise grid](results/samples/synthetic_grid.png) shows the first parent of every class at levels 0, 0.08, and 0.55. The [clean-diversity grid](results/samples/clean_diversity_grid.png) shows the first three independently drawn parents per positive class and the first six None parents, covering all six negative families in two rows. Selection rules were fixed before viewing. The seven individual clean examples remain `results/samples/sample_01.png` through `sample_07.png`. Grid captions are review aids and never enter scored images.
 
 ![Clean and noisy synthetic patterns](results/samples/synthetic_grid.png)
 
-From the repository root, after creating the separate Experiment 06 environment described in the parent README:
+![Independent clean parent diversity](results/samples/clean_diversity_grid.png)
+
+From the repository root, using the separate pinned Experiment 06 environment:
 
 ```sh
 06-jev-patterns/.venv/bin/python 06-jev-patterns/06b-chart-patterns/src/synth.py
-06-jev-patterns/.venv/bin/python -m unittest discover -s 06-jev-patterns/tests -p test_synthetic.py -v
+06-jev-patterns/.venv/bin/python 06-jev-patterns/06b-chart-patterns/src/leakage_audit.py
+06-jev-patterns/.venv/bin/python -m unittest discover -s 06-jev-patterns/tests -p 'test_synthetic*.py' -v
 ```
 
-This exports ignored `data/bars/*.csv`, ignored `charts/*.png`, and the scorer's ignored `charts/index.csv`. The committed `results/synthetic_index.csv` duplicates that index for review; `results/label_counts.json` and `results/render_manifest.json` record counts, hashes, source pivots, breaks, seeds, and paired template IDs. Dates in bar CSVs are artificial coordinates required by the shared OHLCV interface; `ticker=SYNTH`, the scorer index's `end_date` is blank, and no market date inference is valid.
+Exports include ignored `data/bars/*.csv`, ignored `charts/*.png`, and ignored `charts/index.csv`. Committed `results/synthetic_index.csv` duplicates the scorer index; counts, population statistics, and the render manifest preserve seeds, pivots, breaks, data/image hashes, and protocol/generator/renderer/context hashes. CSV dates are artificial coordinates required by the shared renderer: `ticker=SYNTH`, index `end_date` is blank, and no historical inference is valid.
 
-The prepared fixed-100-bar framing control reuses each template and noise realization, interpolated onto exactly 100 bars. It holds bar count constant without inventing a second market window. Generate it in a separate ignored directory:
+## Numeric shortcut regression check
+
+The 200 evaluation parents have no training split. The [CPU audit](src/leakage_audit.py) fits only separate cohorts of **1,400 clean parents**, each split into 840 training and 560 held-out parents, stratified over seven source classes. Each held-out cohort contains 80 None and 480 positive patterns. No audit parent seed overlaps the primary 200, the other audit cohort, or the opposite split; noise/style siblings never cross partitions. Inputs are only visible numeric OHLCV, with 32 normalized close positions and fixed shape/nuisance statistics.
+
+Before inspecting revised-generator outcomes, we fixed a standardized class-balanced logistic regression (`C=1`) and a class-balanced 200-tree forest (`max_depth=4`, `min_samples_leaf=10`). Each must stay **strictly below 90% held-out balanced accuracy** for None versus any declared pattern. Balanced accuracy averages the two class recalls; ordinary accuracy would reward the 6:1 positive-class imbalance. Always guessing pattern already scores 85.71% ordinary accuracy and 50% balanced accuracy.
+
+| Generator / cohort | Logistic balanced accuracy | Forest balanced accuracy | Forest ordinary accuracy |
+|---|---:|---:|---:|
+| Original generator | 100.00% | 100.00% | 100.00% |
+| Intermediate v2 | 78.44% | 95.42% | 98.39% |
+| Final v3 regression | 63.44% | 86.35% | 93.57% |
+| Final v3 fresh confirmation | 67.50% | 88.13% | 94.82% |
+
+The intermediate forest failure motivated the rule-defined hard negatives. [Development history](results/leakage_development_history.json) retains that failure and the original-generator result. The reused cohort (`20261017`, split `1701`) is a regression check after adaptation, not an untouched holdout. A second cohort (`20261023`, split `2301`) was declared before evaluating v3; the features, classifiers and pass limits stayed unchanged. The [final report](results/leakage_audit.json) contains both cohorts, confusion matrices, source hashes and complete configuration. Tests enforce both gates on both cohorts and include a deliberately leaky fixture that must fail.
+
+These are conditional regression guards, **not proof of zero leakage or model quality**. Strong geometry-based separation can be legitimate; the fresh forest still has 95.44% ROC AUC. Shared nuisance distributions alone do not guarantee identical finite-sample realizations. No real JEV inference or pattern-baseline training on the primary evaluation set has run.
+
+The prepared fixed-100 control interpolates each same template/noise realization onto 100 bars. Generate it in a separate ignored directory:
 
 ```sh
 06-jev-patterns/.venv/bin/python 06-jev-patterns/06b-chart-patterns/src/synth.py \
   --fixed-bars 100 --output-dir 06-jev-patterns/06b-chart-patterns/data/fixed_100
 ```
 
-This control is prepared, not generated in the Day 1 primary set. The real-data Day 2 control must instead use genuine fixed historical windows. Optional line/OHLC style variants and horizontal mirrors can use the shared renderer with the saved bars.
+The primary Day 1 set does not generate this optional control. Day 2 real-data framing must use genuine fixed historical windows instead. Shared rendering also supports OHLC/line variants and horizontal mirrors. A horizontal mirror reverses **time**, not prices; it does not exchange H&S with Inverse or Double Top with Double Bottom, contrary to the preserved planning note. Price inversion creates those counterparts.
 
-**Mirror interpretation correction:** the preserved planning document suggests that horizontal mirroring exchanges Head and Shoulders with Inverse and Double Top with Double Bottom. A horizontal flip reverses time; it does not invert prices and does not imply either class swap. A vertical price inversion creates those counterparts. Treat horizontal mirroring as a temporal-order intervention, with no assumed remapped ground truth.
-
-Day 2 needs the real-data detector's supported patterns and license verified, an independent zigzag implementation, agreement and exclusive-label filtering, completed-pattern and overlap checks, date split with the three-month embargo, per-class hand review, and 80 to 120 real examples per class if available. Freeze any revised detector rules before scoring. Only after an explicit GPU authorization should inference parity and the zero-shot/context arms run, with all template variants grouped for inference. Synthetic results alone will establish visual recognition behavior, not predictive or trading skill.
+Day 2 still needs verified real-detector capabilities/license, an independent zigzag implementation, agreement/exclusivity and completion/overlap filters, the temporal split and embargo, per-class hand review, and approximately 80–120 real examples per class where available. Freeze rules before scoring. GPU scoring requires separate authorization and a successful repeatability gate. Synthetic recognition results cannot establish market prediction or trading skill.

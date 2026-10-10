@@ -280,7 +280,7 @@ def train_cnn(index, options, root, output):
 def write_predictions(rows, probabilities, options, target, name, latency_ms=0., synthetic=False):
     order = validate_options(options)
     p = np.asarray(probabilities)
-    columns = [column for column in ("file", "ticker", "end_date", "label", "template_id") if column in rows]
+    columns = [column for column in ("file", "ticker", "end_date", "label", "template_id", "clear") if column in rows]
     frame = rows[columns].copy()
     frame["probabilities"] = [json.dumps(values.tolist(), separators=(",", ":")) for values in p]
     frame["prediction"] = np.asarray(order)[p.argmax(1)]

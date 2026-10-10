@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "frozen_before_jev_scoring": true,
+  "original_label_rules_sha256": "5490cd94e193e0c36dbedd01ab8a3e1ddd7404d56057a04904a4a4ca51810e63",
+  "purpose": "Secondary geometric clarity subset; never changes labels, class-balanced sampling, train/test splits or the 1200-row primary set. These heuristic margins are not independent label-quality validation.",
+  "visible_bars_only": 20,
+  "averages": "All body/range means use the ten sessions preceding the candle being assessed. Hammer near allowance uses the five ranges preceding the previous candle. Trend is the five-session close move ending before the pattern starts, compared with the ten-range mean ending at that same pre-pattern candle.",
+  "doji": {"max_fraction_of_talib_body_threshold": 0.5},
+  "hammer_shooting_star": {
+    "max_body_to_prior_mean_body": 0.75,
+    "min_long_wick_to_body": 2.0,
+    "max_short_wick_to_talib_tiny_threshold": 0.5,
+    "hammer_max_fraction_of_near_allowance": 0.5,
+    "shooting_min_body_gap_to_prior_mean_range": 0.1,
+    "min_prior_trend_move_to_daily_range": 0.5
+  },
+  "engulfing": {
+    "min_previous_body_to_its_prior_mean_body": 0.5,
+    "min_current_body_to_previous_body": 1.25,
+    "min_extension_at_each_endpoint_to_previous_body": 0.1
+  },
+  "stars": {
+    "min_first_body_to_its_prior_mean_body": 1.25,
+    "max_middle_body_to_its_prior_mean_body": 0.6,
+    "max_middle_body_to_first_body": 0.4,
+    "min_third_body_to_its_prior_mean_body": 1.25,
+    "min_body_gap_to_middle_prior_mean_range": 0.1,
+    "min_penetration_fraction": 0.5,
+    "min_prior_trend_move_to_daily_range": 0.5
+  },
+  "none": {
+    "definition": "Clear only if none of these deliberately expanded near-pattern geometries match. Trend is ignored; Hammer placement and Shooting Star gap are ignored, so a rule-negative but visually hammer/star-like final candle is not called a clear negative.",
+    "doji_max_fraction_of_talib_body_threshold": 1.5,
+    "wick_max_body_to_prior_mean_body": 1.25,
+    "wick_min_long_wick_to_body": 0.8,
+    "wick_max_short_wick_to_talib_tiny_threshold": 1.5,
+    "engulf_endpoint_overlap_allowance_to_previous_body": 0.1,
+    "star_min_first_and_third_body_to_prior_mean_body": 0.8,
+    "star_max_middle_body_to_prior_mean_body": 1.25,
+    "star_body_gap_overlap_allowance_to_middle_prior_mean_range": 0.1,
+    "star_min_penetration_fraction": 0.2
+  },
+  "interpretation": "Clear means comfortably within the frozen numerical geometry rules. It is an ex-ante heuristic for secondary analysis, not a verified human clarity label, error rate, trading signal, or guarantee of pixel-level recognizability. None uses conservative expanded geometry exclusions instead of being automatically clear. No JEV result informed these thresholds."
+}

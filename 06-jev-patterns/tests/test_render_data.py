@@ -43,6 +43,21 @@ class RenderingDataTests(unittest.TestCase):
             with Image.open(root/'wide.png') as image:
                 self.assertEqual(image.size,(1024,640))
 
+    def test_neutral_volume_has_no_candle_color_signal(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);original=bars();reversed_colors=original.copy()
+            reversed_colors[['Open','Close']]=original[['Close','Open']].to_numpy()
+            for name,frame in [('original',original),('reversed',reversed_colors)]:
+                render_chart(frame,root/(name+'.png'),volume_color='neutral')
+            with Image.open(root/'original.png') as first,Image.open(root/'reversed.png') as second:
+                left,right=np.asarray(first),np.asarray(second)
+                np.testing.assert_array_equal(left[370:],right[370:])
+                np.testing.assert_array_equal(left[370:,:,0],left[370:,:,1])
+                np.testing.assert_array_equal(left[370:,:,1],left[370:,:,2])
+                self.assertFalse(np.array_equal(left[:348],right[:348]))
+            with self.assertRaisesRegex(ValueError,'volume color'):
+                render_chart(original,root/'bad.png',volume_color='label')
+
     def test_only_visible_window_controls_pixels_and_length_is_explicit(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);frame=bars(40)

@@ -30,6 +30,14 @@ def real_index():
 
 
 class BaselineTests(unittest.TestCase):
+    def test_baseline_outputs_keep_clarity_flags_for_paired_analysis(self):
+        rows=real_index().iloc[:2].copy();rows['clear']=[True,False]
+        with tempfile.TemporaryDirectory() as folder:
+            target=Path(folder)/'uniform.csv'
+            baselines.write_predictions(rows,np.full((2,2),.5),['A','B'],target,'uniform')
+            saved=pd.read_csv(target,keep_default_na=False)
+            self.assertEqual(saved.clear.tolist(),[True,False])
+
     def test_prior_and_majority_use_only_supplied_training_labels(self):
         p = baselines.constant_predictions(["A", "A", "B"], 2, ["B", "A", "None"])
         np.testing.assert_allclose(p["train_prior"], [[1 / 3, 2 / 3, 0.]] * 2)
