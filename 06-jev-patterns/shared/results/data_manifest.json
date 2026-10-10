@@ -1,0 +1,363 @@
+{
+  "source": "Yahoo Finance via yfinance",
+  "yfinance_version": "1.7.0",
+  "downloaded_at_utc": "2026-10-10T22:55:54.011277+00:00",
+  "start": "2005-01-01",
+  "end": "2026-09-30",
+  "auto_adjust": true,
+  "tickers": {
+    "TSLA": {
+      "rows": 4089,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2010-06-29",
+      "last_session": "2026-09-30",
+      "sha256": "23398fcfada813fe91f8a6523d6ca3fa1416806393797e626c0990d7cd148875"
+    },
+    "NVDA": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "9d8df3d5cd53564e27bc16d1af8ad0caf7f07f6c9a099bb76380a39dc72af505"
+    },
+    "PLTR": {
+      "rows": 1507,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2020-09-30",
+      "last_session": "2026-09-30",
+      "sha256": "678a65c49bff1ae72a541786a8bd084bb96e5fb7dd9b84f6b5c915ca0ad0d0f3"
+    },
+    "COIN": {
+      "rows": 1373,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2021-04-14",
+      "last_session": "2026-09-30",
+      "sha256": "ac192c07c84b1986c9a72828a4cfd08f3fe84ec84fb8b13103ef926a36a12c6e"
+    },
+    "AAPL": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "f14017f974b498eb81ecddd202befea0ec40a19d8bab896ce1262ab27aabd51f"
+    },
+    "MSFT": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "ffcbb300824d791666bc58567e109db6873d1332384e53e20b0df48b8d548740"
+    },
+    "AMZN": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "cb8bf551fff1ebae5b7b82bc6821549f0a0eb71d6dce6f45248b1d2600179709"
+    },
+    "META": {
+      "rows": 3612,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2012-05-18",
+      "last_session": "2026-09-30",
+      "sha256": "430c676aefaed534eddca532ede32c67127ec443049d2a9a68ff3e131a74d939"
+    },
+    "KO": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "ec814a60d9a702442bf4340084cbce6b7119b749bdf65ca366bbc074bbe03b0c"
+    },
+    "JNJ": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "7959695d6d001af3df4e1535d553a248f755c19ba0f7d471a967c50938e67368"
+    },
+    "PG": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "32af64c115a750e1f3044afe0d6a684ff796a41940ca538645f198351d87f049"
+    },
+    "SPY": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "52a05f03cdb743980aacf218aceeb23dc3946f7ee0d4bdc3f991710ffe6eef1c"
+    },
+    "GOOGL": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "b8be12a795d11f27aadf7c020d0120cc2045ab3bb0c7b3c55de8496debae66fb"
+    },
+    "BRK-B": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "421bb1ff2e150607ae2f92649e53952eda78f061dcefba2c27569360302c1d6e"
+    },
+    "JPM": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "da0c76d300673de8670e97efc11127f3c1ade1f59461cd9e57f41af76731c02f"
+    },
+    "V": {
+      "rows": 4663,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2008-03-19",
+      "last_session": "2026-09-30",
+      "sha256": "9f37a2e75c73460f5d81777ea335674f448a0480a03b9dc9c4ce7edeaa34fc2f"
+    },
+    "MA": {
+      "rows": 5119,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2006-05-25",
+      "last_session": "2026-09-30",
+      "sha256": "ab08c716dea23671fc2667f14ef4e7f3c37d665a8ffdd47ef482d6efc0c127ca"
+    },
+    "UNH": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "88cd8b65fc30e191426f72fcee2da1a06415a39f22ea7682b73cc09c52960162"
+    },
+    "HD": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "30601138df06f6b49d13831fa2b31a5a4fbda30dddcc01356427981078e2f7b4"
+    },
+    "XOM": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "e4dc653d50d487e6763ae7ec3686d65f5a8f6d8a10ab1214b027e664f9d41882"
+    },
+    "CVX": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "4bc90c21bfcb2a680d855e8de82d8ac3fecbbcb1ced598deea3d02ecb7a01119"
+    },
+    "PFE": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "a8adc48b6fa14e640a8308752f531d498281cfe277f44b22ecc6d1f209334d3d"
+    },
+    "MRK": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "f06be16e4e661a31c28a917687d0c955d75ef1dcd374f5fb58f7734fdbe4b044"
+    },
+    "ABBV": {
+      "rows": 3457,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2013-01-02",
+      "last_session": "2026-09-30",
+      "sha256": "8a8b323f54aadc358e3b2c035085cca7da2376f51ebd313b8a3911fbae3a90f6"
+    },
+    "PEP": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "32f12e326dd0a211f543750f0caeea5ca4595fc3bfd1399c09a4006de15d2c8c"
+    },
+    "WMT": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "326ad0bfb0c908ab5a3cf2ca6f6a782ad46d16419bdfdc1c017abbd254bb25fe"
+    },
+    "COST": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "3e1e0098d949454a2db400653f7fc8feeb9b60b92a0550ba2947ed128fa5d940"
+    },
+    "DIS": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "40a960d4cd4bca24c292a23dd23d32800d119432f8d90a3e3334442ace526491"
+    },
+    "NFLX": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "db2ff2926397ecf4d1b85f9c487a13da000115f73bdbf3954fec8a019c3d3ae3"
+    },
+    "ADBE": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "f5c41c85eb02edcc075709f654ba3fe8743ce903a2ef06a4c16ab857cba66067"
+    },
+    "CRM": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "95134b6b7e9599144889d67c9c101f896af5f6e5898d45c65b617431fb996f13"
+    },
+    "ORCL": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "2da5d2043de4a4613709178a9b31be4eed55a15642df0d3aaecc42410f13cecb"
+    },
+    "INTC": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "d8f690b60040b1c9ea63513fdb55be4e461e03e370686bd833da9cc271133b1e"
+    },
+    "CSCO": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "4788034a067152e959e287d82355a7123652ce6818638eb72350843c90f87c97"
+    },
+    "AMD": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "a3e95b2a61d5c942b9e1a653b7cd359103126403b33ccd36673e25947d21fdbf"
+    },
+    "QCOM": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "1dcf935b6f8987cb888738dcebc7f376ceeb6a82518f85a59fb0c53468a07941"
+    },
+    "TXN": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "8f093a48a9ce8458b315d2daf7d90460db63bc0f8436f7bedf380231e7788856"
+    },
+    "IBM": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "47526a8f1bc9c235f94cd5f65beea23123ffc3e6a4f012bb73f00f47cf4a2d34"
+    },
+    "BA": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "aa2b6342f09a7ad2ffc4be80370eff6d4d3b01b888beae558b6513c3898871cb"
+    },
+    "CAT": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "d6436608d0fbd54c9f3f4c00536e71cf9dd7401f23f7998def5f747ca2aefebf"
+    },
+    "GE": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "d9d7592620bea4947608f78a3a03864205ebf0c32cf3937de47c8b35ea5584dc"
+    },
+    "MCD": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "83796d7f00c6271593caaf060cb653fc60d1f880c3a4f511155f03376dd7e514"
+    },
+    "NKE": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "24baa1852464d2576bbdd7f5d3f651ef1c0eeb058aed94a5727f33e583da1c39"
+    },
+    "BAC": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "6c21ab90c60f1c6376153a26fdbb3a2e8d64b1f0b580b50bbd456d5ca3319bbf"
+    },
+    "WFC": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "b100712d030dc987e5b8cc0880c44d9554912c8ca611a4e4b933949c026d85a6"
+    },
+    "GS": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "a2506cd3922141e1f78943c72edad4c39dae2002f758dfcd050c472d60cad366"
+    },
+    "QQQ": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "cfa649fc954543c3361f4dc36c0fe439244f7c5b06bf063d981ce302fdfbb799"
+    },
+    "IWM": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "58b10727351c5a25aa2239c79a36a6becb8f14d110af001bc45348906ffe4b62"
+    },
+    "DIA": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "c1b2bfc81537f65e07eb1126f3fc9961b01f6465d589eef82f9ec1c1a5cde217"
+    },
+    "XLF": {
+      "rows": 5470,
+      "dropped_incomplete_rows": 0,
+      "first_session": "2005-01-03",
+      "last_session": "2026-09-30",
+      "sha256": "156083c593d1825ae4cb3e6f155ae9d21ad5d866dc627eb7b05a89768863f8fe"
+    }
+  },
+  "config_sha256": "89be0d53bdadac79452e6712a4e4fa1025a09e7af5f4124d1f894d67b7ea5c0a",
+  "validation": "No imputation, clipping or dropped bars; malformed OHLCV fails",
+  "survivorship_note": "Hand-selected present-day large caps and ETFs; retrospective adjusted Yahoo history"
+}

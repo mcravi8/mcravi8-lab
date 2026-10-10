@@ -1,6 +1,6 @@
 # mcravi8-lab: AI x finance experiments
 
-Experiments testing whether **AutoTrust's [JEV-27B-VL](https://huggingface.co/autotrust/JEV-27B-VL)** can forecast stock-price direction from charts, using model assets from **Hugging Face** and GPU compute on **Runpod**, alongside simpler CPU baselines. Code, forecasts, evaluation methods and negative results are documented together.
+Experiments testing whether **AutoTrust's [JEV-27B-VL](https://huggingface.co/autotrust/JEV-27B-VL)** can forecast stock-price direction from charts, using model assets from **Hugging Face** and GPU compute on **Runpod**, alongside simpler CPU baselines. Experiment 06 also tests chart-pattern recognition. Code, forecasts, evaluation methods and negative results are documented together.
 
 [![CPU research checks](https://github.com/mcravi8/mcravi8-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/mcravi8/mcravi8-lab/actions/workflows/tests.yml)
 
@@ -13,7 +13,7 @@ Experiments testing whether **AutoTrust's [JEV-27B-VL](https://huggingface.co/au
 | **[Runpod](https://www.runpod.io/)** | GPU hosting for historical JEV inference and LoRA training. Recorded weekly inference and training runs used NVIDIA H100 80GB GPUs; the weekly inference runs used `US-MO-1`. |
 | **vLLM + JEV System 1** | The self-hosted server exposes `POST /v1/decide` on port 8000. Chart images and options `["Up", "Flat", "Down"]` produce one probability per option. |
 
-See the [Experiment 01 serving instructions](01-jev-tsla-charts/README.md#future-pod-serving-setup) for the Runpod setup and the [Experiment 04 README](04-jev-lora-and-cnn/README.md#reproducible-training-preparation) for the LoRA workflow. Experiment 05's numerical baselines and the validation suite run on CPU; the results immediately below are from that CPU study.
+See the [Experiment 01 serving instructions](01-jev-tsla-charts/README.md#future-pod-serving-setup) for the Runpod setup and the [Experiment 04 README](04-jev-lora-and-cnn/README.md#reproducible-training-preparation) for the LoRA workflow. Experiment 06 prepares pattern-recognition datasets and shared tools on CPU; its JEV inference has not started. Experiment 05's numerical baselines and the validation suite run on CPU; the results immediately below are from that CPU study.
 
 ## Latest findings
 
@@ -39,6 +39,7 @@ The historical LoRA placebo conclusion was also corrected: 0 wins, 5 losses and 
 | [03: Twelve tickers](03-jev-12-tickers/README.md) | Does pooling or calibration help? | Reused historical test period; no demonstrated added skill. |
 | [04: LoRA and CNN](04-jev-lora-and-cnn/README.md) | Does task-specific training help? | Historical results retained; revised training requires parity and checkpoint checks. |
 | [05: CPU walk-forward study](05-cpu-walkforward/README.md) | Can numerical models beat training-frequency priors over longer histories? | CPU study complete; future protocol and model frozen. |
+| [06: Pattern recognition](06-jev-patterns/README.md) | Can JEV identify candlestick and chart patterns? | Day 1 shared CPU infrastructure; dataset stages follow. |
 
 ## Completed review and implementation
 
@@ -60,18 +61,19 @@ From the repository root, use Python 3.11 and install the research dependencies.
 
 ```sh
 python3.11 -m venv .venv
-.venv/bin/python -m pip install -r 05-cpu-walkforward/requirements.txt
+.venv/bin/python -m pip install --only-binary=TA-Lib -r 06-jev-patterns/requirements.txt
 .venv/bin/python -m pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
 .venv/bin/python -m unittest discover -s 01-jev-tsla-charts/tests -v
 .venv/bin/python -m unittest discover -s tests -v
 .venv/bin/python -m unittest discover -s 04-jev-lora-and-cnn/tests -v
 .venv/bin/python -m unittest discover -s 05-cpu-walkforward/tests -v
+.venv/bin/python -m unittest discover -s 06-jev-patterns/tests -v
 ```
 
-On macOS, install `torch==2.14.1` from the default package index instead; the checkpoint test explicitly uses CPU. Without PyTorch, that one test is skipped. Run each suite separately because historical experiments share module names. The suite comprises 31 pipeline/scoring/protocol tests, 8 statistical tests, 13 training tests and 8 baseline tests. Tests use synthetic OHLCV, localhost HTTP fixtures and CPU tensors, without downloading model weights. GitHub Actions runs all four suites on pushes and pull requests.
+On macOS, install `torch==2.14.1` from the default package index instead; the checkpoint test explicitly uses CPU. Without PyTorch, that one test is skipped. Run each suite separately because historical experiments share module names. The suite comprises 31 pipeline/scoring/protocol tests, 8 statistical tests, 13 training tests and 8 baseline tests. Tests use synthetic OHLCV, localhost HTTP fixtures and CPU tensors, without downloading model weights. Experiment 06 adds pattern, rendering, arbitrary-option scoring and multiclass evaluation tests. GitHub Actions runs all five suites on pushes and pull requests.
 
 ## Reproducibility
 
-The data cutoff is **2026-10-09**. Experiment READMEs contain the corresponding data, rendering, scoring and evaluation commands. Regenerated market data, chart inputs, model weights, checkpoints and secrets are excluded from Git; results, checksums and selected figures are committed. Preserve local input snapshots and the frozen prospective model: a fresh clone does not contain them, and Yahoo's adjusted history can change between downloads.
+Experiment 05's data cutoff is **2026-10-09**; Experiment 06 preserves its initial universe cutoff of **2026-09-30**. Experiment READMEs contain the corresponding data, rendering, scoring and evaluation commands. Regenerated market data, chart inputs, model weights, checkpoints and secrets are excluded from Git; results, checksums and selected figures are committed. Preserve local input snapshots and the frozen prospective model: a fresh clone does not contain them, and Yahoo's adjusted history can change between downloads.
 
 The ticker universe is hand selected, the data are retrospective, and the studies do not test trading execution, transaction costs or P&L.

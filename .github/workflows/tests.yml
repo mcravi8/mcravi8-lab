@@ -20,10 +20,11 @@ jobs:
           python-version: "3.11"
           cache: pip
           cache-dependency-path: |
-            05-cpu-walkforward/requirements.txt
+            06-jev-patterns/requirements.txt
+            06-jev-patterns/requirements-cnn.txt
             04-jev-lora-and-cnn/requirements-training-cnn.txt
       - name: Install research dependencies
-        run: python -m pip install -r 05-cpu-walkforward/requirements.txt
+        run: python -m pip install --only-binary=TA-Lib -r 06-jev-patterns/requirements.txt
       - name: Install CPU-only PyTorch for checkpoint verification
         run: python -m pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
       - name: Pipeline, HTTP and protocol tests
@@ -34,3 +35,5 @@ jobs:
         run: python -m unittest discover -s 04-jev-lora-and-cnn/tests -v
       - name: Walk-forward and causal feature tests
         run: python -m unittest discover -s 05-cpu-walkforward/tests -v
+      - name: Pattern labels, rendering, native scoring and multiclass metrics
+        run: python -m unittest discover -s 06-jev-patterns/tests -v

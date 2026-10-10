@@ -1,0 +1,10 @@
+{
+  "description": "Experiment 06 universe: the 12 Experiment 03 tickers plus 38 large-cap US stocks and ETFs. Daily OHLCV, split/dividend adjusted, 2005-01-01 to 2026-09-30.",
+  "start": "2005-01-01",
+  "end": "2026-09-30",
+  "exp03_tickers": ["TSLA", "NVDA", "PLTR", "COIN", "AAPL", "MSFT", "AMZN", "META", "KO", "JNJ", "PG", "SPY"],
+  "additional_tickers": ["GOOGL", "BRK-B", "JPM", "V", "MA", "UNH", "HD", "XOM", "CVX", "PFE",
+                         "MRK", "ABBV", "PEP", "WMT", "COST", "DIS", "NFLX", "ADBE", "CRM", "ORCL",
+                         "INTC", "CSCO", "AMD", "QCOM", "TXN", "IBM", "BA", "CAT", "GE", "MCD",
+                         "NKE", "BAC", "WFC", "GS", "QQQ", "IWM", "DIA", "XLF"]
+}
