@@ -1,0 +1,214 @@
+{
+  "bootstrap_resamples": 2000,
+  "seed": 0,
+  "tickers": {
+    "TSLA": {
+      "holdout": {
+        "n": 41,
+        "label_counts": {
+          "Up": 15,
+          "Flat": 14,
+          "Down": 12
+        },
+        "pred_counts": {
+          "Up": 24,
+          "Flat": 0,
+          "Down": 17
+        },
+        "hit_rate": 0.43902439024390244,
+        "base_rate_eval_majority": {
+          "class": "Up",
+          "rate": 0.36585365853658536
+        },
+        "base_rate_train_majority": {
+          "class": "Up",
+          "rate": 0.36585365853658536
+        },
+        "ci95_hit_minus_eval_base": [
+          -0.09756097560975607,
+          0.24390243902439027
+        ],
+        "ci95_hit_minus_train_base": [
+          -0.09756097560975607,
+          0.24390243902439027
+        ],
+        "placebo_hit_rate": 0.4146341463414634,
+        "train_class_freq": {
+          "Up": 0.375,
+          "Flat": 0.3125,
+          "Down": 0.3125
+        },
+        "brier_model": 0.8155304346146581,
+        "brier_ref": 0.6652057926829268,
+        "bss": -0.22598216008528382,
+        "mean_probs": {
+          "Up": 0.5057191768584867,
+          "Flat": 0.0939332611692403,
+          "Down": 0.4003475619722728
+        },
+        "success": {
+          "ci_excludes_zero_above_eval_base": false,
+          "ci_excludes_zero_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met_eval_base": false
+        }
+      },
+      "full_sample": {
+        "n": 105,
+        "label_counts": {
+          "Up": 39,
+          "Flat": 34,
+          "Down": 32
+        },
+        "pred_counts": {
+          "Up": 62,
+          "Flat": 0,
+          "Down": 43
+        },
+        "hit_rate": 0.4,
+        "base_rate_eval_majority": {
+          "class": "Up",
+          "rate": 0.37142857142857144
+        },
+        "base_rate_train_majority": {
+          "class": "Up",
+          "rate": 0.37142857142857144
+        },
+        "ci95_hit_minus_eval_base": [
+          -0.0761904761904762,
+          0.13333333333333336
+        ],
+        "ci95_hit_minus_train_base": [
+          -0.0761904761904762,
+          0.13333333333333336
+        ],
+        "placebo_hit_rate": 0.3523809523809524,
+        "train_class_freq": {
+          "Up": 0.375,
+          "Flat": 0.3125,
+          "Down": 0.3125
+        },
+        "brier_model": 0.8742967859075366,
+        "brier_ref": 0.6645089285714286,
+        "bss": -0.31570359451318897,
+        "mean_probs": {
+          "Up": 0.5070264320485401,
+          "Flat": 0.1003672346682082,
+          "Down": 0.3926063332832516
+        },
+        "success": {
+          "ci_excludes_zero_above_eval_base": false,
+          "ci_excludes_zero_above_train_base": false,
+          "beats_placebo": true,
+          "bss_positive": false,
+          "all_met_eval_base": false
+        }
+      }
+    },
+    "NVDA": {
+      "holdout": {
+        "n": 41,
+        "label_counts": {
+          "Up": 16,
+          "Flat": 10,
+          "Down": 15
+        },
+        "pred_counts": {
+          "Up": 21,
+          "Flat": 0,
+          "Down": 20
+        },
+        "hit_rate": 0.3170731707317073,
+        "base_rate_eval_majority": {
+          "class": "Up",
+          "rate": 0.3902439024390244
+        },
+        "base_rate_train_majority": {
+          "class": "Flat",
+          "rate": 0.24390243902439024
+        },
+        "ci95_hit_minus_eval_base": [
+          -0.24390243902439024,
+          0.09756097560975613
+        ],
+        "ci95_hit_minus_train_base": [
+          -0.14634146341463417,
+          0.2926829268292683
+        ],
+        "placebo_hit_rate": 0.43902439024390244,
+        "train_class_freq": {
+          "Up": 0.3125,
+          "Flat": 0.34375,
+          "Down": 0.34375
+        },
+        "brier_model": 0.9826839341963978,
+        "brier_ref": 0.670874618902439,
+        "bss": -0.46478031290568644,
+        "mean_probs": {
+          "Up": 0.4825497266510723,
+          "Flat": 0.09306660310527493,
+          "Down": 0.4243836702436527
+        },
+        "success": {
+          "ci_excludes_zero_above_eval_base": false,
+          "ci_excludes_zero_above_train_base": false,
+          "beats_placebo": false,
+          "bss_positive": false,
+          "all_met_eval_base": false
+        }
+      },
+      "full_sample": {
+        "n": 105,
+        "label_counts": {
+          "Up": 36,
+          "Flat": 32,
+          "Down": 37
+        },
+        "pred_counts": {
+          "Up": 57,
+          "Flat": 0,
+          "Down": 48
+        },
+        "hit_rate": 0.3333333333333333,
+        "base_rate_eval_majority": {
+          "class": "Down",
+          "rate": 0.3523809523809524
+        },
+        "base_rate_train_majority": {
+          "class": "Flat",
+          "rate": 0.3047619047619048
+        },
+        "ci95_hit_minus_eval_base": [
+          -0.1333333333333333,
+          0.09547619047618923
+        ],
+        "ci95_hit_minus_train_base": [
+          -0.12380952380952381,
+          0.18095238095238098
+        ],
+        "placebo_hit_rate": 0.3333333333333333,
+        "train_class_freq": {
+          "Up": 0.3125,
+          "Flat": 0.34375,
+          "Down": 0.34375
+        },
+        "brier_model": 0.9233932607114044,
+        "brier_ref": 0.6679129464285715,
+        "bss": -0.3825054083004733,
+        "mean_probs": {
+          "Up": 0.48146339883088246,
+          "Flat": 0.11015025106557874,
+          "Down": 0.40838635010353874
+        },
+        "success": {
+          "ci_excludes_zero_above_eval_base": false,
+          "ci_excludes_zero_above_train_base": false,
+          "beats_placebo": false,
+          "bss_positive": false,
+          "all_met_eval_base": false
+        }
+      }
+    }
+  }
+}
