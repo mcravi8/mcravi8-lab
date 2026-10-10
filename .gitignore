@@ -1,0 +1,25 @@
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+
+# Regenerated inputs and model assets
+data/
+charts/
+*.parquet
+weights/
+models/
+*.safetensors
+*.pt
+*.pth
+*.bin
+*.ckpt
+
+# Python and local tooling
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mplconfig/
+.cache/
+.DS_Store
