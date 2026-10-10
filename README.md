@@ -1,8 +1,19 @@
 # mcravi8-lab: AI x finance experiments
 
-Small, reproducible experiments testing whether AI models can forecast stock-price direction from charts. Code, forecasts, evaluation methods and negative results are documented together.
+Experiments testing whether **AutoTrust's [JEV-27B-VL](https://huggingface.co/autotrust/JEV-27B-VL)** can forecast stock-price direction from charts, using model assets from **Hugging Face** and GPU compute on **Runpod**, alongside simpler CPU baselines. Code, forecasts, evaluation methods and negative results are documented together.
 
 [![CPU research checks](https://github.com/mcravi8/mcravi8-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/mcravi8/mcravi8-lab/actions/workflows/tests.yml)
+
+## Model and infrastructure
+
+| Component | Role in these experiments |
+| --- | --- |
+| **JEV-27B-VL** (`autotrust/JEV-27B-VL`) | Vision-language decision model used for zero-shot chart forecasts in Experiments 01-03 and the LoRA fine-tune in Experiment 04. |
+| **[Hugging Face](https://huggingface.co/autotrust/JEV-27B-VL)** | Source of the model weights, System 1 decision adapter, calibration files, serving code and model card. The LoRA workflow uses Transformers and PEFT. |
+| **[Runpod](https://www.runpod.io/)** | GPU hosting for historical JEV inference and LoRA training. Recorded weekly inference and training runs used NVIDIA H100 80GB GPUs; the weekly inference runs used `US-MO-1`. |
+| **vLLM + JEV System 1** | The self-hosted server exposes `POST /v1/decide` on port 8000. Chart images and options `["Up", "Flat", "Down"]` produce one probability per option. |
+
+See the [Experiment 01 serving instructions](01-jev-tsla-charts/README.md#future-pod-serving-setup) for the Runpod setup and the [Experiment 04 README](04-jev-lora-and-cnn/README.md#reproducible-training-preparation) for the LoRA workflow. Experiment 05's numerical baselines and the validation suite run on CPU; the results immediately below are from that CPU study.
 
 ## Latest findings
 
