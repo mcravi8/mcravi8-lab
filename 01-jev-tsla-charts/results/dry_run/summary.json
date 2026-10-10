@@ -1,0 +1,14 @@
+{
+  "synthetic": true,
+  "description": "Random fake-server probabilities, not JEV predictions or model performance",
+  "api": "decide",
+  "fake_seed": 17,
+  "input": "charts/index.csv",
+  "selection": "first 10 rows",
+  "scored": 10,
+  "failed": 0,
+  "resume_skipped": 10,
+  "additional_requests_on_resume": 0,
+  "probabilities_valid": true,
+  "gpu_or_runpod_started": false
+}

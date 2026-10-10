@@ -6,7 +6,7 @@ Can JEV-27B-VL, zero-shot, predict next-five-trading-day direction (Up, Flat, Do
 
 ## Status
 
-Stages 0, 1, and 2 are complete: repository scaffold, daily data download, and chart rendering. The pipeline stops here before GPU provisioning or model inference. The numbers below describe data and labels, not model performance.
+Stages 0, 1, and 2 are complete. Stage 3 now includes the HTTP scoring client and local fake-server validation. Ten rendered charts were scored with synthetic random probabilities, and resuming sent zero additional requests. No GPU or Runpod pod was started, no real JEV predictions were generated, and Stages 4 and 5 have not begun. The numbers below describe data and labels, not model performance.
 
 ## Reproduce Stages 1 and 2
 
@@ -80,14 +80,83 @@ Samples are selected by fixed temporal positions without inspecting their labels
 
 ![Sample 3](results/samples/sample_03.png)
 
+## Stage 3: scoring client
+
+Run from this experiment directory with the existing Python 3.11 virtual environment. `src/score.py` reads `charts/index.csv`, base64-encodes each PNG, and keeps true ticker, date, label, and return out of the inference payload. The default calls the model card's [System 1 decision endpoint](https://huggingface.co/autotrust/JEV-27B-VL#system-1-post-v1decide): `POST /v1/decide`, `kind="choice"`, image in `state`, `options=["Up","Flat","Down"]`, and `thinking="off"`. The question is exactly:
+
+> This is a 20-day daily stock chart. Over the next 5 trading days, will the price go Up, stay Flat, or go Down?
+
+The selectable `--api chat-logprobs` alternative uses the card's raw image template and the `jev-decision` LoRA. It reads A/B/C token logprobs, then applies the bundled decision-head biases and choice temperature. Those constants are sourced in `src/jev_api.py`; missing option logprobs fail. Both backends validate one finite probability per option and a sum of one.
+
+### Future pod serving setup
+
+These instructions are prepared for a later authorized GPU run. Use the planned Runpod network volume `jev-weights` in `US-MO-1`, mounted at `/workspace`, to persist `/workspace/models/JEV-27B-VL`. The model snapshot must include `serve.sh`, `serve_decide.py`, `adapter_vllm/`, and `calibration.json` as well as the weights. Use a compatible vLLM development build as required by the [serving notes](https://huggingface.co/autotrust/JEV-27B-VL#serving-notes); this CPU-only stage has not verified a pod's runtime or volume.
+
+The existing `~/Desktop/runpod-setup/remote_serve.sh` starts plain vLLM without System 1. The replacement `scripts/remote_serve.sh` delegates to the model's [upstream launcher](https://huggingface.co/autotrust/JEV-27B-VL/blob/main/serve.sh), preserving the decision LoRA, processed-logprob mode, trusted image template, and required eight-sequence server cap. Prepare the local launcher with:
+
+```sh
+cp scripts/remote_serve.sh ~/Desktop/runpod-setup/remote_serve.sh
+```
+
+Copy that launcher to the existing pod as `/workspace/remote_serve.sh` using its Runpod Connect SSH instructions. After the complete model snapshot and compatible vLLM are installed on the pod, run this **on the pod**:
+
+```sh
+MODEL_DIR=/workspace/models/JEV-27B-VL PORT=8000 MAX_MODEL_LEN=8192 \
+  bash /workspace/remote_serve.sh
+```
+
+Expose HTTP port 8000. Then run the scorer locally, substituting the actual pod ID:
+
+```sh
+cd ~/Desktop/WORK/ai-finance-experiments/01-jev-tsla-charts
+JEV_BASE_URL="https://<POD_ID>-8000.proxy.runpod.net" \
+  .venv/bin/python src/score.py --api decide \
+  --batch-size 16 --concurrency 4 --timeout 60 --retries 3
+```
+
+This writes `results/preds.csv` with exactly `file,ticker,end_date,label,p_up,p_flat,p_down,latency_ms`. `latency_ms` includes image encoding, HTTP calls, and retry delays for that chart. Batch size bounds each client work group; concurrency bounds simultaneous single-image calls, allowing vLLM to batch them internally.
+
+| CLI flag | Environment variable | Default |
+| --- | --- | --- |
+| `--base-url` | `JEV_BASE_URL` | Required |
+| `--api` | `JEV_API` | `decide` |
+| `--model` | `JEV_MODEL` | `jev-decision` for chat only |
+| `--batch-size` | `JEV_BATCH_SIZE` | `16` |
+| `--concurrency` | `JEV_CONCURRENCY` | `4` |
+| `--timeout` | `JEV_TIMEOUT` | `60` seconds per HTTP attempt |
+| `--retries` | `JEV_RETRIES` | `3` additional attempts |
+
+CLI values override environment values. `--index`, `--results-dir`, and `--limit` support local subsets and separate runs; paths must stay inside this experiment. An optional `JEV_API_KEY` is sent as a Bearer token for a protected model endpoint. Keep credentials in the ignored `.env` and export them into the shell; the script does not automatically load `.env`. Runpod management keys are not required by the scorer.
+
+Run the same command again to resume. Successful rows are flushed as they finish and skipped on restart; failed rows are retried. Torn or invalid probability rows are repaired. `results/score_errors.csv` records failures, attempt counts, mode, and API; a run with failures exits with status 1. The adjacent `*.meta.json` records hashes of the index and PNGs, the mode, prompt, API, and settings. Changing inputs or API requires a fresh `--results-dir`, preventing mixed runs. One process may write each prediction file at a time.
+
+For the chat alternative, replace `--api decide` with `--api chat-logprobs --model jev-decision` after serving the same decision LoRA. Add `--placebo` to score horizontally mirrored PNGs in memory into `results/preds_placebo.csv`. Add `--ticker-probe` instead to ask which ticker the image shows, with TSLA/NVDA options, on 20 charts: ten evenly spaced dates per ticker, chosen without labels. It writes `results/ticker_probe.csv` with truth and predicted ticker, both probabilities, and latency. The two sanity modes are mutually exclusive and each resumes independently.
+
+### CPU-only dry run
+
+In one terminal:
+
+```sh
+.venv/bin/python tests/fake_jev_server.py --port 8765 --seed 17
+```
+
+In another terminal:
+
+```sh
+.venv/bin/python src/score.py --base-url http://127.0.0.1:8765 \
+  --dry-run --limit 10 --batch-size 5 --concurrency 2 --timeout 10 --retries 1
+```
+
+The fake server returns random valid probabilities and only binds to loopback. `--dry-run` defaults to ten charts, permits only loopback endpoints, and separates synthetic outputs under `results/dry_run/`. No API key is sent. Committed `results/dry_run/preds.csv`, `preds.meta.json`, `score_errors.csv`, and `summary.json` document the ten-chart check on the actual rendered inputs: 10 successes, zero failures, and all 10 skipped on resume with zero extra HTTP requests. They are synthetic fixtures, never evidence of model accuracy. Stop the fake server with Ctrl-C when finished.
+
 ## Validation
 
-Five tests cover the hand-calculated trailing sample standard deviation, the strict Flat boundary, the 20-session window and five-session stride/horizon, input validation, and future-price mutations. Changing later OHLCV leaves historical volatility and the earlier chart PNG bytes unchanged. Real-data labels were independently recomputed with explicit loops and matched all 252 index rows. The generated images and sample provenance were inspected.
+The five pipeline tests cover the hand-calculated trailing sample standard deviation, the strict Flat boundary, the 20-session window and five-session stride/horizon, input validation, and future-price mutations. Changing later OHLCV leaves historical volatility and the earlier chart PNG bytes unchanged. Real-data labels were independently recomputed with explicit loops and matched all 252 index rows. The generated images and sample provenance were inspected. Ten scoring tests cover the exact image request and CSV schema, probability validation, ten-chart resume, interrupted CSV recovery, retry/error recovery, mode and image provenance, flipped pixels, the balanced ticker probe, and both System 1 APIs. Run all 15 tests with `.venv/bin/python -m unittest discover -s tests -v`; they use a local fake server and require no GPU.
 
 ## Limitations and next steps
 
 Yahoo's adjusted history is retrospective and can be revised; it is not a point-in-time archive. Checksums identify this run's local data snapshots. Adjacent 20-session images overlap. The experiment is zero-shot, uses only TSLA and NVDA, and does not study trading P&L. Fine-tuning and extra tickers are out of scope.
 
-Stage 3 will serve `autotrust/JEV-27B-VL` on one 80 GB A100/H100 via vLLM per the model card, using System 1 decision mode with options ["Up", "Flat", "Down"] and the prompt: "This is a 20-day daily stock chart. Over the next 5 trading days, will the price go Up, stay Flat, or go Down?" Scoring must be resumable and batched, with model weights cached on a RunPod network volume. Keep future HF tokens and RunPod keys only in an ignored .env file.
+The next GPU step is to serve JEV on one 80 GB A100/H100 with the setup above and collect real probabilities. That step remains unexecuted. Keep future HF tokens and Runpod keys only in an ignored `.env` file.
 
-Later evaluation will compare argmax hit rate and Brier score with the class-frequency baselines, bootstrap 95% hit-rate intervals with 1,000 resamples, plot calibration, and compare TSLA with NVDA. The brief defines model success only when the TSLA hit-rate confidence interval excludes the base rate. Planned sanity checks score horizontally flipped charts as a placebo and ask the model to identify the ticker on 20 charts. The brief reports that the model card's image calibration is unmeasured; verify this against the card before GPU scoring. The final stage will produce the three-panel LinkedIn figure and an honest model-results write-up.
+Later evaluation will compare argmax hit rate and Brier score with the class-frequency baselines, bootstrap 95% hit-rate intervals with 1,000 resamples, plot calibration, and compare TSLA with NVDA. The brief defines model success only when the TSLA hit-rate confidence interval excludes the base rate. Planned sanity checks score horizontally flipped charts as a placebo and ask the model to identify the ticker on 20 charts. The [current model card](https://huggingface.co/autotrust/JEV-27B-VL#limitations), checked 2026-10-09, reports vision benchmark calibration while retaining a limitation that image calibration has not been measured systematically. Calibration on these stock charts remains unmeasured. The final stage will produce the three-panel LinkedIn figure and an honest model-results write-up.
