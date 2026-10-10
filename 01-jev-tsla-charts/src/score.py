@@ -116,7 +116,8 @@ def image_url(row: dict, placebo: bool) -> str:
 
 
 def post_json(url: str, payload: dict, timeout: float, api_key: str) -> dict:
-    headers = {"Content-Type": "application/json", "Accept": "application/json"}
+    headers = {"Content-Type": "application/json", "Accept": "application/json",
+               "User-Agent": "jev-scorer/1.0"}  # Runpod proxy 403s Python-urllib UA
     if api_key:
         headers["Authorization"] = "Bearer " + api_key
     request = Request(url, data=json.dumps(payload, allow_nan=False).encode("utf-8"),
