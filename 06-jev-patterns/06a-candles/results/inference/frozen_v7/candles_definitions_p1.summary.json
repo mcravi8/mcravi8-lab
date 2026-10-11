@@ -1,0 +1,45 @@
+{
+  "scored": 1200,
+  "failed": 0,
+  "skipped": 0,
+  "repaired": 0,
+  "parity_mean_abs_diff": 0.002495543515515437,
+  "parity_max_abs_diff": 0.02016068916099903,
+  "parity_p90_abs_diff": 0.007938257052693501,
+  "parity_p90_chart_max_abs_diff": 0.016701601060024763,
+  "parity_flagged_charts": [],
+  "parity_argmax_agreement_count": 19,
+  "parity_near_tie_first_count": 1,
+  "parity_near_tie_second_count": 0,
+  "parity_near_tie_chart_count": 1,
+  "parity_near_tie_charts": [
+    {
+      "chart_number": 5,
+      "file": "charts/2d0033923033e388d63b.png",
+      "first_top_two_margin": 0.008478465326456519,
+      "second_top_two_margin": 0.02562190405270587,
+      "argmax_matched": false,
+      "argmax_mismatch_allowed": true,
+      "first_top_option_index": 4,
+      "second_top_option_index": 5
+    }
+  ],
+  "parity_allowed_argmax_mismatch_count": 1,
+  "parity_disallowed_argmax_mismatch_count": 0,
+  "parity_policy": {
+    "version": 7,
+    "n_charts": 20,
+    "atol": 0.01,
+    "drift_statistic": "mean_abs_diff",
+    "drift_population": "all chart-option probabilities, including flagged charts",
+    "flag_chart_max_abs_diff_above": 0.03,
+    "p90_method": "linear interpolation at (n - 1) * 0.9",
+    "require_argmax_agreement": true,
+    "argmax_mismatch_exception": {
+      "top_two_margin_lte": 0.01,
+      "pass": "either"
+    },
+    "argmax_tie_break": "first option in declared order"
+  },
+  "synthetic": false
+}

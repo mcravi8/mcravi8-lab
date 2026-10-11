@@ -1,0 +1,34 @@
+{
+  "scored": 1200,
+  "failed": 0,
+  "skipped": 0,
+  "repaired": 0,
+  "parity_mean_abs_diff": 0.001189594571249613,
+  "parity_max_abs_diff": 0.00926312782493588,
+  "parity_p90_abs_diff": 0.003746658627778635,
+  "parity_p90_chart_max_abs_diff": 0.007190505171014418,
+  "parity_flagged_charts": [],
+  "parity_argmax_agreement_count": 20,
+  "parity_near_tie_first_count": 0,
+  "parity_near_tie_second_count": 0,
+  "parity_near_tie_chart_count": 0,
+  "parity_near_tie_charts": [],
+  "parity_allowed_argmax_mismatch_count": 0,
+  "parity_disallowed_argmax_mismatch_count": 0,
+  "parity_policy": {
+    "version": 7,
+    "n_charts": 20,
+    "atol": 0.01,
+    "drift_statistic": "mean_abs_diff",
+    "drift_population": "all chart-option probabilities, including flagged charts",
+    "flag_chart_max_abs_diff_above": 0.03,
+    "p90_method": "linear interpolation at (n - 1) * 0.9",
+    "require_argmax_agreement": true,
+    "argmax_mismatch_exception": {
+      "top_two_margin_lte": 0.01,
+      "pass": "either"
+    },
+    "argmax_tie_break": "first option in declared order"
+  },
+  "synthetic": false
+}

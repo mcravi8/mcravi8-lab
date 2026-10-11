@@ -1,0 +1,2 @@
+file,phase,attempts,error,timestamp_utc
+,parity,1,Parity failed: top predictions differ outside near ties on 1/20 charts; scoring blocked,2026-10-11T08:25:32.613867+00:00

@@ -1,0 +1,45 @@
+{
+  "scored": 150,
+  "failed": 0,
+  "skipped": 0,
+  "repaired": 0,
+  "parity_mean_abs_diff": 0.001870063197582054,
+  "parity_max_abs_diff": 0.00845258553123851,
+  "parity_p90_abs_diff": 0.005071857289295959,
+  "parity_p90_chart_max_abs_diff": 0.0069851892366338455,
+  "parity_flagged_charts": [],
+  "parity_argmax_agreement_count": 20,
+  "parity_near_tie_first_count": 0,
+  "parity_near_tie_second_count": 1,
+  "parity_near_tie_chart_count": 1,
+  "parity_near_tie_charts": [
+    {
+      "chart_number": 10,
+      "file": "charts/real/861df3c80e46a2df7c26_fixed100.png",
+      "first_top_two_margin": 0.018835706195617974,
+      "second_top_two_margin": 0.009092890454817093,
+      "argmax_matched": true,
+      "argmax_mismatch_allowed": false,
+      "first_top_option_index": 6,
+      "second_top_option_index": 6
+    }
+  ],
+  "parity_allowed_argmax_mismatch_count": 0,
+  "parity_disallowed_argmax_mismatch_count": 0,
+  "parity_policy": {
+    "version": 7,
+    "n_charts": 20,
+    "atol": 0.01,
+    "drift_statistic": "mean_abs_diff",
+    "drift_population": "all chart-option probabilities, including flagged charts",
+    "flag_chart_max_abs_diff_above": 0.03,
+    "p90_method": "linear interpolation at (n - 1) * 0.9",
+    "require_argmax_agreement": true,
+    "argmax_mismatch_exception": {
+      "top_two_margin_lte": 0.01,
+      "pass": "either"
+    },
+    "argmax_tie_break": "first option in declared order"
+  },
+  "synthetic": false
+}

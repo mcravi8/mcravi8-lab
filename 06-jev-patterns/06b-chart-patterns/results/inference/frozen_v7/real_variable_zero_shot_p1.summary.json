@@ -1,0 +1,55 @@
+{
+  "scored": 150,
+  "failed": 0,
+  "skipped": 0,
+  "repaired": 0,
+  "parity_mean_abs_diff": 0.0018218596504935756,
+  "parity_max_abs_diff": 0.014389242778660272,
+  "parity_p90_abs_diff": 0.004773028962122748,
+  "parity_p90_chart_max_abs_diff": 0.012695383303111374,
+  "parity_flagged_charts": [],
+  "parity_argmax_agreement_count": 19,
+  "parity_near_tie_first_count": 2,
+  "parity_near_tie_second_count": 1,
+  "parity_near_tie_chart_count": 2,
+  "parity_near_tie_charts": [
+    {
+      "chart_number": 1,
+      "file": "charts/real/00f7a0cc61f312b3712b_variable.png",
+      "first_top_two_margin": 0.0005665942015816439,
+      "second_top_two_margin": 0.008037434367604707,
+      "argmax_matched": true,
+      "argmax_mismatch_allowed": false,
+      "first_top_option_index": 3,
+      "second_top_option_index": 3
+    },
+    {
+      "chart_number": 15,
+      "file": "charts/real/bf9b23fe9730f0305ed6_variable.png",
+      "first_top_two_margin": 0.0007055843097708014,
+      "second_top_two_margin": 0.01976204599286252,
+      "argmax_matched": false,
+      "argmax_mismatch_allowed": true,
+      "first_top_option_index": 2,
+      "second_top_option_index": 6
+    }
+  ],
+  "parity_allowed_argmax_mismatch_count": 1,
+  "parity_disallowed_argmax_mismatch_count": 0,
+  "parity_policy": {
+    "version": 7,
+    "n_charts": 20,
+    "atol": 0.01,
+    "drift_statistic": "mean_abs_diff",
+    "drift_population": "all chart-option probabilities, including flagged charts",
+    "flag_chart_max_abs_diff_above": 0.03,
+    "p90_method": "linear interpolation at (n - 1) * 0.9",
+    "require_argmax_agreement": true,
+    "argmax_mismatch_exception": {
+      "top_two_margin_lte": 0.01,
+      "pass": "either"
+    },
+    "argmax_tie_break": "first option in declared order"
+  },
+  "synthetic": false
+}
