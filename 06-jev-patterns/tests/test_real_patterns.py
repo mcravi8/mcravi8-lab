@@ -3,6 +3,8 @@ import importlib.util
 from pathlib import Path
 import sys
 import unittest
+from unittest.mock import patch
+from types import SimpleNamespace
 import numpy as np
 import pandas as pd
 ROOT=Path(__file__).resolve().parents[1]
@@ -78,6 +80,27 @@ class RealPatternTests(unittest.TestCase):
         self.assertEqual(a,[r for r in b if r['completion']<cut])
         self.assertEqual(errors,[e for e in other if e['end']<cut])
 
+    def test_external_first_confirmation_is_not_suppressed_by_future_candidate(self):
+        frame=bars(np.full(160,100.));dates=frame.index
+        frame.loc[dates[121],'Close']=99.8;frame.loc[dates[125],'Close']=94.
+        def proposal(ticker,visible,pivots,config):
+            end=dates.get_loc(visible.index[-1])
+            if not 119<=end<=122:return None
+            return {'start':dates[80],'points':{'A':(dates[80],110.),'B':(dates[90],100.),
+                    'C':(dates[110],110.),'D':(dates[end],100.)}}
+        upstream=SimpleNamespace(**{f:(proposal if label=='Double Top' else lambda *args:None)
+                                    for label,f in external.FUNCTIONS.items()})
+        def volatility(data):
+            values=np.ones(len(data));values[119]=50.;return values
+        with patch.object(external,'load_upstream',return_value=upstream), \
+             patch.object(external,'pivot_frame',return_value=pd.DataFrame({'P':[1]*5})), \
+             patch.object(external,'atr',side_effect=volatility):
+            prefix,errors=external.scan(frame.iloc[:123],'FIXTURE')
+            full,other=external.scan(frame,'FIXTURE')
+        self.assertFalse(errors+other)
+        self.assertEqual([e['completion'] for e in prefix],[121])
+        self.assertEqual(prefix,full)
+
     def test_external_completion_boundaries_use_structure_not_last_close(self):
         index=pd.bdate_range('2010-01-01',periods=70)
         result={'points':{'A':(index[10],110),'B':(index[20],100),
@@ -116,6 +139,8 @@ class RealPatternTests(unittest.TestCase):
         fixed=pd.read_csv(ROOT/'06b-chart-patterns/results/real_fixed100_index.csv',keep_default_na=False)
         self.assertEqual(index.id.tolist(),fixed.id.tolist())
         self.assertTrue(fixed.n_bars.eq(100).all())
+        self.assertTrue((fixed.start_bar==fixed.end_bar-99).all())
+        self.assertTrue(fixed.framing.eq('fixed_100').all())
         self.assertTrue(index.n_bars.between(60,120).all())
         self.assertTrue((pd.to_datetime(index.detector_input_start)<=pd.to_datetime(index.window_start)).all())
         for split,group in index.groupby('split'):

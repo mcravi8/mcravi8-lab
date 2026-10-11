@@ -220,11 +220,12 @@ def build(reports,no_render=False):
             row['bars_file' if kind=='variable' else 'fixed_bars_file']=bars.as_posix()
             artifacts.append({'id':r['id'],'framing':kind,'file':png.as_posix(),'bars_file':bars.as_posix(),
                               'png_sha256':None if no_render else digest(ROOT/png),'bars_sha256':digest(ROOT/bars)})
+        row['framing']='variable'
         rows.append(row)
         if (number+1)%100==0:print(f'Rendered {number+1}/{len(selected)} real parents (two framings)',flush=True)
     index=pd.DataFrame(rows)
     index.to_csv(ROOT/'results/real_index.csv',index=False)
-    fixed=index.copy();fixed['file']=fixed.fixed_file;fixed['bars_file']=fixed.fixed_bars_file;fixed['window_start']=fixed.fixed_window_start;fixed['n_bars']=100
+    fixed=index.copy();fixed['file']=fixed.fixed_file;fixed['bars_file']=fixed.fixed_bars_file;fixed['window_start']=fixed.fixed_window_start;fixed['start_bar']=fixed.end_bar-99;fixed['n_bars']=100;fixed['framing']='fixed_100'
     fixed.to_csv(ROOT/'results/real_fixed100_index.csv',index=False)
     if not no_render:review_grids(index)
     agreement={}
@@ -263,13 +264,14 @@ def main():
     cache=ROOT/'data/real_scan';cache.mkdir(parents=True,exist_ok=True)
     sources={name:digest(ROOT/'src'/name) for name in ['external_detector.py','zigzag_detector.py']}
     stamp={'rules_sha256':digest(RULES_PATH),'source_sha256':sources,'data_manifest_sha256':digest(EXP/'shared/results/data_manifest.json')}
+    # Reusing detector events must not render against changed raw snapshots.
+    for ticker,info in data_manifest['tickers'].items():
+        if digest(EXP/'shared/data'/f'{ticker}.parquet')!=info['sha256']:raise ValueError('Input snapshot hash changed')
     if args.reuse_scan:
         if json.loads((cache/'provenance.json').read_text())!=stamp:raise ValueError('Cached scan provenance changed')
         reports=[json.loads((cache/f'{ticker}.json').read_text()) for ticker in data_manifest['tickers']]
     else:
         external_detector.load_upstream(fetch=True)
-        for ticker,info in data_manifest['tickers'].items():
-            if digest(EXP/'shared/data'/f'{ticker}.parquet')!=info['sha256']:raise ValueError('Input snapshot hash changed')
         reports=[];started=time.monotonic()
         with ProcessPoolExecutor(max_workers=args.workers) as pool:
             futures={pool.submit(scan_ticker,t):t for t in data_manifest['tickers']}

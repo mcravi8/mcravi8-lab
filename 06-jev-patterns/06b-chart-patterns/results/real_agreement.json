@@ -25,8 +25,8 @@
     "Double Bottom": {
       "external_events": 52,
       "zigzag_events": 610,
-      "matched_events": 16,
-      "positive_jaccard": 0.02476780185758514,
+      "matched_events": 15,
+      "positive_jaccard": 0.023183925811437404,
       "denominator": "one-to-one union of completed detector events before span, split, exclusivity and sample filters"
     },
     "Triangle": {
@@ -54,7 +54,7 @@
   },
   "external_errors": 0,
   "excluded": {
-    "span_or_padding": 123,
+    "span_or_padding": 122,
     "multiple_labels": 24,
     "completion_not_retained": 31,
     "split_or_history_boundary": 1,

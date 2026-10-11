@@ -1,0 +1,111 @@
+{
+  "candles": [
+    {
+      "label": "Doji",
+      "id": "0d67b45f54d68e9b79ad",
+      "split": "train",
+      "file": "06-jev-patterns/06a-candles/charts/0d67b45f54d68e9b79ad.png",
+      "sha256": "b74c5443dae3d7ed917d9f3d46631630ec383550588738cf41c6aaf4a6366820"
+    },
+    {
+      "label": "Hammer",
+      "id": "0792cce6ac17b9cb811c",
+      "split": "train",
+      "file": "06-jev-patterns/06a-candles/charts/0792cce6ac17b9cb811c.png",
+      "sha256": "34dfbf146b4c74f4a4d3c53d91439d3aaf871b643d3961d5c761c7164f1fe47f"
+    },
+    {
+      "label": "Shooting Star",
+      "id": "08bad8ff4a284643c4f6",
+      "split": "train",
+      "file": "06-jev-patterns/06a-candles/charts/08bad8ff4a284643c4f6.png",
+      "sha256": "ff251fb7a5987503e0f1da3337717a28341599b6cbd4f1ce34899782ef7c10e6"
+    },
+    {
+      "label": "Bullish Engulfing",
+      "id": "0877719e6cfd5e4d36ab",
+      "split": "train",
+      "file": "06-jev-patterns/06a-candles/charts/0877719e6cfd5e4d36ab.png",
+      "sha256": "8fa4007fa5faef46c32e37d62fc8e902a2c9f30df21210354a8caa4274664a7f"
+    },
+    {
+      "label": "Bearish Engulfing",
+      "id": "0d072d9caf7b6f69cdc0",
+      "split": "train",
+      "file": "06-jev-patterns/06a-candles/charts/0d072d9caf7b6f69cdc0.png",
+      "sha256": "69d2821551283386da2732a7781ddd125dd27829a330c9e6be2520b549db8114"
+    },
+    {
+      "label": "Morning Star",
+      "id": "080db6626e2e2ef4740f",
+      "split": "train",
+      "file": "06-jev-patterns/06a-candles/charts/080db6626e2e2ef4740f.png",
+      "sha256": "ea31a96052089b0b4b7aaa32f645af35f5007c7274c970d70dab99f263be44d8"
+    },
+    {
+      "label": "Evening Star",
+      "id": "1097c6682bd2e14620e9",
+      "split": "train",
+      "file": "06-jev-patterns/06a-candles/charts/1097c6682bd2e14620e9.png",
+      "sha256": "4307e6c18ec6c13227880d607b6ca2bb6c9c148b6bd34bde223d4f03056c088d"
+    },
+    {
+      "label": "None",
+      "id": "04b9d360ebb67badaec5",
+      "split": "train",
+      "file": "06-jev-patterns/06a-candles/charts/04b9d360ebb67badaec5.png",
+      "sha256": "c6221aadcecf284d589bdd48a7f2636920b1f1e317a0beb5c5081a392be0f5a0"
+    }
+  ],
+  "patterns": [
+    {
+      "label": "Head and Shoulders",
+      "seed": 2061570915,
+      "generator_seed": 606226,
+      "sha256": "670825dbc4da2afe2606226f568d8e478f52ca72e71d1750a433906c14805762"
+    },
+    {
+      "label": "Inverse Head and Shoulders",
+      "seed": 1647763487,
+      "generator_seed": 606226,
+      "sha256": "a073e3d552b70f69e252ff5b408fdbc9577e1a414759abb464872620573aaa98"
+    },
+    {
+      "label": "Double Top",
+      "seed": 1276164284,
+      "generator_seed": 606226,
+      "sha256": "4464d890b1460b251ccae2f6c296625efd11d704ddac59f6e9a4ef637de31767"
+    },
+    {
+      "label": "Double Bottom",
+      "seed": 1237233449,
+      "generator_seed": 606226,
+      "sha256": "d084f162021dc0d1298cc1339f03d5aeea8f0fe37a942c0d40b6f530bad72288"
+    },
+    {
+      "label": "Triangle",
+      "seed": 1542045810,
+      "generator_seed": 606226,
+      "sha256": "c319f1e386fb62dc3f7241b453486996bf06d575789f4fcd5bd1f6bfc31f8956"
+    },
+    {
+      "label": "Bull Flag",
+      "seed": 344915906,
+      "generator_seed": 606226,
+      "sha256": "0eda2ba445fee2a6d16087d8c900ffb2287abb98bf0cd1d22b8c7ab028926b2f"
+    },
+    {
+      "label": "None",
+      "seed": 305964019,
+      "generator_seed": 606226,
+      "sha256": "ce35d0b278f21131ed97c90e508ceea81dd25b7b4e191b50789d702e37f0db6d"
+    }
+  ],
+  "synthetic_reference_seed": 606226,
+  "selection": "Fixed before inference. Candles use first clear training ID per class. Pattern sketches use seven independently seeded non-evaluation clean parents.",
+  "training_results": "Candle reference IDs are training-only; their own scored training rows are descriptive, never primary evaluation.",
+  "boards": {
+    "candles.png": "1e408a0470c8a98c31b81976f8783adbf9a46b9b651f9f541f5f60f19e3416e3",
+    "patterns.png": "0f949624f824c9cabefb8eef3e46140d471563e09c87fe03f75f58be3f2f3090"
+  }
+}

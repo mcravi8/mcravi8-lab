@@ -93,7 +93,7 @@ def scan(frame, ticker):
     """Scan every historical prefix and then confirm within available final bars."""
     upstream = load_upstream(); config = RULES['external']
     pivots = cached_pivots(frame); volatility = atr(frame)
-    events, errors, seen = [], [], set()
+    confirmed, errors = {}, []
     for end in range(config['lookback'] - 1, len(frame)):
         start = end-config['lookback']+1
         visible = frame.iloc[start:end+1]
@@ -110,7 +110,9 @@ def scan(frame, ticker):
                 origin = int(frame.index.get_loc(result['start']))
                 point_ids = tuple(str(v[0]) for k,v in result['points'].items() if k != list(result['points'])[-1])
                 key = (label, point_ids)
-                if key in seen:
+                # A candidate confirmed further in the future must not suppress
+                # a later proposal that confirms earlier under its causal ATR.
+                if key in confirmed and confirmed[key]['completion']<=end+1:
                     continue
                 limits = boundaries(result, label, frame.index)
                 for q in range(end+1, min(len(frame), end+1+config['completion_search_bars'])):
@@ -118,16 +120,18 @@ def scan(frame, ticker):
                                if direction*(frame.Close.iloc[q]-(m*q+b)) > config['breakout_atr_buffer']*volatility[end]]
                     if matched:
                         direction,m,b = matched[0]
-                        events.append({'label':label,'start':origin,'completion':q,'detected_at':end,
+                        event={'label':label,'start':origin,'completion':q,'detected_at':end,
                                        'input_start':start,'direction':direction,'slope':m,'intercept':b,
                                        'margin_atr':float(direction*(frame.Close.iloc[q]-(m*q+b))/volatility[end]),
                                        'height_atr':float((visible.High.max()-visible.Low.min())/volatility[end]),
-                                       'source_points':{k:[int(frame.index.get_loc(v[0])),float(v[1])] for k,v in result['points'].items()}})
-                        seen.add(key); break
+                                       'source_points':{k:[int(frame.index.get_loc(v[0])),float(v[1])] for k,v in result['points'].items()}}
+                        if key not in confirmed or q<confirmed[key]['completion']:
+                            confirmed[key]=event
+                        break
             except (IndexError, KeyError, ValueError, AssertionError, ZeroDivisionError) as exc:
                 # Errors are reported and affected windows are excluded, never None.
                 errors.append({'ticker':ticker,'end':end,'label':label,'error':type(exc).__name__+': '+str(exc)})
-    return events, errors
+    return sorted(confirmed.values(),key=lambda e:(e['completion'],e['label'],e['start'])), errors
 
 
 if __name__ == '__main__':

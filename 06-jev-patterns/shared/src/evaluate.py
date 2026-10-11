@@ -212,8 +212,24 @@ def select_clear_subset(frame):
     return subset
 
 
+def select_cohort(frame, origin=None, split=None):
+    """Explicitly separate real/synthetic origins and training/evaluation rows."""
+    subset=frame.copy()
+    for column,value in [('data_origin',origin),('split',split)]:
+        if value is not None:
+            if column not in subset:raise ValueError(f'Filtering requires {column}')
+            subset=subset[subset[column].eq(value)]
+    if subset.empty:raise ValueError('Selected cohort has no rows')
+    return subset.reset_index(drop=True)
+
+
 def infer_synthetic_dataset(frame, metadata):
     """Dataset grouping is separate from whether predictions came from a fake server."""
+    if 'data_origin' in frame:
+        origins=set(frame.data_origin)
+        if len(origins)!=1 or not origins.issubset({'market','synthetic'}):
+            raise ValueError('Separate mixed origins with --data-origin before evaluation')
+        return origins=={'synthetic'}
     if "synthetic_dataset" in metadata:
         if not isinstance(metadata["synthetic_dataset"], bool):
             raise ValueError("synthetic_dataset metadata must be boolean")
@@ -258,22 +274,30 @@ def main():
     parser.add_argument("--compare", type=Path)
     parser.add_argument("--out", required=True, type=Path)
     parser.add_argument("--synthetic", action="store_true")
+    parser.add_argument("--data-origin", choices=['market','synthetic'])
+    parser.add_argument("--split", choices=['train','test','eval'])
     parser.add_argument("--clear-only", action="store_true", help="Analyze the prespecified clear geometry subset")
     parser.add_argument("--resamples", type=int, default=2000)
     args = parser.parse_args()
     frame, options, metadata = read_predictions(args.predictions)
     full_count = len(frame)
+    frame = select_cohort(frame,args.data_origin,args.split)
     if args.clear_only:
         frame = select_clear_subset(frame)
-    synthetic = args.synthetic or infer_synthetic_dataset(frame, metadata)
+    inferred = infer_synthetic_dataset(frame, metadata)
+    if args.synthetic and 'data_origin' in frame and not inferred:
+        raise ValueError('--synthetic conflicts with market origin')
+    synthetic = args.synthetic or inferred
     metrics = evaluate_frame(frame, options, synthetic=synthetic, bootstrap_resamples=args.resamples)
     metrics["subset"] = {"name": "clear" if args.clear_only else "all", "selected": len(frame), "available": full_count}
+    metrics["subset"].update(data_origin=args.data_origin,split=args.split)
     metrics["input_metadata"] = metadata
     metrics["synthetic_dataset"] = synthetic
     fake = metadata.get("prediction_origin") == "fake_server" or (metadata.get("synthetic") is True and metadata.get("prediction_origin") != "baseline")
     metrics["evidence_status"] = "Infrastructure smoke-check predictions; no model-performance evidence" if fake else "Evaluation of recorded predictions"
     if args.compare:
         right, other_options, other_metadata = read_predictions(args.compare)
+        right = select_cohort(right,args.data_origin,args.split)
         if args.clear_only:
             right = select_clear_subset(right)
         if other_options != options:

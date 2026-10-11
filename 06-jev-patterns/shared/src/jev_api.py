@@ -40,13 +40,23 @@ def probabilities(values, n):
     return [float(x / total) for x in values]
 
 
-def build_payload(image_url, options, question, context_prefix=""):
+def build_payload(image_url, options, question, context_prefix="", reference_images=()):
     if not isinstance(question, str) or not question.strip() or not isinstance(context_prefix, str):
         raise ValueError("A question and optional text context are required")
     if not isinstance(image_url, str) or not image_url.startswith("data:image/png;base64,"):
         raise ValueError("Expected a base64 PNG data URL")
     text = (context_prefix.strip() + '\n\n' if context_prefix.strip() else '') + question.strip()
-    return {"kind": "choice", "state": ["Chart: ", {"image": image_url}],
+    if not isinstance(reference_images, (list, tuple)) or len(reference_images) > 7:
+        raise ValueError("At most seven reference images plus one target are supported")
+    state = []
+    for reference in reference_images:
+        if not isinstance(reference, dict) or set(reference) != {"image", "caption"}:
+            raise ValueError("References need image and caption fields")
+        if not isinstance(reference['image'], str) or not reference['image'].startswith('data:image/png;base64,') or not isinstance(reference['caption'], str):
+            raise ValueError("References need a base64 PNG and text caption")
+        state.extend([reference['caption'], {"image": reference['image']}])
+    state.extend(["Target chart to classify: " if state else "Chart: ", {"image": image_url}])
+    return {"kind": "choice", "state": state,
             "question": text, "options": options_list(options), "thinking": "off",
             "strategy": CHOICE_STRATEGY}
 

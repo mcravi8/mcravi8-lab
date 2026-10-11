@@ -1,0 +1,33 @@
+{
+  "gpu_or_real_model_started": false,
+  "runbook_executed": false,
+  "target_pngs_verified": 5578,
+  "unique_numeric_csvs_validated": 4778,
+  "frozen_assets_verified": 5608,
+  "real_input_snapshots_verified": 50,
+  "collections": {
+    "candles": 1200,
+    "real_variable": 150,
+    "real_fixed100": 150,
+    "synthetic_variable": 1200,
+    "synthetic_fixed100": 1200,
+    "candles_style_candle": 200,
+    "candles_style_ohlc": 200,
+    "candles_style_line": 200,
+    "patterns_style_candle": 200,
+    "patterns_style_ohlc": 200,
+    "patterns_style_line": 200,
+    "candles_mirror_time": 1200,
+    "real_mirror_time": 150,
+    "synthetic_mirror_time": 1200,
+    "patterns_mirror_price": 878
+  },
+  "config_sha256": "e1e8ef17d3161827ef2c9dabaf5d4edbdd938a4744aea16d5b55c921b7068c45",
+  "checks": [
+    "All frozen asset SHA-256s",
+    "All target PNG dimensions/formats/metadata",
+    "Numeric OHLCV validity and bar counts",
+    "Market numeric start/end dates match index",
+    "All real raw snapshot, code/rules and image/bars manifest hashes"
+  ]
+}

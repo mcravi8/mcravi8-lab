@@ -1,8 +1,8 @@
 {
   "rules_sha256": "d82a72cca09dcfc289e34f6381f670be326d804a539c3819f8480c37cb543c60",
   "sources_sha256": {
-    "detect_patterns.py": "dd41a9119b5dae778c400e4f289480f4ac24c5337b806378d214d8fc93ee510e",
-    "external_detector.py": "e429bd51889a4d49ae4ca7bfe9bfe4f8765d0775e3f29841233f4fbec21a1c7e",
+    "detect_patterns.py": "8484525df3f3ea081c848c367a9390fc5319be82f4a4c367da525047cf3a372c",
+    "external_detector.py": "dde699e50b3fcc18f9d7306150efcb559d09f52828a361fca9452690dca55c7b",
     "zigzag_detector.py": "b83aa95b5847ffffbea2480da37335ebfcc7a00dec75749cabc61e6b691530f5"
   },
   "renderer_sha256": "2481ad89e155e6a77a434cbd4f983d30f47ade57d978d1d867454e2d03777b6d",
@@ -427,8 +427,8 @@
   },
   "n_real_parents": 150,
   "n_images": 300,
-  "real_index_sha256": "d2f4944fb3583781c43e5a547a0aced1bf579fdbf1384277e4f2f922f21d262e",
-  "fixed_index_sha256": "d3754c350a1e9b400030e8aa45e9508d01515625a5dad9b8701b21226bbba81b",
+  "real_index_sha256": "0e780b8f7fbd30bc16296ba6eda82ecfe49d060fb290094ddb81282515a101b3",
+  "fixed_index_sha256": "df6b62132e8b83840cfed8cab147b569f5bb194b6a4f93a88318b27d95041f15",
   "no_gpu_or_model_calls": true,
   "artifacts": [
     {

@@ -107,6 +107,14 @@ class Client:
         self.args = args
         self.base = base_endpoint(args.base_url, args.dry_run)
         self.api_key = '' if args.dry_run else os.environ.get('JEV_API_KEY', '')
+        self.references = []
+        for path in args.reference_image:
+            with Image.open(path) as reference:
+                if reference.format != 'PNG':
+                    raise ValueError('Reference images must be PNG')
+                buffer = BytesIO(); reference.convert('RGB').save(buffer, format='PNG')
+            self.references.append({'image': 'data:image/png;base64,' + base64.b64encode(buffer.getvalue()).decode(),
+                                    'caption': args.reference_caption})
         info, _ = self.http('/v1/decide/info')
         if info.get('synthetic') and not args.dry_run:
             raise ValueError("Fake server requires --dry-run")
@@ -144,7 +152,7 @@ class Client:
             image = Image.new('RGB', image.size, 'white')
         buffer = BytesIO(); image.save(buffer, format='PNG')
         url = 'data:image/png;base64,' + base64.b64encode(buffer.getvalue()).decode()
-        payload = build_payload(url, self.args.options, self.args.question, self.args.context)
+        payload = build_payload(url, self.args.options, self.args.question, self.args.context, self.references)
         response, attempts = self.http('/v1/decide', payload)
         p = parse_probabilities(response, self.args.options, self.identity)
         return p, round((time.perf_counter() - started) * 1000, 3), attempts
@@ -238,6 +246,7 @@ def run(args):
         client = Client(args)
         identity = {'index_sha256': digest(index), 'image_sha256': {r['file']:digest(local_path(args.root,r['file'])) for r in rows},
             'options': args.options, 'question': args.question, 'context': args.context, 'control': args.control,
+            'reference_images': [{'sha256':digest(p),'caption':args.reference_caption} for p in args.reference_image],
             'server_identity': client.identity, 'endpoint': client.base, 'synthetic': args.dry_run,
             'prediction_origin': 'fake_server' if args.dry_run else 'jev',
             'synthetic_dataset': all(bool(r.get('template_id')) and not r.get('end_date') for r in rows),
@@ -295,6 +304,8 @@ def arguments(argv=None):
     group.add_argument('--options-file', type=Path)
     p.add_argument('--question', required=True)
     p.add_argument('--context-file', type=Path)
+    p.add_argument('--reference-image', type=Path, action='append', default=[])
+    p.add_argument('--reference-caption', default='Labelled reference examples; use these only as definitions. Classify the separate target chart.')
     p.add_argument('--control', choices=('image','mirror','blank'), default='image')
     p.add_argument('--base-url', default=os.getenv('JEV_BASE_URL',''))
     p.add_argument('--served-model-name', default=os.getenv('JEV_SERVED_MODEL',MODEL))
@@ -311,6 +322,8 @@ def arguments(argv=None):
     if args.options_file:
         args.options = json.loads(args.options_file.read_text())
     args.context = args.context_file.read_text() if args.context_file else ''
+    if len(args.reference_image) > 7:
+        p.error('At most seven reference images plus one target are supported')
     if min(args.batch_size,args.concurrency) < 1 or not math.isfinite(args.timeout) or args.timeout <= 0 or args.retries < 0 or (args.limit is not None and args.limit < 1):
         p.error('Invalid batch, concurrency, timeout, retries or limit')
     if not args.base_url:

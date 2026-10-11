@@ -63,7 +63,7 @@ The prepared fixed-100 control interpolates each same template/noise realization
   --fixed-bars 100 --output-dir 06-jev-patterns/06b-chart-patterns/data/fixed_100
 ```
 
-The primary Day 1 set does not generate this optional control. Day 2 real-data framing must use genuine fixed historical windows instead. Shared rendering also supports OHLC/line variants and horizontal mirrors. A horizontal mirror reverses **time**, not prices; it does not exchange H&S with Inverse or Double Top with Double Bottom, contrary to the preserved planning note. Price inversion creates those counterparts.
+Day 2 now generates this paired control through shared/src/prepare_day2.py. Real-data fixed framing uses genuine historical windows instead. Shared rendering also supports OHLC/line variants and horizontal mirrors. A horizontal mirror reverses **time**, not prices; it does not exchange H&S with Inverse or Double Top with Double Bottom, contrary to the preserved planning note. Price inversion creates those counterparts.
 
 
 ## Day 2 real-market dataset
@@ -74,7 +74,7 @@ The frozen scan covered all **50 tickers**, adjusted daily OHLCV from **2005-01-
 
 [BennyThadikaran/stock-pattern at revision 85c710d](https://github.com/BennyThadikaran/stock-pattern/tree/85c710daa5809f8f85c9e6f3f98ceea200317566) provides all six required functions in [src/utils.py](https://github.com/BennyThadikaran/stock-pattern/blob/85c710daa5809f8f85c9e6f3f98ceea200317566/src/utils.py): `find_hns`, `find_reverse_hns`, `find_double_top`, `find_double_bottom`, `find_triangles`, and `find_bullish_flag`. Its [LICENSE](https://github.com/BennyThadikaran/stock-pattern/blob/85c710daa5809f8f85c9e6f3f98ceea200317566/LICENSE) is **GPL-3.0**. We use the public detector for this research scan; its unmodified source and license are downloaded into ignored `.cache/`, checksum-verified, and not vendored. This is not a claim that an ignored cache removes upstream licensing obligations. The revision and SHA-256s are recorded in [real_rules.json](config/real_rules.json).
 
-The external functions propose pre-breakout structures. Our adapter scans every historical 120-bar prefix and confirms a close beyond the proposed boundary within the next 15 available bars, with a 0.1 ATR buffer. Confirmation is included in the visible chart. An exact vectorized cache preserves upstream pivot semantics—including its actual 7-left/5-right center—verified against the original function.
+The external functions propose pre-breakout structures. Our adapter scans every historical 120-bar prefix and confirms a close beyond the proposed boundary within the next 15 available bars, with a 0.1 ATR buffer. Confirmation is included in the visible chart. Repeated proposals are resolved by earliest causal confirmation; a later future break cannot suppress an earlier confirmation. A targeted regression fixture caught that ordering bug during final CPU review. The full corrected scan preserved all 150 selected IDs, while raw Double Bottom matches changed from 16 to 15. [Earlier feasibility results](results/real_feasibility_v2.json) preserve the pre-fix counts; final reports supersede them. An exact vectorized cache preserves upstream pivot semantics—including its actual 7-left/5-right center—verified against the original function.
 
 The [independent detector](src/zigzag_detector.py) consumes closing prices and causal ATR-scaled directional changes directly. It does not consume upstream pivots, candidates, volume tests or algorithms. Reversal scales are 1.5/2.5 ATR with a minimum 0.8% move; adjacent turns are at least three bars apart. Normalized tolerances include peak mismatch <=20% of height, shoulder mismatch <=25%, head prominence >=12%, neckline tilt <=25%, and minimum height 2.5 ATR. Triangles must narrow to <=70% of initial width; a separately fitted downward flag channel follows a >=4 ATR pole, retraces <=50%, and has residual width <=40% of the pole. Breakout clearance is 0.15 ATR. The complete rules, timing and bounds are in the config.
 
@@ -85,12 +85,12 @@ Agreement pairs same-class completed events one-to-one within five bars, with sp
 | Head and Shoulders | 5 / 1 | 5 / 1 | 6 | 6.60% |
 | Inverse Head and Shoulders | 2 / 0 | 2 / 0 | 2 | 5.97% |
 | Double Top | 1 / 0 | 1 / 0 | 1 | 2.11% |
-| Double Bottom | 1 / 0 | 1 / 0 | 1 | 2.48% |
+| Double Bottom | 1 / 0 | 1 / 0 | 1 | 2.32% |
 | Triangle | 1 / 3 | 1 / 3 | 4 | 1.27% |
 | Bull Flag | 24 / 16 | 22 / 14 | 36 | 3.38% |
 | None | 318 / 188 | 50 / 50 | 100 | 2.90%* |
 
-Positive agreement is **matched / (external + independent − matched)** before framing, exclusivity, split and sample filters. Raw detector/matched totals are H&S 102/221/20; inverse 119/236/20; top 46/487/11; bottom 52/610/16; triangle 65/1,774/23; flag 293/4,106/144. This deliberately differs from reporting 100% on the already-filtered agreements.
+Positive agreement is **matched / (external + independent − matched)** before framing, exclusivity, split and sample filters. Raw detector/matched totals are H&S 102/221/20; inverse 119/236/20; top 46/487/11; bottom 52/610/15; triangle 65/1,774/23; flag 293/4,106/144. This deliberately differs from reporting 100% on the already-filtered agreements.
 
 *None uses the union of negative decisions on 23,113 prespecified 120-bar absence-screen windows: external negative 17,352, independent negative 617, both negative 506. Its denominator is different from positive events. These disagreements reflect different definitions/sensitivity and do **not** measure expert label accuracy. There were **zero upstream exceptions**. [Counts](results/real_label_counts.json), [agreement/exclusions](results/real_agreement.json), and [selected event details](results/real_selection_details.json) preserve the full audit.
 
@@ -116,3 +116,5 @@ Reproduce from the repo root after restoring the exact Day 1 snapshots:
 ```
 
 [real_index.csv](results/real_index.csv) and [real_fixed100_index.csv](results/real_fixed100_index.csv) retain matching parent IDs. The [render manifest](results/real_render_manifest.json) pins raw data, code, rules, CSVs and all 300 image/bars pairs. Raw bars, scan caches and chart PNGs remain ignored; selected review grids and provenance are committed.
+
+The [frozen arms and GPU runbook](../GPU_RUNBOOK.md) document both paraphrases, styles, optional reference boards, correct mirror controls, all prediction paths and call/time estimates. The runbook has not been executed.
