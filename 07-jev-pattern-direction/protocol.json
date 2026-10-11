@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "frozen_on": "2026-10-11",
+  "purpose": "Direct JEV future-direction pilot with candlestick and chart-formation guidance together; prompting only.",
+  "model": "autotrust/JEV-27B-VL",
+  "model_revision": "3514d1d8ead2189c75f433fa949fe63c8e3f3c66",
+  "sample": {
+    "seed": 71,
+    "n_rows": 300,
+    "n_bars": 100,
+    "zoom_bars": 20,
+    "tickers_per_date": 6,
+    "blank_per_date": 2,
+    "earliest_test_input": "2019-04-01",
+    "date_quotas": {
+      "2019": 6,
+      "2020": 6,
+      "2021": 6,
+      "2022": 6,
+      "2023": 6,
+      "2024": 6,
+      "2025": 6,
+      "2026": 8
+    },
+    "cutoff": "2026-09-30",
+    "selection": "SHA256 rank of available dates within year, then eligible tickers within date; do not inspect future price values or labels."
+  },
+  "target": {
+    "horizon_sessions": 5,
+    "options": [
+      "Up",
+      "Flat",
+      "Down"
+    ],
+    "flat_band": 0.3333333333333333,
+    "sigma": "Sample std (ddof=1) of 60 overlapping trailing five-session adjusted-close returns, including the chart end; needs 65 closes.",
+    "volatility_observations": 60,
+    "flat_rule": "Flat iff abs(forward_return) < flat_band * trailing_sigma; boundary ties are directional.",
+    "return": "Adjusted close[t+5]/adjusted close[t]-1; after-close forecast convention, not executable entry or net trading P&L."
+  },
+  "prior": {
+    "end_date": "2018-12-31",
+    "method": "Pooled frequencies of all eligible actual week-end observations from the same frozen universe, targets completed by cutoff."
+  },
+  "question_template": "The image shows one stock: the upper panel contains 100 daily trading sessions; the lower panel zooms into the final 20 of those sessions. Both end at the same final bar, and their price and volume axes are independently scaled. Green closes at or above open; red closes below. Volume bars are gray. At this final bar, forecast the adjusted close-to-close return over exactly the next five trading sessions. The sample standard deviation of the 60 trailing overlapping five-session returns, computed only from already observed closes, is sigma={sigma:.12g}. Flat means abs(future five-session return) is strictly below one-third of sigma, threshold={threshold:.12g}; otherwise choose Up for a positive return and Down for a negative return. Equality at either threshold is directional. Choose the most likely return class, not a pattern name. Use only the visible history and supplied trailing volatility.",
+  "arms": [
+    "zero_shot",
+    "candles",
+    "formations",
+    "combined",
+    "combined_blank"
+  ],
+  "evaluation": {
+    "primary": "combined_vs_zero_shot paired Brier",
+    "resamples": 2000,
+    "seed": 71,
+    "block_lengths": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "primary_block": 4,
+    "continuation": "Primary CI lower bound >0 AND combined point Brier below training prior AND below both single-guidance arms AND combined-versus-blank subset CI lower bound >0.",
+    "limits": "Exploratory retrospective adaptive research; no multiplicity correction, independent confirmation, P&L or prospective Exp05 evaluation."
+  },
+  "parity_gate": {
+    "version": 7,
+    "n_charts": 20,
+    "atol": 0.01,
+    "drift_statistic": "mean_abs_diff",
+    "drift_population": "all chart-option probabilities, including flagged charts",
+    "flag_chart_max_abs_diff_above": 0.03,
+    "p90_method": "linear interpolation at (n - 1) * 0.9",
+    "require_argmax_agreement": true,
+    "argmax_mismatch_exception": {
+      "top_two_margin_lte": 0.01,
+      "pass": "either"
+    },
+    "argmax_tie_break": "first option in declared order"
+  },
+  "runtime": {
+    "port": 8000,
+    "concurrency": 1,
+    "batch_size": 1,
+    "max_model_len": 16384,
+    "scoring_timeout_seconds": 3600
+  },
+  "call_budget": 1500,
+  "input_sha256": {
+    "06-jev-patterns/shared/results/data_manifest.json": "0f01c1ff972b70167981802046fbc5aaf3ec05897c1240b5688462df8f81539a",
+    "06-jev-patterns/shared/config/universe.json": "89be0d53bdadac79452e6712a4e4fa1025a09e7af5f4124d1f894d67b7ea5c0a",
+    "06-jev-patterns/config/gpu_runtime.json": "04ba0bdeebb1dc7abb3732cd439ff3698723bf753d9b7f131aa52d05c4d42873",
+    "06-jev-patterns/config/model_contract.json": "3b1ed767aae11c6aa8ca9eb9c3f46daa835c2157b088d0a9b9b6cc60b17fba69",
+    "06-jev-patterns/shared/src/data.py": "e00f9343468f36102196b31f5253d866f63b8c5c17f6f8078a151a7528c4925a",
+    "06-jev-patterns/shared/src/render.py": "2481ad89e155e6a77a434cbd4f983d30f47ade57d978d1d867454e2d03777b6d",
+    "06-jev-patterns/shared/src/forecast_bridge.py": "07df2563231671414e7b73056021b3acc33e17cb704434ebe2caf88fa426a0ec",
+    "06-jev-patterns/shared/src/score.py": "a3444c33cfccdeb402f1ac8fcfaeb6161e46befb51456b1f9bb2ed8bcfe231ff",
+    "06-jev-patterns/shared/src/jev_api.py": "cdbc7a30e0fc73c7dcbb67e858750ea4f4c42973f2e3a6d17151fb0aca4aeec4",
+    "06-jev-patterns/shared/src/evaluate.py": "a92700407a6a0b8b27965d19f10b9e0721aca67fe87ec2526ce033d3cc966f4e",
+    "06-jev-patterns/shared/src/baselines.py": "2789a585f004895873e048b7e70aa0ba6ceab3b96808369b38558cacb1fe7089",
+    "06-jev-patterns/scripts/run_gpu.py": "7bf085fa42dd7b89fa66217b58af0129e931d8a8d96b767571863b7d2bdecff8",
+    "06-jev-patterns/requirements.txt": "d42f8af170fccc201a7dc674803ba9d0f0a1b79896156d79c3b5ea26e598d24d",
+    "06-jev-patterns/requirements-scoring.txt": "749731c69e0ae50bcfceac6c2a1af858f7e23d8d7ebd0245a3cdfc7829693fa4",
+    "research/statistics.py": "46991303a5bf066e41867e9d12dbd0d965c3f38231ecad28208f52818cf64d74",
+    "07-jev-pattern-direction/context/candles.txt": "a082dd0c8798316fd8da6cb875e94f5980812ee97f62714e0c4e68dfd7a2505b",
+    "07-jev-pattern-direction/context/formations.txt": "7c52441450445efec896d5d4b116524d7af80177669649001401ce4a8e6b1ab7",
+    "07-jev-pattern-direction/context/shared.txt": "35ebe96ccfc9f410d5b5b0e0e9160fd8548c9dbff45742622840ebbb634510cc",
+    "07-jev-pattern-direction/scripts/run_gpu.py": "cb99e5b321ebe8936e7411a8c1a6628e30efca335cfbce99e85f68ca7c9fc0c7",
+    "07-jev-pattern-direction/src/common.py": "48f924ba24a3b58773f9dff2979f4e5c314e8cb286e341f9b090c52459602586",
+    "07-jev-pattern-direction/src/evaluate.py": "b2b1750a7edd7c5a67cd00cd4f9ae480b8c777944e7d93bda46c983ed26d4dd7",
+    "07-jev-pattern-direction/src/prepare.py": "6559ac16955959c96b22620ca9feded18feee95665ea6d22925e6aa004c1187d",
+    "07-jev-pattern-direction/src/score.py": "f9df0e91e4218143e26fc977988b97d1a10845210b35821f4781721251810a45"
+  }
+}

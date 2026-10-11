@@ -17,6 +17,8 @@ See the [Experiment 01 serving instructions](01-jev-tsla-charts/README.md#future
 
 ## Latest findings
 
+[Experiment 07](07-jev-pattern-direction/README.md) prepares a direct JEV five-session forecast pilot with candle-shape and chart-formation directional guidance, separately and together, on identical two-panel charts. Its protocol, paired comparisons and blank-image control are frozen before scoring. Real inference has not run; no new forecasting result is claimed.
+
 **The CPU bridge found no added five-day forecasting benefit from the saved JEV pattern probabilities.** On 598 held-out market charts, numeric OHLCV scores **34.8% accuracy / 0.776384 Brier**; adding detector indicators gives **32.3% / 0.793376**, and adding JEV probabilities gives **33.4% / 0.790343**. The training-frequency prior scores **39.6% / 0.658871**. Annual walk-forward refits also worsen Brier after adding JEV. All frozen continuation conditions fail. The protocol was pushed before evaluating returns; findings apply to this small, retrospective pattern-balanced cohort and fixed models. See the [forecasting bridge results and uncertainty](06-jev-patterns/README.md#cpu-forecasting-bridge-no-incremental-five-day-benefit).
 
 **Experiment 06 shows useful but uneven pattern recognition.** With definitions, JEV scores **50.3% accuracy / 0.458 macro-F1** on 600 held-out candle charts and **55.8% / 0.492** on 1,200 fixed-100 synthetic charts from 200 independent parents. Definitions improve accuracy over zero-shot by 4.33 and 11.00 percentage points, respectively. Evening Stars, candle None, Triangles and Bull Flags remain weak; clean synthetic Bull Flags score 0/28. The v7 run collected 7,800 main predictions, then failed its first paraphrase repeatability gate, leaving prompt/style/placebo robustness untested. Real market chart patterns remain showcase-only. See [Experiment 06 results, baselines, intervals and limitations](06-jev-patterns/README.md#v7-results-useful-recognition-substantial-class-gaps).
@@ -52,7 +54,7 @@ The historical LoRA placebo conclusion was also corrected: 0 wins, 5 losses and 
 - Revised training validates data bundles and splits, uses representative fit-only parity fixtures, and blocks LoRA training above a 0.01 absolute HF-vLLM probability discrepancy. Checkpoints record provenance and validate reload inputs.
 - The longer CPU study includes simple priors, momentum/reversal rules, numerical feature comparisons, a shuffled-label control, and a fixed future protocol.
 - Experiment 06 adds 50-name data validation, candle labels with a visual-clarity audit and stricter analysis subset, varied synthetic pattern/noise controls, generalized native scoring with a mandatory repeatability gate, and multiclass evaluation. All **140 Experiment 06 CPU tests passed locally**, including fixed numeric shortcut checks on two separate cohorts, independent real-pattern detectors, split/overlap gates, showcase evaluation guards, subset/call-budget checks mocked GPU-runbook failure handling, and forecasting-bridge target/leakage/purge/checkpoint checks.
-- The **60 historical CPU tests passed** again in the Experiment 06 environment, including checkpoint round trips and localhost fake-server scoring. [GitHub CPU CI](https://github.com/mcravi8/mcravi8-lab/actions/workflows/tests.yml) runs all five suites on each push.
+- The **60 historical CPU tests passed** again in the Experiment 06 environment, including checkpoint round trips and localhost fake-server scoring. [GitHub CPU CI](https://github.com/mcravi8/mcravi8-lab/actions/workflows/tests.yml) runs all six suites on each push.
 
 ## Pending work and future holdout
 
@@ -73,9 +75,10 @@ python3.11 -m venv .venv
 .venv/bin/python -m unittest discover -s 04-jev-lora-and-cnn/tests -v
 .venv/bin/python -m unittest discover -s 05-cpu-walkforward/tests -v
 .venv/bin/python -m unittest discover -s 06-jev-patterns/tests -v
+.venv/bin/python -m unittest discover -s 07-jev-pattern-direction/tests -v
 ```
 
-On macOS, install `torch==2.14.1` from the default package index instead; the checkpoint test explicitly uses CPU. Install PyTorch for the complete suite, including Experiment 06's CPU CNN checks. Run each suite separately because historical experiments share module names. The suite comprises 31 pipeline/scoring/protocol tests, 8 statistical tests, 13 training tests and 8 baseline tests. Tests use synthetic OHLCV, localhost HTTP fixtures and CPU tensors, without downloading model weights. Experiment 06 adds pattern, rendering, arbitrary-option scoring and multiclass evaluation tests. GitHub Actions runs all five suites on pushes and pull requests.
+On macOS, install `torch==2.14.1` from the default package index instead; the checkpoint test explicitly uses CPU. Install PyTorch for the complete suite, including Experiment 06's CPU CNN checks. Run each suite separately because historical experiments share module names. The suite comprises 31 pipeline/scoring/protocol tests, 8 statistical tests, 13 training tests and 8 baseline tests. Tests use synthetic OHLCV, localhost HTTP fixtures and CPU tensors, without downloading model weights. Experiment 06 adds pattern, rendering, arbitrary-option scoring and multiclass evaluation tests. GitHub Actions runs all six suites on pushes and pull requests.
 
 ## Reproducibility
 

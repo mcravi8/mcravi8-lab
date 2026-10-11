@@ -40,6 +40,8 @@ jobs:
         run: python 06-jev-patterns/06b-chart-patterns/src/external_detector.py --fetch
       - name: Pattern labels, scoring, metrics and GPU runtime preflights (CPU)
         run: python -m unittest discover -s 06-jev-patterns/tests -v
+      - name: Direct pattern-guided forecast pilot (CPU fixtures only)
+        run: python -m unittest discover -s 07-jev-pattern-direction/tests -v
       - name: Verify isolated Linux scorer without GPU dependencies
         run: |
           python -m venv "$RUNNER_TEMP/jev-scorer"
