@@ -1,6 +1,37 @@
 # Experiment 07: candle shapes and chart formations together for direction
 
-**Setup complete; real-model inference has not run.** This directly asks AutoTrust's [JEV-27B-VL](https://huggingface.co/autotrust/JEV-27B-VL) to forecast the next five trading sessions. It tests explicit directional pattern guidance, rather than recognizing pattern names or training a logistic forecaster on recognition probabilities. The JEV weights remain frozen; this is prompting, not fine-tuning.
+**Real inference and v1 evaluation are complete.** AutoTrust's [JEV-27B-VL](https://huggingface.co/autotrust/JEV-27B-VL) forecasts the next five trading sessions with candle-shape and chart-formation directional guidance. The weights remain frozen; this tests prompting, not fine-tuning.
+
+## V1 results: no added forecasting benefit
+
+Real predictions were recorded in [4106a8e](https://github.com/mcravi8/mcravi8-lab/commit/4106a8e), followed by evaluation in [2419ec4](https://github.com/mcravi8/mcravi8-lab/commit/2419ec4). The cohort has 300 observations across 50 forecast dates and 49 tickers. Its descriptive test-majority base rate is **36.67%** (Up: 110/300). The train-frequency prior uses 33,041 outcomes completed by 2018-12-31, without fitting to these test labels.
+
+| Arm / baseline | N | Accuracy | Brier |
+| --- | ---: | ---: | ---: |
+| Zero-shot | 300 | 37.33% | 0.862890 |
+| Candle guidance | 300 | 38.00% | 0.830781 |
+| Formation guidance | 300 | 36.67% | 0.875197 |
+| Combined guidance | 300 | 39.00% | 0.859144 |
+| Train-frequency prior | 300 | 36.67% | 0.665765 |
+| Uniform probabilities | 300 | 36.67% | 0.666667 |
+| Combined, image-control subset | 100 | 39.00% | 0.837441 |
+| Combined, blank control | 100 | 27.00% | 1.105721 |
+
+Lower Brier is better. The final two rows use the same 100 observations; compare those rows, not blank control against the full cohort. Uniform accuracy reflects the fixed Up-first argmax tie rule, not random guessing.
+
+| Paired comparison | Brier reduction | 95% block-bootstrap CI |
+| --- | ---: | ---: |
+| Combined vs zero-shot (primary) | +0.003746 | [-0.019406, +0.028114] |
+| Combined vs candles | -0.028364 | [-0.040751, -0.016581] |
+| Combined vs formations | +0.016052 | [+0.005587, +0.027316] |
+| Combined vs train-frequency prior | -0.193379 | [-0.252753, -0.134937] |
+| Combined vs blank (100 paired charts) | +0.268280 | [+0.084149, +0.435918] |
+
+Positive reduction favors combined guidance. Intervals use 2,000 paired moving-block resamples, seed 71, blocks of four consecutive retained forecast dates, with all tickers on each date kept together. The [full metrics](results/evaluation_v1/metrics.json) include 1/2/8-date sensitivities, calibration and repeatability. These exploratory intervals condition on fixed predictions and have no multiplicity correction or independent confirmation.
+
+**Pattern guidance did not improve next-week direction under the frozen continuation criteria. No JEV arm beat the prior Brier; only the image check passed.** Combined guidance's primary interval includes zero, it trails candle-only guidance on Brier, and it is substantially worse than the prior. The image beats its paired blank control, but that does not establish forecasting skill. All five repeatability gates passed with 20/20 argmax matches per arm; this is separate from the performance checks.
+
+This pairs with [Experiment 06](../06-jev-patterns/README.md#v7-results-useful-recognition-substantial-class-gaps): definitions improved pattern recognition, while its CPU bridge and this direct guidance pilot found no added five-session forecasting benefit. Recognition improves; forecasting does not in these tested designs. No trading costs or P&L were evaluated.
 
 ## Frozen comparison
 
@@ -69,9 +100,9 @@ cd /root/repo
 
 Every arm scores 20 charts twice first and aborts on the frozen v7 repeatability policy: mean absolute probability drift <=0.01; every argmax mismatch must have a top-two margin <=0.01 in either pass. Max/p90 drift, flagged charts, raw agreement and near-tie exceptions remain reported. That policy was changed post-hoc in Experiment 06; it is retained without further relaxation here and is not HF/vLLM equivalence or an accuracy guarantee. A failed arm prevents a complete paired result. Resume preserves completed rows but repeats a pending arm's live gate and rejects altered provenance.
 
-Fresh successful budget: **1,500 decide calls** = 1,200 main + 100 blank + 200 repeatability calls, before retries/resumes. Planning only: at 0.6–1.8 seconds per request, 15–45 GPU minutes plus 5–15 startup minutes; these two-panel requests have not been timed. Scoring has a 60-minute timeout. Startup/model verification add time. The script stops its own server; it does not stop cloud pod billing.
+V1 completed the **1,500-call plan**: 1,200 main predictions + 100 blank controls + 200 repeatability calls. The [session summary](results/session_v1/session_summary.json) records 1,095.468 seconds (18.26 minutes) elapsed; this is session time, not billed pod time. Scoring has a 60-minute timeout. The script stops its own server; it does not stop cloud pod billing.
 
-After successful scoring, evaluate locally on CPU:
+To reproduce the v1 evaluation on CPU:
 
 ```sh
 06-jev-patterns/.venv/bin/python 07-jev-pattern-direction/src/evaluate.py

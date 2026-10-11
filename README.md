@@ -8,16 +8,31 @@ Experiments testing whether **AutoTrust's [JEV-27B-VL](https://huggingface.co/au
 
 | Component | Role in these experiments |
 | --- | --- |
-| **JEV-27B-VL** (`autotrust/JEV-27B-VL`) | Vision-language decision model used for chart forecasts in Experiments 01-03, the LoRA fine-tune in Experiment 04 and pattern recognition in Experiment 06. |
+| **JEV-27B-VL** (`autotrust/JEV-27B-VL`) | Vision-language decision model used for chart forecasts in Experiments 01-03, the LoRA fine-tune in Experiment 04, pattern recognition in Experiment 06 and pattern-guided forecasts in Experiment 07. |
 | **[Hugging Face](https://huggingface.co/autotrust/JEV-27B-VL)** | Source of the model weights, System 1 decision adapter, calibration files, serving code and model card. The LoRA workflow uses Transformers and PEFT. |
 | **[Runpod](https://www.runpod.io/)** | GPU hosting for historical JEV inference and LoRA training. Recorded weekly inference and training runs used NVIDIA H100 80GB GPUs; the weekly inference runs used `US-MO-1`. |
 | **vLLM + JEV System 1** | The self-hosted server exposes `POST /v1/decide` on port 8000. Chart images and options `["Up", "Flat", "Down"]` produce one probability per option. |
 
-See the [Experiment 01 serving instructions](01-jev-tsla-charts/README.md#future-pod-serving-setup) for the Runpod setup and the [Experiment 04 README](04-jev-lora-and-cnn/README.md#reproducible-training-preparation) for the LoRA workflow. Experiment 06 has recorded real JEV main-arm inference on Runpod and evaluated it on CPU; its secondary controls stopped at a repeatability gate. Experiment 05's numerical baselines and the validation suite run on CPU; the Experiment 05 results below are from that CPU study.
+See the [Experiment 01 serving instructions](01-jev-tsla-charts/README.md#future-pod-serving-setup) for the Runpod setup and the [Experiment 04 README](04-jev-lora-and-cnn/README.md#reproducible-training-preparation) for the LoRA workflow. Experiment 06 has recorded real JEV main-arm inference on Runpod and evaluated it on CPU; its secondary controls stopped at a repeatability gate. Experiment 07 completed real inference and all repeatability gates, followed by CPU evaluation. Experiment 05's numerical baselines and the validation suite run on CPU; the Experiment 05 results below are from that CPU study.
 
 ## Latest findings
 
-[Experiment 07](07-jev-pattern-direction/README.md) prepares a direct JEV five-session forecast pilot with candle-shape and chart-formation directional guidance, separately and together, on identical two-panel charts. Its protocol, paired comparisons and blank-image control are frozen before scoring. Real inference has not run; no new forecasting result is claimed.
+**[Experiment 07](07-jev-pattern-direction/README.md#v1-results-no-added-forecasting-benefit) completed real JEV inference. Pattern guidance did not improve next-week direction under the frozen continuation criteria.** V1 tests candle and formation guidance separately and together on identical charts: 300 observations, 50 forecast dates and 49 tickers. The descriptive test-majority base rate is **36.67%**; the train-frequency prior uses only outcomes completed by 2018-12-31.
+
+| Arm / baseline | N | Accuracy | Brier |
+| --- | ---: | ---: | ---: |
+| Zero-shot | 300 | 37.33% | 0.862890 |
+| Candle guidance | 300 | 38.00% | 0.830781 |
+| Formation guidance | 300 | 36.67% | 0.875197 |
+| Combined guidance | 300 | 39.00% | 0.859144 |
+| Train-frequency prior | 300 | 36.67% | 0.665765 |
+| Uniform probabilities | 300 | 36.67% | 0.666667 |
+| Combined, image-control subset | 100 | 39.00% | 0.837441 |
+| Combined, blank control | 100 | 27.00% | 1.105721 |
+
+Lower Brier is better; no JEV arm beat the prior. The blank control and its image subset are paired on 100 charts. Uniform uses the fixed Up-first argmax tie rule. Combined guidance's paired Brier reduction versus zero-shot is **+0.003746**, 95% block-bootstrap CI **[-0.019406, +0.028114]**; versus the prior it is **-0.193379 [-0.252753, -0.134937]**. **Only the image check passed**: combined versus blank gives **+0.268280 [+0.084149, +0.435918]**. Intervals use 2,000 paired resamples of four retained forecast dates, keeping tickers together; full single-guidance comparisons and 1/2/8-date sensitivities are in [the v1 results](07-jev-pattern-direction/results/evaluation_v1/metrics.json).
+
+Together, Experiments 06 and 07 show improved pattern recognition without an added five-session forecasting benefit in the tested designs. These are exploratory retrospective results, without independent confirmation or trading P&L.
 
 **The CPU bridge found no added five-day forecasting benefit from the saved JEV pattern probabilities.** On 598 held-out market charts, numeric OHLCV scores **34.8% accuracy / 0.776384 Brier**; adding detector indicators gives **32.3% / 0.793376**, and adding JEV probabilities gives **33.4% / 0.790343**. The training-frequency prior scores **39.6% / 0.658871**. Annual walk-forward refits also worsen Brier after adding JEV. All frozen continuation conditions fail. The protocol was pushed before evaluating returns; findings apply to this small, retrospective pattern-balanced cohort and fixed models. See the [forecasting bridge results and uncertainty](06-jev-patterns/README.md#cpu-forecasting-bridge-no-incremental-five-day-benefit).
 
@@ -46,6 +61,7 @@ The historical LoRA placebo conclusion was also corrected: 0 wins, 5 losses and 
 | [04: LoRA and CNN](04-jev-lora-and-cnn/README.md) | Does task-specific training help? | Historical results retained; revised training requires parity and checkpoint checks. |
 | [05: CPU walk-forward study](05-cpu-walkforward/README.md) | Can numerical models beat training-frequency priors over longer histories? | CPU study complete; future protocol and model frozen. |
 | [06: Pattern recognition](06-jev-patterns/README.md) | Can JEV identify candlestick and chart patterns? | V7 recognition main arms recorded; CPU bridge finds no added five-day forecast benefit. Recognition controls remain blocked; 150 real parents are showcase-only. |
+| [07: Pattern-guided direction](07-jev-pattern-direction/README.md) | Does candle and formation guidance improve next-five-session forecasts? | Real v1 inference/evaluation complete; no arm beats the prior Brier, only the image check passes. |
 
 ## Completed review and implementation
 
