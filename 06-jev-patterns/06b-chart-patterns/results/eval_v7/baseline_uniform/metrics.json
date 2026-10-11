@@ -1,0 +1,287 @@
+{
+  "n": 1200,
+  "options": [
+    "Head and Shoulders",
+    "Inverse Head and Shoulders",
+    "Double Top",
+    "Double Bottom",
+    "Triangle",
+    "Bull Flag",
+    "None"
+  ],
+  "accuracy": 0.145,
+  "macro_f1": 0.036182158452900806,
+  "class_f1": {
+    "Head and Shoulders": 0.25327510917030566,
+    "Inverse Head and Shoulders": 0.0,
+    "Double Top": 0.0,
+    "Double Bottom": 0.0,
+    "Triangle": 0.0,
+    "Bull Flag": 0.0,
+    "None": 0.0
+  },
+  "confusion_matrix": [
+    [
+      174,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      174,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      174,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      174,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      168,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      168,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      168,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "confusion_axes": "rows = truth, columns = prediction; declared option order",
+  "brier": 0.8571428571428574,
+  "log_loss": 1.9459101490553137,
+  "ece_15": 0.0021428571428571686,
+  "reliability": [
+    {
+      "lower": 0.0,
+      "upper": 0.06666666666666667,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.06666666666666667,
+      "upper": 0.13333333333333333,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.13333333333333333,
+      "upper": 0.2,
+      "n": 1200,
+      "accuracy": 0.145,
+      "confidence": 0.14285714285714282
+    },
+    {
+      "lower": 0.2,
+      "upper": 0.26666666666666666,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.26666666666666666,
+      "upper": 0.3333333333333333,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.3333333333333333,
+      "upper": 0.4,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.4,
+      "upper": 0.4666666666666667,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.4666666666666667,
+      "upper": 0.5333333333333333,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.5333333333333333,
+      "upper": 0.6,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.6,
+      "upper": 0.6666666666666666,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.6666666666666666,
+      "upper": 0.7333333333333333,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.7333333333333333,
+      "upper": 0.8,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.8,
+      "upper": 0.8666666666666667,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.8666666666666667,
+      "upper": 0.9333333333333333,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.9333333333333333,
+      "upper": 1.0,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    }
+  ],
+  "risk_coverage": {
+    "0.5": {
+      "n": 0,
+      "coverage": 0.0,
+      "accuracy": null,
+      "risk": null
+    },
+    "0.7": {
+      "n": 0,
+      "coverage": 0.0,
+      "accuracy": null,
+      "risk": null
+    },
+    "0.9": {
+      "n": 0,
+      "coverage": 0.0,
+      "accuracy": null,
+      "risk": null
+    }
+  },
+  "argmax_tie_rule": "First option in the declared order",
+  "absent_class_f1": "Zero; all declared classes enter macro-F1",
+  "ci95": {
+    "accuracy": [
+      0.1,
+      0.195
+    ],
+    "macro_f1": [
+      0.025974025974025976,
+      0.0466228332337119
+    ],
+    "brier": [
+      0.8571428571428574,
+      0.8571428571428574
+    ],
+    "ece_15": [
+      0.0021428571428571686,
+      0.052964285714285096
+    ]
+  },
+  "inference": {
+    "block_definition": "Synthetic template_id blocks; noise/style versions of one template stay together",
+    "blocks": 200,
+    "resamples": 2000,
+    "seed": 0,
+    "status": "Exploratory percentile intervals, conditional on fixed predictions; no refitting",
+    "limitations": "Ticker-quarter blocks omit cross-ticker common shocks and serial dependence beyond a quarter. Template blocks require independent generator templates. Intervals/tests are unadjusted for multiple comparisons.",
+    "no_ci_reason": null
+  },
+  "latency_ms": {
+    "mean": 0.0,
+    "median": 0.0
+  },
+  "subset": {
+    "name": "all",
+    "selected": 1200,
+    "available": 1200,
+    "data_origin": null,
+    "split": null
+  },
+  "input_metadata": {
+    "options": [
+      "Head and Shoulders",
+      "Inverse Head and Shoulders",
+      "Double Top",
+      "Double Bottom",
+      "Triangle",
+      "Bull Flag",
+      "None"
+    ],
+    "baseline": "uniform",
+    "synthetic": false,
+    "synthetic_dataset": true,
+    "prediction_origin": "baseline",
+    "trained_on": "None; uniform has no fitting",
+    "uniform_tie_rule": "First ordered option wins argmax ties; randomized uniform expected accuracy is 1/K",
+    "uniform_random_expected_accuracy": 0.14285714285714285,
+    "numeric_features": "Visible prices / first visible close - 1; volume / visible mean; 32 evenly spaced positions",
+    "logistic_fixed_hyperparameters": {
+      "C": 1.0,
+      "max_iter": 1000,
+      "random_state": 0
+    },
+    "input_rows": 1200,
+    "predictions_sha256": "36b45e48b15dc5ce42b446f08c5c9865275f529772e41cc33cb941fa85975d1e"
+  },
+  "synthetic_dataset": true,
+  "evidence_status": "Evaluation of recorded predictions"
+}

@@ -1,0 +1,287 @@
+{
+  "n": 1200,
+  "options": [
+    "Head and Shoulders",
+    "Inverse Head and Shoulders",
+    "Double Top",
+    "Double Bottom",
+    "Triangle",
+    "Bull Flag",
+    "None"
+  ],
+  "accuracy": 0.1825,
+  "macro_f1": 0.1413042028504003,
+  "class_f1": {
+    "Head and Shoulders": 0.27074235807860264,
+    "Inverse Head and Shoulders": 0.0,
+    "Double Top": 0.2109704641350211,
+    "Double Bottom": 0.0,
+    "Triangle": 0.0,
+    "Bull Flag": 0.2903225806451613,
+    "None": 0.2170940170940171
+  },
+  "confusion_matrix": [
+    [
+      31,
+      0,
+      11,
+      0,
+      0,
+      0,
+      132
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      174
+    ],
+    [
+      8,
+      0,
+      25,
+      0,
+      0,
+      1,
+      140
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      174
+    ],
+    [
+      0,
+      0,
+      7,
+      0,
+      0,
+      15,
+      146
+    ],
+    [
+      6,
+      0,
+      17,
+      0,
+      0,
+      36,
+      109
+    ],
+    [
+      10,
+      0,
+      3,
+      0,
+      0,
+      28,
+      127
+    ]
+  ],
+  "confusion_axes": "rows = truth, columns = prediction; declared option order",
+  "brier": 1.3983882350052992,
+  "log_loss": 4.148710474586462,
+  "ece_15": 0.677011287906457,
+  "reliability": [
+    {
+      "lower": 0.0,
+      "upper": 0.06666666666666667,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.06666666666666667,
+      "upper": 0.13333333333333333,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.13333333333333333,
+      "upper": 0.2,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.2,
+      "upper": 0.26666666666666666,
+      "n": 0,
+      "accuracy": null,
+      "confidence": null
+    },
+    {
+      "lower": 0.26666666666666666,
+      "upper": 0.3333333333333333,
+      "n": 2,
+      "accuracy": 0.0,
+      "confidence": 0.3257046701564462
+    },
+    {
+      "lower": 0.3333333333333333,
+      "upper": 0.4,
+      "n": 11,
+      "accuracy": 0.45454545454545453,
+      "confidence": 0.37431698498205085
+    },
+    {
+      "lower": 0.4,
+      "upper": 0.4666666666666667,
+      "n": 25,
+      "accuracy": 0.24,
+      "confidence": 0.44051949069326335
+    },
+    {
+      "lower": 0.4666666666666667,
+      "upper": 0.5333333333333333,
+      "n": 31,
+      "accuracy": 0.22580645161290322,
+      "confidence": 0.5032833949494934
+    },
+    {
+      "lower": 0.5333333333333333,
+      "upper": 0.6,
+      "n": 57,
+      "accuracy": 0.24561403508771928,
+      "confidence": 0.5669392552778278
+    },
+    {
+      "lower": 0.6,
+      "upper": 0.6666666666666666,
+      "n": 67,
+      "accuracy": 0.2537313432835821,
+      "confidence": 0.633383087413126
+    },
+    {
+      "lower": 0.6666666666666666,
+      "upper": 0.7333333333333333,
+      "n": 58,
+      "accuracy": 0.29310344827586204,
+      "confidence": 0.7020802782483799
+    },
+    {
+      "lower": 0.7333333333333333,
+      "upper": 0.8,
+      "n": 77,
+      "accuracy": 0.14285714285714285,
+      "confidence": 0.7693526507761062
+    },
+    {
+      "lower": 0.8,
+      "upper": 0.8666666666666667,
+      "n": 124,
+      "accuracy": 0.12903225806451613,
+      "confidence": 0.8322532296400875
+    },
+    {
+      "lower": 0.8666666666666667,
+      "upper": 0.9333333333333333,
+      "n": 147,
+      "accuracy": 0.17006802721088435,
+      "confidence": 0.9001405021581419
+    },
+    {
+      "lower": 0.9333333333333333,
+      "upper": 1.0,
+      "n": 601,
+      "accuracy": 0.16805324459234608,
+      "confidence": 0.9784222654295718
+    }
+  ],
+  "risk_coverage": {
+    "0.5": {
+      "n": 1149,
+      "coverage": 0.9575,
+      "accuracy": 0.17754569190600522,
+      "risk": 0.8224543080939948
+    },
+    "0.7": {
+      "n": 979,
+      "coverage": 0.8158333333333333,
+      "accuracy": 0.16241062308478038,
+      "risk": 0.8375893769152196
+    },
+    "0.9": {
+      "n": 674,
+      "coverage": 0.5616666666666666,
+      "accuracy": 0.16765578635014836,
+      "risk": 0.8323442136498517
+    }
+  },
+  "argmax_tie_rule": "First option in the declared order",
+  "absent_class_f1": "Zero; all declared classes enter macro-F1",
+  "ci95": {
+    "accuracy": [
+      0.13333333333333333,
+      0.2325
+    ],
+    "macro_f1": [
+      0.09709887841678007,
+      0.18298335506175975
+    ],
+    "brier": [
+      1.3064461514582417,
+      1.4904490544857814
+    ],
+    "ece_15": [
+      0.6226377762176727,
+      0.7332840160368045
+    ]
+  },
+  "inference": {
+    "block_definition": "Synthetic template_id blocks; noise/style versions of one template stay together",
+    "blocks": 200,
+    "resamples": 2000,
+    "seed": 0,
+    "status": "Exploratory percentile intervals, conditional on fixed predictions; no refitting",
+    "limitations": "Ticker-quarter blocks omit cross-ticker common shocks and serial dependence beyond a quarter. Template blocks require independent generator templates. Intervals/tests are unadjusted for multiple comparisons.",
+    "no_ci_reason": null
+  },
+  "latency_ms": {
+    "mean": 0.0004451383332101,
+    "median": 0.0004451383332101
+  },
+  "subset": {
+    "name": "all",
+    "selected": 1200,
+    "available": 1200,
+    "data_origin": null,
+    "split": null
+  },
+  "input_metadata": {
+    "options": [
+      "Head and Shoulders",
+      "Inverse Head and Shoulders",
+      "Double Top",
+      "Double Bottom",
+      "Triangle",
+      "Bull Flag",
+      "None"
+    ],
+    "baseline": "logistic",
+    "synthetic": false,
+    "synthetic_dataset": true,
+    "prediction_origin": "baseline",
+    "trained_on": "real split=train through 2018 only",
+    "uniform_tie_rule": "First ordered option wins argmax ties; randomized uniform expected accuracy is 1/K",
+    "uniform_random_expected_accuracy": null,
+    "numeric_features": "Visible prices / first visible close - 1; volume / visible mean; 32 evenly spaced positions",
+    "logistic_fixed_hyperparameters": {
+      "C": 1.0,
+      "max_iter": 1000,
+      "random_state": 0
+    },
+    "input_rows": 1200,
+    "predictions_sha256": "4cb46d00a5c73defe6f68264838b53e38cf6bdcd5bcaa889ff3eff44c07c513d"
+  },
+  "synthetic_dataset": true,
+  "evidence_status": "Evaluation of recorded predictions"
+}
