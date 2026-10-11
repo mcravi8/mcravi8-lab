@@ -1,5 +1,5 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "source": "Observed failed CPU-client/GPU-server session supplied by user, 2026-10-10",
   "observed_inventory": "06-jev-patterns/shared/results/diagnostics/2026-10-10/runtime_lock.json",
   "server_packages": {
@@ -73,14 +73,16 @@
   "policy": {
     "concurrency": 1,
     "batch_size": 1,
-    "atol": 0.03,
+    "atol": 0.01,
     "prefix_caching": false,
     "enforce_eager": true,
     "chunked_prefill": false,
     "seed": 0,
     "max_num_seqs": 8,
     "gdn_prefill_backend": "triton",
-    "require_argmax_agreement": true
+    "require_argmax_agreement": true,
+    "drift_statistic": "mean_abs_diff",
+    "flag_chart_max_abs_diff_above": 0.03
   },
   "correction_gpu_verified": false,
   "primary_sources": [
@@ -111,27 +113,56 @@
     "requirements": "06-jev-patterns/requirements-jev-torch.txt",
     "source_evidence": "User reports both installed from PyPI; v3 metadata confirms versions and torch.version.cuda=13.0, but does not preserve wheel index origin."
   },
+  "parity_policy_history": [
+    {
+      "approved_by": "Matteo",
+      "approved_date": "2026-10-10",
+      "approval_source": "Explicit user instruction in this chat",
+      "changed_after_observing_failures": true,
+      "previous_gate": {
+        "atol": 0.01,
+        "require_argmax_agreement": false
+      },
+      "approved_gate": {
+        "atol": 0.03,
+        "require_argmax_agreement": true,
+        "n_charts": 20
+      },
+      "reason": "Residual bf16 kernel nondeterminism under serial batch1, eager, no-cache settings. Retain identical top predictions and cap every option probability drift at0.03.",
+      "v4_diagnosis": "06-jev-patterns/shared/results/diagnostics/2026-10-10-v4-parity/diagnosis.json",
+      "v4_max_drift": 0.018410737935632693,
+      "v4_argmax_agreement_count": 20,
+      "v3_drift": null,
+      "v3_reason": "GDN_ATTN batch-invariance startup failure; no decide calls and no measured drift.",
+      "original_v2_max_drift": 0.03334436881129002,
+      "all_other_execution_settings_changed": false,
+      "new_gpu_run": false
+    }
+  ],
   "parity_policy_change": {
     "approved_by": "Matteo",
     "approved_date": "2026-10-10",
     "approval_source": "Explicit user instruction in this chat",
     "changed_after_observing_failures": true,
     "previous_gate": {
-      "atol": 0.01,
-      "require_argmax_agreement": false
-    },
-    "approved_gate": {
+      "version": 5,
+      "n_charts": 20,
       "atol": 0.03,
       "require_argmax_agreement": true,
-      "n_charts": 20
+      "argmax_tie_break": "first option in declared order"
     },
-    "reason": "Residual bf16 kernel nondeterminism under serial batch1, eager, no-cache settings. Retain identical top predictions and cap every option probability drift at0.03.",
-    "v4_diagnosis": "06-jev-patterns/shared/results/diagnostics/2026-10-10-v4-parity/diagnosis.json",
-    "v4_max_drift": 0.018410737935632693,
-    "v4_argmax_agreement_count": 20,
-    "v3_drift": null,
-    "v3_reason": "GDN_ATTN batch-invariance startup failure; no decide calls and no measured drift.",
-    "original_v2_max_drift": 0.03334436881129002,
+    "approved_gate": {
+      "atol": 0.01,
+      "drift_statistic": "mean_abs_diff",
+      "require_argmax_agreement": true,
+      "n_charts": 20,
+      "flag_chart_max_abs_diff_above": 0.03
+    },
+    "reason": "v5 failed on one recurring chart at max drift0.0412173; all20 argmaxes matched. Residual bf16 kernel nondeterminism remains the working explanation under serial/eager/no-cache execution. Aggregate repeatability is accepted while tail drift is reported and every chart remains included.",
+    "v5_max_drift": 0.04121730474518304,
+    "v5_argmax_agreement_count": 20,
+    "v5_diagnosis": "06-jev-patterns/shared/results/diagnostics/2026-10-10-v5-parity/diagnosis.json",
+    "noise_floor_result": "06-jev-patterns/shared/results/parity_noise_floor.json",
     "all_other_execution_settings_changed": false,
     "new_gpu_run": false
   }

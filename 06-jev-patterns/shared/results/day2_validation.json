@@ -1,10 +1,10 @@
 {
-  "validation_scope": "CPU validation of frozen_v5; prior GPU attempts remain failed",
+  "validation_scope": "CPU validation of frozen_v6; prior GPU attempts remain failed",
   "gpu_or_model_started_during_revision": false,
   "runbook_executed": false,
   "target_pngs_verified": 4400,
   "unique_numeric_csvs_validated": 4000,
-  "frozen_assets_verified": 4444,
+  "frozen_assets_verified": 4452,
   "real_input_snapshots_verified": 50,
   "collections": {
     "candles": 1200,
@@ -24,7 +24,7 @@
     "patterns_mirror_time": 100,
     "patterns_mirror_price": 100
   },
-  "config_sha256": "ce625ff1b60064233a801d2bbf73422b78e816be52b06d2468f9cea4ee7febb2",
+  "config_sha256": "75cc52450987ff1e718e61c8ae8e8ce0c2ea12c808b1fe0f4ccbc0b5a627669f",
   "checks": [
     "All frozen asset SHA-256s",
     "All target PNG dimensions/formats/metadata",

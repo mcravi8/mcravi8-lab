@@ -1,6 +1,6 @@
 # Experiment 06 trimmed inference runbook
 
-**Approved v5 parity policy prepared on CPU; not GPU verified.** A prior on-pod session failed the first global candle gate after 40 decide calls and wrote no predictions. A subsequent v3 startup failed because JEV GDN_ATTN rejects batch invariance; no decide calls ran in that session. The v4 serial/eager/cacheless gate then failed at maximum drift 0.0184107, despite 20/20 matching top predictions. Matteo explicitly approved the new joint gate after observing these failures. [run_gpu.py](scripts/run_gpu.py) is the single future entry point. It does not create, start, stop or contact Runpod resources. Inference requires a separately authorized, already prepared GPU host.
+**Approved v6 mean-drift parity policy prepared on CPU; not GPU verified.** A prior on-pod session failed the first global candle gate after 40 decide calls and wrote no predictions. A subsequent v3 startup failed because JEV GDN_ATTN rejects batch invariance; no decide calls ran in that session. The v4 serial/eager/cacheless gate then failed at maximum drift 0.0184107, despite 20/20 matching top predictions. The user-run v5 gate subsequently failed at maximum drift 0.0412173 on chart #15, with 20/20 matching top predictions. Matteo explicitly approved v6 after observing this failure. [run_gpu.py](scripts/run_gpu.py) is the single future entry point. It does not create, start, stop or contact Runpod resources. Inference requires a separately authorized, already prepared GPU host.
 
 ## Frozen assets and arms
 
@@ -8,7 +8,7 @@ The [model contract](config/model_contract.json) pins **autotrust/JEV-27B-VL** t
 
 The [pinned model card](https://huggingface.co/autotrust/JEV-27B-VL/blob/3514d1d8ead2189c75f433fa949fe63c8e3f3c66/README.md) and [native server](https://huggingface.co/autotrust/JEV-27B-VL/blob/3514d1d8ead2189c75f433fa949fe63c8e3f3c66/serve_decide.py) define native System 1 `/v1/decide`, `thinking="off"`, `strategy="single"`, with ordered eight- or seven-class options. Every scheduled call has one target image. **The reference-image arm is removed**, including its enable flag; existing CPU reference boards are inactive historical artifacts.
 
-[Inference config](config/inference_arms.json), schema 5, freezes **zero-shot and definitions** with one primary question wording per task. A second wording is confined to **100 charts per sub-part**, for both arms. These rows reuse main-arm predictions for the primary wording. No prompt or subset is selected from prediction performance.
+[Inference config](config/inference_arms.json), schema 6, freezes **zero-shot and definitions** with one primary question wording per task. A second wording is confined to **100 charts per sub-part**, for both arms. These rows reuse main-arm predictions for the primary wording. No prompt or subset is selected from prediction performance.
 
 | Input collection | Rows | Scheduled arms / wording |
 |---|---:|---|
@@ -49,7 +49,7 @@ The scorer's parity function already sends one request at a time, completing the
 
 Logs show BF16, seed zero, prefix caching with aligned hybrid/Mamba cache, chunked prefill, `torch.compile` and CUDA graphs, plus default LoRA kernel/JIT warnings. A cold first pass versus cached second pass can change the numerical work path; default LoRA reduction atomics are another plausible source. The observed vLLM wheel is tagged `cu129` while Torch was reported built for CUDA **13.0**. This build mixing is relevant, but constant across both passes: there is no coherent-build comparison or per-request cache trace. **Within-build kernel/cache-path numerical variation is the leading hypothesis; the diagnostics do not isolate its exact cause or clear the mixed build.**
 
-**Historical decision:** initially retain the predeclared 0.01 tolerance while changing execution. The active v5 rule below supersedes that tolerance with Matteo’s explicit approval after the later v4 failure.
+**Historical decision:** initially retain the predeclared 0.01 tolerance while changing execution. V5 changed to max drift <=0.03 plus matching argmaxes after v4; the active v6 rule below supersedes it with Matteo’s explicit approval after the v5 failure.
 
 The subsequent [v3 startup evidence](shared/results/diagnostics/2026-10-10-gdn-attn/diagnosis.json), copied from `shared/results/inference_run_v3/server.log`, establishes **`VLLM batch_invariant mode is not supported for GDN_ATTN.`** The flag exists in vLLM, but JEV’s attention backend cannot use it. The engine exited before readiness or scoring. **Remove batch invariance from the frozen policy** and explicitly clear `VLLM_BATCH_INVARIANT` inherited from the shell; this applies to the server and CLI-help probe. The remaining serial/eager/cacheless settings are a repeatability attempt, not a deterministic guarantee.
 
@@ -60,23 +60,34 @@ The [preserved v4 paired responses and diagnostics](shared/results/diagnostics/2
 | Original v2 gate | 0.03334436881129002 | 20/20 | Failed 0.01 gate; would also exceed 0.03 |
 | v3 startup | N/A — no decide calls | N/A | GDN_ATTN rejected batch invariance before readiness |
 | v4 serial/eager/no-cache gate | 0.018410737935632693 | 20/20 | Failed original 0.01 gate |
+| v5 serial/eager/no-cache gate | 0.04121730474518304 | 20/20 | Failed max <=0.03 gate on chart #15 |
 
-**Active v5 policy, approved by Matteo on 2026-10-10:** score the same 20 charts twice; pass only when **every top prediction matches between passes AND maximum absolute probability drift over every option/chart is <=0.03**. Any top-prediction change blocks scoring even if its probability drift is below 0.03. Ties use the first option in the declared option order, matching prediction CSV behavior.
+**Active v6 policy, approved by Matteo on 2026-10-10:** score the same 20 charts twice; pass only when **every top prediction matches AND mean absolute probability drift <=0.01**. The mean is over **all 20 × K chart-option entries**, with K=8 for candles and K=7 for patterns:
 
-**This policy changed after observing failures; 0.03 was not the originally predeclared threshold.** The recorded reason is residual **BF16 kernel nondeterminism under serial, eager, no-cache settings**. This is the working explanation rather than an isolated proof of a particular kernel/build fault. The user accepts up to three percentage points of probability variation while requiring stable classifications. Report this adaptation alongside probability/calibration results; repeatability does not establish HF-vLLM equivalence or accuracy.
+`mean_abs_diff = sum(abs(pass1[i,k] - pass2[i,k])) / (20 * K)`
 
-The original v4 report remains a failure at 0.01. Its saved pairs pass the new joint criterion when replayed on CPU, which is **not a new GPU gate**. v3 has no measured drift; the earlier 0.033344 value belongs to the original v2 gate rather than the v3 startup attempt.
+Probability validation/normalization is unchanged. All charts and options contribute equally; chart #15 remains in the fixture and the mean. Any changed top prediction blocks scoring, including on flagged charts. Ties select the first option in declared order, matching the prediction CSV.
 
-All other settings remain frozen; v5 uses:
+Every parity report, console gate result and job summary logs **mean, maximum and p90 option drift**. P90 uses linear interpolation at sorted index `(N-1)*0.9` over all option drifts. Reports additionally log p90 of the **20 per-chart maxima**, so tail behavior at chart level stays visible. Charts whose maximum option drift is **strictly >0.03** are flagged by file and one-based gate number, with their mean/max drift and argmax agreement. Flags are audit signals; they do not exclude charts or add another acceptance criterion.
+
+**This is a second post-hoc policy change, approved after observing the v5 failure.** The original rule was max <=0.01; v5 required max <=0.03 plus all argmaxes matching. V6 replaces the maximum acceptance statistic with mean <=0.01, retaining all-argmax agreement and explicit tail reporting. V5's one recurring outlier reached 0.0412173, while its remaining 19 charts stayed under 0.03; those same 19 also stayed under 0.03 in the earlier recorded gates. The working explanation remains residual **BF16 kernel nondeterminism under serial, eager, no-cache settings**, not an isolated proof of a particular kernel/build fault. Mean drift measures aggregate repeatability while stable classifications and visible tail drift preserve the agreed audit checks. It does not guarantee that each probability is within one percentage point.
+
+The [results noise-floor report](shared/results/README.md) records mean/max/p90 and flags for every available paired gate, with [machine-readable statistics and identity proof](shared/results/parity_noise_floor.json). V5 mean drift is **0.0024581**, p90 option drift **0.0057232**, max drift **0.0412173**, and argmax agreement **20/20**. These are historical observations from a fixed candle fixture, not an independent validation set or a noise bound for all arms. Carry this noise floor and the post-hoc policy history into later probability/calibration results; repeatability does not establish HF-vLLM equivalence or model accuracy.
+
+**Chart #15 identity verified:** `charts/b5674ffc8efb3bc45e6d.png`, SHA-256 `0aed05d7b75aa6e4b93166f53e9e7a7544bb9c7ae6a00b9785c6b62caa492b70`. The original 0.033344 run and v5 have the same filename, same position, and same image hash in their recorded scorer metadata; current PNG bytes match. All 20 gate filenames/orders match. The user referred to the earlier run as v3; its saved files identify it as **v2**. Actual `inference_run_v3` failed GDN_ATTN startup and has **no measured drift**, so a literal v3-versus-v5 image comparison is unavailable. The original metadata and v5 evidence are [preserved with SHA-256s](shared/results/diagnostics/2026-10-10-v5-parity/diagnosis.json).
+
+The original v2/v4/v5 reports remain failures under their original policies. Their saved pairs satisfy v6 in **CPU replay only**, which is not a new GPU gate. V6 outputs are frozen and **not run**; a fresh live gate is required.
+
+All other settings remain frozen; v6 uses:
 
 - Scorer concurrency **1**, client batch size **1**, for both gates and predictions.
-- **Batch invariance removed** because the pinned build rejects GDN_ATTN. No batch-invariance capability check remains; an inherited flag is removed before CLI help or server launch.
+- **Batch invariance removed** because the pinned build rejects GDN_ATTN. An inherited flag is removed before CLI help or server launch.
 - `--enforce-eager`, `--no-enable-prefix-caching`, `--no-enable-chunked-prefill`, `--no-async-scheduling` and `--seed 0`. The token budget is fixed at 16,384; GDN prefill is pinned to `triton`.
-- Native LoRA `jev-decision`, processed logprobs, raw decision template, calibrated System 1 payload and **`--max-num-seqs 8`** retained. Changing the native read-out temperature to zero would change probability semantics, so it remains untouched.
+- Native LoRA `jev-decision`, processed logprobs, raw decision template, calibrated System 1 payload and **`--max-num-seqs 8`** retained. Read-out temperature remains untouched.
 - `PYTHONHASHSEED=0`, `CUBLAS_WORKSPACE_CONFIG=:4096:8` and `NVIDIA_TF32_OVERRIDE=0`.
-- Fresh `frozen_v5` outputs and `inference_run_v5` session files; preserve the original v2/v4 gate failures and v3 startup evidence.
+- Fresh `frozen_v6` outputs and `inference_run_v6` session files; preserve every earlier failure. Cached v5 gates and outputs cannot be resumed as v6.
 
-**The v5 policy has not been run on a GPU.** The joint acceptance check requires **<=0.03 drift and 20/20 matching top predictions**. If startup or either repeatability condition fails, abort and retain diagnostics. The runtime packages, model snapshot, native payload/calibration, environment, driver minimum, prompts, charts, subsets, batch/concurrency, and server flags are unchanged from v4. A new threshold or inference setting requires a separately recorded change.
+**The v6 policy has not been run on a GPU.** Runtime packages, model snapshot, native payload/calibration, environment, driver minimum, prompts, charts, subsets, batch/concurrency, and server flags remain unchanged from v5. Config records both approvals and the old/new statistics explicitly. Another policy or setting change must be separately recorded.
 
 ## Observed build pins and Linux scorer
 
@@ -110,7 +121,7 @@ nvidia-smi --query-gpu=driver_version --format=csv,noheader
 
 These are documented future-host commands; no server packages were installed during this CPU change. Installation and wheel sourcing remain separate from the GPU run script, which checks exact package versions and `torch.version.cuda=13.0` before launch.
 
-A macOS virtual environment cannot be copied to Linux. Create or reuse the **on-pod Linux scorer** in a separate environment, matching the actual `/root/svenv` inventory through [requirements-scoring.txt](requirements-scoring.txt). The lightweight scorer needs no Torch/vLLM. From the prepared pod's repository root:
+A macOS virtual environment cannot be copied to Linux. Create or reuse the **on-pod Linux scorer ** in a separate environment, matching the actual `/root/svenv` inventory through [requirements-scoring.txt](requirements-scoring.txt). The lightweight scorer needs no Torch/vLLM. From the prepared pod's repository root:
 
 ```sh
 cd /root/repo
@@ -144,12 +155,12 @@ There is no reference-image enable flag. Without `--execute`, the script validat
 The script:
 
 1. Verifies frozen assets, the under-10,000 call cap, showcase-only scope and model weight/serving/config hashes; rejects an occupied port.
-2. Checks **NVIDIA driver >=580 before importing Torch**, then exact required server/scorer package pins, `torch.version.cuda=13.0` and supported CLI flags **before starting a server**. Runtime probes inspect metadata/import packages/CLI help only; they do not create an inference engine. No batch-invariance capability is required; the rejected environment flag is removed.
-3. Records driver versions, packages, Torch installation source, build/platform metadata and policy in `shared/results/inference_run_v5/runtime_lock.json`; rejects changed runtimes on resume. It records the launch command/environment and passes a runtime/execution fingerprint to every scorer.
+2. Checks **NVIDIA driver >=580 before importing Torch **, then exact required server/scorer package pins, `torch.version.cuda=13.0` and supported CLI flags **before starting a server**. Runtime probes inspect metadata/import packages/CLI help only; they do not create an inference engine. No batch-invariance capability is required; the rejected environment flag is removed.
+3. Records driver versions, packages, Torch installation source, build/platform metadata and policy in `shared/results/inference_run_v6/runtime_lock.json`; rejects changed runtimes on resume. It records the launch command/environment and passes a runtime/execution fingerprint to every scorer.
 4. Starts checksum-verified native JEV with the serial/eager/cacheless overrides and offline Hugging Face mode. No model downloads or package installs occur in the run script.
-5. Verifies native identity/calibration and runs **20 charts twice per option schema** before predictions. Every pending job also repeats 20 charts. Abort if **maximum probability difference >0.03 OR any top prediction differs**. Reports contain both passes, the v5 policy, per-row drift, argmax agreement and mismatch files. Cached gates and resume metadata must match the active policy.
+5. Verifies native identity/calibration and runs **20 charts twice per option schema** before predictions. Every pending job also repeats 20 charts. Abort if **mean absolute probability drift >0.01 OR any top prediction differs**. Reports contain both passes, the v6 policy, mean/max/p90 drift, per-chart maxima/means, flags over 0.03, argmax agreement and mismatch files. Cached gates and resume metadata must match the active policy.
 6. Scores frozen jobs at concurrency/batch one, preserving scope metadata, probabilities, predictions and latency. Timeout remains 120 seconds with three retries. Resume rejects changed input, model, question, context, concurrency/batch or execution fingerprint and skips completed rows.
-7. Writes `results/inference/frozen_v5/<job>.csv` plus metadata/parity/error/summary files; session logs go to `shared/results/inference_run_v5/`. Stops its own server, **not the existing cloud pod or billing**.
+7. Writes `results/inference/frozen_v6/<job>.csv` plus metadata/parity/error/summary files; session logs go to `shared/results/inference_run_v6/`. Stops its own server, **not the existing cloud pod or billing**.
 
 Repeatability does not establish HF/vLLM parity or recognition quality. Global gates repeat each session; partial jobs repeat their gate. Completed no-op jobs make no new decide calls.
 

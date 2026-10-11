@@ -24,7 +24,7 @@ from urllib.request import urlopen
 
 EXP=Path(__file__).resolve().parents[1];REPO=EXP.parent
 sys.path.insert(0,str(EXP))
-from shared.src.jev_api import PARITY_ATOL, PARITY_REQUIRE_ARGMAX, parity_policy
+from shared.src.jev_api import PARITY_ATOL, PARITY_FLAG_THRESHOLD, PARITY_DRIFT_STATISTIC, PARITY_REQUIRE_ARGMAX, parity_policy
 
 
 def sha(path):
@@ -67,7 +67,7 @@ def selected_jobs(config):
 
 def score_command(job,python,config,contract,*,parity_only=False,global_gate=False,runtime_fingerprint=''):
     runtime=config['runtime'];root=checked_path(job['root'])
-    out=f"results/inference/frozen_v5/global_parity_{job['kind']}.csv" if global_gate else job['out']
+    out=f"results/inference/frozen_v6/global_parity_{job['kind']}.csv" if global_gate else job['out']
     command=[str(python),str(EXP/'shared/src/score.py'),'--root',str(root),'--index',job['index'],
              '--out',out,'--options-file',str(checked_path(job['options_file'])),
              '--question',job['question'],'--control',job['control'],
@@ -183,9 +183,11 @@ def validate_execution(config,pins):
         if config['runtime'][key]!=pins['policy'][key] or config['runtime'][key]!=1:
             raise ValueError('Serial Experiment06 requires concurrency1 and batch_size1')
     if (pins['policy']['atol']!=PARITY_ATOL
+            or pins['policy'].get('drift_statistic') != PARITY_DRIFT_STATISTIC
+            or pins['policy'].get('flag_chart_max_abs_diff_above') != PARITY_FLAG_THRESHOLD
             or pins['policy'].get('require_argmax_agreement') is not PARITY_REQUIRE_ARGMAX
             or config.get('parity_gate')!=parity_policy()):
-        raise ValueError('Approved v5 policy requires0.03 tolerance and all top predictions matching')
+        raise ValueError('Approved v6 policy requires mean drift<=0.01, all top predictions matching and chart-max flags>0.03')
     if 'VLLM_BATCH_INVARIANT' in pins['determinism_environment']:
         raise ValueError('JEV GDN_ATTN rejects VLLM_BATCH_INVARIANT; remove it from policy')
     for key,required in [('prefix_caching',False),('chunked_prefill',False),('enforce_eager',True)]:
@@ -228,7 +230,7 @@ def wait_ready(process,port,contract,timeout=900):
 def run_session(config,contract,args):
     validate_assets(config);selected_jobs(config)
     pins=json.loads(checked_path(config['gpu_runtime']).read_text());validate_execution(config,pins)
-    folder=EXP/'shared/results/inference_run_v5';folder.mkdir(parents=True,exist_ok=True)
+    folder=EXP/'shared/results/inference_run_v6';folder.mkdir(parents=True,exist_ok=True)
     with (folder/'session.lock').open('w') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         verify_model(args.model_dir,contract)

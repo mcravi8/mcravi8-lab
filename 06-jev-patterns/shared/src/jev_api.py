@@ -11,15 +11,21 @@ from collections.abc import Sequence
 MODEL = "autotrust/JEV-27B-VL"
 PROTOCOL = "jev27-bare-v1"
 CHOICE_TEMPERATURE = 1.0161280671450397
-PARITY_ATOL = .03
+PARITY_ATOL = .01
+PARITY_FLAG_THRESHOLD = .03
+PARITY_DRIFT_STATISTIC = "mean_abs_diff"
 PARITY_REQUIRE_ARGMAX = True
 CHOICE_STRATEGY = "single"
 NATIVE_CHOICES = 16
 
 
 def parity_policy():
-    """Matteo-approved v5 repeatability gate, changed after observing v4 failures."""
-    return {'version':5,'n_charts':20,'atol':PARITY_ATOL,
+    """Matteo-approved v6 gate; mean includes every chart-option comparison."""
+    return {'version':6,'n_charts':20,'atol':PARITY_ATOL,
+            'drift_statistic':PARITY_DRIFT_STATISTIC,
+            'drift_population':'all chart-option probabilities, including flagged charts',
+            'flag_chart_max_abs_diff_above':PARITY_FLAG_THRESHOLD,
+            'p90_method':'linear interpolation at (n - 1) * 0.9',
             'require_argmax_agreement':PARITY_REQUIRE_ARGMAX,
             'argmax_tie_break':'first option in declared order'}
 

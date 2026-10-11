@@ -49,6 +49,9 @@ class ScorerTests(unittest.TestCase):
             self.assertEqual(len(fixture.requests),50)
             report=json.loads((root/'results/preds.parity.json').read_text())
             self.assertEqual(len(report['files']),20);self.assertEqual(report['max_abs_diff'],0)
+            summary=json.loads((root/'results/preds.summary.json').read_text())
+            for field in ['mean_abs_diff','max_abs_diff','p90_abs_diff','p90_chart_max_abs_diff','flagged_charts']:
+                self.assertEqual(summary['parity_'+field],report[field])
             self.assertEqual(score.run(self.args(root,fixture,options)),0)
             self.assertEqual(len(fixture.requests),104)
             self.assertEqual(score.run(self.args(root,fixture,options)),0)
@@ -80,10 +83,14 @@ class ScorerTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'provenance changed'):score.run(self.args(root,fixture,options))
 
     def test_retry_blank_context_and_explicit_parity_mode(self):
-        with tempfile.TemporaryDirectory() as d, server(fail_first=1) as fixture, redirect_stdout(StringIO()):
+        with tempfile.TemporaryDirectory() as d, server(fail_first=1) as fixture, redirect_stdout(StringIO()) as output:
             root=Path(d);options=self.prepare(root)
             (root/'context.txt').write_text('Definitions only.')
             score.run(self.args(root,fixture,options,'--control','blank','--context-file',str(root/'context.txt'),'--parity-only'))
+            console=json.loads(output.getvalue())
+            self.assertEqual(console['mean_abs_diff'],0);self.assertEqual(console['p90_abs_diff'],0)
+            self.assertEqual(console['flagged_charts'],[])
+            self.assertEqual(console['parity_policy']['version'],6)
             self.assertEqual(len(fixture.requests),41)
             self.assertFalse((root/'results/preds.csv').exists())
             payload=fixture.requests[-1]
@@ -135,23 +142,22 @@ class ScorerTests(unittest.TestCase):
             self.assertEqual(meta['server_identity']['canonical_model'],jev_api.MODEL)
             self.assertEqual(fixture.requests[-1]['strategy'],'single')
 
-    def test_original_0_033344_gate_still_fails_under_approved_policy(self):
+    def test_original_outlier_is_included_and_flagged_under_mean_policy(self):
         evidence=json.loads((Path(__file__).resolve().parents[1]/
             'shared/results/diagnostics/2026-10-10/candles.parity.json').read_text())
-        client=SimpleNamespace(args=SimpleNamespace(options=[str(i) for i in range(8)],dry_run=False,
-             concurrency=1,batch_size=1,execution_fingerprint='a'*64),
-             score=Mock(side_effect=[(p,0,1) for p in evidence['first']+evidence['second']]))
+        client,rows=self.parity_fixture(evidence['first'],evidence['second'])
         rows=[{'file':file} for file in evidence['files']]
         with tempfile.TemporaryDirectory() as d:
-            path=Path(d)/'gate.json'
-            with self.assertRaisesRegex(ValueError,'> 0.03'):
-                score.parity_check(client,rows,path,'fixture',force=True)
-            report=json.loads(path.read_text())
-            self.assertFalse(report['passed']);self.assertEqual(report['atol'],0.03)
-            self.assertEqual(report['rows_over_atol'],1)
-            self.assertEqual(report['argmax_agreement_count'],20)
-            self.assertEqual(report['execution']['parity_concurrency'],1)
-            self.assertAlmostEqual(report['max_abs_diff'],0.03334436881129002)
+            report=score.parity_check(client,rows,Path(d)/'gate.json','fixture',force=True)
+        self.assertTrue(report['passed']);self.assertEqual(report['atol'],0.01)
+        self.assertEqual(report['rows_over_flag_threshold'],1)
+        self.assertEqual(report['flagged_files'],[evidence['files'][14]])
+        self.assertEqual(report['flagged_charts'][0]['chart_number'],15)
+        self.assertEqual(report['argmax_agreement_count'],20)
+        self.assertEqual(report['execution']['parity_concurrency'],1)
+        self.assertAlmostEqual(report['max_abs_diff'],0.03334436881129002)
+        self.assertAlmostEqual(report['mean_abs_diff'],0.0019776217887860653)
+        self.assertEqual(report['probability_comparisons'],160)
 
     def parity_fixture(self,first,second):
         client=SimpleNamespace(args=SimpleNamespace(options=[str(i) for i in range(len(first[0]))],
@@ -167,25 +173,71 @@ class ScorerTests(unittest.TestCase):
         client,rows=self.parity_fixture(evidence['first'],evidence['second'])
         with tempfile.TemporaryDirectory() as d:
             report=score.parity_check(client,rows,Path(d)/'gate.json','fixture',force=True)
-        self.assertTrue(report['passed']);self.assertEqual(report['atol'],0.03)
+        self.assertTrue(report['passed']);self.assertEqual(report['atol'],0.01)
         self.assertEqual(report['argmax_agreement_count'],20)
         self.assertTrue(report['top_predictions_matched'])
-        self.assertEqual(report['rows_over_atol'],0)
+        self.assertEqual(report['rows_over_flag_threshold'],0)
         self.assertAlmostEqual(report['max_abs_diff'],0.018410737935632693)
         self.assertEqual(source.read_bytes(),before)
 
-    def test_joint_gate_includes_0_03_boundary_and_rejects_larger_drift(self):
-        first=[[.01,.09,.9]]*20
+    def test_mean_gate_includes_0_01_boundary_and_rejects_larger_mean(self):
+        first=[[0,.02,.48,.5]]*20
         with tempfile.TemporaryDirectory() as d:
-            client,rows=self.parity_fixture(first,[[.04,.06,.9]]*20)
+            client,rows=self.parity_fixture(first,[[.02,0,.48,.5]]*20)
             report=score.parity_check(client,rows,Path(d)/'boundary.json','boundary',force=True)
-            self.assertEqual(report['max_abs_diff'],0.03);self.assertTrue(report['passed'])
-            client,rows=self.parity_fixture(first,[[.040001,.059999,.9]]*20)
+            self.assertEqual(report['mean_abs_diff'],0.01);self.assertTrue(report['passed'])
+            client,rows=self.parity_fixture(first,[[.020004,0,.479996,.5]]*20)
             path=Path(d)/'above.json'
-            with self.assertRaisesRegex(ValueError,'> 0.03'):
+            with self.assertRaisesRegex(ValueError,'mean absolute probability difference.*> 0.01'):
                 score.parity_check(client,rows,path,'above',force=True)
             report=json.loads(path.read_text())
             self.assertFalse(report['passed']);self.assertTrue(report['top_predictions_matched'])
+
+    def test_mean_uses_all_option_entries_and_reports_linear_percentiles(self):
+        first=[[0,.2,.3,.5]]*20;second=[[.016,.184,.3,.5]]*20
+        report=score.parity_statistics(first,second,[f'{i}.png' for i in range(20)],4)
+        self.assertAlmostEqual(report['mean_abs_diff'],.008)
+        self.assertAlmostEqual(report['p90_abs_diff'],.016)
+        self.assertAlmostEqual(report['p90_chart_max_abs_diff'],.016)
+        self.assertEqual(report['probability_comparisons'],80)
+        self.assertTrue(report['passed'])  # mean of chart maxima would exceed0.01
+        # Sparse tail:78 zeros and one row with .04,.04. P90 option drift is0;
+        # chart-max p90 is0; every tail entry must still enter the mean.
+        sparse=score.parity_statistics([[0,.04,.46,.5]]*20,
+            [[.04,0,.46,.5]]+[[0,.04,.46,.5]]*19,[str(i) for i in range(20)],4)
+        self.assertAlmostEqual(sparse['mean_abs_diff'],.001)
+        self.assertEqual(sparse['p90_abs_diff'],0)
+        self.assertEqual(sparse['rows_over_flag_threshold'],1)
+        # Chart-max quantile interpolates between sorted rows18 and19.
+        varied=[[v,.1-v,.3,.6] for v in [.0]*18+[.02,.04]]
+        interpolated=score.parity_statistics([[0,.1,.3,.6]]*20,varied,[str(i) for i in range(20)],4)
+        self.assertAlmostEqual(interpolated['p90_chart_max_abs_diff'],.002)
+
+    def test_flag_threshold_is_strict_and_flagged_charts_still_require_argmax(self):
+        first=[[0,.04,.46,.5]]*20
+        exact=score.parity_statistics(first,[[.03,.01,.46,.5]]+first[1:],[str(i) for i in range(20)],4)
+        self.assertEqual(exact['rows_over_flag_threshold'],0);self.assertTrue(exact['passed'])
+        above=score.parity_statistics(first,[[.030001,.009999,.46,.5]]+first[1:],[str(i) for i in range(20)],4)
+        self.assertEqual(above['rows_over_flag_threshold'],1);self.assertTrue(above['passed'])
+        flipped=score.parity_statistics([[.49,.51]]*20,[[.53,.47]]+[[.49,.51]]*19,[str(i) for i in range(20)],2)
+        self.assertTrue(flipped['probability_drift_passed']);self.assertFalse(flipped['passed'])
+        self.assertEqual(flipped['argmax_mismatch_files'],['0'])
+        self.assertEqual(flipped['flagged_charts'][0]['argmax_matched'],False)
+
+    def test_saved_v5_failure_passes_cpu_replay_without_mutating_source(self):
+        source=Path(__file__).resolve().parents[1]/'shared/results/diagnostics/2026-10-10-v5-parity/candles.parity.json'
+        before=source.read_bytes();evidence=json.loads(before)
+        self.assertFalse(evidence['passed']);self.assertEqual(evidence['atol'],.03)
+        client,rows=self.parity_fixture(evidence['first'],evidence['second'])
+        rows=[{'file':file} for file in evidence['files']]
+        with tempfile.TemporaryDirectory() as d:
+            report=score.parity_check(client,rows,Path(d)/'gate.json','fixture',force=True)
+        self.assertTrue(report['passed']);self.assertEqual(report['argmax_agreement_count'],20)
+        self.assertEqual(report['flagged_files'],[evidence['files'][14]])
+        self.assertAlmostEqual(report['mean_abs_diff'],.002458124933190978)
+        self.assertAlmostEqual(report['p90_abs_diff'],.005723228075901335)
+        self.assertAlmostEqual(report['max_abs_diff'],.04121730474518304)
+        self.assertEqual(source.read_bytes(),before)
 
     def test_small_drift_argmax_flip_blocks_predictions_and_logs_failure(self):
         first=[.49,.48]+[.005]*6;flipped=[.48,.49]+[.005]*6
@@ -210,7 +262,7 @@ class ScorerTests(unittest.TestCase):
             client,rows=self.parity_fixture([[.1,.9]]*20,[[.1,.9]]*20)
             path=Path(d)/'gate.json'
             score.parity_check(client,rows,path,'fixture',force=True)
-            cached=json.loads(path.read_text());cached['parity_policy']['atol']=0.01
+            cached=json.loads(path.read_text());cached['parity_policy']['version']=5
             path.write_text(json.dumps(cached))
             with self.assertRaisesRegex(ValueError,'Parity policy differs'):
                 score.parity_check(client,rows,path,'fixture')

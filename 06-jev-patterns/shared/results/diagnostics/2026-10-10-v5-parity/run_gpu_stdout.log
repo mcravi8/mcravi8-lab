@@ -1,0 +1,14 @@
+Parity failed: max probability difference 0.041217 > 0.03; scoring blocked
+Traceback (most recent call last):
+  File "/root/repo/06-jev-patterns/scripts/run_gpu.py", line 290, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/repo/06-jev-patterns/scripts/run_gpu.py", line 287, in main
+    run_session(config,contract,args)
+  File "/root/repo/06-jev-patterns/scripts/run_gpu.py", line 254, in run_session
+    execute_jobs(config,contract,args.scorer_python,runtime_fingerprint=runtime_fingerprint)
+  File "/root/repo/06-jev-patterns/scripts/run_gpu.py", line 95, in execute_jobs
+    runner(score_command(job,python,config,contract,parity_only=True,global_gate=True,runtime_fingerprint=runtime_fingerprint),check=True)
+  File "/usr/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/root/svenv/bin/python', '/root/repo/06-jev-patterns/shared/src/score.py', '--root', '/root/repo/06-jev-patterns/06a-candles', '--index', 'results/arms/candles.csv', '--out', 'results/inference/frozen_v5/global_parity_candles.csv', '--options-file', '/root/repo/06-jev-patterns/06a-candles/options.json', '--question', 'Which candlestick pattern ends at the right edge of the target chart? Select one option.', '--control', 'image', '--base-url', 'http://127.0.0.1:8000', '--served-model-name', 'autotrust/JEV-27B-VL', '--model-revision', '3514d1d8ead2189c75f433fa949fe63c8e3f3c66', '--concurrency', '1', '--batch-size', '1', '--timeout', '120', '--retries', '3', '--execution-fingerprint', '7e937aec23b291ec6507823ae95e28831f7e1acbe8fb0bbe7c970356bbc18bb5', '--parity-only']' returned non-zero exit status 1.

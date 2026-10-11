@@ -13,7 +13,7 @@
   "multiple_images": true,
   "max_images_per_request": 8,
   "evidence": "Card/server support up to eight images; the trimmed Experiment06 plan has removed the reference-image arm.",
-  "parity": "v5, explicitly approved after observing failed gates:20 charts twice, require every argmax to match and max absolute option probability difference<=0.03. Repeatability only; not HF-vLLM parity.",
+  "parity": "v6, explicitly approved after v5 failure:20 charts twice, require all argmaxes to match and mean absolute drift over all chart-option probabilities<=0.01. Log max/p90 and flag chart-max drift>0.03 without excluding charts. Repeatability only; not HF-vLLM parity.",
   "serving_entrypoint": "01-jev-tsla-charts/scripts/remote_serve.sh",
   "desktop_wrapper_note": "The existing Desktop/runpod-setup/remote_serve.sh is an older plain-vLLM command that does not provide the native decision route. Use the corrected repository01 wrapper, which invokes the pinned model snapshot serve.sh.",
   "executed": true,
@@ -152,5 +152,13 @@
     "max_abs_diff": 0.018410737935632693,
     "argmax_agreement_count": 20,
     "diagnosis": "06-jev-patterns/shared/results/diagnostics/2026-10-10-v4-parity/diagnosis.json"
+  },
+  "prior_v5_attempt": {
+    "status": "failed maximum0.03 candle gate",
+    "decide_calls": 40,
+    "prediction_calls": 0,
+    "max_abs_diff": 0.04121730474518304,
+    "argmax_agreement_count": 20,
+    "diagnosis": "06-jev-patterns/shared/results/diagnostics/2026-10-10-v5-parity/diagnosis.json"
   }
 }

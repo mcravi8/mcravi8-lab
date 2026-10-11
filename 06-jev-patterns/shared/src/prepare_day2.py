@@ -199,7 +199,7 @@ def prepare():
             jobs.append({**c,'id':identity,'arm':arm,'paraphrase':number,'question':question,
                 'context_file':str(context.relative_to(REPO)) if arm=='definitions' else None,
                 'options_file':str(options.relative_to(REPO)),
-                'out':f'results/inference/frozen_v5/{identity}.csv'})
+                'out':f'results/inference/frozen_v6/{identity}.csv'})
     for path in [A/'options.json',B/'options.json',agreement_table,B/'results/real_agreement.json',
                  EXP/'shared/context/candles.txt',EXP/'shared/context/chart_patterns.txt',EXP/'config/model_contract.json',EXP/'config/gpu_runtime.json',EXP/'requirements-scoring.txt',EXP/'requirements-jev-server.txt',EXP/'requirements-jev-torch.txt',EXP/'shared/results/diagnostics/2026-10-10/runtime_lock.json',
                  EXP/'shared/results/diagnostics/2026-10-10-gdn-attn/diagnosis.json',EXP/'shared/results/diagnostics/2026-10-10-gdn-attn/server.log',
@@ -209,10 +209,18 @@ def prepare():
                  EXP/'shared/results/diagnostics/2026-10-10-v4-parity/runtime_lock.json',
                  EXP/'shared/results/diagnostics/2026-10-10-v4-parity/session_summary.json',
                  EXP/'shared/results/diagnostics/2026-10-10-v4-parity/frozen_v4_settings.json',
+                 EXP/'shared/results/parity_noise_floor.json',
+                 EXP/'shared/results/diagnostics/2026-10-10-v5-parity/diagnosis.json',
+                 EXP/'shared/results/diagnostics/2026-10-10-v5-parity/candles.parity.json',
+                 EXP/'shared/results/diagnostics/2026-10-10-v5-parity/candles.meta.json',
+                 EXP/'shared/results/diagnostics/2026-10-10-v5-parity/original_gate.meta.json',
+                 EXP/'shared/results/diagnostics/2026-10-10-v5-parity/runtime_lock.json',
+                 EXP/'shared/results/diagnostics/2026-10-10-v5-parity/session_summary.json',
+                 EXP/'shared/results/diagnostics/2026-10-10-v5-parity/frozen_v5_settings.json',
                  EXP/'shared/src/score.py',EXP/'shared/src/jev_api.py',EXP/'shared/src/evaluate.py',EXP/'shared/src/render.py',Path(__file__),EXP/'scripts/run_gpu.py',
                  REPO/'01-jev-tsla-charts/scripts/remote_serve.sh']:
         assets[str(path.relative_to(REPO))]=digest(path)
-    config={'schema_version':5,'status':'Matteo-approved0.03 plus matching-argmax policy frozen after v4 failure; v5 not GPU run','seed':606227,
+    config={'schema_version':6,'status':'Matteo-approved mean drift<=0.01 plus matching-argmax policy after v5 failure; v6 not GPU run','seed':606227,
         'model_contract':'06-jev-patterns/config/model_contract.json','gpu_runtime':'06-jev-patterns/config/gpu_runtime.json','questions':QUESTIONS,
         'parity_gate':parity_policy(),
         'arms':['zero_shot','definitions'],
@@ -221,7 +229,9 @@ def prepare():
                               'synthetic':'all eval parents, cluster noise/framing/style versions by template_id'},
         'real_showcase':{'n_parents':150,'framings':['variable','fixed_100'],'accuracy_valid':False,
                          'reason':'Sparse, imbalanced detector-selected examples; not a recognition benchmark.'},
-        'reported_results':{'detector_agreement':{'table':str(agreement_table.relative_to(REPO)),
+        'reported_results':{'parity_noise_floor':{'details':'06-jev-patterns/shared/results/parity_noise_floor.json',
+                             'readme':'06-jev-patterns/shared/results/README.md','evidence_type':'historical candle repeatability; post-hoc v6 policy'},
+                             'detector_agreement':{'table':str(agreement_table.relative_to(REPO)),
                              'details':str((B/'results/real_agreement.json').relative_to(REPO)),
                              'evidence_type':'detector overlap; not expert label quality or JEV accuracy'}},
         'paraphrase_subsets':paraphrases,'control_subsets':controls,
@@ -239,7 +249,10 @@ def prepare():
            'diagnosis':'06-jev-patterns/shared/results/diagnostics/2026-10-10-gdn-attn/diagnosis.json'},
         'prior_v4_attempt':{'status':'failed original0.01 candle gate','decide_calls':40,'prediction_calls':0,
           'max_abs_diff':0.018410737935632693,'argmax_agreement_count':20,
-          'diagnosis':'06-jev-patterns/shared/results/diagnostics/2026-10-10-v4-parity/diagnosis.json'}}
+          'diagnosis':'06-jev-patterns/shared/results/diagnostics/2026-10-10-v4-parity/diagnosis.json'},
+        'prior_v5_attempt':{'status':'failed maximum0.03 candle gate','decide_calls':40,'prediction_calls':0,
+          'max_abs_diff':0.04121730474518304,'argmax_agreement_count':20,
+          'diagnosis':'06-jev-patterns/shared/results/diagnostics/2026-10-10-v5-parity/diagnosis.json'}}
     if config['call_budget']['default']['total_decide_calls']>=config['fresh_call_cap']:
         raise ValueError('Trimmed fresh-run call budget must remain below 10,000')
     write_json(EXP/'config/inference_arms.json',config)
