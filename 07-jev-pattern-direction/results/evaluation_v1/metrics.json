@@ -1,0 +1,1512 @@
+{
+  "synthetic": false,
+  "scientific_result": true,
+  "n": 300,
+  "n_dates": 50,
+  "metrics": {
+    "zero_shot": {
+      "n": 300,
+      "options": [
+        "Up",
+        "Flat",
+        "Down"
+      ],
+      "accuracy": 0.37333333333333335,
+      "macro_f1": 0.3386058386058386,
+      "class_f1": {
+        "Up": 0.42063492063492064,
+        "Flat": 0.17094017094017094,
+        "Down": 0.42424242424242425
+      },
+      "confusion_matrix": [
+        [
+          53,
+          9,
+          48
+        ],
+        [
+          46,
+          10,
+          30
+        ],
+        [
+          43,
+          12,
+          49
+        ]
+      ],
+      "confusion_axes": "rows = truth, columns = prediction; declared option order",
+      "brier": 0.8628900980327916,
+      "log_loss": 1.5470881969239285,
+      "ece_15": 0.30627348607680094,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "n": 10,
+          "accuracy": 0.3,
+          "confidence": 0.37193229356799495
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "n": 33,
+          "accuracy": 0.2727272727272727,
+          "confidence": 0.4422948492429229
+        },
+        {
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "n": 37,
+          "accuracy": 0.35135135135135137,
+          "confidence": 0.5025623382275404
+        },
+        {
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "n": 40,
+          "accuracy": 0.425,
+          "confidence": 0.5669150810689694
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "n": 29,
+          "accuracy": 0.4482758620689655,
+          "confidence": 0.6422770471720757
+        },
+        {
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "n": 30,
+          "accuracy": 0.4666666666666667,
+          "confidence": 0.7005739019126709
+        },
+        {
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "n": 27,
+          "accuracy": 0.25925925925925924,
+          "confidence": 0.7696401674585266
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "n": 25,
+          "accuracy": 0.4,
+          "confidence": 0.8320178398352921
+        },
+        {
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "n": 49,
+          "accuracy": 0.3673469387755102,
+          "confidence": 0.8992171313332786
+        },
+        {
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "n": 20,
+          "accuracy": 0.4,
+          "confidence": 0.9504980863601308
+        }
+      ],
+      "risk_coverage": {
+        "0.5": {
+          "n": 241,
+          "coverage": 0.8033333333333333,
+          "accuracy": 0.3941908713692946,
+          "risk": 0.6058091286307055
+        },
+        "0.7": {
+          "n": 138,
+          "coverage": 0.46,
+          "accuracy": 0.3695652173913043,
+          "risk": 0.6304347826086957
+        },
+        "0.9": {
+          "n": 43,
+          "coverage": 0.14333333333333334,
+          "accuracy": 0.4186046511627907,
+          "risk": 0.5813953488372092
+        }
+      },
+      "argmax_tie_rule": "First option in the declared order",
+      "absent_class_f1": "Zero; all declared classes enter macro-F1"
+    },
+    "candles": {
+      "n": 300,
+      "options": [
+        "Up",
+        "Flat",
+        "Down"
+      ],
+      "accuracy": 0.38,
+      "macro_f1": 0.34403885419764096,
+      "class_f1": {
+        "Up": 0.416,
+        "Flat": 0.17543859649122806,
+        "Down": 0.4406779661016949
+      },
+      "confusion_matrix": [
+        [
+          52,
+          9,
+          49
+        ],
+        [
+          45,
+          10,
+          31
+        ],
+        [
+          43,
+          9,
+          52
+        ]
+      ],
+      "confusion_axes": "rows = truth, columns = prediction; declared option order",
+      "brier": 0.8307807934337653,
+      "log_loss": 1.4089239901044948,
+      "ece_15": 0.27394837219031815,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "n": 15,
+          "accuracy": 0.3333333333333333,
+          "confidence": 0.3819168939777464
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "n": 24,
+          "accuracy": 0.2916666666666667,
+          "confidence": 0.4430110574001753
+        },
+        {
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "n": 49,
+          "accuracy": 0.46938775510204084,
+          "confidence": 0.49858112178587344
+        },
+        {
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "n": 35,
+          "accuracy": 0.42857142857142855,
+          "confidence": 0.5627589696049794
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "n": 45,
+          "accuracy": 0.3333333333333333,
+          "confidence": 0.6342994237097074
+        },
+        {
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "n": 26,
+          "accuracy": 0.4230769230769231,
+          "confidence": 0.7017886401431064
+        },
+        {
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "n": 30,
+          "accuracy": 0.3,
+          "confidence": 0.7718269107092094
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "n": 43,
+          "accuracy": 0.4186046511627907,
+          "confidence": 0.8367396635603594
+        },
+        {
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "n": 32,
+          "accuracy": 0.3125,
+          "confidence": 0.8975377390857393
+        },
+        {
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "n": 1,
+          "accuracy": 1.0,
+          "confidence": 0.9493452496300305
+        }
+      ],
+      "risk_coverage": {
+        "0.5": {
+          "n": 233,
+          "coverage": 0.7766666666666666,
+          "accuracy": 0.38197424892703863,
+          "risk": 0.6180257510729614
+        },
+        "0.7": {
+          "n": 119,
+          "coverage": 0.39666666666666667,
+          "accuracy": 0.36134453781512604,
+          "risk": 0.6386554621848739
+        },
+        "0.9": {
+          "n": 18,
+          "coverage": 0.06,
+          "accuracy": 0.4444444444444444,
+          "risk": 0.5555555555555556
+        }
+      },
+      "argmax_tie_rule": "First option in the declared order",
+      "absent_class_f1": "Zero; all declared classes enter macro-F1"
+    },
+    "formations": {
+      "n": 300,
+      "options": [
+        "Up",
+        "Flat",
+        "Down"
+      ],
+      "accuracy": 0.36666666666666664,
+      "macro_f1": 0.3136193704197873,
+      "class_f1": {
+        "Up": 0.4126984126984127,
+        "Flat": 0.09900990099009901,
+        "Down": 0.4291497975708502
+      },
+      "confusion_matrix": [
+        [
+          52,
+          6,
+          52
+        ],
+        [
+          43,
+          5,
+          38
+        ],
+        [
+          47,
+          4,
+          53
+        ]
+      ],
+      "confusion_axes": "rows = truth, columns = prediction; declared option order",
+      "brier": 0.8751965978604759,
+      "log_loss": 1.5310911022236233,
+      "ece_15": 0.33774229311378856,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "n": 8,
+          "accuracy": 0.25,
+          "confidence": 0.37674263156210586
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "n": 27,
+          "accuracy": 0.3333333333333333,
+          "confidence": 0.43135813986592886
+        },
+        {
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "n": 34,
+          "accuracy": 0.2647058823529412,
+          "confidence": 0.4986396751850104
+        },
+        {
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "n": 25,
+          "accuracy": 0.4,
+          "confidence": 0.5638355124016573
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "n": 24,
+          "accuracy": 0.4166666666666667,
+          "confidence": 0.6323247019443863
+        },
+        {
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "n": 33,
+          "accuracy": 0.3939393939393939,
+          "confidence": 0.7041279440538265
+        },
+        {
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "n": 37,
+          "accuracy": 0.40540540540540543,
+          "confidence": 0.7675384747970486
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "n": 49,
+          "accuracy": 0.3877551020408163,
+          "confidence": 0.8306007775465483
+        },
+        {
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "n": 33,
+          "accuracy": 0.36363636363636365,
+          "confidence": 0.8971329893726053
+        },
+        {
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "n": 30,
+          "accuracy": 0.36666666666666664,
+          "confidence": 0.9498891673972892
+        }
+      ],
+      "risk_coverage": {
+        "0.5": {
+          "n": 248,
+          "coverage": 0.8266666666666667,
+          "accuracy": 0.38306451612903225,
+          "risk": 0.6169354838709677
+        },
+        "0.7": {
+          "n": 167,
+          "coverage": 0.5566666666666666,
+          "accuracy": 0.3772455089820359,
+          "risk": 0.6227544910179641
+        },
+        "0.9": {
+          "n": 45,
+          "coverage": 0.15,
+          "accuracy": 0.3111111111111111,
+          "risk": 0.6888888888888889
+        }
+      },
+      "argmax_tie_rule": "First option in the declared order",
+      "absent_class_f1": "Zero; all declared classes enter macro-F1"
+    },
+    "combined": {
+      "n": 300,
+      "options": [
+        "Up",
+        "Flat",
+        "Down"
+      ],
+      "accuracy": 0.39,
+      "macro_f1": 0.3321618334293579,
+      "class_f1": {
+        "Up": 0.4330708661417323,
+        "Flat": 0.1,
+        "Down": 0.4634146341463415
+      },
+      "confusion_matrix": [
+        [
+          55,
+          5,
+          50
+        ],
+        [
+          46,
+          5,
+          35
+        ],
+        [
+          43,
+          4,
+          57
+        ]
+      ],
+      "confusion_axes": "rows = truth, columns = prediction; declared option order",
+      "brier": 0.8591443260779956,
+      "log_loss": 1.4806522573819916,
+      "ece_15": 0.30874686458232276,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "n": 10,
+          "accuracy": 0.5,
+          "confidence": 0.3799297977813533
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "n": 24,
+          "accuracy": 0.4166666666666667,
+          "confidence": 0.4396805953914706
+        },
+        {
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "n": 27,
+          "accuracy": 0.2962962962962963,
+          "confidence": 0.49559006317592974
+        },
+        {
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "n": 39,
+          "accuracy": 0.4358974358974359,
+          "confidence": 0.5642410929878897
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "n": 36,
+          "accuracy": 0.3888888888888889,
+          "confidence": 0.6288135602906855
+        },
+        {
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "n": 30,
+          "accuracy": 0.4666666666666667,
+          "confidence": 0.6976103988697183
+        },
+        {
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "n": 36,
+          "accuracy": 0.3611111111111111,
+          "confidence": 0.7624116931348933
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "n": 39,
+          "accuracy": 0.3333333333333333,
+          "confidence": 0.8386080084667691
+        },
+        {
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "n": 44,
+          "accuracy": 0.38636363636363635,
+          "confidence": 0.8982528892462988
+        },
+        {
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "n": 15,
+          "accuracy": 0.4,
+          "confidence": 0.9495618789589148
+        }
+      ],
+      "risk_coverage": {
+        "0.5": {
+          "n": 252,
+          "coverage": 0.84,
+          "accuracy": 0.38492063492063494,
+          "risk": 0.6150793650793651
+        },
+        "0.7": {
+          "n": 147,
+          "coverage": 0.49,
+          "accuracy": 0.3673469387755102,
+          "risk": 0.6326530612244898
+        },
+        "0.9": {
+          "n": 37,
+          "coverage": 0.12333333333333334,
+          "accuracy": 0.32432432432432434,
+          "risk": 0.6756756756756757
+        }
+      },
+      "argmax_tie_rule": "First option in the declared order",
+      "absent_class_f1": "Zero; all declared classes enter macro-F1"
+    },
+    "training_prior": {
+      "n": 300,
+      "options": [
+        "Up",
+        "Flat",
+        "Down"
+      ],
+      "accuracy": 0.36666666666666664,
+      "macro_f1": 0.17886178861788618,
+      "class_f1": {
+        "Up": 0.5365853658536586,
+        "Flat": 0.0,
+        "Down": 0.0
+      },
+      "confusion_matrix": [
+        [
+          110,
+          0,
+          0
+        ],
+        [
+          86,
+          0,
+          0
+        ],
+        [
+          104,
+          0,
+          0
+        ]
+      ],
+      "confusion_axes": "rows = truth, columns = prediction; declared option order",
+      "brier": 0.6657648350709613,
+      "log_loss": 1.0968514152024982,
+      "ece_15": 0.04094811496827172,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "n": 300,
+          "accuracy": 0.36666666666666664,
+          "confidence": 0.40761478163493836
+        },
+        {
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        }
+      ],
+      "risk_coverage": {
+        "0.5": {
+          "n": 0,
+          "coverage": 0.0,
+          "accuracy": null,
+          "risk": null
+        },
+        "0.7": {
+          "n": 0,
+          "coverage": 0.0,
+          "accuracy": null,
+          "risk": null
+        },
+        "0.9": {
+          "n": 0,
+          "coverage": 0.0,
+          "accuracy": null,
+          "risk": null
+        }
+      },
+      "argmax_tie_rule": "First option in the declared order",
+      "absent_class_f1": "Zero; all declared classes enter macro-F1"
+    },
+    "uniform": {
+      "n": 300,
+      "options": [
+        "Up",
+        "Flat",
+        "Down"
+      ],
+      "accuracy": 0.36666666666666664,
+      "macro_f1": 0.17886178861788618,
+      "class_f1": {
+        "Up": 0.5365853658536586,
+        "Flat": 0.0,
+        "Down": 0.0
+      },
+      "confusion_matrix": [
+        [
+          110,
+          0,
+          0
+        ],
+        [
+          86,
+          0,
+          0
+        ],
+        [
+          104,
+          0,
+          0
+        ]
+      ],
+      "confusion_axes": "rows = truth, columns = prediction; declared option order",
+      "brier": 0.6666666666666669,
+      "log_loss": 1.0986122886681096,
+      "ece_15": 0.033333333333333326,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "n": 300,
+          "accuracy": 0.36666666666666664,
+          "confidence": 0.3333333333333333
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        }
+      ],
+      "risk_coverage": {
+        "0.5": {
+          "n": 0,
+          "coverage": 0.0,
+          "accuracy": null,
+          "risk": null
+        },
+        "0.7": {
+          "n": 0,
+          "coverage": 0.0,
+          "accuracy": null,
+          "risk": null
+        },
+        "0.9": {
+          "n": 0,
+          "coverage": 0.0,
+          "accuracy": null,
+          "risk": null
+        }
+      },
+      "argmax_tie_rule": "First option in the declared order",
+      "absent_class_f1": "Zero; all declared classes enter macro-F1"
+    },
+    "combined_blank": {
+      "n": 100,
+      "options": [
+        "Up",
+        "Flat",
+        "Down"
+      ],
+      "accuracy": 0.27,
+      "macro_f1": 0.14173228346456693,
+      "class_f1": {
+        "Up": 0.0,
+        "Flat": 0.4251968503937008,
+        "Down": 0.0
+      },
+      "confusion_matrix": [
+        [
+          0,
+          34,
+          0
+        ],
+        [
+          0,
+          27,
+          0
+        ],
+        [
+          0,
+          39,
+          0
+        ]
+      ],
+      "confusion_axes": "rows = truth, columns = prediction; declared option order",
+      "brier": 1.1057211266466564,
+      "log_loss": 1.7988691748916827,
+      "ece_15": 0.5441853911179731,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "n": 7,
+          "accuracy": 0.2857142857142857,
+          "confidence": 0.7923945152422446
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "n": 93,
+          "accuracy": 0.26881720430107525,
+          "confidence": 0.8158255645709849
+        },
+        {
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        }
+      ],
+      "risk_coverage": {
+        "0.5": {
+          "n": 100,
+          "coverage": 1.0,
+          "accuracy": 0.27,
+          "risk": 0.73
+        },
+        "0.7": {
+          "n": 100,
+          "coverage": 1.0,
+          "accuracy": 0.27,
+          "risk": 0.73
+        },
+        "0.9": {
+          "n": 0,
+          "coverage": 0.0,
+          "accuracy": null,
+          "risk": null
+        }
+      },
+      "argmax_tie_rule": "First option in the declared order",
+      "absent_class_f1": "Zero; all declared classes enter macro-F1"
+    },
+    "combined_control_subset": {
+      "n": 100,
+      "options": [
+        "Up",
+        "Flat",
+        "Down"
+      ],
+      "accuracy": 0.39,
+      "macro_f1": 0.3175925925925926,
+      "class_f1": {
+        "Up": 0.375,
+        "Flat": 0.06666666666666667,
+        "Down": 0.5111111111111111
+      },
+      "confusion_matrix": [
+        [
+          15,
+          1,
+          18
+        ],
+        [
+          16,
+          1,
+          10
+        ],
+        [
+          15,
+          1,
+          23
+        ]
+      ],
+      "confusion_axes": "rows = truth, columns = prediction; declared option order",
+      "brier": 0.8374406911164809,
+      "log_loss": 1.4228934204584698,
+      "ece_15": 0.32572843120084544,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "n": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "n": 3,
+          "accuracy": 0.6666666666666666,
+          "confidence": 0.3862039330611872
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "n": 9,
+          "accuracy": 0.5555555555555556,
+          "confidence": 0.4497484251811527
+        },
+        {
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "n": 10,
+          "accuracy": 0.2,
+          "confidence": 0.4940065380104941
+        },
+        {
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "n": 10,
+          "accuracy": 0.4,
+          "confidence": 0.5649127442947675
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "n": 17,
+          "accuracy": 0.35294117647058826,
+          "confidence": 0.6278763277012637
+        },
+        {
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "n": 10,
+          "accuracy": 0.5,
+          "confidence": 0.695967563834784
+        },
+        {
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "n": 13,
+          "accuracy": 0.3076923076923077,
+          "confidence": 0.7604010035713136
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "n": 11,
+          "accuracy": 0.36363636363636365,
+          "confidence": 0.8421441230636983
+        },
+        {
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "n": 14,
+          "accuracy": 0.42857142857142855,
+          "confidence": 0.8969858994412512
+        },
+        {
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "n": 3,
+          "accuracy": 0.3333333333333333,
+          "confidence": 0.9499412404237559
+        }
+      ],
+      "risk_coverage": {
+        "0.5": {
+          "n": 82,
+          "coverage": 0.82,
+          "accuracy": 0.3780487804878049,
+          "risk": 0.6219512195121951
+        },
+        "0.7": {
+          "n": 45,
+          "coverage": 0.45,
+          "accuracy": 0.37777777777777777,
+          "risk": 0.6222222222222222
+        },
+        "0.9": {
+          "n": 11,
+          "coverage": 0.11,
+          "accuracy": 0.2727272727272727,
+          "risk": 0.7272727272727273
+        }
+      },
+      "argmax_tie_rule": "First option in the declared order",
+      "absent_class_f1": "Zero; all declared classes enter macro-F1"
+    }
+  },
+  "paired": {
+    "combined_vs_zero_shot": {
+      "brier_reduction": 0.0037457719547958537,
+      "direction": "positive means left improves",
+      "ci95": {
+        "1": [
+          -0.015872124083120043,
+          0.02293221721890517
+        ],
+        "2": [
+          -0.017797287853919833,
+          0.02514031030857334
+        ],
+        "4": [
+          -0.01940625716692291,
+          0.02811354929081316
+        ],
+        "8": [
+          -0.02255539704718139,
+          0.031546365522852976
+        ]
+      }
+    },
+    "combined_vs_candles": {
+      "brier_reduction": -0.028363532644230364,
+      "direction": "positive means left improves",
+      "ci95": {
+        "1": [
+          -0.0433726934912766,
+          -0.013186417241433887
+        ],
+        "2": [
+          -0.04312433090294903,
+          -0.01477907727071071
+        ],
+        "4": [
+          -0.04075104702291793,
+          -0.016581423628246255
+        ],
+        "8": [
+          -0.03757047599175989,
+          -0.018571946439600615
+        ]
+      }
+    },
+    "combined_vs_formations": {
+      "brier_reduction": 0.01605227178248024,
+      "direction": "positive means left improves",
+      "ci95": {
+        "1": [
+          0.0010363541806491057,
+          0.03159028140318656
+        ],
+        "2": [
+          0.002071834213937094,
+          0.03005677763157475
+        ],
+        "4": [
+          0.005587188291439038,
+          0.02731639134440021
+        ],
+        "8": [
+          0.006485800003895574,
+          0.026794169536950834
+        ]
+      }
+    },
+    "combined_vs_prior": {
+      "brier_reduction": -0.19337949100703442,
+      "direction": "positive means left improves",
+      "ci95": {
+        "1": [
+          -0.2747650543608156,
+          -0.11158970019768187
+        ],
+        "2": [
+          -0.26787338795993243,
+          -0.11947405392801477
+        ],
+        "4": [
+          -0.25275332292025243,
+          -0.1349366602856223
+        ],
+        "8": [
+          -0.23280684608733437,
+          -0.15365245143704948
+        ]
+      }
+    },
+    "combined_vs_blank": {
+      "brier_reduction": 0.2682804355301755,
+      "direction": "positive means left improves",
+      "ci95": {
+        "1": [
+          0.06292244203336193,
+          0.4792067912596524
+        ],
+        "2": [
+          0.0799021916406594,
+          0.45217056903354963
+        ],
+        "4": [
+          0.08414925116688593,
+          0.4359176653863429
+        ],
+        "8": [
+          0.10067210555985205,
+          0.4092382739980631
+        ]
+      }
+    }
+  },
+  "repeatability": {
+    "zero_shot": {
+      "mean_abs_diff": 0.0026325910063884402,
+      "max_abs_diff": 0.014622448827990908,
+      "p90_abs_diff": 0.007606492719353412,
+      "argmax_agreement_count": 20,
+      "near_tie_chart_count": 0,
+      "allowed_argmax_mismatch_count": 0
+    },
+    "candles": {
+      "mean_abs_diff": 0.0029779266939718827,
+      "max_abs_diff": 0.015363721576106437,
+      "p90_abs_diff": 0.007456863237641129,
+      "argmax_agreement_count": 20,
+      "near_tie_chart_count": 0,
+      "allowed_argmax_mismatch_count": 0
+    },
+    "formations": {
+      "mean_abs_diff": 0.0023433821163518246,
+      "max_abs_diff": 0.017416084402326226,
+      "p90_abs_diff": 0.004754440716640541,
+      "argmax_agreement_count": 20,
+      "near_tie_chart_count": 1,
+      "allowed_argmax_mismatch_count": 0
+    },
+    "combined": {
+      "mean_abs_diff": 0.0019957872787368454,
+      "max_abs_diff": 0.006203398616006273,
+      "p90_abs_diff": 0.004051302165437105,
+      "argmax_agreement_count": 20,
+      "near_tie_chart_count": 0,
+      "allowed_argmax_mismatch_count": 0
+    },
+    "combined_blank": {
+      "mean_abs_diff": 0.0015478449425450733,
+      "max_abs_diff": 0.004602778188781298,
+      "p90_abs_diff": 0.0030436936401239986,
+      "argmax_agreement_count": 20,
+      "near_tie_chart_count": 0,
+      "allowed_argmax_mismatch_count": 0
+    }
+  },
+  "inference_note": "Exploratory, historical adaptive research. Four-week intervals count retained dates, carrying all tickers together; gaps span additional calendar time. No refit uncertainty/multiplicity correction or independent confirmation.",
+  "continuation_checks": {
+    "primary_combined_vs_zero_shot_ci_positive": false,
+    "combined_brier_below_prior": false,
+    "combined_point_brier_below_both_single_guidance_arms": false,
+    "image_control_ci_positive": true
+  },
+  "continuation_criteria_met": false,
+  "artifact_sha256": {
+    "results/inference/v1/combined.summary.json": "3dae7aecc5dc69edbab02284e34c948fc2a6c7caae976d0ac6fc3a01e468f817",
+    "results/inference/v1/combined_blank.meta.json": "fb4d974d00ef28f2b7ea452e61fd2179dbcb47b1376e5bc6be331c2d751d7762",
+    "results/inference/v1/combined.meta.json": "020fc0da1e327a4b27486931bdb09e7a667f544d9e263457cf6cf91093623dcf",
+    "results/inference/v1/formations.csv": "37921c4b4d3227b3793c8028ae3d7d78a147253bc43515d42688d44da5d6ff57",
+    "results/inference/v1/candles.summary.json": "a9770779e1161375040cf7a3fa9d05030aecd2d08a980b890a9964b1344b8da3",
+    "results/inference/v1/zero_shot.csv": "4d8f219e5cb3894818b2546fa21428b3f9741fb3ede6598d0b3ef882f855a96a",
+    "results/inference/v1/zero_shot.meta.json": "7ebdcb1cd8666bd3a993e051fbaefb8603d631c89fe6c05a96356aa502907caf",
+    "results/inference/v1/candles.meta.json": "646ee4f4b0fd821eaf5baff59b53276f557a7efc298ff884f7ca155820263209",
+    "results/inference/v1/zero_shot.summary.json": "5d6c6b9696b87e2dd3556841360e166a675eb28cde2c1cc79b72b851a19f7320",
+    "results/inference/v1/combined_blank.parity.json": "3e823c294ff967ea59a78a027444c01efffefd649dcc3158ec762f014003fe11",
+    "results/inference/v1/formations.meta.json": "16e7904f4a87f29438fca6b173aec8677cce6f1f825968315ccbf43d3373a82c",
+    "results/inference/v1/candles.parity.json": "8da3775a3a56b429959351a4561c4ff21dd25d757da05ac6c6fa5329a4519e57",
+    "results/inference/v1/combined.parity.json": "74c72b264b517eb9bfca058e997e53623297dc57400a9438dc7deb844fcc6078",
+    "results/inference/v1/combined_blank.summary.json": "7fec8cdd3e0c7ea29549ed2ae82311a61b1bd718e433581cbcccb0653af6668a",
+    "results/inference/v1/combined.csv": "12fbc9e7e5ece8507645f6e4c5b8b687804c03e3ec5fe95b22fe8c52f4126054",
+    "results/inference/v1/candles.csv": "893702c66e8a1a0dc95c85ca541236554d35f8190f1cff70359f0b03f7ac7c76",
+    "results/inference/v1/combined_blank.csv": "b717eb04de904361b7d455573dc48d45a48ab48ca6c1e54fece787604e1b420c",
+    "results/inference/v1/zero_shot.parity.json": "4f0d7a74c9e205d60b89fb70a2227e3136dbed260efd18d27f43bd66145b84fc",
+    "results/inference/v1/formations.parity.json": "e8aacc33157e8140dcf995c31728145b8a955ef885ebe8303ccd85cbede16e67",
+    "results/inference/v1/formations.summary.json": "d980495877f186673fec43c028bcc20e244af49a493317085fdbbdad87eb1304"
+  }
+}
