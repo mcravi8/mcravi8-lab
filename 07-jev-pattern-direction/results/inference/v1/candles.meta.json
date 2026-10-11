@@ -1,0 +1,50 @@
+{
+  "protocol_sha256": "62f5eec6e78259120faefe32c2a1b478c39afd5ffe3a53f358a07fc03ee40d8c",
+  "preparation_sha256": "3a28e12badd5a3f95659644f5407f038be86c9a2360c45cd48b0898f86634674",
+  "index_sha256": "fc408043b2fd699a0bd4c7c92a3992dab438bbdd9385cb5055e134a22c08b529",
+  "context": "Candlestick evidence: use the lower panel to inspect the most recent candles and their preceding trend. Body is the distance between open and close; wicks extend to the high and low. A hammer has a small body, a long lower wick and a small upper wick. After a decline it suggests rejection of lower prices and possible upward reversal. A shooting star has a small body, long upper wick and small lower wick; after a rise it suggests possible downward reversal. Bullish engulfing means a green body encloses the preceding red body; after a decline it supports an upward hypothesis. Bearish engulfing is the opposite and supports a downward hypothesis after a rise. A morning star has a long red candle, a small middle body, and a green recovery into the first body; an evening star reverses these colors and direction. A doji has a very small body and indicates uncertainty, not automatically a Flat five-session return. Treat these as uncertain directional clues. Check trend, nearby support/resistance and any confirmation already visible. Never assume that unseen future candles confirm a reversal.\n\nUse only the supplied visible information. These conventional pattern interpretations are hypotheses to evaluate, not established probabilities or guaranteed five-session outcomes. When several visible clues agree, weigh their timing and strength; when they conflict, reduce conviction. The two panels overlap and are not independent evidence. Missing patterns, a doji or conflicting signals do not automatically imply Flat: Flat has the numerical return threshold specified in the question. Do not assume that a visually bullish or bearish formation remains predictive after its move is already complete. Choose the most likely future return class.",
+  "question_template": "The image shows one stock: the upper panel contains 100 daily trading sessions; the lower panel zooms into the final 20 of those sessions. Both end at the same final bar, and their price and volume axes are independently scaled. Green closes at or above open; red closes below. Volume bars are gray. At this final bar, forecast the adjusted close-to-close return over exactly the next five trading sessions. The sample standard deviation of the 60 trailing overlapping five-session returns, computed only from already observed closes, is sigma={sigma:.12g}. Flat means abs(future five-session return) is strictly below one-third of sigma, threshold={threshold:.12g}; otherwise choose Up for a positive return and Down for a negative return. Equality at either threshold is directional. Choose the most likely return class, not a pattern name. Use only the visible history and supplied trailing volatility.",
+  "arm": "candles",
+  "options": [
+    "Up",
+    "Flat",
+    "Down"
+  ],
+  "server_identity": {
+    "model": "autotrust/JEV-27B-VL",
+    "canonical_model": "autotrust/JEV-27B-VL",
+    "protocol": "jev27-bare-v1",
+    "choice_strategy": "single",
+    "model_revision": "3514d1d8ead2189c75f433fa949fe63c8e3f3c66",
+    "revision_source": "caller-declared",
+    "choice_temperature": 1.0161280671450397,
+    "calibration_sha256": null,
+    "decision_head_sha256": null
+  },
+  "endpoint": "http://127.0.0.1:8000",
+  "synthetic": false,
+  "prediction_origin": "jev",
+  "parity_policy": {
+    "version": 7,
+    "n_charts": 20,
+    "atol": 0.01,
+    "drift_statistic": "mean_abs_diff",
+    "drift_population": "all chart-option probabilities, including flagged charts",
+    "flag_chart_max_abs_diff_above": 0.03,
+    "p90_method": "linear interpolation at (n - 1) * 0.9",
+    "require_argmax_agreement": true,
+    "argmax_mismatch_exception": {
+      "top_two_margin_lte": 0.01,
+      "pass": "either"
+    },
+    "argmax_tie_break": "first option in declared order"
+  },
+  "execution": {
+    "concurrency": 1,
+    "batch_size": 1,
+    "runtime_fingerprint": "e3c9890952a2f5d8a9316840e0319cc42b78997339ac3b7109ccfcdfc227d9de"
+  },
+  "source_sha256": "f9df0e91e4218143e26fc977988b97d1a10845210b35821f4781721251810a45",
+  "control": "image",
+  "fingerprint": "309eb73755ee9bf892134b3f4272e4e30d0d26fd74e3be194b3754a399675b40"
+}

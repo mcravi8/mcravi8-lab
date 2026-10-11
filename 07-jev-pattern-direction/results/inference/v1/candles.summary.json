@@ -1,0 +1,19 @@
+{
+  "arm": "candles",
+  "scored": 300,
+  "failed": 0,
+  "skipped": 0,
+  "repaired": 0,
+  "output_sha256": "893702c66e8a1a0dc95c85ca541236554d35f8190f1cff70359f0b03f7ac7c76",
+  "synthetic": false,
+  "repeatability": {
+    "passed": true,
+    "mean_abs_diff": 0.0029779266939718827,
+    "max_abs_diff": 0.015363721576106437,
+    "p90_abs_diff": 0.007456863237641129,
+    "flagged_files": [],
+    "argmax_agreement_count": 20,
+    "near_tie_chart_count": 0,
+    "allowed_argmax_mismatch_count": 0
+  }
+}

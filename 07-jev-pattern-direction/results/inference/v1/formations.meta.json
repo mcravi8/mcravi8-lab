@@ -1,0 +1,50 @@
+{
+  "protocol_sha256": "62f5eec6e78259120faefe32c2a1b478c39afd5ffe3a53f358a07fc03ee40d8c",
+  "preparation_sha256": "3a28e12badd5a3f95659644f5407f038be86c9a2360c45cd48b0898f86634674",
+  "index_sha256": "fc408043b2fd699a0bd4c7c92a3992dab438bbdd9385cb5055e134a22c08b529",
+  "context": "Chart-formation evidence: inspect the upper panel's broader structure. A completed head-and-shoulders top has three peaks, the central peak highest and the outer peaks approximately comparable, after an advance. A break below the neckline joining the intervening lows supports a downward hypothesis. Its inverted form after a decline has a deepest central trough and a break above the intervening highs, supporting an upward hypothesis. A double top has two comparable highs separated by a substantial low; a break below that intervening support supports Down. A double bottom reverses the geometry and supports Up after resistance is broken. Triangles have narrowing upper and lower boundaries. A symmetrical triangle alone supplies no direction; use an already visible breakout. Ascending or descending geometry is only a conditional clue, not a completed breakout. A bull flag follows a sharp advance with a smaller countertrend, roughly parallel consolidation; a visible upward break supports continuation. A bear flag reverses these directions. Incomplete, old or failed formations supply weaker evidence. A breakout that happened well before the final bar need not predict another move. Do not invent a named formation in an irregular chart. Evaluate the move still plausible over the next five sessions, rather than merely naming a pattern or repeating the historical trend.\n\nUse only the supplied visible information. These conventional pattern interpretations are hypotheses to evaluate, not established probabilities or guaranteed five-session outcomes. When several visible clues agree, weigh their timing and strength; when they conflict, reduce conviction. The two panels overlap and are not independent evidence. Missing patterns, a doji or conflicting signals do not automatically imply Flat: Flat has the numerical return threshold specified in the question. Do not assume that a visually bullish or bearish formation remains predictive after its move is already complete. Choose the most likely future return class.",
+  "question_template": "The image shows one stock: the upper panel contains 100 daily trading sessions; the lower panel zooms into the final 20 of those sessions. Both end at the same final bar, and their price and volume axes are independently scaled. Green closes at or above open; red closes below. Volume bars are gray. At this final bar, forecast the adjusted close-to-close return over exactly the next five trading sessions. The sample standard deviation of the 60 trailing overlapping five-session returns, computed only from already observed closes, is sigma={sigma:.12g}. Flat means abs(future five-session return) is strictly below one-third of sigma, threshold={threshold:.12g}; otherwise choose Up for a positive return and Down for a negative return. Equality at either threshold is directional. Choose the most likely return class, not a pattern name. Use only the visible history and supplied trailing volatility.",
+  "arm": "formations",
+  "options": [
+    "Up",
+    "Flat",
+    "Down"
+  ],
+  "server_identity": {
+    "model": "autotrust/JEV-27B-VL",
+    "canonical_model": "autotrust/JEV-27B-VL",
+    "protocol": "jev27-bare-v1",
+    "choice_strategy": "single",
+    "model_revision": "3514d1d8ead2189c75f433fa949fe63c8e3f3c66",
+    "revision_source": "caller-declared",
+    "choice_temperature": 1.0161280671450397,
+    "calibration_sha256": null,
+    "decision_head_sha256": null
+  },
+  "endpoint": "http://127.0.0.1:8000",
+  "synthetic": false,
+  "prediction_origin": "jev",
+  "parity_policy": {
+    "version": 7,
+    "n_charts": 20,
+    "atol": 0.01,
+    "drift_statistic": "mean_abs_diff",
+    "drift_population": "all chart-option probabilities, including flagged charts",
+    "flag_chart_max_abs_diff_above": 0.03,
+    "p90_method": "linear interpolation at (n - 1) * 0.9",
+    "require_argmax_agreement": true,
+    "argmax_mismatch_exception": {
+      "top_two_margin_lte": 0.01,
+      "pass": "either"
+    },
+    "argmax_tie_break": "first option in declared order"
+  },
+  "execution": {
+    "concurrency": 1,
+    "batch_size": 1,
+    "runtime_fingerprint": "e3c9890952a2f5d8a9316840e0319cc42b78997339ac3b7109ccfcdfc227d9de"
+  },
+  "source_sha256": "f9df0e91e4218143e26fc977988b97d1a10845210b35821f4781721251810a45",
+  "control": "image",
+  "fingerprint": "6232053b04893ddb6b088fd039e33df32a84d2ed00037a34dd30ad691ee28a33"
+}

@@ -1,0 +1,19 @@
+{
+  "arm": "combined_blank",
+  "scored": 100,
+  "failed": 0,
+  "skipped": 0,
+  "repaired": 0,
+  "output_sha256": "b717eb04de904361b7d455573dc48d45a48ab48ca6c1e54fece787604e1b420c",
+  "synthetic": false,
+  "repeatability": {
+    "passed": true,
+    "mean_abs_diff": 0.0015478449425450733,
+    "max_abs_diff": 0.004602778188781298,
+    "p90_abs_diff": 0.0030436936401239986,
+    "flagged_files": [],
+    "argmax_agreement_count": 20,
+    "near_tie_chart_count": 0,
+    "allowed_argmax_mismatch_count": 0
+  }
+}

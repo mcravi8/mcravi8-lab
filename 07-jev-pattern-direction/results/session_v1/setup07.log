@@ -1,0 +1,87 @@
++ mkdir -p /root/repo
++ tar xzf /root/r07.tgz -C /root/repo
++ cd /root/repo
++ git log --oneline -1
+a25946d 07: prepare combined pattern-direction charts
++ tar -xzf /root/charts_v1.tar.gz
++ ls 07-jev-pattern-direction/charts
++ head -3
+00b183d52c0d694ee60d.png
+0290197d3dcf531a5523.png
+0377e9c3e1eff13c1ece.png
++ curl -LsSf https://astral.sh/uv/install.sh
++ sh
++ export PATH=/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ uv venv -q /root/venv --python 3.12
++ VIRTUAL_ENV=/root/venv
++ uv pip install -q 'vllm @ https://wheels.vllm.ai/7d0b4e57aac4c4323225b0eee9ae960ce75ffffe/vllm-0.31.1rc1.dev253%2Bg7d0b4e57a.cu129-cp38-abi3-manylinux_2_28_x86_64.whl' -r /root/server_full.txt
++ /root/venv/bin/python3 -c 'import importlib.metadata as m,torch,vllm;print(vllm.__version__,m.version('\''torch'\''),torch.version.cuda,torch.cuda.is_available())'
+0.31.1rc1.dev253+g7d0b4e57a 2.13.0 13.0 True
++ uv venv -q /root/svenv --python 3.11
++ VIRTUAL_ENV=/root/svenv
++ uv pip install -q -r /root/repo/06-jev-patterns/requirements-scoring.txt
++ BK=493
++ cd /root/repo
++ /root/svenv/bin/python 07-jev-pattern-direction/scripts/run_gpu.py --execute --model-dir /workspace/models/JEV-27B-VL --server-python /root/venv/bin/python3 --scorer-python /root/svenv/bin/python
++ true
++ mkdir -p /workspace/exp07_backup
++ cp -a /root/repo/07-jev-pattern-direction/results /root/run07.log /workspace/exp07_backup/
++ sleep 120
++ true
++ mkdir -p /workspace/exp07_backup
++ cp -a /root/repo/07-jev-pattern-direction/results /root/run07.log /workspace/exp07_backup/
++ sleep 120
++ true
++ mkdir -p /workspace/exp07_backup
++ cp -a /root/repo/07-jev-pattern-direction/results /root/run07.log /workspace/exp07_backup/
++ sleep 120
++ true
++ mkdir -p /workspace/exp07_backup
++ cp -a /root/repo/07-jev-pattern-direction/results /root/run07.log /workspace/exp07_backup/
++ sleep 120
++ true
++ mkdir -p /workspace/exp07_backup
++ cp -a /root/repo/07-jev-pattern-direction/results /root/run07.log /workspace/exp07_backup/
++ sleep 120
++ true
++ mkdir -p /workspace/exp07_backup
++ cp -a /root/repo/07-jev-pattern-direction/results /root/run07.log /workspace/exp07_backup/
++ sleep 120
++ true
++ mkdir -p /workspace/exp07_backup
++ cp -a /root/repo/07-jev-pattern-direction/results /root/run07.log /workspace/exp07_backup/
++ sleep 120
++ true
++ mkdir -p /workspace/exp07_backup
++ cp -a /root/repo/07-jev-pattern-direction/results /root/run07.log /workspace/exp07_backup/
++ sleep 120
++ true
++ mkdir -p /workspace/exp07_backup
++ cp -a /root/repo/07-jev-pattern-direction/results /root/run07.log /workspace/exp07_backup/
++ sleep 120
++ true
++ mkdir -p /workspace/exp07_backup
++ cp -a /root/repo/07-jev-pattern-direction/results /root/run07.log /workspace/exp07_backup/
++ sleep 120
++ true
++ mkdir -p /workspace/exp07_backup
++ cp -a /root/repo/07-jev-pattern-direction/results /root/run07.log /workspace/exp07_backup/
++ sleep 120
++ true
++ mkdir -p /workspace/exp07_backup
++ cp -a /root/repo/07-jev-pattern-direction/results /root/run07.log /workspace/exp07_backup/
++ sleep 120
++ echo 'RUN_EXIT 0'
++ kill 493
++ cp -a /root/repo/07-jev-pattern-direction/results /root/run07.log /root/setup07.log /workspace/exp07_backup/
+cp: failed to preserve ownership for '/workspace/exp07_backup/results/blank_index.csv': Operation not permitted
+cp: failed to preserve ownership for '/workspace/exp07_backup/results/index.csv': Operation not permitted
+cp: failed to preserve ownership for '/workspace/exp07_backup/results/preparation.json': Operation not permitted
+cp: failed to preserve ownership for '/workspace/exp07_backup/results/prior.json': Operation not permitted
+cp: failed to preserve ownership for '/workspace/exp07_backup/results/setup_validation.json': Operation not permitted
+cp: failed to preserve ownership for '/workspace/exp07_backup/results/dry_run/smoke_summary.json': Operation not permitted
+cp: failed to preserve ownership for '/workspace/exp07_backup/results/samples/sample_1.png': Operation not permitted
+cp: failed to preserve ownership for '/workspace/exp07_backup/results/samples/sample_2.png': Operation not permitted
+cp: failed to preserve ownership for '/workspace/exp07_backup/results/samples/sample_3.png': Operation not permitted
++ echo BACKUP_DONE

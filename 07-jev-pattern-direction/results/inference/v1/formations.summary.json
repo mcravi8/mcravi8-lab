@@ -1,0 +1,19 @@
+{
+  "arm": "formations",
+  "scored": 300,
+  "failed": 0,
+  "skipped": 0,
+  "repaired": 0,
+  "output_sha256": "37921c4b4d3227b3793c8028ae3d7d78a147253bc43515d42688d44da5d6ff57",
+  "synthetic": false,
+  "repeatability": {
+    "passed": true,
+    "mean_abs_diff": 0.0023433821163518246,
+    "max_abs_diff": 0.017416084402326226,
+    "p90_abs_diff": 0.004754440716640541,
+    "flagged_files": [],
+    "argmax_agreement_count": 20,
+    "near_tie_chart_count": 1,
+    "allowed_argmax_mismatch_count": 0
+  }
+}
