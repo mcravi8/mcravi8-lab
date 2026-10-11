@@ -1,0 +1,3 @@
+# Local synthetic smoke outputs are not scientific predictions.
+results/dry_run/*
+!results/dry_run/smoke_summary.json

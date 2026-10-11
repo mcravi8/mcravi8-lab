@@ -1,0 +1,11 @@
+{
+  "synthetic": true,
+  "model_loaded": false,
+  "gpu_started": false,
+  "scored_per_arm": 10,
+  "n_arms": 5,
+  "decide_calls": 250,
+  "expected_decide_calls": 250,
+  "repeatability_passed": true,
+  "scientific_result": false
+}

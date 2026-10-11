@@ -1,6 +1,6 @@
 # Experiment 07: candle shapes and chart formations together for direction
 
-**Prepared pilot; real-model inference has not run.** This directly asks AutoTrust's [JEV-27B-VL](https://huggingface.co/autotrust/JEV-27B-VL) to forecast the next five trading sessions. It tests explicit directional pattern guidance, rather than recognizing pattern names or training a logistic forecaster on recognition probabilities. The JEV weights remain frozen; this is prompting, not fine-tuning.
+**Setup complete; real-model inference has not run.** This directly asks AutoTrust's [JEV-27B-VL](https://huggingface.co/autotrust/JEV-27B-VL) to forecast the next five trading sessions. It tests explicit directional pattern guidance, rather than recognizing pattern names or training a logistic forecaster on recognition probabilities. The JEV weights remain frozen; this is prompting, not fine-tuning.
 
 ## Frozen comparison
 
@@ -15,6 +15,12 @@ Return is `Close[t+5] / Close[t] - 1`. Flat means absolute return strictly below
 Primary comparison is **combined versus zero-shot paired Brier**. Report accuracy, macro-F1, confusion, log loss, Brier, ECE/reliability and confidence coverage. Four consecutive retained forecast-date blocks carry all tickers together; 1/2/8-block sensitivities are also reported. Fifty dates, rather than 300 rows, describe the principal common-shock clusters. Calendar gaps and overlapping input windows remain limitations; intervals condition on fixed predictions, have no multiplicity correction, and are exploratory. Single-guidance comparisons and combined-versus-blank are prespecified secondary comparisons. Continuation requires the primary four-block CI wholly above zero, combined Brier below the historical prior and both single-guidance point Briers, and positive four-block combined-versus-blank CI. Passing would justify independent validation, not a trading claim.
 
 Historical data, a surviving universe and prompts chosen after Experiments 01–06 limit independence. Year quotas define the sampling distribution; the sample is not weighted to a live portfolio. Prompt lengths differ and this pilot does not isolate length effects or test other wordings. Unknown JEV pretraining overlap remains. This pilot does not modify Experiment 05's prospective holdout or Experiment 06's frozen results. No costs, execution or P&L are evaluated.
+
+## Prepared inputs and validation
+
+The frozen pilot has **300 observations across 50 dates and 49 tickers**, from 2019-08-30 through 2026-07-02. Target counts are **Up 110 / Flat 86 / Down 104**. All 300 five-session outcomes and trailing scales were independently recomputed with pandas; all visible-window starts and paired blank identities were checked. Nine CPU tests and GitHub CI pass. The actual-image fake smoke run completed ten predictions per arm plus all five repeatability gates: 250 synthetic calls, zero failures, no model loaded. These are setup checks, not model results. See [setup_validation.json](results/setup_validation.json) and [preparation.json](results/preparation.json). The source/protocol freeze was pushed as [5e387bd](https://github.com/mcravi8/mcravi8-lab/commit/5e387bd) before deriving this cohort's outcomes.
+
+Review [sample 1](results/samples/sample_1.png), [sample 2](results/samples/sample_2.png), and [sample 3](results/samples/sample_3.png).
 
 ## CPU preparation and checks
 
@@ -40,6 +46,17 @@ Fake outputs go only to `results/dry_run/`. They test wiring, not forecast quali
 ## Real inference on the prepared Runpod host
 
 Use the same cached Hugging Face snapshot/revision and native System 1 server as Experiment 06, network volume `jev-weights`, US-MO-1, port 8000. Reuse [the pinned runtime and Linux scorer setup](../06-jev-patterns/GPU_RUNBOOK.md#observed-build-pins-and-linux-scorer): `/root/venv/bin/python3` for the server, `/root/svenv/bin/python` for scoring. Torch 2.13.0/torchvision 0.28.0 are the observed PyPI distributions; Torch uses CUDA 13.0 and requires driver >=580. The vLLM nightly remains the exact observed build. No package/model download, pod creation or lifecycle operation is performed by this script.
+
+A local transfer archive is ready at `07-jev-pattern-direction/.cache/charts_v1.tar.gz` (2944985 bytes; SHA-256 `45cfd12b6b641072943cee2da7a33d9c5920619cdfd6c20c0a851a993840b98e`). It contains only the 300 ignored charts, with repository-relative paths. The indexes, prompts, prior, freeze and samples are tracked in Git. After pulling the latest repository on the pod and copying this archive to `/root/charts_v1.tar.gz`, restore it:
+
+```sh
+cd /root/repo
+sha256sum /root/charts_v1.tar.gz
+tar -xzf /root/charts_v1.tar.gz -C /root/repo
+/root/svenv/bin/python 07-jev-pattern-direction/scripts/run_gpu.py
+```
+
+The final command verifies the bundle and prints the 1,500-call plan without starting a GPU server.
 
 Transfer the repository plus all 300 ignored PNGs to the existing host. The script reuses Experiment 06's weight/runtime verification and native server flags: serial batch one, eager, no prefix cache or chunked prefill, no batch invariance for GDN_ATTN. It does not invoke plain vLLM chat or the older Desktop wrapper. The native serving source is checksum-verified against the preserved Experiment 01/06 contract.
 

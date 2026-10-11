@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "independently_verified_targets": 300,
+  "forecast_dates": 50,
+  "tickers": 49,
+  "cohort_labels": {
+    "Up": 110,
+    "Down": 104,
+    "Flat": 86
+  },
+  "blank_rows": 100,
+  "local_cpu_tests": 9,
+  "fake_smoke_decide_calls": 250,
+  "fake_smoke_scored_per_arm": 10,
+  "live_inference_run": false,
+  "gpu_started": false,
+  "freeze_commit": "5e387bddbfd1f762879516d071e69ebe12173965",
+  "protocol_sha256": "62f5eec6e78259120faefe32c2a1b478c39afd5ffe3a53f358a07fc03ee40d8c",
+  "source_matches_preparation_freeze": true,
+  "chart_archive": {
+    "path": ".cache/charts_v1.tar.gz",
+    "sha256": "45cfd12b6b641072943cee2da7a33d9c5920619cdfd6c20c0a851a993840b98e",
+    "size_bytes": 2944985,
+    "files": 300
+  },
+  "earliest_allowed_input_window_start": "2019-04-01"
+}
