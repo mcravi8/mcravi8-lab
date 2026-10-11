@@ -1,8 +1,86 @@
 # Experiment 06: Can JEV-27B-VL recognize chart patterns?
 
-**Days 1–2 CPU preparation is complete:** 1,200 candle charts, 1,200 synthetic charts, 150 real pattern parents (300 paired images), framing/style/placebo controls, frozen arms and a future GPU runbook. All real positive classes miss the target. No JEV inference, GPU training, or Runpod resource has been started. [PLAN.md](PLAN.md) preserves the original design.
+**V7 main-arm inference and CPU evaluation are complete; secondary controls are blocked.** The user-run Runpod session collected 7,800 JEV predictions across ten zero-shot/definitions jobs, then stopped at the first paraphrase repeatability gate. The prepared datasets contain 1,200 candle charts, 1,200 synthetic charts and 150 real showcase-only parents. [PLAN.md](PLAN.md) preserves the original design; the results below describe the completed portion.
 
-This experiment studies recognition of visible patterns, rather than future returns. It uses **AutoTrust's [JEV-27B-VL](https://huggingface.co/autotrust/JEV-27B-VL)**, with model weights, calibration and native System 1 serving code from Hugging Face. A later authorized session may serve the model on Runpod. Local validation uses a fake server and CPU tensors only.
+This experiment studies recognition of visible patterns. It uses **AutoTrust's [JEV-27B-VL](https://huggingface.co/autotrust/JEV-27B-VL)**, with model weights, calibration and native System 1 serving code from Hugging Face, served through vLLM on Runpod. V7 records Hugging Face revision `3514d1d8ead2189c75f433fa949fe63c8e3f3c66`. Local tests and the review of recorded results use CPU only. Recognition results do not establish future-return forecasting skill or trading value.
+
+## V7 results: useful recognition, substantial class gaps
+
+Definitions improve the aggregate scores in both tasks. JEV recognizes several reversal shapes well, but it misses most Evening Stars, candle negatives, Triangles and Bull Flags. These results support a narrower conclusion: **useful recognition of some classes, with incomplete robustness evidence**.
+
+### Held-out market candles
+
+Only the **600 test charts (75 per class)** enter the primary candle metrics. The 600 training charts were also scored, but are excluded from this table and used only to fit CPU baselines. Training ends in 2018; test input windows begin after the three-month 2019 embargo.
+
+| Model / arm | Accuracy | Macro-F1 | Brier ↓ | ECE (15 bins) ↓ |
+| --- | ---: | ---: | ---: | ---: |
+| JEV zero-shot | 46.0% | 0.386 | 0.687 | 0.098 |
+| JEV definitions | **50.3%** | **0.458** | **0.631** | 0.079 |
+| Numeric logistic | 42.8% | 0.415 | 0.719 | 0.103 |
+| CPU CNN | 34.3% | 0.328 | 0.803 | 0.028 |
+| Uniform probabilities / training prior | 12.5% | 0.028 | 0.875 | 0.000 |
+
+[Recorded candle metrics and figures](06a-candles/results/eval_v7). Definitions get **302/600** right versus **276/600** for zero-shot: **+4.33 percentage points**, paired ticker-quarter bootstrap 95% interval **+0.97 to +7.72 points**. The paired macro-F1 gain is **+0.072** (interval +0.035 to +0.108); Brier improves by 0.056. The definitions accuracy interval is **46.4–54.2%**. These exploratory intervals resample 352 ticker-quarter blocks, condition on the fixed predictions, and have no multiplicity correction. JEV pretraining overlap with these retrospective charts has not been assessed; the temporal split controls local baseline fitting.
+
+Definitions beat the tested small logistic/CNN baselines on point estimates. Zero-shot has higher accuracy than logistic but **lower macro-F1**, illustrating why accuracy alone is insufficient. The CNN uses 477 fit rows, 120 time-ordered validation rows and three purged rows; this is a small fixed baseline, not an extensively tuned supervised comparison. Low ECE for CNN or uniform probabilities does not imply useful discrimination. Uniform argmax ties always select the first option, explaining its low macro-F1.
+
+The [definitions confusion matrix](06a-candles/results/eval_v7/definitions_vs_zero_shot/confusion.png) shows the largest failures: **Evening Star 4/75 correct (5.3% recall)** and **None 6/75 (8.0%)**. Morning Stars are often called Bullish Engulfing (46/75); Evening Stars are often called Shooting Star (36/75) or Bearish Engulfing (30/75). These are failures against the frozen numerical labels. The detectors share a rulebook, and the AI-assisted audit found 10/50 subtle examples; independent expert review remains necessary to distinguish visual/definition ambiguity from model errors.
+
+On the frozen **178-chart clear test subset**, accuracy is 52.8% with definitions versus 50.0% zero-shot. The paired accuracy interval is **−2.40 to +8.15 points**, so that subset does not establish an accuracy gain. It has a different class mix and must not replace the primary balanced test.
+
+### Synthetic chart patterns
+
+Each framing has **1,200 charts from the same 200 independent parents**, with clean plus five noise levels. Variable and fixed-100 images are paired views, not additional independent examples.
+
+| Framing / arm | Accuracy | Macro-F1 | Brier ↓ | ECE (15 bins) ↓ |
+| --- | ---: | ---: | ---: | ---: |
+| Variable, zero-shot | 43.8% | 0.344 | 0.656 | 0.137 |
+| Variable, definitions | 53.5% | 0.465 | 0.586 | 0.100 |
+| Fixed 100, zero-shot | 44.8% | 0.352 | 0.650 | 0.140 |
+| Fixed 100, definitions | **55.8%** | **0.492** | **0.567** | **0.093** |
+
+[Recorded synthetic metrics and figures](06b-chart-patterns/results/eval_v7). Definitions improve accuracy by **9.75 points** in variable framing (paired template-bootstrap 95% interval **+6.58 to +13.25**) and **11.00 points** in fixed framing (**+7.67 to +14.58**). The fixed definitions accuracy interval is **49.8–61.5%**. All noise versions stay together in each bootstrap draw. Nominal row-level McNemar p-values are not valid independent evidence for these correlated versions; use the template intervals.
+
+The aggregate score hides pronounced class imbalance in recognition:
+
+| Source class | Fixed-100 definitions correct / total | Recall |
+| --- | ---: | ---: |
+| Head and Shoulders | 147/174 | 84.5% |
+| Inverse Head and Shoulders | 95/174 | 54.6% |
+| Double Top | 173/174 | 99.4% |
+| Double Bottom | 168/174 | 96.6% |
+| Triangle | 14/168 | 8.3% |
+| Bull Flag | 5/168 | 3.0% |
+| None | 68/168 | 40.5% |
+
+Double Top/Bottom are also overpredicted: their recalls do not mean near-perfect precision. **No clean Bull Flag is correctly classified (0/28)**, so that weakness cannot be attributed solely to added noise. Review those errors and the generator's geometry independently before changing labels or prompts.
+
+Accuracy by noise amplitude (200 charts per cell, same parents in every row):
+
+| Noise / clean range | Variable zero-shot | Variable definitions | Fixed-100 zero-shot | Fixed-100 definitions |
+| --- | ---: | ---: | ---: | ---: |
+| 0 (clean) | 49.5% | 63.0% | 50.5% | 66.0% |
+| 0.035 | 48.5% | 62.0% | 50.5% | 64.0% |
+| 0.08 | 49.0% | 60.0% | 48.5% | 61.5% |
+| 0.16 | 44.5% | 54.5% | 47.0% | 58.0% |
+| 0.30 | 37.5% | 45.0% | 39.5% | 48.0% |
+| 0.55 | 33.5% | 36.5% | 33.0% | 37.5% |
+
+The noise breakdown is a descriptive review of the committed CSVs. At strong noise, labels describe the source construction even when the pattern is no longer visually clear. Chance under random uniform guessing is 1/7 (14.3%); the deterministic uniform argmax baseline predicts Head and Shoulders and scores 14.5%.
+
+The synthetic logistic result (**18.25% accuracy**) is a **cross-domain comparator**: it fitted just 82 real showcase training examples, including 50 None, 22 Bull Flags and only one each of Double Top, Double Bottom and Triangle. It did not train on independent synthetic parents. Its weakness cannot establish superiority over a well-trained synthetic recognizer. The separate None-shortcut audit is a generator check, not a seven-class benchmark baseline.
+
+### Confidence, completion and interpretation
+
+At the prespecified confidence threshold **0.7**, candle definitions retain **160/600 (26.7%)** with **75.6% accuracy**; fixed-100 synthetic definitions retain **426/1,200 (35.5%)** with **90.4% accuracy**. These are selective results on different class mixtures, not overall accuracy or a calibrated deployment guarantee. At 0.9 the synthetic arm has 122/122 correct, but those related chart variants are not 122 independent trials. No new calibration was fitted.
+
+The [v7 session](shared/results/inference_run_v7/session_summary.json) records **8,320 successful decide requests**: 7,800 main predictions plus 520 repeatability calls, with no HTTP failures, over **60.5 minutes elapsed**. The full 9,820-call schedule was not completed. The first candle paraphrase gate failed with mean drift **0.002267**, max **0.028662** and raw argmax agreement **19/20**; the mismatch had margins 0.011542/0.011556, outside the frozen 0.01 exception. No paraphrase predictions or style, horizontal-mirror or price-inversion controls were collected. This failure is repeatability within one prompt, not a measured disagreement between prompt wordings.
+
+The gate was adapted post-hoc after v2–v6. V7's global candle gate passed under that approved rule despite a flagged **0.052885 max drift** on the recurring chart #15; two main-arm gates used one allowed near-tie mismatch each. See the [full noise-floor report](shared/results/README.md). Passing does not establish deterministic inference or HF-vLLM equivalence.
+
+All **150 real pattern parents remain showcase-only**, including both framings and both main arms. Their predictions are available for qualitative review; no aggregate/per-class accuracy claim is permitted. The reported real-data result remains the [detector-agreement table](06b-chart-patterns/results/detector_agreement.csv).
+
+The next useful work is independent review of weak classes and negative examples, followed by completion of the already frozen controls only after their gate passes. Any prompt, label, threshold or generator changes informed by these results need new held-out evaluation data. No GPU or Runpod resource was started to review the results or update this README.
 
 ## Separate pinned environment
 
@@ -125,7 +203,7 @@ The trimmed frozen schedule has **21 jobs, 9,820 decide calls**: 8,900 predictio
 
 The **reference-image arm is removed**. Main zero-shot/definitions arms use one primary wording; the second wording runs only on **100 charts per sub-part**, for both arms. Style and horizontal-mirror subsets also have 100 charts each: test-only market candles for 06a and distinct clean synthetic parents for 06b. OHLC/line and mirror controls are zero-shot only, and candle style reuses primary predictions. An additional 100-parent eligible synthetic subset tests price-inversion class flips. Secondary subsets are fixed before inference and do not measure noisy-chart robustness. Variable/fixed-100 main collections remain paired: genuine historical bars for real showcases, same-parent interpolation for synthetic charts.
 
-JEV scoring, benchmark baselines, calibration, arm comparisons and full benchmark inference remain pending. The first user-run GPU attempt failed its global candle gate before any predictions; real 06b charts remain descriptive showcases only. The corrected runbook has **not been executed** during this revision; CPU tests import helpers and mock execution. The supplied earlier GPU failure is preserved in [diagnostics](shared/results/diagnostics/2026-10-10/diagnosis.json). Neither tests nor detector agreement establish visual-recognition accuracy or trading value.
+V7 main zero-shot/definitions scoring, CPU baselines and held-out arm comparisons are recorded above. Calibration fitting and all secondary robustness controls remain pending because the first paraphrase gate blocked the rest of the user-run session. Real 06b predictions remain descriptive showcases. The frozen configuration records the plan as prepared before execution; [session summaries](shared/results/inference_run_v7/session_summary.json) and per-job outputs record actual progress. Earlier failed attempts remain in [diagnostics](shared/results/diagnostics/2026-10-10/diagnosis.json). Tests and detector agreement alone establish neither recognition accuracy nor trading value.
 
 
 ## Parity correction after the first GPU attempt
@@ -136,4 +214,4 @@ The gate history is post-hoc: after v4, Matteo approved max drift<=0.03 plus ful
 
 Serial concurrency/batch one, eager execution, no prefix caching/chunked prefill/async scheduling, seed zero and all runtime/model/data settings remain frozen. Batch invariance stays removed for GDN_ATTN. The nightly **0.31.1rc1.dev253+g7d0b4e57a.cu129**, PyPI Torch **2.13.0**/CUDA **13.0**, torchvision **0.28.0**, driver **>=580**, and explicit Linux scorer **/root/svenv/bin/python** requirements are unchanged.
 
-The call plan remains **9,820**, with fresh **frozen_v7** outputs and an unmeasured 103–310-minute estimate. [Original failures](shared/results/diagnostics/2026-10-11-v6-parity/diagnosis.json) and earlier approvals remain preserved. Their saved pairs pass v7 in CPU replay only. No GPU was started for this revision; v7 still requires fresh live gates.
+The full call plan remains **9,820** with **frozen_v7** outputs; the recorded partial run used 8,320 calls in 60.5 minutes elapsed. The 103–310-minute figure above is the original planning assumption. Both global gates and ten main-arm gates passed live under v7; the first paraphrase gate failed and the remaining jobs were not run. [Original failures](shared/results/diagnostics/2026-10-11-v6-parity/diagnosis.json) and earlier approvals remain preserved. Pending scoring still requires fresh live gates. No GPU was started for this results review.

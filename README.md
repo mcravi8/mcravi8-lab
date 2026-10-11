@@ -8,14 +8,16 @@ Experiments testing whether **AutoTrust's [JEV-27B-VL](https://huggingface.co/au
 
 | Component | Role in these experiments |
 | --- | --- |
-| **JEV-27B-VL** (`autotrust/JEV-27B-VL`) | Vision-language decision model used for zero-shot chart forecasts in Experiments 01-03 and the LoRA fine-tune in Experiment 04. |
+| **JEV-27B-VL** (`autotrust/JEV-27B-VL`) | Vision-language decision model used for chart forecasts in Experiments 01-03, the LoRA fine-tune in Experiment 04 and pattern recognition in Experiment 06. |
 | **[Hugging Face](https://huggingface.co/autotrust/JEV-27B-VL)** | Source of the model weights, System 1 decision adapter, calibration files, serving code and model card. The LoRA workflow uses Transformers and PEFT. |
 | **[Runpod](https://www.runpod.io/)** | GPU hosting for historical JEV inference and LoRA training. Recorded weekly inference and training runs used NVIDIA H100 80GB GPUs; the weekly inference runs used `US-MO-1`. |
 | **vLLM + JEV System 1** | The self-hosted server exposes `POST /v1/decide` on port 8000. Chart images and options `["Up", "Flat", "Down"]` produce one probability per option. |
 
-See the [Experiment 01 serving instructions](01-jev-tsla-charts/README.md#future-pod-serving-setup) for the Runpod setup and the [Experiment 04 README](04-jev-lora-and-cnn/README.md#reproducible-training-preparation) for the LoRA workflow. Experiment 06 prepares pattern-recognition datasets and shared tools on CPU; its JEV inference has not started. Experiment 05's numerical baselines and the validation suite run on CPU; the results immediately below are from that CPU study.
+See the [Experiment 01 serving instructions](01-jev-tsla-charts/README.md#future-pod-serving-setup) for the Runpod setup and the [Experiment 04 README](04-jev-lora-and-cnn/README.md#reproducible-training-preparation) for the LoRA workflow. Experiment 06 has recorded real JEV main-arm inference on Runpod and evaluated it on CPU; its secondary controls stopped at a repeatability gate. Experiment 05's numerical baselines and the validation suite run on CPU; the Experiment 05 results below are from that CPU study.
 
 ## Latest findings
+
+**Experiment 06 shows useful but uneven pattern recognition.** With definitions, JEV scores **50.3% accuracy / 0.458 macro-F1** on 600 held-out candle charts and **55.8% / 0.492** on 1,200 fixed-100 synthetic charts from 200 independent parents. Definitions improve accuracy over zero-shot by 4.33 and 11.00 percentage points, respectively. Evening Stars, candle None, Triangles and Bull Flags remain weak; clean synthetic Bull Flags score 0/28. The v7 run collected 7,800 main predictions, then failed its first paraphrase repeatability gate, leaving prompt/style/placebo robustness untested. Real market chart patterns remain showcase-only. See [Experiment 06 results, baselines, intervals and limitations](06-jev-patterns/README.md#v7-results-useful-recognition-substantial-class-gaps).
 
 **The tested models have not established a forecasting advantage.** The latest CPU study improved the research controls, but its numerical models underperformed a simple forecast based on training-period class frequencies.
 
@@ -39,7 +41,7 @@ The historical LoRA placebo conclusion was also corrected: 0 wins, 5 losses and 
 | [03: Twelve tickers](03-jev-12-tickers/README.md) | Does pooling or calibration help? | Reused historical test period; no demonstrated added skill. |
 | [04: LoRA and CNN](04-jev-lora-and-cnn/README.md) | Does task-specific training help? | Historical results retained; revised training requires parity and checkpoint checks. |
 | [05: CPU walk-forward study](05-cpu-walkforward/README.md) | Can numerical models beat training-frequency priors over longer histories? | CPU study complete; future protocol and model frozen. |
-| [06: Pattern recognition](06-jev-patterns/README.md) | Can JEV identify candlestick and chart patterns? | Days 1–2 CPU prep complete: 1,200 candle + 1,200 synthetic benchmark charts and 150 real showcase-only parents; trimmed 9,820-call plan, GPU inference pending. |
+| [06: Pattern recognition](06-jev-patterns/README.md) | Can JEV identify candlestick and chart patterns? | V7 main predictions, CPU baselines and evaluation recorded; definitions help overall, major class gaps remain. Secondary controls blocked by a parity failure; 150 real parents are showcase-only. |
 
 ## Completed review and implementation
 
@@ -52,7 +54,7 @@ The historical LoRA placebo conclusion was also corrected: 0 wins, 5 losses and 
 
 ## Pending work and future holdout
 
-The latest CPU parity correction started **no GPU or Runpod pod**. User-run Experiment 06 v6 failed only on raw argmax agreement 19/20, with mean drift 0.00260983 and max 0.02224329. Matteo approved the final post-hoc **v7 gate: mean absolute option drift<=0.01 and every argmax mismatch must have top-two margin<=0.01 in either pass**; all other charts must match. Raw agreement and near-tie/allowed-mismatch counts remain reported alongside max/p90 and chart-max flags>0.03. The [results noise-floor report](06-jev-patterns/shared/results/README.md) documents v2–v6 and all adaptations. Runtime/model/data pins remain frozen; fresh v7 GPU gates are pending. Batch invariance for GDN_ATTN remains removed, with PyPI Torch 2.13.0/torchvision 0.28.0, CUDA 13.0 and driver >=580. Real-model execution with revised controls, HF-vLLM parity, revised training, and fresh-process LoRA equivalence remain unverified. CPU/fake-server tests verify software behavior, not real-model accuracy or forecasting skill.
+Experiment 06's remaining paraphrase, style and placebo controls are blocked by the user-run v7 paraphrase gate: mean drift 0.002267, max 0.028662, raw argmax agreement 19/20, with one mismatch outside the allowed near-tie margins. The approved **v7 rule remains mean absolute option drift<=0.01 and every mismatch must have top-two margin<=0.01 in either pass**. It was adapted post-hoc after v2–v6. The [results noise-floor report](06-jev-patterns/shared/results/README.md) includes the v7 global gate's flagged max drift of 0.052885 and allowed-mismatch counts. Runtime/model/data pins remain frozen: serial batch one, eager/cacheless execution, no batch invariance for GDN_ATTN, PyPI Torch 2.13.0/torchvision 0.28.0, CUDA 13.0 and driver >=580. HF-vLLM parity, revised training and fresh-process LoRA equivalence remain unverified. Recognition results do not establish forecasting skill. No GPU or Runpod pod was started for this results review.
 
 The 2025-2026 test period informed successive experiments, so results from 02-04 are exploratory. Experiment 05 reserves future chart weeks ending **2026-10-16 through 2027-10-08**. Its [protocol](05-cpu-walkforward/protocol.json) was pushed in [commit `0d2fae5`](https://github.com/mcravi8/mcravi8-lab/commit/0d2fae5) before inspecting the new CPU results. The primary model and comparator are frozen; future forecast collection and evaluation have not started. Success requires a positive paired Brier improvement with the prespecified four-week 95% interval wholly above zero.
 
