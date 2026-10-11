@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "independent_target_method": "Pandas pct_change(h).rolling(60).std(ddof=1), shift(-h) forward close, direct session-index target dates",
+  "target_rows_checked": 33132,
+  "unique_observations_per_horizon": 16566,
+  "forecast_date_clusters": 335,
+  "max_sigma_abs_difference": 5.495603971894525e-15,
+  "max_forward_return_abs_difference": 1.1102230246251565e-16,
+  "labels_and_target_dates_all_match": true,
+  "all_seven_common_folds_purged": true,
+  "train_prior_probabilities_match_fold_training_counts": true,
+  "all_42_model_reload_diffs_zero": true,
+  "saved_metrics_match_predictions": true,
+  "output_hashes_verified": true,
+  "prospective_holdout_untouched": true
+}

@@ -1,0 +1,485 @@
+[
+  {
+    "year": 2020,
+    "train_rows": 10464,
+    "train_dates": 218,
+    "test_rows": 1920,
+    "test_dates": 40,
+    "train_target_date_max": "2019-03-29",
+    "test_information_start_min": "2019-04-05",
+    "models": {
+      "5:current_history": {
+        "features": 236,
+        "iterations": [
+          584
+        ],
+        "checkpoint_sha256": "d07efe59a1532f23be09effe3102b1249bea2ea160477e8576a719e33127c99a",
+        "reload_max_abs_diff": 0.0
+      },
+      "5:multiscale_history": {
+        "features": 328,
+        "iterations": [
+          655
+        ],
+        "checkpoint_sha256": "898e43f12dc34a74a8ccb848b5553e0381ad668d903d93db95b9a40a02b1a351",
+        "reload_max_abs_diff": 0.0
+      },
+      "5:shuffled_multiscale": {
+        "features": 328,
+        "iterations": [
+          670
+        ],
+        "checkpoint_sha256": "9a157756d0121ee56ba01559fb55baee8a66bfcc87a2ff2d9a47ae66b8c2ee22",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:current_history": {
+        "features": 236,
+        "iterations": [
+          620
+        ],
+        "checkpoint_sha256": "7ebcb17a6cc4505c90727e3e40996d07952c3b6bdd529ab1cae55cb736b3c553",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:multiscale_history": {
+        "features": 328,
+        "iterations": [
+          662
+        ],
+        "checkpoint_sha256": "a3565bf9c74787b5a6a8900e000e182e18f11756914e4a3e4d57620f50debb20",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:shuffled_multiscale": {
+        "features": 328,
+        "iterations": [
+          639
+        ],
+        "checkpoint_sha256": "5b3aa71347a61682677ac409bf131209b246aa0c1554010a69795016062062d6",
+        "reload_max_abs_diff": 0.0
+      }
+    },
+    "train_counts_5": {
+      "Up": 4358,
+      "Flat": 2932,
+      "Down": 3174
+    },
+    "train_counts_20": {
+      "Up": 5097,
+      "Flat": 2283,
+      "Down": 3084
+    }
+  },
+  {
+    "year": 2021,
+    "train_rows": 9840,
+    "train_dates": 205,
+    "test_rows": 2510,
+    "test_dates": 52,
+    "train_target_date_max": "2020-01-07",
+    "test_information_start_min": "2020-01-10",
+    "models": {
+      "5:current_history": {
+        "features": 236,
+        "iterations": [
+          556
+        ],
+        "checkpoint_sha256": "5ba598e56fb5461f9d26a66b33ac20e206c0745135cf9ba3ef29345b95d3c49d",
+        "reload_max_abs_diff": 0.0
+      },
+      "5:multiscale_history": {
+        "features": 328,
+        "iterations": [
+          616
+        ],
+        "checkpoint_sha256": "111950f31164e055568d73799c379963246f71bc1f2aa5534a0395e811964867",
+        "reload_max_abs_diff": 0.0
+      },
+      "5:shuffled_multiscale": {
+        "features": 328,
+        "iterations": [
+          674
+        ],
+        "checkpoint_sha256": "44941ecc8bc1af5e03d0ac7f21306ce05078a2ccdf0eb0492ebe35d71c85b53f",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:current_history": {
+        "features": 236,
+        "iterations": [
+          629
+        ],
+        "checkpoint_sha256": "e74401d1896026ccba14c2bcdb8bc115a9e722fb42a9b383873e8a52e59e52ae",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:multiscale_history": {
+        "features": 328,
+        "iterations": [
+          612
+        ],
+        "checkpoint_sha256": "949105b3046371441158b782cb2583d700e9fe31cb6cf3a205b796f1469b1cff",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:shuffled_multiscale": {
+        "features": 328,
+        "iterations": [
+          640
+        ],
+        "checkpoint_sha256": "6e2c37eeee45d305067f6dd13dfadfc805a48ed41eba6e42dcce2ada419239ea",
+        "reload_max_abs_diff": 0.0
+      }
+    },
+    "train_counts_5": {
+      "Up": 4227,
+      "Flat": 2751,
+      "Down": 2862
+    },
+    "train_counts_20": {
+      "Up": 5104,
+      "Flat": 2113,
+      "Down": 2623
+    }
+  },
+  {
+    "year": 2022,
+    "train_rows": 9840,
+    "train_dates": 205,
+    "test_rows": 2586,
+    "test_dates": 52,
+    "train_target_date_max": "2021-01-05",
+    "test_information_start_min": "2021-01-11",
+    "models": {
+      "5:current_history": {
+        "features": 236,
+        "iterations": [
+          658
+        ],
+        "checkpoint_sha256": "cca8666edde44b4af4af3c7bf647906c0f093d8b5a9b082f2f94d62201d0d57a",
+        "reload_max_abs_diff": 0.0
+      },
+      "5:multiscale_history": {
+        "features": 328,
+        "iterations": [
+          604
+        ],
+        "checkpoint_sha256": "3f20296a51d21589acf62b6a90310b5822f05a6bda9785c9b95ed77e0d81c27d",
+        "reload_max_abs_diff": 0.0
+      },
+      "5:shuffled_multiscale": {
+        "features": 328,
+        "iterations": [
+          675
+        ],
+        "checkpoint_sha256": "37798df61f47ea8f2050d385b2e68d0197cd097f048dba872a210482f470951a",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:current_history": {
+        "features": 236,
+        "iterations": [
+          538
+        ],
+        "checkpoint_sha256": "623968d826b6140b32bd13844fc7e4fa36faea1fd7265adf22678ff0095136fb",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:multiscale_history": {
+        "features": 328,
+        "iterations": [
+          623
+        ],
+        "checkpoint_sha256": "2cd0754c0e126dc4713dc76db2c430686cbd84065d07da59a26e16025400ebec",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:shuffled_multiscale": {
+        "features": 328,
+        "iterations": [
+          656
+        ],
+        "checkpoint_sha256": "aec04ceccf7b93666bb89ec399a433ade1d2c4f2dc477e191c03bee2fb16984b",
+        "reload_max_abs_diff": 0.0
+      }
+    },
+    "train_counts_5": {
+      "Up": 4253,
+      "Flat": 2643,
+      "Down": 2944
+    },
+    "train_counts_20": {
+      "Up": 5015,
+      "Flat": 2123,
+      "Down": 2702
+    }
+  },
+  {
+    "year": 2023,
+    "train_rows": 9850,
+    "train_dates": 205,
+    "test_rows": 2600,
+    "test_dates": 52,
+    "train_target_date_max": "2022-01-03",
+    "test_information_start_min": "2022-01-06",
+    "models": {
+      "5:current_history": {
+        "features": 236,
+        "iterations": [
+          570
+        ],
+        "checkpoint_sha256": "f381884c197a69b70cf04b61fb24e02ff136a47938338325397d597d73dc9c4b",
+        "reload_max_abs_diff": 0.0
+      },
+      "5:multiscale_history": {
+        "features": 328,
+        "iterations": [
+          649
+        ],
+        "checkpoint_sha256": "c821fbfd984a69188f5c950a3cd28a5d8ac9e1d728156b7fe61e583e27b02bf3",
+        "reload_max_abs_diff": 0.0
+      },
+      "5:shuffled_multiscale": {
+        "features": 328,
+        "iterations": [
+          693
+        ],
+        "checkpoint_sha256": "f90d91330d3bd7502fc88d3423e3df3bab037e22a3d0537cb4b86b29da68b3c0",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:current_history": {
+        "features": 236,
+        "iterations": [
+          592
+        ],
+        "checkpoint_sha256": "6e33cf61b8dbfdabb1a0e5aa4e08669d20cb662cb2f9f6541d306d2a5c084836",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:multiscale_history": {
+        "features": 328,
+        "iterations": [
+          628
+        ],
+        "checkpoint_sha256": "6d321b90fe0bbe03af8a21c93dd3224bfcf449787696ebd4bdc01bf28f7a3bb9",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:shuffled_multiscale": {
+        "features": 328,
+        "iterations": [
+          664
+        ],
+        "checkpoint_sha256": "37ae4d648e461670e49e62ebc4e6376f6b57b97d5d8d14242236102a29f6ce39",
+        "reload_max_abs_diff": 0.0
+      }
+    },
+    "train_counts_5": {
+      "Up": 4132,
+      "Flat": 2669,
+      "Down": 3049
+    },
+    "train_counts_20": {
+      "Up": 4827,
+      "Flat": 2138,
+      "Down": 2885
+    }
+  },
+  {
+    "year": 2024,
+    "train_rows": 9936,
+    "train_dates": 205,
+    "test_rows": 2600,
+    "test_dates": 52,
+    "train_target_date_max": "2023-01-03",
+    "test_information_start_min": "2023-01-05",
+    "models": {
+      "5:current_history": {
+        "features": 236,
+        "iterations": [
+          692
+        ],
+        "checkpoint_sha256": "c4f89423adbe5b8cf46f2c9e5fd01846d105933eebf70cfef1229ac7189d6740",
+        "reload_max_abs_diff": 0.0
+      },
+      "5:multiscale_history": {
+        "features": 328,
+        "iterations": [
+          711
+        ],
+        "checkpoint_sha256": "aeca5e34a9a0a81bf4edb123affb60aacda8574079f05f665196037fcd903e03",
+        "reload_max_abs_diff": 0.0
+      },
+      "5:shuffled_multiscale": {
+        "features": 328,
+        "iterations": [
+          674
+        ],
+        "checkpoint_sha256": "727338d641bc47a2cc2be946128b79dae0a03987c4a31068f3f64a70b05f57b8",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:current_history": {
+        "features": 236,
+        "iterations": [
+          656
+        ],
+        "checkpoint_sha256": "34e160c47bc93afdb2a42d60019397a7d20a78a0b68e71bd556d454992a4f918",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:multiscale_history": {
+        "features": 328,
+        "iterations": [
+          663
+        ],
+        "checkpoint_sha256": "50383e3bf4d3a8030659e256e311523a436696604afe3cd43a11128d62e9e592",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:shuffled_multiscale": {
+        "features": 328,
+        "iterations": [
+          644
+        ],
+        "checkpoint_sha256": "b8609b414fccbd27db31d153b56f56a2747d6cf909323346a9aecbdcd32e513d",
+        "reload_max_abs_diff": 0.0
+      }
+    },
+    "train_counts_5": {
+      "Up": 4001,
+      "Flat": 2700,
+      "Down": 3235
+    },
+    "train_counts_20": {
+      "Up": 4667,
+      "Flat": 2139,
+      "Down": 3130
+    }
+  },
+  {
+    "year": 2025,
+    "train_rows": 10040,
+    "train_dates": 205,
+    "test_rows": 2600,
+    "test_dates": 52,
+    "train_target_date_max": "2024-01-02",
+    "test_information_start_min": "2024-01-04",
+    "models": {
+      "5:current_history": {
+        "features": 236,
+        "iterations": [
+          602
+        ],
+        "checkpoint_sha256": "8c7f8e71ff5db655ab70b8ef5a0b5304b7eec357cb8f49d5039f29477a5f1598",
+        "reload_max_abs_diff": 0.0
+      },
+      "5:multiscale_history": {
+        "features": 328,
+        "iterations": [
+          683
+        ],
+        "checkpoint_sha256": "3e8579e865a06a702574bc963bebb03414962fa3e6e5e990e0c7e5cfd3ba267b",
+        "reload_max_abs_diff": 0.0
+      },
+      "5:shuffled_multiscale": {
+        "features": 328,
+        "iterations": [
+          678
+        ],
+        "checkpoint_sha256": "8905130da0030063be4abbb4379e00720030d4cf5415f0ddf4ac672107b81a96",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:current_history": {
+        "features": 236,
+        "iterations": [
+          604
+        ],
+        "checkpoint_sha256": "449a00b83f1e6efa4f0f53c9f584ed4ac12c47ee819829bf35e53be96d1f2f8a",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:multiscale_history": {
+        "features": 328,
+        "iterations": [
+          634
+        ],
+        "checkpoint_sha256": "5c7ed05344b2f1f5631b6bba2bd7400de84224871bb765931d9a3d35712ccad1",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:shuffled_multiscale": {
+        "features": 328,
+        "iterations": [
+          674
+        ],
+        "checkpoint_sha256": "b42c52a8dd887dd3bbf908c181478c727eacf9b23b4487a26eed300a913e6482",
+        "reload_max_abs_diff": 0.0
+      }
+    },
+    "train_counts_5": {
+      "Up": 4013,
+      "Flat": 2660,
+      "Down": 3367
+    },
+    "train_counts_20": {
+      "Up": 4607,
+      "Flat": 2145,
+      "Down": 3288
+    }
+  },
+  {
+    "year": 2026,
+    "train_rows": 10096,
+    "train_dates": 204,
+    "test_rows": 1750,
+    "test_dates": 35,
+    "train_target_date_max": "2024-12-30",
+    "test_information_start_min": "2024-12-31",
+    "models": {
+      "5:current_history": {
+        "features": 236,
+        "iterations": [
+          620
+        ],
+        "checkpoint_sha256": "d76366fafba584f425737e266253e7c2f0a3c7618967441411f9194bec4269b5",
+        "reload_max_abs_diff": 0.0
+      },
+      "5:multiscale_history": {
+        "features": 328,
+        "iterations": [
+          700
+        ],
+        "checkpoint_sha256": "4d6babf1ab1d0538ae20d8cf37c36494794eb9bea2445f56c4425c5fc282ce31",
+        "reload_max_abs_diff": 0.0
+      },
+      "5:shuffled_multiscale": {
+        "features": 328,
+        "iterations": [
+          656
+        ],
+        "checkpoint_sha256": "642bf5d08b00e7eb62ae8e67340822461f9af77617b4eda1e04d48f2c9c05d58",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:current_history": {
+        "features": 236,
+        "iterations": [
+          562
+        ],
+        "checkpoint_sha256": "6098f4afddaed7ca3ef46f6443262918801e0206aa136ad89cfeaba80f0a8fd8",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:multiscale_history": {
+        "features": 328,
+        "iterations": [
+          613
+        ],
+        "checkpoint_sha256": "c97eaf51acba15fc4266b65d99aea671f4eb0b7aba70378e298b0d18579672d4",
+        "reload_max_abs_diff": 0.0
+      },
+      "20:shuffled_multiscale": {
+        "features": 328,
+        "iterations": [
+          654
+        ],
+        "checkpoint_sha256": "08f90c7fa49eacbe7155986fcbb62e928712d6215da1d118458b60c3d3174b7c",
+        "reload_max_abs_diff": 0.0
+      }
+    },
+    "train_counts_5": {
+      "Up": 4105,
+      "Flat": 2679,
+      "Down": 3312
+    },
+    "train_counts_20": {
+      "Up": 4698,
+      "Flat": 2121,
+      "Down": 3277
+    }
+  }
+]

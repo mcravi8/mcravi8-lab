@@ -17,6 +17,8 @@ See the [Experiment 01 serving instructions](01-jev-tsla-charts/README.md#future
 
 ## Latest findings
 
+**[Experiment 08](08-cpu-longer-horizon/README.md#v1-results-longer-horizon-and-year-view-did-not-add-skill) found no added CPU forecasting skill from a 20-session horizon or an additional year view.** On 16,566 common held-out observations across 335 weekly dates, the 20-session train-frequency prior scores **46.69% accuracy / 0.638167 Brier**, current-history logistic scores **41.69% / 0.707507**, and adding year history scores **39.88% / 0.754241**. The five-session models also trail their prior. Both frozen CPU gates fail: paired Brier reductions are **-0.069340**, 97.5% block CI **[-0.108153, -0.037367]**, for current history versus prior, and **-0.046734 [-0.085865, -0.012240]** for the added year view. The two decision comparisons use Bonferroni intervals; 4/12/52-date sensitivities remain negative. This fixed numerical study supplies no evidence to justify another GPU/RL run; it does not directly test JEV at the longer horizon. No GPU was used and Experiment 05's future holdout remains untouched.
+
 **[Experiment 07](07-jev-pattern-direction/README.md#v1-results-no-added-forecasting-benefit) completed real JEV inference. Pattern guidance did not improve next-week direction under the frozen continuation criteria.** V1 tests candle and formation guidance separately and together on identical charts: 300 observations, 50 forecast dates and 49 tickers. The descriptive test-majority base rate is **36.67%**; the train-frequency prior uses only outcomes completed by 2018-12-31.
 
 | Arm / baseline | N | Accuracy | Brier |
@@ -62,6 +64,7 @@ The historical LoRA placebo conclusion was also corrected: 0 wins, 5 losses and 
 | [05: CPU walk-forward study](05-cpu-walkforward/README.md) | Can numerical models beat training-frequency priors over longer histories? | CPU study complete; future protocol and model frozen. |
 | [06: Pattern recognition](06-jev-patterns/README.md) | Can JEV identify candlestick and chart patterns? | V7 recognition main arms recorded; CPU bridge finds no added five-day forecast benefit. Recognition controls remain blocked; 150 real parents are showcase-only. |
 | [07: Pattern-guided direction](07-jev-pattern-direction/README.md) | Does candle and formation guidance improve next-five-session forecasts? | Real v1 inference/evaluation complete; no arm beats the prior Brier, only the image check passes. |
+| [08: CPU longer horizon](08-cpu-longer-horizon/README.md) | Do a 20-session target and week/month/year information improve forecasts? | CPU study complete; both frozen gates fail, all fitted models trail the prior. |
 
 ## Completed review and implementation
 
@@ -70,7 +73,7 @@ The historical LoRA placebo conclusion was also corrected: 0 wins, 5 losses and 
 - Revised training validates data bundles and splits, uses representative fit-only parity fixtures, and blocks LoRA training above a 0.01 absolute HF-vLLM probability discrepancy. Checkpoints record provenance and validate reload inputs.
 - The longer CPU study includes simple priors, momentum/reversal rules, numerical feature comparisons, a shuffled-label control, and a fixed future protocol.
 - Experiment 06 adds 50-name data validation, candle labels with a visual-clarity audit and stricter analysis subset, varied synthetic pattern/noise controls, generalized native scoring with a mandatory repeatability gate, and multiclass evaluation. All **140 Experiment 06 CPU tests passed locally**, including fixed numeric shortcut checks on two separate cohorts, independent real-pattern detectors, split/overlap gates, showcase evaluation guards, subset/call-budget checks mocked GPU-runbook failure handling, and forecasting-bridge target/leakage/purge/checkpoint checks.
-- The **60 historical CPU tests passed** again in the Experiment 06 environment, including checkpoint round trips and localhost fake-server scoring. [GitHub CPU CI](https://github.com/mcravi8/mcravi8-lab/actions/workflows/tests.yml) runs all six suites on each push.
+- The **60 historical CPU tests passed** again in the Experiment 06 environment, including checkpoint round trips and localhost fake-server scoring. [GitHub CPU CI](https://github.com/mcravi8/mcravi8-lab/actions/workflows/tests.yml) runs all seven suites on each push.
 
 ## Pending work and future holdout
 
@@ -92,9 +95,10 @@ python3.11 -m venv .venv
 .venv/bin/python -m unittest discover -s 05-cpu-walkforward/tests -v
 .venv/bin/python -m unittest discover -s 06-jev-patterns/tests -v
 .venv/bin/python -m unittest discover -s 07-jev-pattern-direction/tests -v
+.venv/bin/python -m unittest discover -s 08-cpu-longer-horizon/tests -v
 ```
 
-On macOS, install `torch==2.14.1` from the default package index instead; the checkpoint test explicitly uses CPU. Install PyTorch for the complete suite, including Experiment 06's CPU CNN checks. Run each suite separately because historical experiments share module names. The suite comprises 31 pipeline/scoring/protocol tests, 8 statistical tests, 13 training tests and 8 baseline tests. Tests use synthetic OHLCV, localhost HTTP fixtures and CPU tensors, without downloading model weights. Experiment 06 adds pattern, rendering, arbitrary-option scoring and multiclass evaluation tests. GitHub Actions runs all six suites on pushes and pull requests.
+On macOS, install `torch==2.14.1` from the default package index instead; the checkpoint test explicitly uses CPU. Install PyTorch for the complete suite, including Experiment 06's CPU CNN checks. Run each suite separately because historical experiments share module names. The suite comprises 31 pipeline/scoring/protocol tests, 8 statistical tests, 13 training tests and 8 baseline tests. Tests use synthetic OHLCV, localhost HTTP fixtures and CPU tensors, without downloading model weights. Experiment 06 adds pattern, rendering, arbitrary-option scoring and multiclass evaluation tests. GitHub Actions runs all seven suites on pushes and pull requests.
 
 ## Reproducibility
 
