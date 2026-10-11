@@ -106,9 +106,11 @@ class ForecastBridgeTests(unittest.TestCase):
             changed["label"] = "Down"
             after, _ = bridge.forecast_fold(train, changed, PATTERNS, PROTOCOL)
             for arm in bridge.ARMS:
-                np.testing.assert_array_equal(before[arm], after[arm])
+                # Repeated CPU fits can differ at floating-point rounding on Linux.
+                np.testing.assert_allclose(before[arm], after[arm], atol=1e-12, rtol=0)
+                np.testing.assert_array_equal(before[arm].argmax(1), after[arm].argmax(1))
                 np.testing.assert_allclose(before[arm].sum(1), 1., atol=1e-12)
-            self.assertTrue(all(check["reload_max_abs_diff"] == 0 for check in checks.values()))
+            self.assertTrue(all(check["reload_max_abs_diff"] <= 1e-12 for check in checks.values()))
             self.assertEqual(checks["A_numeric"]["feature_count"], 168)
             self.assertEqual(checks["C_jev"]["feature_count"], 176)
 

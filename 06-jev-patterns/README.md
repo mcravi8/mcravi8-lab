@@ -80,15 +80,28 @@ The gate was adapted post-hoc after v2–v6. V7's global candle gate passed unde
 
 All **150 real pattern parents remain showcase-only**, including both framings and both main arms. Their predictions are available for qualitative review; no aggregate/per-class accuracy claim is permitted. The reported real-data result remains the [detector-agreement table](06b-chart-patterns/results/detector_agreement.csv).
 
-The next useful work is independent review of weak classes and negative examples, followed by completion of the already frozen controls only after their gate passes. Any prompt, label, threshold or generator changes informed by these results need new held-out evaluation data. No GPU or Runpod resource was started to review the results or update this README.
+The CPU forecasting bridge below does not meet its continuation criteria. Further recognition controls would address the separate recognition-benchmark question; they remain blocked by the frozen live gate. Any prompt, label, threshold or generator changes informed by these results need new held-out evaluation data. No GPU or Runpod resource was started to review the results or update this README.
 
-## CPU forecasting bridge
+## CPU forecasting bridge: no incremental five-day benefit
 
-The [frozen bridge protocol](config/forecast_bridge_v1.json) and [CPU implementation](shared/src/forecast_bridge.py) test a separate question: whether numeric bars plus detector indicators (B) or saved JEV pattern probabilities (C) improve **next-five-session Up/Flat/Down forecasts** over numeric bars alone (A). The target uses Experiment 01's one-third trailing five-session volatility band. The 06a market cohort supplies the same rows to every arm; synthetic and real showcase inputs are excluded.
+The [frozen protocol](config/forecast_bridge_v1.json) and [CPU implementation](shared/src/forecast_bridge.py) were pushed in [commit f780579](https://github.com/mcravi8/mcravi8-lab/commit/f780579) **before inspecting this return evaluation**. This separate study forecasts next-five-session Up/Flat/Down outcomes, using the one-third trailing five-session volatility band from Experiment 01. C uses saved JEV **pattern probabilities as inputs to a trained logistic forecasting model**; these results are not direct JEV return predictions or pattern-recognition scores.
 
-The primary analysis retains the original pre-2019 training/later-test split. Secondary annual walk-forward refits use only earlier observations, with training targets purged before test information history. Scalers fit on training rows only; models and success criteria are fixed before inspecting return outcomes. The balanced pattern sample is not a natural trading population, and this retrospective study is exploratory. This protocol does not change Experiment 05's prospective holdout.
+Of the original 1,200 market candle rows, **1,182 are eligible: 584 train and 598 test**. Fourteen lack the 65 closes needed for the trailing scale, one lacks a complete forward target, and three training targets cross the 2018 boundary. The same eligible rows enter every arm. Both detectors reproduce the saved pattern labels; synthetic and real showcase rows are excluded.
 
-This revision freezes the protocol and implementation before running the recorded market return evaluation. No GPU, HTTP inference, Runpod resource or data download is required.
+| Forecast model | Held-out accuracy | Held-out Brier ↓ | Walk-forward accuracy | Walk-forward Brier ↓ |
+| --- | ---: | ---: | ---: | ---: |
+| Training-frequency prior | **39.6%** | **0.658871** | **39.6%** | **0.659010** |
+| A: numeric OHLCV | 34.8% | 0.776384 | 32.6% | 0.760502 |
+| B: A + detector indicators | 32.3% | 0.793376 | 33.4% | 0.764061 |
+| C: A + JEV probabilities | 33.4% | 0.790343 | 33.3% | 0.770202 |
+
+The primary model fits only pre-2019 training observations; secondary expanding walk-forward models refit annually for 2019–2026. Training targets are purged before the earliest test information history, including the 65-close volatility lookback. Scalers fit on training rows only; all 27 checkpoint reload checks pass.
+
+C's paired Brier improvement versus A is **−0.013959**, with an exploratory four-retained-week bootstrap 95% interval **[−0.024287, −0.003695]**: adding JEV worsens the primary score. Annual walk-forward gives **−0.009699 [−0.018551, −0.000451]**, and C improves Brier in only **1/8 years**. B also worsens held-out Brier by 0.016992; its walk-forward interval includes zero. All fitted models underperform the training-frequency prior.
+
+**All three frozen continuation conditions fail.** This study supports pausing further JEV compute for the tested five-day forecasting route. It does not establish that all patterns, chart representations or models are uninformative: the cohort is small, balanced by recognition class and retrospective, and the comparator is a fixed high-dimensional linear model with no hyperparameter search. Existing inference noise and unknown JEV pretraining overlap also remain limitations. No executable trading costs or P&L were evaluated.
+
+[Full results and reproduction](shared/results/forecast_bridge_v1/README.md), [metrics and uncertainty](shared/results/forecast_bridge_v1/metrics.json), [paired-comparison figure](shared/results/forecast_bridge_v1/comparison.png), and [independent validation](shared/results/forecast_bridge_v1/validation.json) preserve the outcome. The audit independently checks all 1,182 targets and ten model/evaluation summaries, plus nine purged folds and 27 checkpoint checks. All **140 Experiment 06 tests pass locally**. This run uses CPU only, makes no HTTP/GPU/Runpod calls or data downloads, and leaves Experiment 05's prospective protocol and frozen models unchanged.
 
 ## Separate pinned environment
 
@@ -195,7 +208,7 @@ The [synthetic README](06b-chart-patterns/README.md) documents reproduction, the
 
 ## Verification and Day 2 outcome
 
-All **129 Experiment 06 tests and 60 historical tests passed locally** in the pinned environment. `pip check` passed. The Day 1 images and both sample collections were validated and visually inspected. The trimmed freeze checks all 4,400 unique target PNGs, their matching numeric bars and all 50 raw input hashes; see [day2_validation.json](shared/results/day2_validation.json). All seven real review grids and selected derived styles were inspected during Day 2; existing reference boards are inactive historical artifacts. The data cache verifier confirmed all 50 inputs without network access and preserved the frozen input-manifest hash. [GitHub CPU CI](https://github.com/mcravi8/mcravi8-lab/actions/workflows/tests.yml) runs on each staged push.
+All **140 Experiment 06 tests passed locally** in the pinned environment, including eleven forecasting-bridge tests. The 60 historical tests remain part of GitHub CI. `pip check` passed. The Day 1 images and both sample collections were validated and visually inspected. The trimmed freeze checks all 4,400 unique target PNGs, their matching numeric bars and all 50 raw input hashes; see [day2_validation.json](shared/results/day2_validation.json). All seven real review grids and selected derived styles were inspected during Day 2; existing reference boards are inactive historical artifacts. The data cache verifier confirmed all 50 inputs without network access and preserved the frozen input-manifest hash. [GitHub CPU CI](https://github.com/mcravi8/mcravi8-lab/actions/workflows/tests.yml) runs on each staged push.
 
 The candle definitions contain 157 words; chart-pattern definitions contain 255 words. They describe the frozen detector/generator rules. No real-model prediction, real-dataset baseline fit, GPU or Runpod call was made for Day 1.
 

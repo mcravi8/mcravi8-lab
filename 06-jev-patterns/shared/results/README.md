@@ -72,6 +72,12 @@ Gate files, console results and job summaries report raw agreement, per-pass/eit
 
 The v2–v6 measurements concern one fixed 20-chart candle fixture. V7 adds the task/arm fixtures above. Neither constitutes independent validation, a general noise bound, HF-vLLM equivalence or recognition accuracy. Results must disclose the adaptations, residual noise floor and allowed mismatch counts. Small probability/calibration changes need interpretation against the observed variation. Every pending arm still requires fresh live gates.
 
+## CPU forecasting bridge
+
+The separate [CPU bridge results](forecast_bridge_v1/README.md) evaluate **five-session return forecasts**, using the recorded JEV pattern probability vector as features. They find no incremental benefit: held-out C-vs-A Brier reduction −0.013959 (four-retained-week 95% interval −0.024287 to −0.003695); annual walk-forward reduction −0.009699 (−0.018551 to −0.000451). C's held-out accuracy is 33.4%, versus numeric A 34.8% and training prior 39.6%. These numbers must not be confused with pattern-recognition accuracy.
+
+All frozen continuation conditions fail. [Protocol](../../config/forecast_bridge_v1.json) and implementation were pushed before inspecting return results. The [independent audit](forecast_bridge_v1/validation.json) verifies targets, metrics, chronology and checkpoint records. No new JEV inference, GPU or Runpod operation was used.
+
 ## Other reported CPU results
 
 The [real-pattern detector-agreement table](../../06b-chart-patterns/results/detector_agreement.csv) remains the reported real-data result; all 150 real parents are showcase-only, with no aggregate or per-class model accuracy claims. [Candle evaluation](../../06a-candles/results/eval_v7) and [synthetic evaluation](../../06b-chart-patterns/results/eval_v7) include CPU baselines, confusion/reliability/risk-coverage plots and paired arm comparisons. An independent CPU recalculation matched accuracy, macro-F1, Brier and confusion matrices in all 24 saved evaluation reports. The [runbook](../../GPU_RUNBOOK.md) retains the full 9,820-call schedule and unchanged server/runtime requirements.

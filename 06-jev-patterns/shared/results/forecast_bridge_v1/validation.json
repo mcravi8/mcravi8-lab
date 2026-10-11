@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "target_rows_checked": 1182,
+  "metric_arm_evaluations_checked": 10,
+  "purged_folds_checked": 9,
+  "checkpoint_roundtrips_checked": 27,
+  "checks": "Independent pandas five-session targets/trailing sigma; sklearn accuracy/macro-F1/confusion and direct NumPy Brier; common paired coverage; strict train-target chronology; artifact hashes.",
+  "protocol_sha256": "1e4bcdb8a96bb5ef86d19c56a64f621b0deb203ab40d95f38954c2c838173892",
+  "source_sha256": "07df2563231671414e7b73056021b3acc33e17cb704434ebe2caf88fa426a0ec",
+  "gpu_calls": 0,
+  "runpod_operations": 0
+}

@@ -1,0 +1,72 @@
+{
+  "status": "complete CPU-only exploratory evaluation",
+  "protocol_sha256": "1e4bcdb8a96bb5ef86d19c56a64f621b0deb203ab40d95f38954c2c838173892",
+  "implementation_commit": "f7805794762148baccc1d21d09e19d585dc6b78f",
+  "input_sha256": {
+    "06a-candles/results/index.csv": "a4e138f2689bb66efa29893f67d5990260c36c8c06a2e5a453ea9c6bfbbc7522",
+    "06a-candles/results/inference/frozen_v7/candles_definitions_p1.csv": "e6a603ac0ff86f1b364b7205addcb3e636a32ec6d00573d55a5182d5641a71c7",
+    "06a-candles/results/inference/frozen_v7/candles_definitions_p1.meta.json": "160dda70c9c163af120e3ce4a67d370b86ece8b9ca9816d8c24d577f717ba38b",
+    "shared/results/data_manifest.json": "0f01c1ff972b70167981802046fbc5aaf3ec05897c1240b5688462df8f81539a",
+    "06a-candles/rules.json": "5490cd94e193e0c36dbedd01ab8a3e1ddd7404d56057a04904a4a4ca51810e63",
+    "config/inference_arms.json": "98f9d6d76b640d249d91bc98172c28ecefc6f63956d62ff9ad1b3db83909bea4"
+  },
+  "source_sha256": {
+    "forecast_bridge.py": "07df2563231671414e7b73056021b3acc33e17cb704434ebe2caf88fa426a0ec",
+    "baselines.py": "2789a585f004895873e048b7e70aa0ba6ceab3b96808369b38558cacb1fe7089",
+    "evaluate.py": "a92700407a6a0b8b27965d19f10b9e0721aca67fe87ec2526ce033d3cc966f4e",
+    "data.py": "e00f9343468f36102196b31f5253d866f63b8c5c17f6f8078a151a7528c4925a",
+    "detect.py": "27ca0371782eaea79c4324ecdabaa4bc22d2c4b43022c106a54ef2de9abe2112",
+    "statistics.py": "46991303a5bf066e41867e9d12dbd0d965c3f38231ecad28208f52818cf64d74"
+  },
+  "versions": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "pillow": "12.3.0",
+    "pyarrow": "23.0.1",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.17.1",
+    "statsmodels": "0.15.0",
+    "yfinance": "1.7.0",
+    "TA-Lib": "0.8.1"
+  },
+  "python": "3.11.13 (main, Jun  3 2025, 18:38:25) [Clang 17.0.0 (clang-1700.0.13.3)]",
+  "jev_revision": "3514d1d8ead2189c75f433fa949fe63c8e3f3c66",
+  "jev_revision_source": "caller-declared",
+  "jev_runtime": {
+    "concurrency": 1,
+    "batch_size": 1,
+    "runtime_fingerprint": "44f1915962f85d2ec770476d2a099ca9aef00bb805fb3a4085398d6fb31ed706"
+  },
+  "eligible_rows": 1182,
+  "eligible_by_split": {
+    "test": 598,
+    "train": 584
+  },
+  "excluded_rows": 18,
+  "exclusions_by_reason": {
+    "insufficient_trailing_history": 14,
+    "missing_forward_target": 1,
+    "train_target_after_boundary": 3
+  },
+  "target_counts_by_split": {
+    "test": {
+      "Up": 237,
+      "Flat": 157,
+      "Down": 204
+    },
+    "train": {
+      "Up": 225,
+      "Flat": 170,
+      "Down": 189
+    }
+  },
+  "gpu_calls": 0,
+  "runpod_operations": 0,
+  "downloads": 0,
+  "artifacts": {
+    "cohort.csv": "177506f3364152194ab12a28d5bacd7e01387c14cc56d5f9b8e5ba56349b54ed",
+    "exclusions.csv": "df831a9c5c81f7ead369b953066164bb63c1e7ab14cf8c47f026e4405f40d093",
+    "predictions.csv": "fc27b3202938925e78a1bc24fc48f1541c919386b32982e1e3c91df1fd85ee76"
+  }
+}
