@@ -1,6 +1,6 @@
 # Experiment 06 trimmed inference runbook
 
-**Corrected configuration prepared/tested on CPU; not GPU verified.** A prior on-pod session failed the first global candle gate after 40 decide calls and wrote no predictions. [run_gpu.py](scripts/run_gpu.py) is the single future entry point. It does not create, start, stop or contact Runpod resources. Inference requires a separately authorized, already prepared GPU host.
+**Revised serial/cacheless configuration prepared on CPU; not GPU verified.** A prior on-pod session failed the first global candle gate after 40 decide calls and wrote no predictions. A subsequent v3 startup failed because JEV GDN_ATTN rejects batch invariance; no decide calls ran in that session. [run_gpu.py](scripts/run_gpu.py) is the single future entry point. It does not create, start, stop or contact Runpod resources. Inference requires a separately authorized, already prepared GPU host.
 
 ## Frozen assets and arms
 
@@ -8,7 +8,7 @@ The [model contract](config/model_contract.json) pins **autotrust/JEV-27B-VL** t
 
 The [pinned model card](https://huggingface.co/autotrust/JEV-27B-VL/blob/3514d1d8ead2189c75f433fa949fe63c8e3f3c66/README.md) and [native server](https://huggingface.co/autotrust/JEV-27B-VL/blob/3514d1d8ead2189c75f433fa949fe63c8e3f3c66/serve_decide.py) define native System 1 `/v1/decide`, `thinking="off"`, `strategy="single"`, with ordered eight- or seven-class options. Every scheduled call has one target image. **The reference-image arm is removed**, including its enable flag; existing CPU reference boards are inactive historical artifacts.
 
-[Inference config](config/inference_arms.json), schema 3, freezes **zero-shot and definitions** with one primary question wording per task. A second wording is confined to **100 charts per sub-part**, for both arms. These rows reuse main-arm predictions for the primary wording. No prompt or subset is selected from prediction performance.
+[Inference config](config/inference_arms.json), schema 4, freezes **zero-shot and definitions** with one primary question wording per task. A second wording is confined to **100 charts per sub-part**, for both arms. These rows reuse main-arm predictions for the primary wording. No prompt or subset is selected from prediction performance.
 
 | Input collection | Rows | Scheduled arms / wording |
 |---|---:|---|
@@ -51,16 +51,18 @@ Logs show BF16, seed zero, prefix caching with aligned hybrid/Mamba cache, chunk
 
 **Decision (a): retain the predeclared 0.01 tolerance and change execution.** Moving to 0.05 after seeing this failure would weaken probability/Brier/calibration comparisons. Twenty stable argmaxes do not establish that larger probability drift is acceptable.
 
-The corrected config uses:
+The subsequent [v3 startup evidence](shared/results/diagnostics/2026-10-10-gdn-attn/diagnosis.json), copied from `shared/results/inference_run_v3/server.log`, establishes **`VLLM batch_invariant mode is not supported for GDN_ATTN.`** The flag exists in vLLM, but JEV’s attention backend cannot use it. The engine exited before readiness or scoring. **Remove batch invariance from the frozen policy** and explicitly clear `VLLM_BATCH_INVARIANT` inherited from the shell; this applies to the server and CLI-help probe. The remaining serial/eager/cacheless settings are a repeatability attempt, not a deterministic guarantee.
+
+The revised config uses:
 
 - Scorer concurrency **1**, client batch size **1**, for both gates and predictions.
-- `VLLM_BATCH_INVARIANT=1`. The [exact nightly revision's batch-invariance documentation](https://github.com/vllm-project/vllm/blob/7d0b4e57a/docs/features/batch_invariance.md) includes fixed-order LoRA shrink reduction, avoiding its default atomics.
+- **Batch invariance removed** because the pinned build rejects GDN_ATTN. No batch-invariance capability check remains; an inherited flag is removed before CLI help or server launch.
 - `--enforce-eager`, `--no-enable-prefix-caching`, `--no-enable-chunked-prefill`, `--no-async-scheduling` and `--seed 0`. The token budget is fixed at 16,384; GDN prefill is pinned to `triton`.
 - Native LoRA `jev-decision`, processed logprobs, raw decision template, calibrated System 1 payload and **`--max-num-seqs 8`** retained. Changing the native read-out temperature to zero would change probability semantics, so it remains untouched.
 - `PYTHONHASHSEED=0`, `CUBLAS_WORKSPACE_CONFIG=:4096:8` and `NVIDIA_TF32_OVERRIDE=0`.
-- Fresh `frozen_v3` outputs and `inference_run_v3` session files; preserve the failed v2 evidence.
+- Fresh `frozen_v4` outputs and `inference_run_v4` session files; preserve failed v2 gate and v3 startup evidence.
 
-[Upstream reproducibility guidance](https://docs.vllm.ai/en/latest/usage/reproducibility/) recommends batch invariance for online serving; reproducibility is conditional on the same hardware/version. This feature is beta, and JEV's Qwen3.5 hybrid/LoRA combination is not explicitly in the tested-model list. **These settings are an unverified deterministic correction, not a claimed successful GPU fix.** If the pinned build rejects a flag or still exceeds 0.01, abort and retain diagnostics. Do not silently disable the policy or increase tolerance.
+**These settings have not passed a GPU gate.** Without the unsupported batch-invariance mode, serial requests and eager/cacheless execution may still produce numerical variation. The **0.01 gate remains unchanged** and is the acceptance check; stable argmaxes cannot override it. If startup or repeatability fails, abort and retain diagnostics. Do not silently change the policy or increase tolerance.
 
 ## Observed build pins and Linux scorer
 
@@ -69,14 +71,30 @@ The corrected config uses:
 | Component | Observed / required version |
 |---|---|
 | vLLM nightly | `0.31.1rc1.dev253+g7d0b4e57a.cu129` |
-| Torch distribution | `2.13.0` |
-| Torch compiled CUDA | **`13.0`**, reported by the user; checked through `torch.version.cuda` before launch |
+| Torch distribution | `2.13.0`, installed from PyPI |
+| torchvision distribution | `0.28.0`, installed from PyPI |
+| Torch compiled CUDA | **`13.0`**, confirmed by v3 `torch.version.cuda`; imported Torch is `2.13.0+cu130` |
 | Triton | `3.7.1` |
 | FlashInfer | `0.7.0.post1` |
 | Transformers | `5.19.0` |
 | NVIDIA CUDA runtime package | `13.0.96` |
+| Runpod host NVIDIA driver | **580 or newer**; checked before importing Torch or starting the server |
 
-The complete [original package inventory](shared/results/diagnostics/2026-10-10/runtime_lock.json) preserves the mixed CUDA 12/13 dependencies. CUDA 12.9 is **not** asserted as Torch's build. Package versions and imported build metadata are checked; a new nightly or CUDA build fails before serving. Original wheel URLs/hashes, container digest and GPU/driver identity were absent from supplied evidence, so these pins do not claim byte-identical reconstruction or binary compatibility. Reuse the original server environment/cached exact wheel; do not upgrade a moving nightly index. A coherent-build migration would be a separately recorded change.
+The complete [original package inventory](shared/results/diagnostics/2026-10-10/runtime_lock.json) preserves the mixed CUDA 12/13 dependencies; the [v3 inventory](shared/results/diagnostics/2026-10-10-gdn-attn/runtime_lock.json) confirms Torch distribution `2.13.0`, imported `2.13.0+cu130`, CUDA `13.0` and torchvision `0.28.0`. Their PyPI installation source is reported by the user; an installed-version inventory cannot prove the wheel index. CUDA 12.9 is **not** asserted as Torch's build. Original wheel hashes/container digest remain unavailable, so these pins do not claim byte-identical reconstruction or binary compatibility. Keep the cached exact vLLM wheel; do not upgrade a moving nightly index.
+
+**Select an already authorized Runpod host with NVIDIA driver 580 or newer.** Driver 570 pods fail with this CUDA 13.0 Torch build, as reported by the user. [NVIDIA’s compatibility table](https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html) requires driver **>=580** for CUDA 13.x. Inspect the **Driver Version**, not the `CUDA Version` header: the latter is driver capability, not Torch's compiled build. This script uses `nvidia-smi --query-gpu=driver_version --format=csv,noheader` and rejects any version below 580, missing GPUs/query tool, malformed results or a failed query **before Torch import and server startup**. It records all driver versions in the runtime lock and rejects changes on resume. It does not upgrade a driver or provision a replacement pod.
+
+For future preparation of the existing server environment, install the requested Torch versions explicitly from **PyPI**, using [requirements-jev-torch.txt](requirements-jev-torch.txt). Do not use the CUDA 12.9 PyTorch index for these packages. The latest supplied server interpreter is `/root/venv/bin/python3`; use that path only if its environment still matches the pins:
+
+```sh
+cd /root/repo
+export JEV_SERVER_PYTHON=/root/venv/bin/python3
+nvidia-smi --query-gpu=driver_version --format=csv,noheader
+"$JEV_SERVER_PYTHON" -m pip install -r 06-jev-patterns/requirements-jev-torch.txt
+"$JEV_SERVER_PYTHON" -m pip check
+```
+
+These are documented future-host commands; no server packages were installed during this CPU change. Installation and wheel sourcing remain separate from the GPU run script, which checks exact package versions and `torch.version.cuda=13.0` before launch.
 
 A macOS virtual environment cannot be copied to Linux. Create or reuse the **on-pod Linux scorer** in a separate environment, matching the actual `/root/svenv` inventory through [requirements-scoring.txt](requirements-scoring.txt). The lightweight scorer needs no Torch/vLLM. From the prepared pod's repository root:
 
@@ -95,11 +113,11 @@ The Runpod location remains **US-MO-1**, network volume **jev-weights**, port **
 
 The repository [Experiment 01 remote_serve.sh](../01-jev-tsla-charts/scripts/remote_serve.sh) and snapshot `serve.sh` remain unchanged and verified. Their hardcoded prefix-caching flag conflicts with this correction. The runbook therefore invokes the same checksum-verified **native `serve_decide.py` directly**, preserving the System 1 flags and applying the explicit overrides above. It does not use an ordinary vLLM chat launcher or modify cached upstream files.
 
-Set `JEV_SERVER_PYTHON` to the actual Linux interpreter whose environment matches the observed server pins. The diagnostics did not preserve its exact path; the example below requires that operator-supplied path. Both interpreters must be explicit; there is no macOS venv fallback.
+Set `JEV_SERVER_PYTHON` to the actual Linux interpreter whose environment matches the observed server pins. The v3 diagnostics used `/root/venv/bin/python3`. Both interpreters must be explicit; there is no macOS venv fallback.
 
 ```sh
 cd /root/repo
-export JEV_SERVER_PYTHON=/absolute/path/to/observed/server/python
+export JEV_SERVER_PYTHON=/root/venv/bin/python3
 /root/svenv/bin/python 06-jev-patterns/scripts/run_gpu.py \
   --execute \
   --model-dir /workspace/models/JEV-27B-VL \
@@ -112,12 +130,12 @@ There is no reference-image enable flag. Without `--execute`, the script validat
 The script:
 
 1. Verifies frozen assets, the under-10,000 call cap, showcase-only scope and model weight/serving/config hashes; rejects an occupied port.
-2. Checks the exact required server/scorer package pins, `torch.version.cuda=13.0`, batch-invariance capability and supported CLI flags **before starting a server**. Runtime probes import packages/CLI help only; they do not create an inference engine.
-3. Records packages, build/platform metadata and policy in `shared/results/inference_run_v3/runtime_lock.json`; rejects changed runtimes on resume. It records the launch command/environment and passes a runtime/execution fingerprint to every scorer.
-4. Starts checksum-verified native JEV with the deterministic overrides and offline Hugging Face mode. No model downloads or package installs occur in the run script.
+2. Checks **NVIDIA driver >=580 before importing Torch**, then exact required server/scorer package pins, `torch.version.cuda=13.0` and supported CLI flags **before starting a server**. Runtime probes inspect metadata/import packages/CLI help only; they do not create an inference engine. No batch-invariance capability is required; the rejected environment flag is removed.
+3. Records driver versions, packages, Torch installation source, build/platform metadata and policy in `shared/results/inference_run_v4/runtime_lock.json`; rejects changed runtimes on resume. It records the launch command/environment and passes a runtime/execution fingerprint to every scorer.
+4. Starts checksum-verified native JEV with the serial/eager/cacheless overrides and offline Hugging Face mode. No model downloads or package installs occur in the run script.
 5. Verifies native identity/calibration and runs **20 charts twice per option schema** before predictions. Every pending job also repeats 20 charts. Any maximum probability difference **>0.01 aborts**. Reports now include per-row drift and argmax agreement; argmax stability never overrides a failed probability gate.
 6. Scores frozen jobs at concurrency/batch one, preserving scope metadata, probabilities, predictions and latency. Timeout remains 120 seconds with three retries. Resume rejects changed input, model, question, context, concurrency/batch or execution fingerprint and skips completed rows.
-7. Writes `results/inference/frozen_v3/<job>.csv` plus metadata/parity/error/summary files; session logs go to `shared/results/inference_run_v3/`. Stops its own server, **not the existing cloud pod or billing**.
+7. Writes `results/inference/frozen_v4/<job>.csv` plus metadata/parity/error/summary files; session logs go to `shared/results/inference_run_v4/`. Stops its own server, **not the existing cloud pod or billing**.
 
 Repeatability does not establish HF/vLLM parity or recognition quality. Global gates repeat each session; partial jobs repeat their gate. Completed no-op jobs make no new decide calls.
 
@@ -137,7 +155,7 @@ Repeatability does not establish HF/vLLM parity or recognition quality. Global g
 
 The fresh successful run is **9,820 calls**, down from 27,496, and remains below 10,000. Retries and repeated partial resumes are additional; this is a planned count, not a hard request limiter that would truncate output.
 
-The prior **46–121-minute estimate is withdrawn** because it assumed concurrency four and optimized cached/compiled execution. The corrected serial plan uses an explicit planning range of **103.2–309.6 minutes (about 103–310)**: 0.6–1.8 seconds per decide call plus 5–15 minutes for startup/validation. Experiment 03's historical median was 594.704 ms, but larger images and eager/cacheless batch-invariant kernels may cost more. The failed session does not measure corrected throughput. Hardware/driver changes and beta kernel support can move time outside this range; update the estimate only after a separately authorized successful gate.
+The prior **46–121-minute estimate is withdrawn** because it assumed concurrency four and optimized cached/compiled execution. The corrected serial plan uses an explicit planning range of **103.2–309.6 minutes (about 103–310)**: 0.6–1.8 seconds per decide call plus 5–15 minutes for startup/validation. Experiment 03's historical median was 594.704 ms, but larger images and eager/cacheless kernels may cost more. The failed session does not measure corrected throughput. Hardware/driver changes and hybrid kernel support can move time outside this range; update the estimate only after a separately authorized successful gate.
 
 ## Later evaluation
 

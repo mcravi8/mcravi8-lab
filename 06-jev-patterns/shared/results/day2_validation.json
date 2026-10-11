@@ -1,9 +1,10 @@
 {
-  "gpu_or_real_model_started": false,
+  "validation_scope": "CPU validation of frozen_v4; prior GPU attempts remain failed",
+  "gpu_or_model_started_during_revision": false,
   "runbook_executed": false,
   "target_pngs_verified": 4400,
   "unique_numeric_csvs_validated": 4000,
-  "frozen_assets_verified": 4434,
+  "frozen_assets_verified": 4439,
   "real_input_snapshots_verified": 50,
   "collections": {
     "candles": 1200,
@@ -23,12 +24,13 @@
     "patterns_mirror_time": 100,
     "patterns_mirror_price": 100
   },
-  "config_sha256": "be988152dc208eb3e0e0430d6b7c12a1e9741dfd2a4efc9c4850fff1d1e21c87",
+  "config_sha256": "709199bc81ca87687ab481c881d1f9199d1b9ee5706af9f742a91239835e2e62",
   "checks": [
     "All frozen asset SHA-256s",
     "All target PNG dimensions/formats/metadata",
-    "Numeric OHLCV validity and bar counts",
+    "Numeric OHLCV validity (1e-8 float parsing tolerance) and bar counts",
     "Market numeric start/end dates match index",
-    "All real raw snapshot, code/rules and image/bars manifest hashes"
+    "All real raw snapshot, code/rules and image/bars manifest hashes",
+    "Chart bytes, questions, subsets and jobs unchanged except output namespace"
   ]
 }

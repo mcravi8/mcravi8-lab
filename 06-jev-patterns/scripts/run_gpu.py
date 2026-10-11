@@ -2,7 +2,8 @@
 """One entry point for a future, explicitly authorized existing-GPU session.
 
 Default is a local plan only. --execute starts the Experiment 01 native server,
-checks both option schemas for repeatability, then scores frozen jobs. A prior GPU session failed its global gate; this corrected configuration has
+checks both option schemas for repeatability, then scores frozen jobs. Prior GPU
+sessions failed a global gate and GDN_ATTN startup; this revised configuration has
 not been run against a GPU. It never provisions or manages a Runpod pod.
 """
 from __future__ import annotations
@@ -12,6 +13,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import signal
 import socket
 import subprocess
@@ -64,7 +66,7 @@ def selected_jobs(config):
 
 def score_command(job,python,config,contract,*,parity_only=False,global_gate=False,runtime_fingerprint=''):
     runtime=config['runtime'];root=checked_path(job['root'])
-    out=f"results/inference/frozen_v3/global_parity_{job['kind']}.csv" if global_gate else job['out']
+    out=f"results/inference/frozen_v4/global_parity_{job['kind']}.csv" if global_gate else job['out']
     command=[str(python),str(EXP/'shared/src/score.py'),'--root',str(root),'--index',job['index'],
              '--out',out,'--options-file',str(checked_path(job['options_file'])),
              '--question',job['question'],'--control',job['control'],
@@ -122,17 +124,38 @@ def validate_runtime(versions,pins):
                 raise ValueError(f'{role} runtime pin differs: {name} must be {version}')
     if versions['server_build'].get('torch_cuda')!=pins['server_build']['torch_cuda']:
         raise ValueError('Torch CUDA build differs from pinned 13.0 runtime')
-    if not versions['server_build'].get('batch_invariance_supported'):
-        raise ValueError('Pinned vLLM must expose VLLM_BATCH_INVARIANT')
+    validate_driver(versions['host']['nvidia_driver_versions'],pins)
+
+
+def validate_driver(versions,pins):
+    """Fail before Torch import/server launch if CUDA13's host driver is unsuitable."""
+    minimum=pins['host_requirements']['nvidia_driver_major_minimum']
+    if not isinstance(versions,list) or not versions:
+        raise ValueError('NVIDIA driver query returned no GPU driver versions')
+    for version in versions:
+        if not isinstance(version,str) or re.fullmatch(r'[0-9]+(?:\.[0-9]+)*',version) is None:
+            raise ValueError(f'NVIDIA driver version is malformed: {version!r}')
+        if int(version.split('.')[0])<minimum:
+            raise ValueError(f'NVIDIA driver {version} is below required {minimum} for CUDA13.0')
 
 
 def runtime_lock(server_python,scorer_python,folder,pins):
+    # Driver inspection is metadata-only and precedes imports that may reject driver570.
+    try:
+        driver_output=subprocess.check_output(
+            ['nvidia-smi','--query-gpu=driver_version','--format=csv,noheader'],
+            text=True,stderr=subprocess.STDOUT,timeout=15)
+    except (OSError,subprocess.SubprocessError) as error:
+        raise ValueError('Cannot verify NVIDIA driver>=580 for CUDA13.0') from error
+    drivers=[line.strip() for line in driver_output.splitlines() if line.strip()]
+    validate_driver(drivers,pins)
     code="import importlib.metadata as m,json; print(json.dumps({d.metadata['Name']:d.version for d in m.distributions()},sort_keys=True))"
     server=json.loads(subprocess.check_output([str(server_python),'-c',code],text=True))
     scorer=json.loads(subprocess.check_output([str(scorer_python),'-c',code],text=True))
-    build_code="import torch,platform,json,vllm.envs as e; print(json.dumps({'torch_version':torch.__version__,'torch_cuda':torch.version.cuda,'python':platform.python_version(),'platform':platform.platform(),'batch_invariance_supported':'VLLM_BATCH_INVARIANT' in e.environment_variables}))"
+    build_code="import torch,platform,json; print(json.dumps({'torch_version':torch.__version__,'torch_cuda':torch.version.cuda,'python':platform.python_version(),'platform':platform.platform()}))"
     build=json.loads(subprocess.check_output([str(server_python),'-c',build_code],text=True))
-    versions={'server':server,'scorer':scorer,'server_build':build,'policy':pins['policy'],
+    versions={'server':server,'scorer':scorer,'server_build':build,
+              'host':{'nvidia_driver_versions':drivers},'torch_install':pins['torch_install'],'policy':pins['policy'],
               'determinism_environment':pins['determinism_environment']}
     validate_runtime(versions,pins)
     path=folder/'runtime_lock.json'
@@ -142,7 +165,7 @@ def runtime_lock(server_python,scorer_python,folder,pins):
 
 
 def server_command(server_python,model_dir,config,contract):
-    """Native System1 route/LoRA/template, with deterministic execution overrides."""
+    """Native System1 route/LoRA/template, with serial eager/cacheless overrides."""
     runtime=config['runtime'];model_dir=Path(model_dir)
     return [str(server_python),str(model_dir/'serve_decide.py'),'--model',str(model_dir),
             '--served-model-name',contract['model'],'--enable-lora','--max-lora-rank','32',
@@ -157,9 +180,24 @@ def server_command(server_python,model_dir,config,contract):
 def validate_execution(config,pins):
     for key in ['concurrency','batch_size']:
         if config['runtime'][key]!=pins['policy'][key] or config['runtime'][key]!=1:
-            raise ValueError('Deterministic Experiment06 requires concurrency1 and batch_size1')
-    if pins['policy']['atol']!=0.01 or pins['determinism_environment'].get('VLLM_BATCH_INVARIANT')!='1':
-        raise ValueError('Deterministic policy requires batch invariance and unchanged0.01 tolerance')
+            raise ValueError('Serial Experiment06 requires concurrency1 and batch_size1')
+    if pins['policy']['atol']!=0.01:
+        raise ValueError('Serial policy requires unchanged0.01 tolerance')
+    if 'VLLM_BATCH_INVARIANT' in pins['determinism_environment']:
+        raise ValueError('JEV GDN_ATTN rejects VLLM_BATCH_INVARIANT; remove it from policy')
+    for key,required in [('prefix_caching',False),('chunked_prefill',False),('enforce_eager',True)]:
+        if pins['policy'][key] is not required:
+            raise ValueError(f'Serial policy requires {key}={required}')
+
+
+def server_environment(pins,model_dir,port,max_model_len,base=None):
+    """An inherited batch-invariance flag must not re-enable the rejected GDN mode."""
+    environment=dict(os.environ if base is None else base)
+    environment.pop('VLLM_BATCH_INVARIANT',None)
+    environment.update(pins['determinism_environment'])
+    environment.update(MODEL_DIR=str(Path(model_dir).resolve()),PORT=str(port),
+                       MAX_MODEL_LEN=str(max_model_len),HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1')
+    return environment
 
 
 def validate_server_flags(server_python,model_dir,command,environment):
@@ -187,7 +225,7 @@ def wait_ready(process,port,contract,timeout=900):
 def run_session(config,contract,args):
     validate_assets(config);selected_jobs(config)
     pins=json.loads(checked_path(config['gpu_runtime']).read_text());validate_execution(config,pins)
-    folder=EXP/'shared/results/inference_run_v3';folder.mkdir(parents=True,exist_ok=True)
+    folder=EXP/'shared/results/inference_run_v4';folder.mkdir(parents=True,exist_ok=True)
     with (folder/'session.lock').open('w') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         verify_model(args.model_dir,contract)
@@ -196,9 +234,7 @@ def run_session(config,contract,args):
         port=config['runtime']['port']
         with socket.socket() as probe:
             if probe.connect_ex(('127.0.0.1',port))==0:raise ValueError('Port 8000 is occupied; this script will not replace an existing server')
-        environment=os.environ.copy();environment.update(MODEL_DIR=str(Path(args.model_dir).resolve()),PORT=str(port),
-            MAX_MODEL_LEN=str(config['runtime']['max_model_len']),HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1')
-        environment.update(pins['determinism_environment'])
+        environment=server_environment(pins,args.model_dir,port,config['runtime']['max_model_len'])
         command=server_command(server_python,args.model_dir,config,contract)
         validate_server_flags(server_python,args.model_dir,command,environment)
         runtime_fingerprint=hashlib.sha256(json.dumps({'runtime':versions,'server_command':command,

@@ -64,7 +64,7 @@ def estimate(jobs):
     return {'jobs':len(jobs),'prediction_calls':predictions,'job_parity_calls':40*len(jobs),
             'global_parity_calls':80,'total_decide_calls':total,
             'gpu_minutes_range':[round(total*.6/60+5,1),round(total*1.8/60+15,1)],
-            'assumptions':'Fresh successful run, no retries/resumes: two global 20-chart repeatability gates plus 40 calls per job. Planning throughput 0.6–1.8 GPU seconds per single-image call with concurrency1, batch1, eager/cacheless batch-invariant execution; add 5–15 startup minutes. Historical Exp03 request median 594.704ms is context, not measured throughput for these larger charts. Serial parity, hardware and caching can move runtime outside this range. No timing measured for corrected06 deterministic configuration.'}
+            'assumptions':'Fresh successful run, no retries/resumes: two global 20-chart repeatability gates plus 40 calls per job. Planning throughput 0.6–1.8 GPU seconds per single-image call with concurrency1, batch1, eager/cacheless execution without batch invariance; add 5–15 startup minutes. Historical Exp03 request median 594.704ms is context, not measured throughput for these larger charts. Serial parity, hardware and caching can move runtime outside this range. No timing measured for corrected06 serial configuration.'}
 
 
 def render_task(task):
@@ -198,13 +198,15 @@ def prepare():
             jobs.append({**c,'id':identity,'arm':arm,'paraphrase':number,'question':question,
                 'context_file':str(context.relative_to(REPO)) if arm=='definitions' else None,
                 'options_file':str(options.relative_to(REPO)),
-                'out':f'results/inference/frozen_v3/{identity}.csv'})
+                'out':f'results/inference/frozen_v4/{identity}.csv'})
     for path in [A/'options.json',B/'options.json',agreement_table,B/'results/real_agreement.json',
-                 EXP/'shared/context/candles.txt',EXP/'shared/context/chart_patterns.txt',EXP/'config/model_contract.json',EXP/'config/gpu_runtime.json',EXP/'requirements-scoring.txt',EXP/'requirements-jev-server.txt',EXP/'shared/results/diagnostics/2026-10-10/runtime_lock.json',
+                 EXP/'shared/context/candles.txt',EXP/'shared/context/chart_patterns.txt',EXP/'config/model_contract.json',EXP/'config/gpu_runtime.json',EXP/'requirements-scoring.txt',EXP/'requirements-jev-server.txt',EXP/'requirements-jev-torch.txt',EXP/'shared/results/diagnostics/2026-10-10/runtime_lock.json',
+                 EXP/'shared/results/diagnostics/2026-10-10-gdn-attn/diagnosis.json',EXP/'shared/results/diagnostics/2026-10-10-gdn-attn/server.log',
+                 EXP/'shared/results/diagnostics/2026-10-10-gdn-attn/runtime_lock.json',EXP/'shared/results/diagnostics/2026-10-10-gdn-attn/session_summary.json',
                  EXP/'shared/src/score.py',EXP/'shared/src/jev_api.py',EXP/'shared/src/evaluate.py',EXP/'shared/src/render.py',Path(__file__),EXP/'scripts/run_gpu.py',
                  REPO/'01-jev-tsla-charts/scripts/remote_serve.sh']:
         assets[str(path.relative_to(REPO))]=digest(path)
-    config={'schema_version':3,'status':'corrected execution frozen after failed global gate; correction not GPU run','seed':606227,
+    config={'schema_version':4,'status':'serial/cacheless policy frozen after GDN_ATTN batch-invariance startup rejection; revision not GPU run','seed':606227,
         'model_contract':'06-jev-patterns/config/model_contract.json','gpu_runtime':'06-jev-patterns/config/gpu_runtime.json','questions':QUESTIONS,
         'arms':['zero_shot','definitions'],
         'reference_arm':{'status':'removed','enabled':False,'reason':'Trimmed before inference; no reference-image jobs or enable flag.'},
@@ -225,7 +227,9 @@ def prepare():
         'runtime':{'concurrency':1,'batch_size':1,'timeout':120,'retries':3,'max_model_len':16384,'port':8000},
         'resume':'Completed jobs make no new inference calls. Partial jobs rerun their40-call repeatability gate; retries add requests. Global gates run at each GPU session.',
         'execution_status':'not_run','prior_attempt':{'status':'failed global candle gate','decide_calls':40,'prediction_calls':0,
-          'diagnosis':'06-jev-patterns/shared/results/diagnostics/2026-10-10/diagnosis.json'}}
+          'diagnosis':'06-jev-patterns/shared/results/diagnostics/2026-10-10/diagnosis.json'},
+        'prior_startup_attempt':{'status':'failed GDN_ATTN batch-invariant server startup','decide_calls':0,'prediction_calls':0,
+          'diagnosis':'06-jev-patterns/shared/results/diagnostics/2026-10-10-gdn-attn/diagnosis.json'}}
     if config['call_budget']['default']['total_decide_calls']>=config['fresh_call_cap']:
         raise ValueError('Trimmed fresh-run call budget must remain below 10,000')
     write_json(EXP/'config/inference_arms.json',config)

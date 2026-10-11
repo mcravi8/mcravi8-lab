@@ -1,0 +1,5 @@
+# Observed Linux server Torch build, installed from PyPI as reported by the user.
+# Keep this install separate from the cached exact vLLM nightly wheel.
+--index-url https://pypi.org/simple
+torch==2.13.0
+torchvision==0.28.0

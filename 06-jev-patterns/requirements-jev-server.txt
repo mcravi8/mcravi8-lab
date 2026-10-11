@@ -1,4 +1,5 @@
 # Critical server/kernel versions from the failed session; Linux/GPU environment only.
+# Install Torch/torchvision from PyPI via requirements-jev-torch.txt, not the CUDA12.9 index.
 # Exact vLLM nightly wheel must be supplied from the original cached artifact.
 # Complete observed inventory is archived in shared/results/diagnostics/2026-10-10/runtime_lock.json.
 compressed-tensors==0.17.0

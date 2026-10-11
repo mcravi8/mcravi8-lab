@@ -38,7 +38,7 @@ jobs:
         run: python -m unittest discover -s 05-cpu-walkforward/tests -v
       - name: Fetch checksum-pinned external chart detector
         run: python 06-jev-patterns/06b-chart-patterns/src/external_detector.py --fetch
-      - name: Pattern labels, rendering, native scoring and multiclass metrics
+      - name: Pattern labels, scoring, metrics and GPU runtime preflights (CPU)
         run: python -m unittest discover -s 06-jev-patterns/tests -v
       - name: Verify isolated Linux scorer without GPU dependencies
         run: |

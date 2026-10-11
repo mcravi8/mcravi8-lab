@@ -17,7 +17,7 @@
     "patterns_mirror_time": 100,
     "patterns_mirror_price": 100
   },
-  "config_sha256": "be988152dc208eb3e0e0430d6b7c12a1e9741dfd2a4efc9c4850fff1d1e21c87",
+  "config_sha256": "709199bc81ca87687ab481c881d1f9199d1b9ee5706af9f742a91239835e2e62",
   "call_budget": {
     "default": {
       "jobs": 21,
@@ -29,11 +29,11 @@
         103.2,
         309.6
       ],
-      "assumptions": "Fresh successful run, no retries/resumes: two global 20-chart repeatability gates plus 40 calls per job. Planning throughput 0.6\u20131.8 GPU seconds per single-image call with concurrency1, batch1, eager/cacheless batch-invariant execution; add 5\u201315 startup minutes. Historical Exp03 request median 594.704ms is context, not measured throughput for these larger charts. Serial parity, hardware and caching can move runtime outside this range. No timing measured for corrected06 deterministic configuration."
+      "assumptions": "Fresh successful run, no retries/resumes: two global 20-chart repeatability gates plus 40 calls per job. Planning throughput 0.6\u20131.8 GPU seconds per single-image call with concurrency1, batch1, eager/cacheless execution without batch invariance; add 5\u201315 startup minutes. Historical Exp03 request median 594.704ms is context, not measured throughput for these larger charts. Serial parity, hardware and caching can move runtime outside this range. No timing measured for corrected06 serial configuration."
     }
   },
   "gpu_started": false,
-  "asset_count": 4434,
+  "asset_count": 4439,
   "styles": [
     {
       "dataset": "candles",

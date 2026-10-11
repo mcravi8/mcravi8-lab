@@ -74,16 +74,16 @@ class Day2Tests(unittest.TestCase):
     def runtime_fixture(self):
         pins=json.loads((EXP/'config/gpu_runtime.json').read_text())
         versions={'server':dict(pins['server_packages']),'scorer':dict(pins['scorer_packages']),
-                  'server_build':{'torch_version':'2.13.0+cu130','torch_cuda':'13.0',
-                                  'batch_invariance_supported':True}}
+                  'server_build':{'torch_version':'2.13.0+cu130','torch_cuda':'13.0'},
+                  'host':{'nvidia_driver_versions':['580.65.06']}}
         return pins,versions
 
     def test_runtime_version_changes_reject_resume(self):
         pins,versions=self.runtime_fixture()
-        def responses(extra=None):
+        def responses(extra=None,driver='580.65.06'):
             server=dict(versions['server'])
             if extra:server['unrelated-package']=extra
-            return [json.dumps(server),json.dumps(versions['scorer']),json.dumps(versions['server_build'])]
+            return [driver+'\n',json.dumps(server),json.dumps(versions['scorer']),json.dumps(versions['server_build'])]
         with tempfile.TemporaryDirectory() as d:
             for _ in range(2):
                 with patch.object(runbook.subprocess,'check_output',side_effect=responses()):
@@ -92,19 +92,70 @@ class Day2Tests(unittest.TestCase):
             with patch.object(runbook.subprocess,'check_output',side_effect=responses('changed')):
                 with self.assertRaisesRegex(ValueError,'runtime changed'):
                     runbook.runtime_lock('server','scorer',Path(d),pins)
+            with patch.object(runbook.subprocess,'check_output',side_effect=responses(driver='590.1')):
+                with self.assertRaisesRegex(ValueError,'runtime changed'):
+                    runbook.runtime_lock('server','scorer',Path(d),pins)
+            recorded=json.loads((Path(d)/'runtime_lock.json').read_text())
+            self.assertEqual(recorded['host']['nvidia_driver_versions'],['580.65.06'])
 
     def test_runtime_rejects_nightly_torch_cuda_and_scorer_drift(self):
         pins,versions=self.runtime_fixture()
         runbook.validate_runtime(versions,pins)
-        for role,name in [('server','vllm'),('server','torch'),('scorer','numpy')]:
+        for role,name in [('server','vllm'),('server','torch'),('server','torchvision'),('scorer','numpy')]:
             changed=json.loads(json.dumps(versions));changed[role][name]='different'
             with self.assertRaisesRegex(ValueError,'runtime pin differs'):runbook.validate_runtime(changed,pins)
         changed=json.loads(json.dumps(versions));changed['server_build']['torch_cuda']='12.9'
         with self.assertRaisesRegex(ValueError,'Torch CUDA build'):runbook.validate_runtime(changed,pins)
+        # Exposing a vLLM flag is not evidence that GDN_ATTN supports it.
         versions['server_build']['batch_invariance_supported']=False
-        with self.assertRaisesRegex(ValueError,'BATCH_INVARIANT'):runbook.validate_runtime(versions,pins)
+        runbook.validate_runtime(versions,pins)
 
-    def test_deterministic_native_server_keeps_system1_contract_and_supported_flags(self):
+    def test_cuda13_driver_requirement_rejects_570_missing_and_malformed(self):
+        pins,versions=self.runtime_fixture()
+        for drivers in [['580.65.06'],['590.1'],['580','590.1']]:
+            runbook.validate_driver(drivers,pins)
+        for drivers in [[],['570.172.08'],['580.65.06','570.172.08'],['N/A'],['580bad'],['']]:
+            with self.subTest(drivers=drivers),self.assertRaisesRegex(ValueError,'NVIDIA driver'):
+                runbook.validate_driver(drivers,pins)
+        versions['host']['nvidia_driver_versions']=['570.172.08']
+        with self.assertRaisesRegex(ValueError,'below required 580'):
+            runbook.validate_runtime(versions,pins)
+
+    def test_bad_driver_blocks_before_torch_probe_or_server_launch(self):
+        pins,_=self.runtime_fixture()
+        with tempfile.TemporaryDirectory() as d:
+            for response in ['570.172.08\n','']:
+                with patch.object(runbook.subprocess,'check_output',return_value=response) as probe:
+                    with self.assertRaisesRegex(ValueError,'NVIDIA driver'):
+                        runbook.runtime_lock('server','scorer',Path(d),pins)
+                    self.assertEqual(probe.call_count,1)
+                    self.assertEqual(probe.call_args.args[0],
+                                     ['nvidia-smi','--query-gpu=driver_version','--format=csv,noheader'])
+                    self.assertFalse((Path(d)/'runtime_lock.json').exists())
+            for error in [FileNotFoundError(),subprocess.CalledProcessError(1,['nvidia-smi'])]:
+                with patch.object(runbook.subprocess,'check_output',side_effect=error):
+                    with self.assertRaisesRegex(ValueError,'Cannot verify NVIDIA driver'):
+                        runbook.runtime_lock('server','scorer',Path(d),pins)
+
+    def test_removed_batch_invariance_cannot_leak_from_inherited_environment(self):
+        pins,_=self.runtime_fixture()
+        environment=runbook.server_environment(pins,'/weights',8000,16384,
+                                               {'VLLM_BATCH_INVARIANT':'1','PATH':'/usr/bin'})
+        self.assertNotIn('VLLM_BATCH_INVARIANT',environment)
+        self.assertEqual(environment['PATH'],'/usr/bin')
+        self.assertEqual(environment['HF_HUB_OFFLINE'],'1')
+        self.assertEqual(environment['PYTHONHASHSEED'],'0')
+        config=self.fixture()
+        rejected=json.loads(json.dumps(pins));rejected['determinism_environment']['VLLM_BATCH_INVARIANT']='1'
+        with self.assertRaisesRegex(ValueError,'GDN_ATTN'):
+            runbook.validate_execution(config,rejected)
+        for key in ['prefix_caching','chunked_prefill','enforce_eager']:
+            changed=json.loads(json.dumps(pins));changed['policy'][key]=not changed['policy'][key]
+            with self.assertRaisesRegex(ValueError,key):runbook.validate_execution(config,changed)
+        changed=json.loads(json.dumps(pins));changed['policy']['atol']=0.05
+        with self.assertRaisesRegex(ValueError,'unchanged0.01'):runbook.validate_execution(config,changed)
+
+    def test_serial_native_server_keeps_system1_contract_and_supported_flags(self):
         command=runbook.server_command('/root/vllm-venv/bin/python','/weights',self.fixture(),
             {'model':jev_api.MODEL})
         for flag in ['--enable-lora','--trust-request-chat-template','--enforce-eager',
@@ -155,6 +206,23 @@ class Day2Tests(unittest.TestCase):
         ):
             with self.assertRaisesRegex(ValueError,'Torch CUDA build'):
                 runbook.run_session(config,{},args)
+            launch.assert_not_called()
+
+    def test_driver_preflight_failure_cannot_launch_gpu_server(self):
+        config=self.fixture();config['gpu_runtime']='06-jev-patterns/config/gpu_runtime.json'
+        args=SimpleNamespace(server_python='/fake/server/python',scorer_python='/root/svenv/bin/python',
+                             model_dir='/fake/model')
+        with (
+            tempfile.TemporaryDirectory() as d,
+            patch.object(runbook,'EXP',Path(d)),
+            patch.object(runbook,'validate_assets'),
+            patch.object(runbook,'verify_model'),
+            patch.object(runbook.subprocess,'check_output',return_value='570.172.08') as probe,
+            patch.object(runbook.subprocess,'Popen') as launch,
+        ):
+            with self.assertRaisesRegex(ValueError,'below required 580'):
+                runbook.run_session(config,{},args)
+            self.assertEqual(probe.call_count,1)
             launch.assert_not_called()
 
     def test_price_inversion_swaps_high_low_preserves_volume_and_is_involution(self):
@@ -275,7 +343,8 @@ class FrozenArtifactTests(unittest.TestCase):
         for role in ['server','scorer']:
             for name,value in pins[role+'_packages'].items():
                 self.assertEqual(value,observed[role][name])
-        self.assertTrue(all('/frozen_v3/' in j['out'] for j in config['jobs']))
+        self.assertTrue(all('/frozen_v4/' in j['out'] for j in config['jobs']))
+        self.assertEqual(config['prior_startup_attempt']['decide_calls'],0)
 
     def test_archived_diagnostics_and_requirements_match_runtime_contract(self):
         folder=EXP/'shared/results/diagnostics/2026-10-10'
@@ -291,6 +360,19 @@ class FrozenArtifactTests(unittest.TestCase):
                               if line and not line.startswith('#'))
             self.assertEqual(requirements,pins[key])
         self.assertFalse(pins['correction_gpu_verified'])
+        torch_requirements=(EXP/'requirements-jev-torch.txt').read_text().splitlines()
+        self.assertIn('--index-url https://pypi.org/simple',torch_requirements)
+        self.assertEqual(dict(line.split('==') for line in torch_requirements if '==' in line),
+                         pins['torch_install']['packages'])
+        self.assertEqual(pins['torch_install']['packages'],{'torch':'2.13.0','torchvision':'0.28.0'})
+        self.assertEqual(pins['host_requirements']['nvidia_driver_major_minimum'],580)
+        self.assertNotIn('VLLM_BATCH_INVARIANT',pins['determinism_environment'])
+        folder=EXP/'shared/results/diagnostics/2026-10-10-gdn-attn'
+        rejected=json.loads((folder/'diagnosis.json').read_text())
+        for name,expected in rejected['source_sha256'].items():
+            self.assertEqual(runbook.sha(folder/name),expected)
+        self.assertIn('not supported for GDN_ATTN',(folder/'server.log').read_text())
+        self.assertEqual(rejected['decide_calls'],0)
 
     def test_declared_jobs_cover_all_arm_indexes_and_option_labels(self):
         config=self.config

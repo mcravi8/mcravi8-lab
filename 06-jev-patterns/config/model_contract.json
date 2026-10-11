@@ -138,5 +138,11 @@
     "n_decide_calls": 40,
     "predictions": 0,
     "diagnosis": "06-jev-patterns/shared/results/diagnostics/2026-10-10/diagnosis.json"
+  },
+  "prior_startup_attempt": {
+    "status": "failed GDN_ATTN batch-invariant server startup",
+    "decide_calls": 0,
+    "prediction_calls": 0,
+    "diagnosis": "06-jev-patterns/shared/results/diagnostics/2026-10-10-gdn-attn/diagnosis.json"
   }
 }

@@ -1,0 +1,25 @@
+{
+  "source": "User-supplied inference_run_v3 diagnostics, reviewed on CPU on 2026-10-10",
+  "source_directory": "06-jev-patterns/shared/results/inference_run_v3",
+  "source_sha256": {
+    "server.log": "b3110b2cd408fc7810fa0c6dbcb2295e59dc369e15daee5cd7696a69194fc8ad",
+    "runtime_lock.json": "a7ca20cd1f55c90151c7948730a72f5c6a459fd70977824e263c6fe00b552440",
+    "session_summary.json": "5d525b6fdfd2f6c29adaae15ff1521bd1ad4926bfa78e532b558f6dd5cf3a409",
+    "run_gpu_stdout.log": "d8b2dfd3b7e581d9ea23f5c26cc6564df091fccc55ff5206db03b68da3908aa5"
+  },
+  "status": "failed server startup before readiness",
+  "failure": "VLLM batch_invariant mode is not supported for GDN_ATTN.",
+  "decide_calls": 0,
+  "prediction_calls": 0,
+  "reason": "Pinned vLLM rejects JEV Qwen3.5 GDN_ATTN: batch_invariant mode is not supported for GDN_ATTN.",
+  "torch_build_observed": {
+    "distribution": "2.13.0",
+    "torch_version": "2.13.0+cu130",
+    "torch_cuda": "13.0",
+    "torchvision": "0.28.0"
+  },
+  "torch_install_source": "PyPI, reported by user; index origin is not recoverable from installed metadata",
+  "driver_570_failure": "Reported by user; this supplied startup log establishes the separate GDN_ATTN rejection, not a driver comparison.",
+  "change": "Remove and clear inherited VLLM_BATCH_INVARIANT; retain serial batch1, eager, cacheless execution and strict0.01 gate. Require NVIDIA driver major>=580.",
+  "new_configuration_gpu_run": false
+}

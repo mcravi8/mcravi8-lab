@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "source": "Observed failed CPU-client/GPU-server session supplied by user, 2026-10-10",
   "observed_inventory": "06-jev-patterns/shared/results/diagnostics/2026-10-10/runtime_lock.json",
   "server_packages": {
@@ -61,12 +61,11 @@
   "server_build": {
     "torch_cuda": "13.0"
   },
-  "build_evidence": "Torch CUDA 13.0 reported by user; observed torch distribution 2.13.0 and CUDA13 runtime packages. vLLM local version suffix is cu129. Do not infer torch.version.cuda from package suffix or nvidia-smi.",
+  "build_evidence": "v3 runtime_lock.json confirms Torch distribution 2.13.0, imported 2.13.0+cu130 and torch.version.cuda=13.0; torchvision distribution 0.28.0. PyPI installation source reported by user. vLLM wheel suffix remains cu129.",
   "vllm_git_revision": "7d0b4e57a",
   "wheel_hashes_available": false,
   "limitations": "Version/build pins and complete observed inventory are preserved. Original wheel URLs/hashes and container digest were not provided; no claim of bit-identical environment reconstruction or CUDA12.9/13.0 binary compatibility.",
   "determinism_environment": {
-    "VLLM_BATCH_INVARIANT": "1",
     "PYTHONHASHSEED": "0",
     "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
     "NVIDIA_TF32_OVERRIDE": "0"
@@ -85,6 +84,30 @@
   "correction_gpu_verified": false,
   "primary_sources": [
     "https://github.com/vllm-project/vllm/blob/7d0b4e57a/docs/features/batch_invariance.md",
-    "https://docs.vllm.ai/en/latest/usage/reproducibility/"
-  ]
+    "https://docs.vllm.ai/en/latest/usage/reproducibility/",
+    "https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html"
+  ],
+  "unsupported_features": {
+    "batch_invariance": {
+      "status": "removed",
+      "reason": "Pinned vLLM rejects JEV Qwen3.5 GDN_ATTN: batch_invariant mode is not supported for GDN_ATTN.",
+      "diagnosis": "06-jev-patterns/shared/results/diagnostics/2026-10-10-gdn-attn/diagnosis.json",
+      "inherited_environment": "VLLM_BATCH_INVARIANT is removed from the server environment, including CLI help probes."
+    }
+  },
+  "host_requirements": {
+    "nvidia_driver_major_minimum": 580,
+    "cuda_major": 13,
+    "source": "https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html",
+    "check": "nvidia-smi --query-gpu=driver_version --format=csv,noheader; reject missing, malformed or any <580 before importing Torch or starting the server."
+  },
+  "torch_install": {
+    "index_url": "https://pypi.org/simple",
+    "packages": {
+      "torch": "2.13.0",
+      "torchvision": "0.28.0"
+    },
+    "requirements": "06-jev-patterns/requirements-jev-torch.txt",
+    "source_evidence": "User reports both installed from PyPI; v3 metadata confirms versions and torch.version.cuda=13.0, but does not preserve wheel index origin."
+  }
 }
