@@ -1,0 +1,165 @@
+{
+  "status": "diagnosed on CPU; deterministic correction not GPU verified",
+  "decision": "a: deterministic execution, retain 0.01",
+  "model_revision": "3514d1d8ead2189c75f433fa949fe63c8e3f3c66",
+  "n_charts": 20,
+  "decide_calls": 40,
+  "http_failures": 0,
+  "max_abs_diff": 0.03334436881129002,
+  "median_row_max_diff": 0.005081464669063507,
+  "rows_over_0_01": 3,
+  "argmax_agreement_count": 20,
+  "rows": [
+    {
+      "file": "charts/002929fb2726dfbfc44f.png",
+      "max_abs_diff": 0.006224513178084479,
+      "first_argmax": "Shooting Star",
+      "second_argmax": "Shooting Star"
+    },
+    {
+      "file": "charts/0ddcff0bce3e2325e578.png",
+      "max_abs_diff": 0.0020865485256747925,
+      "first_argmax": "Bullish Engulfing",
+      "second_argmax": "Bullish Engulfing"
+    },
+    {
+      "file": "charts/187d9bf8e72b374abe90.png",
+      "max_abs_diff": 0.013837639587169104,
+      "first_argmax": "Doji",
+      "second_argmax": "Doji"
+    },
+    {
+      "file": "charts/2465e5d521630a3972fe.png",
+      "max_abs_diff": 0.0025931344792505806,
+      "first_argmax": "Bearish Engulfing",
+      "second_argmax": "Bearish Engulfing"
+    },
+    {
+      "file": "charts/2d0033923033e388d63b.png",
+      "max_abs_diff": 0.001363788514499753,
+      "first_argmax": "Bearish Engulfing",
+      "second_argmax": "Bearish Engulfing"
+    },
+    {
+      "file": "charts/3ac0345e8e4b270966c6.png",
+      "max_abs_diff": 0.005980759458564466,
+      "first_argmax": "Shooting Star",
+      "second_argmax": "Shooting Star"
+    },
+    {
+      "file": "charts/496397abb6d82c4132bf.png",
+      "max_abs_diff": 0.007579745231093726,
+      "first_argmax": "Bullish Engulfing",
+      "second_argmax": "Bullish Engulfing"
+    },
+    {
+      "file": "charts/55c9b091567f06da06d6.png",
+      "max_abs_diff": 0.005628766455172574,
+      "first_argmax": "Bullish Engulfing",
+      "second_argmax": "Bullish Engulfing"
+    },
+    {
+      "file": "charts/61e6324177a4ff99f3bf.png",
+      "max_abs_diff": 0.0031955631388519423,
+      "first_argmax": "Doji",
+      "second_argmax": "Doji"
+    },
+    {
+      "file": "charts/6f0148f819f9b9c5b661.png",
+      "max_abs_diff": 0.00453416288295444,
+      "first_argmax": "Doji",
+      "second_argmax": "Doji"
+    },
+    {
+      "file": "charts/7d763e0bb9783f355926.png",
+      "max_abs_diff": 0.00840655479447222,
+      "first_argmax": "Doji",
+      "second_argmax": "Doji"
+    },
+    {
+      "file": "charts/8af991eef8d1204db6c1.png",
+      "max_abs_diff": 0.003355846075844285,
+      "first_argmax": "Shooting Star",
+      "second_argmax": "Shooting Star"
+    },
+    {
+      "file": "charts/979903114057f7558bb4.png",
+      "max_abs_diff": 0.002069596205246077,
+      "first_argmax": "Bullish Engulfing",
+      "second_argmax": "Bullish Engulfing"
+    },
+    {
+      "file": "charts/a617619affc4ccf3ad3e.png",
+      "max_abs_diff": 0.0011986389926527674,
+      "first_argmax": "Doji",
+      "second_argmax": "Doji"
+    },
+    {
+      "file": "charts/b5674ffc8efb3bc45e6d.png",
+      "max_abs_diff": 0.03334436881129002,
+      "first_argmax": "Bearish Engulfing",
+      "second_argmax": "Bearish Engulfing"
+    },
+    {
+      "file": "charts/c466b8f8d55e5276f05c.png",
+      "max_abs_diff": 0.0001909974175390572,
+      "first_argmax": "Doji",
+      "second_argmax": "Doji"
+    },
+    {
+      "file": "charts/d3b011f30bb6e3ae06cd.png",
+      "max_abs_diff": 0.007932659035079975,
+      "first_argmax": "Shooting Star",
+      "second_argmax": "Shooting Star"
+    },
+    {
+      "file": "charts/e1094e5ffda3337fcf71.png",
+      "max_abs_diff": 0.0026712696549256038,
+      "first_argmax": "Bullish Engulfing",
+      "second_argmax": "Bullish Engulfing"
+    },
+    {
+      "file": "charts/f135f582197431e57f8e.png",
+      "max_abs_diff": 0.009888447114529741,
+      "first_argmax": "Bullish Engulfing",
+      "second_argmax": "Bullish Engulfing"
+    },
+    {
+      "file": "charts/fff73461627b9b78f843.png",
+      "max_abs_diff": 0.014644259777804092,
+      "first_argmax": "Bullish Engulfing",
+      "second_argmax": "Bullish Engulfing"
+    }
+  ],
+  "facts": [
+    "Gate scored sequentially: first 20 requests then second 20; client concurrency4 applies only after passing.",
+    "Native single strategy with eight options reads all option logprobs in one request; not eight parallel option requests.",
+    "Server used BF16, seed0, prefix caching and aligned hybrid cache, chunked prefill8192, torch.compile, CUDA graphs and LoRA.",
+    "Server startup warns about default LoRA kernels and first-inference LoRA/topk JIT; no HTTP errors.",
+    "vLLM version is 0.31.1rc1.dev253+g7d0b4e57a.cu129; torch distribution2.13.0 with CUDA13 runtime packages; CUDA13.0 build reported by user.",
+    "No predictions were written: the first global candle gate aborted before the pattern gate and prediction jobs."
+  ],
+  "diagnosis": "Most consistent with within-build numerical/kernel or cache-path variation. Cold first pass versus cached second pass changes work shape; default LoRA reduction atomics are another plausible source. CUDA build mixing may contribute but was constant across both passes; there is no matched-build control, per-request cache-hit trace or repeated server experiment to identify the cause.",
+  "rejected_tolerance_change": "20 unchanged argmaxes do not justify moving the predeclared probability tolerance from0.01 to0.05 after observing a failure; probability-calibration/Brier comparisons still depend on those probabilities.",
+  "correction": [
+    "concurrency1/batch1 for both gate and predictions",
+    "VLLM_BATCH_INVARIANT=1 including deterministic LoRA shrink reduction",
+    "disable prefix caching and chunked prefill; use eager mode and seed0",
+    "pin Triton GDN prefill and retain native LoRA/raw template/processed logprobs/max-num-seqs8",
+    "verify exact observed package/build pins before launch; record runtime and execution fingerprint",
+    "fresh frozen_v3 output/session paths; old diagnostics remain unchanged"
+  ],
+  "limitations": [
+    "Batch-invariance feature is beta; JEV/Qwen3.5 hybrid/LoRA combination is not explicitly in upstream tested-model list.",
+    "No GPU rerun was performed; startup and gate must fail closed if this pinned build rejects the flags or repeatability still exceeds0.01.",
+    "Original wheel hashes, container digest and GPU/driver identity were absent from supplied diagnostics."
+  ],
+  "source_sha256": {
+    "candles.parity.json": "8baef480f63f18bdf05743c97cfee28458f6a7bb9bc993df74ee63d78defa1da",
+    "server.log": "1de3c3d33f9d3f494d257575b407b07c4b86525bfd1f1d2d93aeb08b193f1e18",
+    "runtime_lock.json": "3adb4e074f15f9c267974618427491eb08d58b7039620d7d1ca438124d8a32f4",
+    "session_summary.json": "ee20ba4303c62813b26fd9e171c086cf833792b373f9357333418036f99b5039",
+    "score_errors.csv": "fec4a7c4a400041dbc507a048076209a49a9f92141391ba4a7cfaa78499e19a6"
+  },
+  "gpu_started_by_this_revision": false
+}

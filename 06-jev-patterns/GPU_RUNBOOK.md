@@ -1,14 +1,14 @@
 # Experiment 06 trimmed inference runbook
 
-**Prepared and tested on CPU; never executed against JEV or a GPU.** [run_gpu.py](scripts/run_gpu.py) is the single future entry point. It does not create, start, stop or contact Runpod resources. Inference requires a separately authorized, already prepared GPU host.
+**Corrected configuration prepared/tested on CPU; not GPU verified.** A prior on-pod session failed the first global candle gate after 40 decide calls and wrote no predictions. [run_gpu.py](scripts/run_gpu.py) is the single future entry point. It does not create, start, stop or contact Runpod resources. Inference requires a separately authorized, already prepared GPU host.
 
 ## Frozen assets and arms
 
-The [model contract](config/model_contract.json) pins **autotrust/JEV-27B-VL** to Hugging Face snapshot **3514d1d8ead2189c75f433fa949fe63c8e3f3c66**, including all 19 base/adapter safetensor files, serving/calibration SHA-256s and tokenizer/config Git blob IDs. No model weights were downloaded for CPU preparation.
+The [model contract](config/model_contract.json) pins **autotrust/JEV-27B-VL** to Hugging Face snapshot **3514d1d8ead2189c75f433fa949fe63c8e3f3c66**, including all 19 base/adapter safetensor files, serving/calibration SHA-256s and tokenizer/config Git blob IDs. No model weights were downloaded or GPU started during this correction.
 
 The [pinned model card](https://huggingface.co/autotrust/JEV-27B-VL/blob/3514d1d8ead2189c75f433fa949fe63c8e3f3c66/README.md) and [native server](https://huggingface.co/autotrust/JEV-27B-VL/blob/3514d1d8ead2189c75f433fa949fe63c8e3f3c66/serve_decide.py) define native System 1 `/v1/decide`, `thinking="off"`, `strategy="single"`, with ordered eight- or seven-class options. Every scheduled call has one target image. **The reference-image arm is removed**, including its enable flag; existing CPU reference boards are inactive historical artifacts.
 
-[Inference config](config/inference_arms.json), schema 2, freezes **zero-shot and definitions** with one primary question wording per task. A second wording is confined to **100 charts per sub-part**, for both arms. These rows reuse main-arm predictions for the primary wording. No prompt or subset is selected from prediction performance.
+[Inference config](config/inference_arms.json), schema 3, freezes **zero-shot and definitions** with one primary question wording per task. A second wording is confined to **100 charts per sub-part**, for both arms. These rows reuse main-arm predictions for the primary wording. No prompt or subset is selected from prediction performance.
 
 | Input collection | Rows | Scheduled arms / wording |
 |---|---:|---|
@@ -41,32 +41,83 @@ Preparation writes fixed versions, selected styles/inversions, numeric bars, arm
 
 Before a later authorized session, copy the repository **and every ignored chart PNG referenced by the config** to the GPU host, preserving repository-relative paths. A fresh clone alone is insufficient. Keep snapshots, scan caches and numeric bars for reproducibility. Missing/changed assets fail validation before server startup.
 
-## Future GPU invocation — not run
+## Failed-gate diagnosis and decision
 
-The documented Runpod location is **US-MO-1**, network volume **jev-weights**, port **8000**. Compute/storage must already be prepared and authorized; this script does not provision them. Cache the exact Hugging Face snapshot and provide an installed, model-card-compatible vLLM environment.
+The [preserved diagnostics](shared/results/diagnostics/2026-10-10/diagnosis.json) include both passes, server log, original runtime inventory and session summary. The candle gate had **3/20 rows over 0.01**: 0.033344, 0.014644 and 0.013838. **All 20 argmax classes agreed**; all 40 requests succeeded. The session aborted before the pattern gate or predictions.
 
-Use the corrected repository [Experiment 01 remote_serve.sh](../01-jev-tsla-charts/scripts/remote_serve.sh). The inspected `~/Desktop/runpod-setup/remote_serve.sh` was an older plain-vLLM launcher without the native decision route; it was neither changed nor executed. The repository wrapper invokes the snapshot's [serve.sh](https://huggingface.co/autotrust/JEV-27B-VL/blob/3514d1d8ead2189c75f433fa949fe63c8e3f3c66/serve.sh), preserving LoRA, the raw decision template and **`--max-num-seqs 8`**. Scorer concurrency is four; batch size 16 controls only the client queue.
+The scorer's parity function already sends one request at a time, completing the first 20 before the next 20. Its configured concurrency four applies only to later prediction jobs. The eight-choice native `single` route reads all option logprobs in one request; it does not submit eight parallel option requests. The mismatch between client concurrency four and server capacity eight therefore does **not** establish a batching cause for this failure.
 
-From the repository root on that future GPU host, replace example paths with prepared environment locations:
+Logs show BF16, seed zero, prefix caching with aligned hybrid/Mamba cache, chunked prefill, `torch.compile` and CUDA graphs, plus default LoRA kernel/JIT warnings. A cold first pass versus cached second pass can change the numerical work path; default LoRA reduction atomics are another plausible source. The observed vLLM wheel is tagged `cu129` while Torch was reported built for CUDA **13.0**. This build mixing is relevant, but constant across both passes: there is no coherent-build comparison or per-request cache trace. **Within-build kernel/cache-path numerical variation is the leading hypothesis; the diagnostics do not isolate its exact cause or clear the mixed build.**
+
+**Decision (a): retain the predeclared 0.01 tolerance and change execution.** Moving to 0.05 after seeing this failure would weaken probability/Brier/calibration comparisons. Twenty stable argmaxes do not establish that larger probability drift is acceptable.
+
+The corrected config uses:
+
+- Scorer concurrency **1**, client batch size **1**, for both gates and predictions.
+- `VLLM_BATCH_INVARIANT=1`. The [exact nightly revision's batch-invariance documentation](https://github.com/vllm-project/vllm/blob/7d0b4e57a/docs/features/batch_invariance.md) includes fixed-order LoRA shrink reduction, avoiding its default atomics.
+- `--enforce-eager`, `--no-enable-prefix-caching`, `--no-enable-chunked-prefill`, `--no-async-scheduling` and `--seed 0`. The token budget is fixed at 16,384; GDN prefill is pinned to `triton`.
+- Native LoRA `jev-decision`, processed logprobs, raw decision template, calibrated System 1 payload and **`--max-num-seqs 8`** retained. Changing the native read-out temperature to zero would change probability semantics, so it remains untouched.
+- `PYTHONHASHSEED=0`, `CUBLAS_WORKSPACE_CONFIG=:4096:8` and `NVIDIA_TF32_OVERRIDE=0`.
+- Fresh `frozen_v3` outputs and `inference_run_v3` session files; preserve the failed v2 evidence.
+
+[Upstream reproducibility guidance](https://docs.vllm.ai/en/latest/usage/reproducibility/) recommends batch invariance for online serving; reproducibility is conditional on the same hardware/version. This feature is beta, and JEV's Qwen3.5 hybrid/LoRA combination is not explicitly in the tested-model list. **These settings are an unverified deterministic correction, not a claimed successful GPU fix.** If the pinned build rejects a flag or still exceeds 0.01, abort and retain diagnostics. Do not silently disable the policy or increase tolerance.
+
+## Observed build pins and Linux scorer
+
+[GPU runtime contract](config/gpu_runtime.json) and [critical server requirements](requirements-jev-server.txt) pin the actually observed numerical stack:
+
+| Component | Observed / required version |
+|---|---|
+| vLLM nightly | `0.31.1rc1.dev253+g7d0b4e57a.cu129` |
+| Torch distribution | `2.13.0` |
+| Torch compiled CUDA | **`13.0`**, reported by the user; checked through `torch.version.cuda` before launch |
+| Triton | `3.7.1` |
+| FlashInfer | `0.7.0.post1` |
+| Transformers | `5.19.0` |
+| NVIDIA CUDA runtime package | `13.0.96` |
+
+The complete [original package inventory](shared/results/diagnostics/2026-10-10/runtime_lock.json) preserves the mixed CUDA 12/13 dependencies. CUDA 12.9 is **not** asserted as Torch's build. Package versions and imported build metadata are checked; a new nightly or CUDA build fails before serving. Original wheel URLs/hashes, container digest and GPU/driver identity were absent from supplied evidence, so these pins do not claim byte-identical reconstruction or binary compatibility. Reuse the original server environment/cached exact wheel; do not upgrade a moving nightly index. A coherent-build migration would be a separately recorded change.
+
+A macOS virtual environment cannot be copied to Linux. Create or reuse the **on-pod Linux scorer** in a separate environment, matching the actual `/root/svenv` inventory through [requirements-scoring.txt](requirements-scoring.txt). The lightweight scorer needs no Torch/vLLM. From the prepared pod's repository root:
 
 ```sh
-06-jev-patterns/.venv/bin/python 06-jev-patterns/scripts/run_gpu.py \
-  --execute \
-  --model-dir /workspace/models/JEV-27B-VL \
-  --server-python /workspace/jev-venv/bin/python3 \
-  --scorer-python 06-jev-patterns/.venv/bin/python
+cd /root/repo
+python3.11 -m venv /root/svenv
+/root/svenv/bin/python -m pip install -r 06-jev-patterns/requirements-scoring.txt
+/root/svenv/bin/python -m pip check
 ```
 
-There is no reference-image enable flag. Without `--execute`, the script validates local assets and prints the plan. **Neither mode was invoked during this CPU revision; tests import helpers and mock subprocess execution.**
+These are documented future-host setup commands; none were executed on a pod during this correction. The full research `06-jev-patterns/.venv` remains a local CPU preparation/testing environment.
+
+## Future GPU invocation — correction not run
+
+The Runpod location remains **US-MO-1**, network volume **jev-weights**, port **8000**. Compute/storage must already be authorized and prepared; this script does not provision them. The exact Hugging Face snapshot must already be cached.
+
+The repository [Experiment 01 remote_serve.sh](../01-jev-tsla-charts/scripts/remote_serve.sh) and snapshot `serve.sh` remain unchanged and verified. Their hardcoded prefix-caching flag conflicts with this correction. The runbook therefore invokes the same checksum-verified **native `serve_decide.py` directly**, preserving the System 1 flags and applying the explicit overrides above. It does not use an ordinary vLLM chat launcher or modify cached upstream files.
+
+Set `JEV_SERVER_PYTHON` to the actual Linux interpreter whose environment matches the observed server pins. The diagnostics did not preserve its exact path; the example below requires that operator-supplied path. Both interpreters must be explicit; there is no macOS venv fallback.
+
+```sh
+cd /root/repo
+export JEV_SERVER_PYTHON=/absolute/path/to/observed/server/python
+/root/svenv/bin/python 06-jev-patterns/scripts/run_gpu.py \
+  --execute \
+  --model-dir /workspace/models/JEV-27B-VL \
+  --server-python "$JEV_SERVER_PYTHON" \
+  --scorer-python /root/svenv/bin/python
+```
+
+There is no reference-image enable flag. Without `--execute`, the script validates local assets and prints the plan. **Neither mode was invoked during this CPU correction; tests import helpers and mock process launch.**
 
 The script:
 
-1. Verifies frozen assets, the under-10,000 fresh call cap, showcase-only scope, and model weight/serving/config hashes; rejects an occupied port.
-2. Records installed server/scorer versions in `shared/results/inference_run_v2/runtime_lock.json` and rejects changed runtimes on resume. CPU dependencies are pinned. The model card supplies no reproducible vLLM lock; future GPU compatibility must be validated and is currently unverified.
-3. Starts the verified native Experiment 01 wrapper with offline Hugging Face mode, port 8000 and context length 16,384. No downloads or package installs occur.
-4. Verifies native identity/calibration and runs **20 charts twice per option schema** before any prediction job. Every pending job also repeats 20 charts. Any maximum probability difference **>0.01 aborts**.
-5. Scores all frozen jobs, preserving scope metadata, ordered probabilities, class predictions and latency. Timeout is 120 seconds with three retries. Resume rejects changed inputs, model, question or context and skips completed rows.
-6. Writes `results/inference/frozen_v2/<job>.csv` plus metadata, parity, error and summary files. Logs and session summary go to `shared/results/inference_run_v2/`. It stops its own server on completion/failure, **not the existing cloud pod or its billing**.
+1. Verifies frozen assets, the under-10,000 call cap, showcase-only scope and model weight/serving/config hashes; rejects an occupied port.
+2. Checks the exact required server/scorer package pins, `torch.version.cuda=13.0`, batch-invariance capability and supported CLI flags **before starting a server**. Runtime probes import packages/CLI help only; they do not create an inference engine.
+3. Records packages, build/platform metadata and policy in `shared/results/inference_run_v3/runtime_lock.json`; rejects changed runtimes on resume. It records the launch command/environment and passes a runtime/execution fingerprint to every scorer.
+4. Starts checksum-verified native JEV with the deterministic overrides and offline Hugging Face mode. No model downloads or package installs occur in the run script.
+5. Verifies native identity/calibration and runs **20 charts twice per option schema** before predictions. Every pending job also repeats 20 charts. Any maximum probability difference **>0.01 aborts**. Reports now include per-row drift and argmax agreement; argmax stability never overrides a failed probability gate.
+6. Scores frozen jobs at concurrency/batch one, preserving scope metadata, probabilities, predictions and latency. Timeout remains 120 seconds with three retries. Resume rejects changed input, model, question, context, concurrency/batch or execution fingerprint and skips completed rows.
+7. Writes `results/inference/frozen_v3/<job>.csv` plus metadata/parity/error/summary files; session logs go to `shared/results/inference_run_v3/`. Stops its own server, **not the existing cloud pod or billing**.
 
 Repeatability does not establish HF/vLLM parity or recognition quality. Global gates repeat each session; partial jobs repeat their gate. Completed no-op jobs make no new decide calls.
 
@@ -86,7 +137,7 @@ Repeatability does not establish HF/vLLM parity or recognition quality. Global g
 
 The fresh successful run is **9,820 calls**, down from 27,496, and remains below 10,000. Retries and repeated partial resumes are additional; this is a planned count, not a hard request limiter that would truncate output.
 
-Estimated GPU time is **45.9–121.4 minutes (about 46–121)**: 0.25–0.65 effective GPU seconds per single-image call at concurrency four plus 5–15 minutes for startup/weight validation. Experiment 03's historical median request latency was 594.704 ms; it is context, not measured throughput for these charts. Serial parity gates, hardware, image size and cache behavior can move runtime outside the estimate. **No Experiment 06 GPU timing is available.**
+The prior **46–121-minute estimate is withdrawn** because it assumed concurrency four and optimized cached/compiled execution. The corrected serial plan uses an explicit planning range of **103.2–309.6 minutes (about 103–310)**: 0.6–1.8 seconds per decide call plus 5–15 minutes for startup/validation. Experiment 03's historical median was 594.704 ms, but larger images and eager/cacheless batch-invariant kernels may cost more. The failed session does not measure corrected throughput. Hardware/driver changes and beta kernel support can move time outside this range; update the estimate only after a separately authorized successful gate.
 
 ## Later evaluation
 

@@ -8,6 +8,9 @@ import sys
 import tempfile
 import threading
 import unittest
+from types import SimpleNamespace
+from unittest.mock import Mock, patch
+import time
 from PIL import Image
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 sys.path.insert(0,str(Path(__file__).resolve().parent))
@@ -131,6 +134,48 @@ class ScorerTests(unittest.TestCase):
             self.assertEqual(meta['server_identity']['model'],'jev')
             self.assertEqual(meta['server_identity']['canonical_model'],jev_api.MODEL)
             self.assertEqual(fixture.requests[-1]['strategy'],'single')
+
+    def test_supplied_failed_gate_stays_failed_and_reports_argmax_agreement(self):
+        evidence=json.loads((Path(__file__).resolve().parents[1]/
+            'shared/results/diagnostics/2026-10-10/candles.parity.json').read_text())
+        client=SimpleNamespace(args=SimpleNamespace(options=[str(i) for i in range(8)],dry_run=False,
+             concurrency=1,batch_size=1,execution_fingerprint='a'*64),
+             score=Mock(side_effect=[(p,0,1) for p in evidence['first']+evidence['second']]))
+        rows=[{'file':file} for file in evidence['files']]
+        with tempfile.TemporaryDirectory() as d:
+            path=Path(d)/'gate.json'
+            with self.assertRaisesRegex(ValueError,'> 0.01'):
+                score.parity_check(client,rows,path,'fixture',force=True)
+            report=json.loads(path.read_text())
+            self.assertFalse(report['passed']);self.assertEqual(report['atol'],0.01)
+            self.assertEqual(report['rows_over_atol'],3)
+            self.assertEqual(report['argmax_agreement_count'],20)
+            self.assertEqual(report['execution']['parity_concurrency'],1)
+            self.assertAlmostEqual(report['max_abs_diff'],0.03334436881129002)
+
+    def test_serial_defaults_and_changed_execution_cannot_resume(self):
+        with tempfile.TemporaryDirectory() as d,server() as fixture,redirect_stdout(StringIO()):
+            root=Path(d);options=self.prepare(root)
+            args=self.args(root,fixture,options,'--limit','2','--execution-fingerprint','a'*64)
+            self.assertEqual((args.concurrency,args.batch_size),(1,1))
+            original=score.Client.score;active=0;maximum=0;lock=threading.Lock()
+            def tracked(client,row):
+                nonlocal active,maximum
+                with lock:active+=1;maximum=max(maximum,active)
+                try:
+                    time.sleep(.002)
+                    return original(client,row)
+                finally:
+                    with lock:active-=1
+            with patch.object(score.Client,'score',tracked):
+                score.run(args)
+            self.assertEqual(maximum,1);self.assertEqual(len(fixture.requests),42)
+            for extra in [('--concurrency','4','--execution-fingerprint','a'*64),
+                          ('--batch-size','16','--execution-fingerprint','a'*64),
+                          ('--execution-fingerprint','b'*64)]:
+                with self.assertRaisesRegex(ValueError,'provenance changed'):
+                    score.run(self.args(root,fixture,options,*extra))
+            self.assertEqual(len(fixture.requests),42)
 
     def test_option_contract_and_limits(self):
         options=[f'Option {i}' for i in range(256)]

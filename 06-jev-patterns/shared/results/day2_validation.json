@@ -3,7 +3,7 @@
   "runbook_executed": false,
   "target_pngs_verified": 4400,
   "unique_numeric_csvs_validated": 4000,
-  "frozen_assets_verified": 4430,
+  "frozen_assets_verified": 4434,
   "real_input_snapshots_verified": 50,
   "collections": {
     "candles": 1200,
@@ -23,7 +23,7 @@
     "patterns_mirror_time": 100,
     "patterns_mirror_price": 100
   },
-  "config_sha256": "fd4b1ee217f7841996a309bb1ca9417f5709e1e915af19a8b7d924785975cb0f",
+  "config_sha256": "be988152dc208eb3e0e0430d6b7c12a1e9741dfd2a4efc9c4850fff1d1e21c87",
   "checks": [
     "All frozen asset SHA-256s",
     "All target PNG dimensions/formats/metadata",

@@ -1,0 +1,11 @@
+{
+  "status": "failed",
+  "model_revision": "3514d1d8ead2189c75f433fa949fe63c8e3f3c66",
+  "config_sha256": "fd4b1ee217f7841996a309bb1ca9417f5709e1e915af19a8b7d924785975cb0f",
+  "weights_verified": true,
+  "runtime_lock_sha256": "3adb4e074f15f9c267974618427491eb08d58b7039620d7d1ca438124d8a32f4",
+  "provisions_pod": false,
+  "error": "CalledProcessError: Command '['/root/svenv/bin/python', '/root/repo/06-jev-patterns/shared/src/score.py', '--root', '/root/repo/06-jev-patterns/06a-candles', '--index', 'results/arms/candles.csv', '--out', 'results/inference/frozen_v2/global_parity_candles.csv', '--options-file', '/root/repo/06-jev-patterns/06a-candles/options.json', '--question', 'Which candlestick pattern ends at the right edge of the target chart? Select one option.', '--control', 'image', '--base-url', 'http://127.0.0.1:8000', '--served-model-name', 'autotrust/JEV-27B-VL', '--model-revision', '3514d1d8ead2189c75f433fa949fe63c8e3f3c66', '--concurrency', '4', '--batch-size', '16', '--timeout', '120', '--retries', '3', '--parity-only']' returned non-zero exit status 1.",
+  "elapsed_seconds": 166.536,
+  "pod_billing_note": "Only this script's server process is stopped; an existing cloud pod must be stopped separately."
+}

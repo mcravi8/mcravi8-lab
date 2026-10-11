@@ -12,11 +12,11 @@
   "server_source_url": "https://huggingface.co/autotrust/JEV-27B-VL/blob/3514d1d8ead2189c75f433fa949fe63c8e3f3c66/serve_decide.py",
   "multiple_images": true,
   "max_images_per_request": 8,
-  "evidence": "Card documents a mixed text/image state list and image limit8. Server _parts iterates all image items in list order; serve.sh sets limit-mm-per-prompt image8. Reference arm uses one labelled board plus one target, two images total.",
+  "evidence": "Card/server support up to eight images; the trimmed Experiment06 plan has removed the reference-image arm.",
   "parity": "20 charts twice, abort for max absolute option probability difference greater than0.01. Repeatability only; not HF-vLLM parity.",
   "serving_entrypoint": "01-jev-tsla-charts/scripts/remote_serve.sh",
   "desktop_wrapper_note": "The existing Desktop/runpod-setup/remote_serve.sh is an older plain-vLLM command that does not provide the native decision route. Use the corrected repository01 wrapper, which invokes the pinned model snapshot serve.sh.",
-  "executed": false,
+  "executed": true,
   "weight_files": {
     "adapter_vllm/adapter_model.safetensors": {
       "sha256": "c26cb3fb6d43eaf734cfef74afc40172d30459f6a6bd47e3cfa1f8e866ed6bd9",
@@ -132,5 +132,11 @@
     "vocab.json": {
       "git_blob_sha1": "0aa0ce0658d60ac4a5d609f4eadb0e8e43514176"
     }
+  },
+  "prior_attempt": {
+    "status": "failed global candle repeatability gate",
+    "n_decide_calls": 40,
+    "predictions": 0,
+    "diagnosis": "06-jev-patterns/shared/results/diagnostics/2026-10-10/diagnosis.json"
   }
 }

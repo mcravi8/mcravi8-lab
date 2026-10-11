@@ -21,6 +21,7 @@ jobs:
           cache: pip
           cache-dependency-path: |
             06-jev-patterns/requirements.txt
+            06-jev-patterns/requirements-scoring.txt
             06-jev-patterns/requirements-cnn.txt
             04-jev-lora-and-cnn/requirements-training-cnn.txt
       - name: Install research dependencies
@@ -39,3 +40,9 @@ jobs:
         run: python 06-jev-patterns/06b-chart-patterns/src/external_detector.py --fetch
       - name: Pattern labels, rendering, native scoring and multiclass metrics
         run: python -m unittest discover -s 06-jev-patterns/tests -v
+      - name: Verify isolated Linux scorer without GPU dependencies
+        run: |
+          python -m venv "$RUNNER_TEMP/jev-scorer"
+          "$RUNNER_TEMP/jev-scorer/bin/python" -m pip install -r 06-jev-patterns/requirements-scoring.txt
+          "$RUNNER_TEMP/jev-scorer/bin/python" -m pip check
+          "$RUNNER_TEMP/jev-scorer/bin/python" -m unittest discover -s 06-jev-patterns/tests -p test_score.py -v

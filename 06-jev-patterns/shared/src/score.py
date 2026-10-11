@@ -184,7 +184,13 @@ def parity_check(client, rows, path, fingerprint, force=False):
     first = [probabilities(p, len(client.args.options)) for p in report['first']]
     second = [probabilities(p, len(client.args.options)) for p in report['second']]
     maximum = max(abs(x-y) for a,b in zip(first,second) for x,y in zip(a,b))
-    report.update(max_abs_diff=maximum, passed=maximum <= PARITY_ATOL, atol=PARITY_ATOL)
+    row_diffs=[max(abs(x-y) for x,y in zip(a,b)) for a,b in zip(first,second)]
+    argmax_matches=[max(range(len(a)),key=a.__getitem__)==max(range(len(b)),key=b.__getitem__) for a,b in zip(first,second)]
+    report.update(max_abs_diff=maximum, passed=maximum <= PARITY_ATOL, atol=PARITY_ATOL,
+                  row_max_abs_diff=row_diffs,rows_over_atol=sum(v>PARITY_ATOL for v in row_diffs),
+                  argmax_agreement_count=sum(argmax_matches),argmax_agreement_rate=sum(argmax_matches)/20,
+                  execution={'parity_concurrency':1,'prediction_concurrency':client.args.concurrency,
+                             'batch_size':client.args.batch_size,'runtime_fingerprint':client.args.execution_fingerprint})
     write_json(path, report)
     if maximum > PARITY_ATOL:
         raise ValueError(f'Parity failed: max probability difference {maximum:.6f} > {PARITY_ATOL}; scoring blocked')
@@ -249,6 +255,8 @@ def run(args):
             'reference_images': [{'sha256':digest(p),'caption':args.reference_caption} for p in args.reference_image],
             'server_identity': client.identity, 'endpoint': client.base, 'synthetic': args.dry_run,
             'prediction_origin': 'fake_server' if args.dry_run else 'jev',
+            'execution':{'concurrency':args.concurrency,'batch_size':args.batch_size,
+                         'runtime_fingerprint':args.execution_fingerprint},
             'synthetic_dataset': all(bool(r.get('template_id')) and not r.get('end_date') for r in rows),
             'source_sha256': {p.name:digest(p) for p in (Path(__file__), Path(__file__).with_name('jev_api.py'))}}
         fingerprint = canonical_hash(identity)
@@ -310,10 +318,11 @@ def arguments(argv=None):
     p.add_argument('--base-url', default=os.getenv('JEV_BASE_URL',''))
     p.add_argument('--served-model-name', default=os.getenv('JEV_SERVED_MODEL',MODEL))
     p.add_argument('--model-revision', default=os.getenv('JEV_MODEL_REVISION',''))
-    p.add_argument('--batch-size', type=int, default=int(os.getenv('JEV_BATCH_SIZE','16')))
-    p.add_argument('--concurrency', type=int, default=int(os.getenv('JEV_CONCURRENCY','4')))
+    p.add_argument('--batch-size', type=int, default=int(os.getenv('JEV_BATCH_SIZE','1')))
+    p.add_argument('--concurrency', type=int, default=int(os.getenv('JEV_CONCURRENCY','1')))
     p.add_argument('--timeout', type=float, default=float(os.getenv('JEV_TIMEOUT','60')))
     p.add_argument('--retries', type=int, default=int(os.getenv('JEV_RETRIES','3')))
+    p.add_argument('--execution-fingerprint', default='', help='SHA256 of frozen server runtime and execution policy')
     p.add_argument('--limit', type=int)
     p.add_argument('--parity-only', action='store_true')
     p.add_argument('--dry-run', action='store_true')
@@ -322,6 +331,8 @@ def arguments(argv=None):
     if args.options_file:
         args.options = json.loads(args.options_file.read_text())
     args.context = args.context_file.read_text() if args.context_file else ''
+    if args.execution_fingerprint and (len(args.execution_fingerprint)!=64 or any(c not in '0123456789abcdef' for c in args.execution_fingerprint)):
+        p.error('--execution-fingerprint must be a lowercase SHA256')
     if len(args.reference_image) > 7:
         p.error('At most seven reference images plus one target are supported')
     if min(args.batch_size,args.concurrency) < 1 or not math.isfinite(args.timeout) or args.timeout <= 0 or args.retries < 0 or (args.limit is not None and args.limit < 1):

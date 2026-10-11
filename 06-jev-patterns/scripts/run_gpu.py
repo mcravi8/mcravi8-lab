@@ -2,8 +2,8 @@
 """One entry point for a future, explicitly authorized existing-GPU session.
 
 Default is a local plan only. --execute starts the Experiment 01 native server,
-checks both option schemas for repeatability, then scores frozen jobs. This file
-has not been run against a GPU. It never provisions or manages a Runpod pod.
+checks both option schemas for repeatability, then scores frozen jobs. A prior GPU session failed its global gate; this corrected configuration has
+not been run against a GPU. It never provisions or manages a Runpod pod.
 """
 from __future__ import annotations
 import argparse
@@ -62,9 +62,9 @@ def selected_jobs(config):
     return jobs
 
 
-def score_command(job,python,config,contract,*,parity_only=False,global_gate=False):
+def score_command(job,python,config,contract,*,parity_only=False,global_gate=False,runtime_fingerprint=''):
     runtime=config['runtime'];root=checked_path(job['root'])
-    out=f"results/inference/frozen_v2/global_parity_{job['kind']}.csv" if global_gate else job['out']
+    out=f"results/inference/frozen_v3/global_parity_{job['kind']}.csv" if global_gate else job['out']
     command=[str(python),str(EXP/'shared/src/score.py'),'--root',str(root),'--index',job['index'],
              '--out',out,'--options-file',str(checked_path(job['options_file'])),
              '--question',job['question'],'--control',job['control'],
@@ -73,6 +73,7 @@ def score_command(job,python,config,contract,*,parity_only=False,global_gate=Fal
              '--concurrency',str(runtime['concurrency']),'--batch-size',str(runtime['batch_size']),
              '--timeout',str(runtime['timeout']),'--retries',str(runtime['retries'])]
     if job['context_file']:command+=['--context-file',str(checked_path(job['context_file']))]
+    if runtime_fingerprint:command+=['--execution-fingerprint',runtime_fingerprint]
     if parity_only:command.append('--parity-only')
     return command
 
@@ -84,14 +85,14 @@ def global_gate_jobs(config):
     return jobs
 
 
-def execute_jobs(config,contract,python,runner=subprocess.run):
+def execute_jobs(config,contract,python,runner=subprocess.run,runtime_fingerprint=''):
     """Testable ordering: all global gates pass before any prediction job starts."""
     jobs=selected_jobs(config)
     for job in global_gate_jobs(config):
-        runner(score_command(job,python,config,contract,parity_only=True,global_gate=True),check=True)
+        runner(score_command(job,python,config,contract,parity_only=True,global_gate=True,runtime_fingerprint=runtime_fingerprint),check=True)
     for number,job in enumerate(jobs,1):
         print(f"Scoring {number}/{len(jobs)} {job['id']} ({job['n_rows']} rows)",flush=True)
-        runner(score_command(job,python,config,contract),check=True)
+        runner(score_command(job,python,config,contract,runtime_fingerprint=runtime_fingerprint),check=True)
 
 
 def verify_model(model_dir,contract):
@@ -112,16 +113,63 @@ def verify_model(model_dir,contract):
         if blob!=info['git_blob_sha1']:raise ValueError(f'Model configuration differs: {name}')
 
 
-def runtime_lock(server_python,scorer_python,folder):
+def validate_runtime(versions,pins):
+    """Reject changed numerical dependencies/build before any server launch."""
+    for role in ['server','scorer']:
+        installed={name.lower().replace('_','-'):version for name,version in versions[role].items()}
+        for name,version in pins[role+'_packages'].items():
+            if installed.get(name.lower().replace('_','-'))!=version:
+                raise ValueError(f'{role} runtime pin differs: {name} must be {version}')
+    if versions['server_build'].get('torch_cuda')!=pins['server_build']['torch_cuda']:
+        raise ValueError('Torch CUDA build differs from pinned 13.0 runtime')
+    if not versions['server_build'].get('batch_invariance_supported'):
+        raise ValueError('Pinned vLLM must expose VLLM_BATCH_INVARIANT')
+
+
+def runtime_lock(server_python,scorer_python,folder,pins):
     code="import importlib.metadata as m,json; print(json.dumps({d.metadata['Name']:d.version for d in m.distributions()},sort_keys=True))"
     server=json.loads(subprocess.check_output([str(server_python),'-c',code],text=True))
     scorer=json.loads(subprocess.check_output([str(scorer_python),'-c',code],text=True))
-    if not any(k.lower()=='vllm' for k in server):raise ValueError('--server-python must point to an installed compatible vLLM environment')
-    versions={'server':server,'scorer':scorer}
+    build_code="import torch,platform,json,vllm.envs as e; print(json.dumps({'torch_version':torch.__version__,'torch_cuda':torch.version.cuda,'python':platform.python_version(),'platform':platform.platform(),'batch_invariance_supported':'VLLM_BATCH_INVARIANT' in e.environment_variables}))"
+    build=json.loads(subprocess.check_output([str(server_python),'-c',build_code],text=True))
+    versions={'server':server,'scorer':scorer,'server_build':build,'policy':pins['policy'],
+              'determinism_environment':pins['determinism_environment']}
+    validate_runtime(versions,pins)
     path=folder/'runtime_lock.json'
     if path.exists() and json.loads(path.read_text())!=versions:raise ValueError('Installed runtime changed since this frozen run started')
     path.write_text(json.dumps(versions,indent=2)+'\n')
     return versions
+
+
+def server_command(server_python,model_dir,config,contract):
+    """Native System1 route/LoRA/template, with deterministic execution overrides."""
+    runtime=config['runtime'];model_dir=Path(model_dir)
+    return [str(server_python),str(model_dir/'serve_decide.py'),'--model',str(model_dir),
+            '--served-model-name',contract['model'],'--enable-lora','--max-lora-rank','32',
+            '--lora-modules',f'jev-decision={model_dir}/adapter_vllm',
+            '--logprobs-mode','processed_logprobs','--max-model-len',str(runtime['max_model_len']),
+            '--limit-mm-per-prompt','{"image": 8}','--max-num-seqs','8','--trust-request-chat-template',
+            '--port',str(runtime['port']),'--seed','0','--enforce-eager','--no-enable-prefix-caching',
+            '--no-enable-chunked-prefill','--max-num-batched-tokens',str(runtime['max_model_len']),
+            '--no-async-scheduling','--gdn-prefill-backend','triton']
+
+
+def validate_execution(config,pins):
+    for key in ['concurrency','batch_size']:
+        if config['runtime'][key]!=pins['policy'][key] or config['runtime'][key]!=1:
+            raise ValueError('Deterministic Experiment06 requires concurrency1 and batch_size1')
+    if pins['policy']['atol']!=0.01 or pins['determinism_environment'].get('VLLM_BATCH_INVARIANT')!='1':
+        raise ValueError('Deterministic policy requires batch invariance and unchanged0.01 tolerance')
+
+
+def validate_server_flags(server_python,model_dir,command,environment):
+    """Future-host help probe imports CLI only; never creates an inference engine."""
+    help_text=subprocess.check_output([str(server_python),str(Path(model_dir)/'serve_decide.py'),'--help'],
+                                      text=True,env=environment,stderr=subprocess.STDOUT)
+    for flag in command[2:]:
+        if flag.startswith('--') and flag not in help_text:
+            raise ValueError(f'Pinned server lacks required execution flag: {flag}')
+
 
 
 def wait_ready(process,port,contract,timeout=900):
@@ -138,29 +186,33 @@ def wait_ready(process,port,contract,timeout=900):
 
 def run_session(config,contract,args):
     validate_assets(config);selected_jobs(config)
-    folder=EXP/'shared/results/inference_run_v2';folder.mkdir(parents=True,exist_ok=True)
+    pins=json.loads(checked_path(config['gpu_runtime']).read_text());validate_execution(config,pins)
+    folder=EXP/'shared/results/inference_run_v3';folder.mkdir(parents=True,exist_ok=True)
     with (folder/'session.lock').open('w') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         verify_model(args.model_dir,contract)
         server_python=Path(args.server_python).absolute()
-        if server_python.name!='python3':
-            raise ValueError('--server-python must name the prepared environment bin/python3 used by native serve.sh')
-        runtime_lock(server_python,args.scorer_python,folder)
+        versions=runtime_lock(server_python,args.scorer_python,folder,pins)
         port=config['runtime']['port']
         with socket.socket() as probe:
             if probe.connect_ex(('127.0.0.1',port))==0:raise ValueError('Port 8000 is occupied; this script will not replace an existing server')
         environment=os.environ.copy();environment.update(MODEL_DIR=str(Path(args.model_dir).resolve()),PORT=str(port),
             MAX_MODEL_LEN=str(config['runtime']['max_model_len']),HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1')
-        environment['PATH']=str(Path(args.server_python).absolute().parent)+os.pathsep+environment['PATH']
+        environment.update(pins['determinism_environment'])
+        command=server_command(server_python,args.model_dir,config,contract)
+        validate_server_flags(server_python,args.model_dir,command,environment)
+        runtime_fingerprint=hashlib.sha256(json.dumps({'runtime':versions,'server_command':command,
+            'config_sha256':sha(args.config)},sort_keys=True).encode()).hexdigest()
         started=time.time();process=None;result={'status':'starting','model_revision':contract['revision'],
             'config_sha256':sha(args.config),'weights_verified':True,
-            'runtime_lock_sha256':sha(folder/'runtime_lock.json'),'provisions_pod':False}
+            'runtime_lock_sha256':sha(folder/'runtime_lock.json'),'execution_fingerprint':runtime_fingerprint,
+            'server_command':command,'determinism_environment':pins['determinism_environment'],'provisions_pod':False}
         with (folder/'server.log').open('a') as log:
             try:
-                process=subprocess.Popen(['bash',str(REPO/contract['serving_entrypoint'])],stdout=log,stderr=subprocess.STDOUT,
+                process=subprocess.Popen(command,stdout=log,stderr=subprocess.STDOUT,
                                          env=environment,start_new_session=True)
                 wait_ready(process,port,contract)
-                execute_jobs(config,contract,args.scorer_python)
+                execute_jobs(config,contract,args.scorer_python,runtime_fingerprint=runtime_fingerprint)
                 result['status']='complete'
             except BaseException as error:
                 result.update(status='failed',error=type(error).__name__+': '+str(error));raise
@@ -180,9 +232,10 @@ def arguments(argv=None):
     p.add_argument('--execute',action='store_true',help='Start native JEV on an already authorized GPU host and score')
     p.add_argument('--model-dir',type=Path,default=Path('/workspace/models/JEV-27B-VL'))
     p.add_argument('--server-python',type=Path)
-    p.add_argument('--scorer-python',type=Path,default=EXP/'.venv/bin/python')
+    p.add_argument('--scorer-python',type=Path,help='Linux scorer venv on the GPU host, e.g. /root/svenv/bin/python')
     args=p.parse_args(argv)
-    if args.execute and args.server_python is None:p.error('--execute requires an explicit --server-python from the prepared vLLM environment')
+    if args.execute and (args.server_python is None or args.scorer_python is None):
+        p.error('--execute requires explicit --server-python and --scorer-python from the prepared Linux environments')
     return args
 
 

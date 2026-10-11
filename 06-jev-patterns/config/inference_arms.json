@@ -1,8 +1,9 @@
 {
-  "schema_version": 2,
-  "status": "frozen before any06 model inference",
+  "schema_version": 3,
+  "status": "corrected execution frozen after failed global gate; correction not GPU run",
   "seed": 606227,
   "model_contract": "06-jev-patterns/config/model_contract.json",
+  "gpu_runtime": "06-jev-patterns/config/gpu_runtime.json",
   "questions": {
     "candles": [
       "Which candlestick pattern ends at the right edge of the target chart? Select one option.",
@@ -1101,7 +1102,7 @@
       "question": "Which candlestick pattern ends at the right edge of the target chart? Select one option.",
       "context_file": null,
       "options_file": "06-jev-patterns/06a-candles/options.json",
-      "out": "results/inference/frozen_v2/candles_zero_shot_p1.csv"
+      "out": "results/inference/frozen_v3/candles_zero_shot_p1.csv"
     },
     {
       "name": "candles",
@@ -1121,7 +1122,7 @@
       "question": "Which candlestick pattern ends at the right edge of the target chart? Select one option.",
       "context_file": "06-jev-patterns/shared/context/candles.txt",
       "options_file": "06-jev-patterns/06a-candles/options.json",
-      "out": "results/inference/frozen_v2/candles_definitions_p1.csv"
+      "out": "results/inference/frozen_v3/candles_definitions_p1.csv"
     },
     {
       "name": "real_variable",
@@ -1141,7 +1142,7 @@
       "question": "Which completed chart pattern best describes the whole target chart? Select one option.",
       "context_file": null,
       "options_file": "06-jev-patterns/06b-chart-patterns/options.json",
-      "out": "results/inference/frozen_v2/real_variable_zero_shot_p1.csv"
+      "out": "results/inference/frozen_v3/real_variable_zero_shot_p1.csv"
     },
     {
       "name": "real_variable",
@@ -1161,7 +1162,7 @@
       "question": "Which completed chart pattern best describes the whole target chart? Select one option.",
       "context_file": "06-jev-patterns/shared/context/chart_patterns.txt",
       "options_file": "06-jev-patterns/06b-chart-patterns/options.json",
-      "out": "results/inference/frozen_v2/real_variable_definitions_p1.csv"
+      "out": "results/inference/frozen_v3/real_variable_definitions_p1.csv"
     },
     {
       "name": "real_fixed100",
@@ -1181,7 +1182,7 @@
       "question": "Which completed chart pattern best describes the whole target chart? Select one option.",
       "context_file": null,
       "options_file": "06-jev-patterns/06b-chart-patterns/options.json",
-      "out": "results/inference/frozen_v2/real_fixed100_zero_shot_p1.csv"
+      "out": "results/inference/frozen_v3/real_fixed100_zero_shot_p1.csv"
     },
     {
       "name": "real_fixed100",
@@ -1201,7 +1202,7 @@
       "question": "Which completed chart pattern best describes the whole target chart? Select one option.",
       "context_file": "06-jev-patterns/shared/context/chart_patterns.txt",
       "options_file": "06-jev-patterns/06b-chart-patterns/options.json",
-      "out": "results/inference/frozen_v2/real_fixed100_definitions_p1.csv"
+      "out": "results/inference/frozen_v3/real_fixed100_definitions_p1.csv"
     },
     {
       "name": "synthetic_variable",
@@ -1221,7 +1222,7 @@
       "question": "Which completed chart pattern best describes the whole target chart? Select one option.",
       "context_file": null,
       "options_file": "06-jev-patterns/06b-chart-patterns/options.json",
-      "out": "results/inference/frozen_v2/synthetic_variable_zero_shot_p1.csv"
+      "out": "results/inference/frozen_v3/synthetic_variable_zero_shot_p1.csv"
     },
     {
       "name": "synthetic_variable",
@@ -1241,7 +1242,7 @@
       "question": "Which completed chart pattern best describes the whole target chart? Select one option.",
       "context_file": "06-jev-patterns/shared/context/chart_patterns.txt",
       "options_file": "06-jev-patterns/06b-chart-patterns/options.json",
-      "out": "results/inference/frozen_v2/synthetic_variable_definitions_p1.csv"
+      "out": "results/inference/frozen_v3/synthetic_variable_definitions_p1.csv"
     },
     {
       "name": "synthetic_fixed100",
@@ -1261,7 +1262,7 @@
       "question": "Which completed chart pattern best describes the whole target chart? Select one option.",
       "context_file": null,
       "options_file": "06-jev-patterns/06b-chart-patterns/options.json",
-      "out": "results/inference/frozen_v2/synthetic_fixed100_zero_shot_p1.csv"
+      "out": "results/inference/frozen_v3/synthetic_fixed100_zero_shot_p1.csv"
     },
     {
       "name": "synthetic_fixed100",
@@ -1281,7 +1282,7 @@
       "question": "Which completed chart pattern best describes the whole target chart? Select one option.",
       "context_file": "06-jev-patterns/shared/context/chart_patterns.txt",
       "options_file": "06-jev-patterns/06b-chart-patterns/options.json",
-      "out": "results/inference/frozen_v2/synthetic_fixed100_definitions_p1.csv"
+      "out": "results/inference/frozen_v3/synthetic_fixed100_definitions_p1.csv"
     },
     {
       "name": "candles_paraphrase",
@@ -1301,7 +1302,7 @@
       "question": "Identify the final candlestick formation at the right edge of the target chart. Which listed class fits?",
       "context_file": null,
       "options_file": "06-jev-patterns/06a-candles/options.json",
-      "out": "results/inference/frozen_v2/candles_paraphrase_zero_shot_p2.csv"
+      "out": "results/inference/frozen_v3/candles_paraphrase_zero_shot_p2.csv"
     },
     {
       "name": "candles_paraphrase",
@@ -1321,7 +1322,7 @@
       "question": "Identify the final candlestick formation at the right edge of the target chart. Which listed class fits?",
       "context_file": "06-jev-patterns/shared/context/candles.txt",
       "options_file": "06-jev-patterns/06a-candles/options.json",
-      "out": "results/inference/frozen_v2/candles_paraphrase_definitions_p2.csv"
+      "out": "results/inference/frozen_v3/candles_paraphrase_definitions_p2.csv"
     },
     {
       "name": "candles_style_ohlc",
@@ -1341,7 +1342,7 @@
       "question": "Which candlestick pattern ends at the right edge of the target chart? Select one option.",
       "context_file": null,
       "options_file": "06-jev-patterns/06a-candles/options.json",
-      "out": "results/inference/frozen_v2/candles_style_ohlc_zero_shot_p1.csv"
+      "out": "results/inference/frozen_v3/candles_style_ohlc_zero_shot_p1.csv"
     },
     {
       "name": "candles_style_line",
@@ -1361,7 +1362,7 @@
       "question": "Which candlestick pattern ends at the right edge of the target chart? Select one option.",
       "context_file": null,
       "options_file": "06-jev-patterns/06a-candles/options.json",
-      "out": "results/inference/frozen_v2/candles_style_line_zero_shot_p1.csv"
+      "out": "results/inference/frozen_v3/candles_style_line_zero_shot_p1.csv"
     },
     {
       "name": "candles_mirror_time",
@@ -1381,7 +1382,7 @@
       "question": "Which candlestick pattern ends at the right edge of the target chart? Select one option.",
       "context_file": null,
       "options_file": "06-jev-patterns/06a-candles/options.json",
-      "out": "results/inference/frozen_v2/candles_mirror_time_zero_shot_p1.csv"
+      "out": "results/inference/frozen_v3/candles_mirror_time_zero_shot_p1.csv"
     },
     {
       "name": "patterns_paraphrase",
@@ -1401,7 +1402,7 @@
       "question": "Classify the main completed geometric formation visible in the target chart using one listed class.",
       "context_file": null,
       "options_file": "06-jev-patterns/06b-chart-patterns/options.json",
-      "out": "results/inference/frozen_v2/patterns_paraphrase_zero_shot_p2.csv"
+      "out": "results/inference/frozen_v3/patterns_paraphrase_zero_shot_p2.csv"
     },
     {
       "name": "patterns_paraphrase",
@@ -1421,7 +1422,7 @@
       "question": "Classify the main completed geometric formation visible in the target chart using one listed class.",
       "context_file": "06-jev-patterns/shared/context/chart_patterns.txt",
       "options_file": "06-jev-patterns/06b-chart-patterns/options.json",
-      "out": "results/inference/frozen_v2/patterns_paraphrase_definitions_p2.csv"
+      "out": "results/inference/frozen_v3/patterns_paraphrase_definitions_p2.csv"
     },
     {
       "name": "patterns_style_ohlc",
@@ -1441,7 +1442,7 @@
       "question": "Which completed chart pattern best describes the whole target chart? Select one option.",
       "context_file": null,
       "options_file": "06-jev-patterns/06b-chart-patterns/options.json",
-      "out": "results/inference/frozen_v2/patterns_style_ohlc_zero_shot_p1.csv"
+      "out": "results/inference/frozen_v3/patterns_style_ohlc_zero_shot_p1.csv"
     },
     {
       "name": "patterns_style_line",
@@ -1461,7 +1462,7 @@
       "question": "Which completed chart pattern best describes the whole target chart? Select one option.",
       "context_file": null,
       "options_file": "06-jev-patterns/06b-chart-patterns/options.json",
-      "out": "results/inference/frozen_v2/patterns_style_line_zero_shot_p1.csv"
+      "out": "results/inference/frozen_v3/patterns_style_line_zero_shot_p1.csv"
     },
     {
       "name": "patterns_mirror_time",
@@ -1481,7 +1482,7 @@
       "question": "Which completed chart pattern best describes the whole target chart? Select one option.",
       "context_file": null,
       "options_file": "06-jev-patterns/06b-chart-patterns/options.json",
-      "out": "results/inference/frozen_v2/patterns_mirror_time_zero_shot_p1.csv"
+      "out": "results/inference/frozen_v3/patterns_mirror_time_zero_shot_p1.csv"
     },
     {
       "name": "patterns_mirror_price",
@@ -1507,7 +1508,7 @@
       "question": "Which completed chart pattern best describes the whole target chart? Select one option.",
       "context_file": null,
       "options_file": "06-jev-patterns/06b-chart-patterns/options.json",
-      "out": "results/inference/frozen_v2/patterns_mirror_price_zero_shot_p1.csv"
+      "out": "results/inference/frozen_v3/patterns_mirror_price_zero_shot_p1.csv"
     }
   ],
   "assets": {
@@ -5933,13 +5934,17 @@
     "06-jev-patterns/06b-chart-patterns/results/real_agreement.json": "45b0ca23dbf233ac2a3e9e4e983f976f7c46968c9fb041e528273e4c742d53c5",
     "06-jev-patterns/shared/context/candles.txt": "ad6f93748c5faf7069f604baeee3bd7e906d7986afc6454516b2cf52e2818246",
     "06-jev-patterns/shared/context/chart_patterns.txt": "b9972453e1adfe077ac1d2b8c5391450e2186961ec305168f8b316a587229bbb",
-    "06-jev-patterns/config/model_contract.json": "6d213e5e7243106c7e3da3b5635b3eefa5b77c48d4cb3ccdf4250c13c6f0171f",
-    "06-jev-patterns/shared/src/score.py": "b86ee8881620113f8600e87c20176287077237d5c93063832dc80bd155b06bf8",
+    "06-jev-patterns/config/model_contract.json": "62e0f67ad5090f817f789e7fd564c774311313e0a60ccf3f442283f6b7135fb2",
+    "06-jev-patterns/config/gpu_runtime.json": "c741537c5daf77f1be74aa22452842b5c18340522ddb92fc3815b47e5d2934bf",
+    "06-jev-patterns/requirements-scoring.txt": "749731c69e0ae50bcfceac6c2a1af858f7e23d8d7ebd0245a3cdfc7829693fa4",
+    "06-jev-patterns/requirements-jev-server.txt": "e539100ba0d911c7a785b119bd230ca754bcc66964b106ecd6c23d5f0f65c01a",
+    "06-jev-patterns/shared/results/diagnostics/2026-10-10/runtime_lock.json": "3adb4e074f15f9c267974618427491eb08d58b7039620d7d1ca438124d8a32f4",
+    "06-jev-patterns/shared/src/score.py": "7bf1fcfb3aac25506974b2de810a94fb405fae754a042d691e8f8aaafeac3953",
     "06-jev-patterns/shared/src/jev_api.py": "fbeb260b5b5e04bdcd07a93e08ccf272940473799ac567d1380616d9fb1fc2cf",
     "06-jev-patterns/shared/src/evaluate.py": "a92700407a6a0b8b27965d19f10b9e0721aca67fe87ec2526ce033d3cc966f4e",
     "06-jev-patterns/shared/src/render.py": "2481ad89e155e6a77a434cbd4f983d30f47ade57d978d1d867454e2d03777b6d",
-    "06-jev-patterns/shared/src/prepare_day2.py": "a73dab00c6c8618f7711791bb4550b198e5f2f610768c2046210f7fa959fa37a",
-    "06-jev-patterns/scripts/run_gpu.py": "793d78bce8e88f9be36f1fdeb46c678ed29fe3d9864e73d9ef541ddffe93b47e",
+    "06-jev-patterns/shared/src/prepare_day2.py": "7a0a9ad2602f712c3ce30c90d6867d6c85f068846d8acf1f4e73429c4deb9b96",
+    "06-jev-patterns/scripts/run_gpu.py": "0ff20a347f716e82b1336b28ab93030e7f78b01fee780a031681ca18fefb31fc",
     "01-jev-tsla-charts/scripts/remote_serve.sh": "f7ebe10d6a0bd1fbae933a6d683a77495f89679e1c2fbcd987239859d5ccf4e2"
   },
   "mixed_origin_policy": "06a controls are market test rows; 06b controls are synthetic only. Real 06b rows are showcase-only. Never pool these cohorts for accuracy or confidence intervals.",
@@ -5951,21 +5956,27 @@
       "global_parity_calls": 80,
       "total_decide_calls": 9820,
       "gpu_minutes_range": [
-        45.9,
-        121.4
+        103.2,
+        309.6
       ],
-      "assumptions": "Fresh successful run, no retries/resumes: two global 20-chart repeatability gates plus 40 calls per job. Planning throughput 0.25\u20130.65 effective GPU seconds per single-image call at concurrency 4; add 5\u201315 startup minutes. Historical Exp03 request median 594.704ms is context, not measured throughput for these larger charts. Serial parity, hardware and caching can move runtime outside this range. No GPU timing measured for 06."
+      "assumptions": "Fresh successful run, no retries/resumes: two global 20-chart repeatability gates plus 40 calls per job. Planning throughput 0.6\u20131.8 GPU seconds per single-image call with concurrency1, batch1, eager/cacheless batch-invariant execution; add 5\u201315 startup minutes. Historical Exp03 request median 594.704ms is context, not measured throughput for these larger charts. Serial parity, hardware and caching can move runtime outside this range. No timing measured for corrected06 deterministic configuration."
     }
   },
   "fresh_call_cap": 10000,
   "runtime": {
-    "concurrency": 4,
-    "batch_size": 16,
+    "concurrency": 1,
+    "batch_size": 1,
     "timeout": 120,
     "retries": 3,
     "max_model_len": 16384,
     "port": 8000
   },
   "resume": "Completed jobs make no new inference calls. Partial jobs rerun their40-call repeatability gate; retries add requests. Global gates run at each GPU session.",
-  "execution_status": "not_run"
+  "execution_status": "not_run",
+  "prior_attempt": {
+    "status": "failed global candle gate",
+    "decide_calls": 40,
+    "prediction_calls": 0,
+    "diagnosis": "06-jev-patterns/shared/results/diagnostics/2026-10-10/diagnosis.json"
+  }
 }

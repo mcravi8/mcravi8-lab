@@ -9,6 +9,7 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
+from types import SimpleNamespace
 import numpy as np
 import pandas as pd
 from PIL import Image
@@ -29,7 +30,7 @@ class Day2Tests(unittest.TestCase):
               'context_file':None,'reference_image':None,'control':'image','optional_reference':False,'n_rows':20}
         jobs=[dict(base,id='candles_zero_shot_p1',kind='candles'),
               dict(base,id='synthetic_variable_zero_shot_p1',kind='patterns')]
-        return {'jobs':jobs,'runtime':{'port':8000,'concurrency':4,'batch_size':16,'timeout':120,'retries':3}}
+        return {'jobs':jobs,'runtime':{'port':8000,'concurrency':1,'batch_size':1,'timeout':120,'retries':3,'max_model_len':16384}}
 
     def test_global_parity_gates_precede_all_prediction_jobs(self):
         config=self.fixture();calls=[]
@@ -39,7 +40,8 @@ class Day2Tests(unittest.TestCase):
         self.assertEqual(len(calls),4)
         self.assertTrue(all('--parity-only' in c for c in calls[:2]))
         self.assertTrue(all('--parity-only' not in c for c in calls[2:]))
-        self.assertTrue(all(c[c.index('--concurrency')+1]=='4' for c in calls))
+        self.assertTrue(all(c[c.index('--concurrency')+1]=='1' for c in calls))
+        self.assertTrue(all(c[c.index('--batch-size')+1]=='1' for c in calls))
         self.assertEqual(len(runbook.selected_jobs(config)),2)
 
     def test_failed_global_gate_stops_before_any_prediction(self):
@@ -69,14 +71,91 @@ class Day2Tests(unittest.TestCase):
             contract={'weight_files':{'fixture':{'size':7,'sha256':'0'*64}},'files':{}}
             with self.assertRaisesRegex(ValueError,'weight differs'):runbook.verify_model(root,contract)
 
+    def runtime_fixture(self):
+        pins=json.loads((EXP/'config/gpu_runtime.json').read_text())
+        versions={'server':dict(pins['server_packages']),'scorer':dict(pins['scorer_packages']),
+                  'server_build':{'torch_version':'2.13.0+cu130','torch_cuda':'13.0',
+                                  'batch_invariance_supported':True}}
+        return pins,versions
+
     def test_runtime_version_changes_reject_resume(self):
+        pins,versions=self.runtime_fixture()
+        def responses(extra=None):
+            server=dict(versions['server'])
+            if extra:server['unrelated-package']=extra
+            return [json.dumps(server),json.dumps(versions['scorer']),json.dumps(versions['server_build'])]
         with tempfile.TemporaryDirectory() as d:
-            with patch.object(runbook.subprocess,'check_output',return_value='{"vllm":"pinned"}'):
-                runbook.runtime_lock('server','scorer',Path(d))
-                runbook.runtime_lock('server','scorer',Path(d))
-            with patch.object(runbook.subprocess,'check_output',return_value='{"vllm":"different"}'):
+            for _ in range(2):
+                with patch.object(runbook.subprocess,'check_output',side_effect=responses()):
+                    runbook.runtime_lock('server','scorer',Path(d),pins)
+            self.assertEqual(json.loads((Path(d)/'runtime_lock.json').read_text())['server'],versions['server'])
+            with patch.object(runbook.subprocess,'check_output',side_effect=responses('changed')):
                 with self.assertRaisesRegex(ValueError,'runtime changed'):
-                    runbook.runtime_lock('server','scorer',Path(d))
+                    runbook.runtime_lock('server','scorer',Path(d),pins)
+
+    def test_runtime_rejects_nightly_torch_cuda_and_scorer_drift(self):
+        pins,versions=self.runtime_fixture()
+        runbook.validate_runtime(versions,pins)
+        for role,name in [('server','vllm'),('server','torch'),('scorer','numpy')]:
+            changed=json.loads(json.dumps(versions));changed[role][name]='different'
+            with self.assertRaisesRegex(ValueError,'runtime pin differs'):runbook.validate_runtime(changed,pins)
+        changed=json.loads(json.dumps(versions));changed['server_build']['torch_cuda']='12.9'
+        with self.assertRaisesRegex(ValueError,'Torch CUDA build'):runbook.validate_runtime(changed,pins)
+        versions['server_build']['batch_invariance_supported']=False
+        with self.assertRaisesRegex(ValueError,'BATCH_INVARIANT'):runbook.validate_runtime(versions,pins)
+
+    def test_deterministic_native_server_keeps_system1_contract_and_supported_flags(self):
+        command=runbook.server_command('/root/vllm-venv/bin/python','/weights',self.fixture(),
+            {'model':jev_api.MODEL})
+        for flag in ['--enable-lora','--trust-request-chat-template','--enforce-eager',
+                     '--no-enable-prefix-caching','--no-enable-chunked-prefill','--no-async-scheduling']:
+            self.assertIn(flag,command)
+        for flag,value in [('--max-num-seqs','8'),('--seed','0'),('--logprobs-mode','processed_logprobs'),
+                           ('--gdn-prefill-backend','triton'),('--max-num-batched-tokens','16384')]:
+            self.assertEqual(command[command.index(flag)+1],value)
+        self.assertNotIn('--enable-prefix-caching',command)
+        help_text=' '.join(part for part in command if part.startswith('--'))
+        with patch.object(runbook.subprocess,'check_output',return_value=help_text):
+            runbook.validate_server_flags('python','/weights',command,{})
+        with patch.object(runbook.subprocess,'check_output',return_value=help_text.replace('--enforce-eager','')):
+            with self.assertRaisesRegex(ValueError,'required execution flag'):
+                runbook.validate_server_flags('python','/weights',command,{})
+
+    def test_execution_policy_and_explicit_linux_interpreters(self):
+        pins,_=self.runtime_fixture();config=self.fixture()
+        runbook.validate_execution(config,pins)
+        config['runtime']['concurrency']=4
+        with self.assertRaisesRegex(ValueError,'concurrency1'):runbook.validate_execution(config,pins)
+        with patch('sys.stderr',StringIO()),self.assertRaises(SystemExit):
+            runbook.arguments(['--execute','--server-python','/root/vllm-venv/bin/python'])
+        args=runbook.arguments(['--execute','--server-python','/root/vllm-venv/bin/python',
+                               '--scorer-python','/root/svenv/bin/python'])
+        self.assertEqual(str(args.scorer_python),'/root/svenv/bin/python')
+        self.assertIsNone(runbook.arguments([]).scorer_python)
+
+    def test_runtime_fingerprint_reaches_every_gate_and_job(self):
+        calls=[]
+        with redirect_stdout(StringIO()):
+            runbook.execute_jobs(self.fixture(),{'model':jev_api.MODEL,'revision':'a'*40},'python',
+                                 runner=lambda command,check:calls.append(command),runtime_fingerprint='c'*64)
+        self.assertEqual(len(calls),4)
+        self.assertTrue(all(c[c.index('--execution-fingerprint')+1]=='c'*64 for c in calls))
+
+    def test_build_preflight_failure_cannot_launch_gpu_server(self):
+        config=self.fixture();config['gpu_runtime']='06-jev-patterns/config/gpu_runtime.json'
+        args=SimpleNamespace(server_python='/fake/server/python',scorer_python='/root/svenv/bin/python',
+                             model_dir='/fake/model')
+        with (
+            tempfile.TemporaryDirectory() as d,
+            patch.object(runbook,'EXP',Path(d)),
+            patch.object(runbook,'validate_assets'),
+            patch.object(runbook,'verify_model'),
+            patch.object(runbook,'runtime_lock',side_effect=ValueError('Torch CUDA build differs')),
+            patch.object(runbook.subprocess,'Popen') as launch,
+        ):
+            with self.assertRaisesRegex(ValueError,'Torch CUDA build'):
+                runbook.run_session(config,{},args)
+            launch.assert_not_called()
 
     def test_price_inversion_swaps_high_low_preserves_volume_and_is_involution(self):
         frame=pd.DataFrame({'Open':[10.,13.],'High':[14.,15.],'Low':[9.,10.],
@@ -187,6 +266,31 @@ class FrozenArtifactTests(unittest.TestCase):
                 # indexes, source and reference boards required for preparation.
                 self.assertIn('/charts/',relative)
         self.assertEqual(config['execution_status'],'not_run')
+        self.assertEqual(config['runtime']['concurrency'],1)
+        self.assertEqual(config['runtime']['batch_size'],1)
+        self.assertEqual(config['prior_attempt']['prediction_calls'],0)
+        pins=json.loads((runbook.REPO/config['gpu_runtime']).read_text())
+        runbook.validate_execution(config,pins)
+        observed=json.loads((runbook.REPO/pins['observed_inventory']).read_text())
+        for role in ['server','scorer']:
+            for name,value in pins[role+'_packages'].items():
+                self.assertEqual(value,observed[role][name])
+        self.assertTrue(all('/frozen_v3/' in j['out'] for j in config['jobs']))
+
+    def test_archived_diagnostics_and_requirements_match_runtime_contract(self):
+        folder=EXP/'shared/results/diagnostics/2026-10-10'
+        diagnosis=json.loads((folder/'diagnosis.json').read_text())
+        for name,expected in diagnosis['source_sha256'].items():
+            self.assertEqual(runbook.sha(folder/name),expected)
+        self.assertEqual(diagnosis['rows_over_0_01'],3)
+        self.assertEqual(diagnosis['argmax_agreement_count'],20)
+        pins=json.loads((EXP/'config/gpu_runtime.json').read_text())
+        for filename,key in [('requirements-scoring.txt','scorer_packages'),
+                             ('requirements-jev-server.txt','server_packages')]:
+            requirements=dict(line.split('==') for line in (EXP/filename).read_text().splitlines()
+                              if line and not line.startswith('#'))
+            self.assertEqual(requirements,pins[key])
+        self.assertFalse(pins['correction_gpu_verified'])
 
     def test_declared_jobs_cover_all_arm_indexes_and_option_labels(self):
         config=self.config
