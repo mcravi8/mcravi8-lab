@@ -1,0 +1,2 @@
+file,phase,attempts,error,timestamp_utc
+,parity,1,Parity failed: max probability difference 0.018411 > 0.01; scoring blocked,2026-10-11T02:35:07.354027+00:00

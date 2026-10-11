@@ -1,0 +1,19 @@
++ mkdir -p /root/repo
++ tar xzf /root/r06.tgz -C /root/repo
++ curl -LsSf https://astral.sh/uv/install.sh
++ sh
++ export PATH=/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ uv venv -q /root/venv --python 3.12
++ VIRTUAL_ENV=/root/venv
++ uv pip install -q 'vllm @ https://wheels.vllm.ai/7d0b4e57aac4c4323225b0eee9ae960ce75ffffe/vllm-0.31.1rc1.dev253%2Bg7d0b4e57a.cu129-cp38-abi3-manylinux_2_28_x86_64.whl' -r /root/server_full.txt
++ /root/venv/bin/python3 -c 'import importlib.metadata as m,torch,vllm;print(vllm.__version__,m.version('\''torch'\''),torch.version.cuda,torch.cuda.is_available())'
+0.31.1rc1.dev253+g7d0b4e57a 2.13.0 13.0 True
++ uv venv -q /root/svenv --python 3.11
++ VIRTUAL_ENV=/root/svenv
++ uv pip install -q -r /root/repo/06-jev-patterns/requirements-scoring.txt
++ cd /root/repo
++ export JEV_SERVER_PYTHON=/root/venv/bin/python3
++ JEV_SERVER_PYTHON=/root/venv/bin/python3
++ /root/svenv/bin/python 06-jev-patterns/scripts/run_gpu.py --execute --model-dir /workspace/models/JEV-27B-VL --server-python /root/venv/bin/python3 --scorer-python /root/svenv/bin/python
++ echo 'RUN_EXIT 1'

@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/root/repo/06-jev-patterns/scripts/run_gpu.py", line 251, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/repo/06-jev-patterns/scripts/run_gpu.py", line 248, in main
+    run_session(config,contract,args)
+  File "/root/repo/06-jev-patterns/scripts/run_gpu.py", line 214, in run_session
+    wait_ready(process,port,contract)
+  File "/root/repo/06-jev-patterns/scripts/run_gpu.py", line 179, in wait_ready
+    if process.poll() is not None:raise RuntimeError('Native JEV server exited; inspect server.log')
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Native JEV server exited; inspect server.log
