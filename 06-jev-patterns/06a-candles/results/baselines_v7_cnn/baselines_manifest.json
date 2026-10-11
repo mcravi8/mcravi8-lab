@@ -1,0 +1,20 @@
+{
+  "options": [
+    "Doji",
+    "Hammer",
+    "Shooting Star",
+    "Bullish Engulfing",
+    "Bearish Engulfing",
+    "Morning Star",
+    "Evening Star",
+    "None"
+  ],
+  "train_rows": 600,
+  "eval_rows": 600,
+  "training_index_sha256": "a4e138f2689bb66efa29893f67d5990260c36c8c06a2e5a453ea9c6bfbbc7522",
+  "evaluation_index_sha256": "a4e138f2689bb66efa29893f67d5990260c36c8c06a2e5a453ea9c6bfbbc7522",
+  "source_sha256": "2789a585f004895873e048b7e70aa0ba6ceab3b96808369b38558cacb1fe7089",
+  "models": [
+    "cnn"
+  ]
+}

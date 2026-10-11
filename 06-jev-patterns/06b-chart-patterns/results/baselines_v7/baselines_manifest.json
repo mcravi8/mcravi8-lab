@@ -1,0 +1,22 @@
+{
+  "options": [
+    "Head and Shoulders",
+    "Inverse Head and Shoulders",
+    "Double Top",
+    "Double Bottom",
+    "Triangle",
+    "Bull Flag",
+    "None"
+  ],
+  "train_rows": 82,
+  "eval_rows": 1200,
+  "training_index_sha256": "0e780b8f7fbd30bc16296ba6eda82ecfe49d060fb290094ddb81282515a101b3",
+  "evaluation_index_sha256": "fdc8a06089583bc229129c036e0b2c794dff1bd986aa6c1f567f52ee6eed05d3",
+  "source_sha256": "2789a585f004895873e048b7e70aa0ba6ceab3b96808369b38558cacb1fe7089",
+  "models": [
+    "train_prior",
+    "train_majority",
+    "uniform",
+    "logistic"
+  ]
+}

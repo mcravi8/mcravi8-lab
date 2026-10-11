@@ -1,0 +1,26 @@
+{
+  "options": [
+    "Head and Shoulders",
+    "Inverse Head and Shoulders",
+    "Double Top",
+    "Double Bottom",
+    "Triangle",
+    "Bull Flag",
+    "None"
+  ],
+  "baseline": "uniform",
+  "synthetic": false,
+  "synthetic_dataset": true,
+  "prediction_origin": "baseline",
+  "trained_on": "None; uniform has no fitting",
+  "uniform_tie_rule": "First ordered option wins argmax ties; randomized uniform expected accuracy is 1/K",
+  "uniform_random_expected_accuracy": 0.14285714285714285,
+  "numeric_features": "Visible prices / first visible close - 1; volume / visible mean; 32 evenly spaced positions",
+  "logistic_fixed_hyperparameters": {
+    "C": 1.0,
+    "max_iter": 1000,
+    "random_state": 0
+  },
+  "input_rows": 1200,
+  "predictions_sha256": "36b45e48b15dc5ce42b446f08c5c9865275f529772e41cc33cb941fa85975d1e"
+}

@@ -1,0 +1,601 @@
+file,ticker,end_date,label,clear,probabilities,prediction,latency_ms
+charts/d712ec0364c9db9d9041.png,ABBV,2021-01-26,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/292d16a8914f9ce63de7.png,ABBV,2023-11-22,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/64fcb05604b4b58b9879.png,ADBE,2021-02-10,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/285536883e2b719e6ece.png,AMD,2019-12-18,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b7648278f1bc1991625c.png,AMD,2020-12-03,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3aa0fe02410dc1813866.png,AMD,2022-02-23,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1cfdf0d1da61d13ed405.png,AMZN,2025-06-25,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/0c2bf067d983d9846977.png,BA,2023-05-10,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4003e7b689d92094299d.png,BA,2024-05-06,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7fa463e61c0634a8822e.png,BAC,2023-01-09,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/19372c37313fb1d28862.png,BRK-B,2020-09-10,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d61e76bae6d2e032a0b7.png,BRK-B,2022-09-02,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/59a43887ca11ef668e72.png,BRK-B,2025-01-08,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/fc8bfd8e018c91dcbc84.png,CAT,2020-12-28,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/38a85c7fb3d06584da92.png,CAT,2026-05-13,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/0f1fe88470cf03b43e4e.png,COST,2020-11-09,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4a1b0eccc294dc8b75b6.png,COST,2021-04-22,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4d00409e87825fb0c1cc.png,COST,2023-04-12,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/ef9009db3d4d176aa0c3.png,COST,2024-02-09,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6ce372d6142dfd3f2eb2.png,CRM,2022-04-14,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f3f630b00b8a60242e02.png,CSCO,2021-07-12,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/cb6e82564606735890f5.png,CSCO,2024-03-07,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2505b8214622982fb988.png,DIA,2019-10-01,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/37c6be240d77d763d797.png,DIA,2023-12-06,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/709d727d469b6a4b887a.png,DIA,2024-04-09,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b2f94f18e5383386ec2b.png,DIS,2021-08-26,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2d0033923033e388d63b.png,GE,2019-12-13,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/ceb711d1b54971baa827.png,GE,2023-10-12,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/32e318c5391b04e06172.png,GS,2021-09-16,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2bdedb1da08a012692fe.png,GS,2022-02-23,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7c7abde0db30a0b4135d.png,GS,2025-06-04,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6902a881d06a182f44a9.png,GS,2026-06-05,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7468599c57f842ca8f28.png,JNJ,2019-10-24,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d07e56fb9ce465810154.png,JPM,2024-10-31,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/56adeb29b6f3245c5811.png,JPM,2025-08-13,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b634e5076c9b0287e0bd.png,KO,2019-09-20,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/82cc930c1105965de132.png,KO,2024-12-11,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/75f9bd96d347ca305961.png,MA,2021-03-23,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2bc5c44a24074c0a79b6.png,MA,2024-12-09,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/99acc6f5150cc88e0073.png,MCD,2026-05-06,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/60626912c7718178935e.png,META,2021-01-14,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/dd24a5e9b89b28ebed53.png,META,2022-09-02,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/54768eeaf0659bc7b967.png,META,2024-02-09,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7426766e980498cc9e0c.png,META,2026-09-10,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/9f3b6552800faf01872d.png,MRK,2019-09-04,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7c7ecee8caea124f5c6d.png,NFLX,2019-08-30,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/07bc34d2013de947619b.png,NKE,2023-06-05,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/eee1be99d301571502ff.png,NVDA,2021-11-22,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b35dec916cbc1591bda2.png,NVDA,2022-02-23,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b20d0510da998ed00aa4.png,NVDA,2026-04-21,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c017ef291e60d75070ed.png,ORCL,2019-12-24,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/27055b345fa0128c3218.png,PEP,2021-02-08,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d3b011f30bb6e3ae06cd.png,PEP,2023-10-26,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/994de128933f73b15052.png,PFE,2020-12-03,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2b5714a39ebfe267944d.png,PG,2020-02-07,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/e3c530136b26336697ec.png,PLTR,2025-06-17,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b730b10266fc8071016b.png,QCOM,2021-07-06,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/56a6d2236b9da3a0eede.png,QCOM,2024-05-23,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3702c6b1c205c34387cd.png,QQQ,2019-09-24,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/05cef1e643b06058d5aa.png,QQQ,2023-09-20,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/60668d889b741739cec3.png,QQQ,2024-02-16,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/fdc99fb803a348e2d23a.png,QQQ,2025-12-17,Bearish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/49a4b2fdea0ce8b8ca32.png,SPY,2021-08-02,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/cefa1030604b1200847c.png,SPY,2022-01-07,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3ea398cd3a12a7852adf.png,TXN,2021-02-05,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/98474da01b78ccabf340.png,TXN,2022-11-02,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/0ebff217f6d82a9c5cf2.png,UNH,2023-07-12,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2b58243f7d26441be814.png,V,2023-03-22,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a6204b2b41507b7a965d.png,WFC,2019-06-26,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a63a64667e1f6fe265b8.png,WFC,2026-06-17,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/02c0610f8d57ae418d05.png,WMT,2019-11-08,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b479bec7331bff5f0d73.png,XLF,2020-12-18,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2265e2c31134bc666cb3.png,XLF,2022-09-02,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/74ddf32f3323f15a8a4c.png,XLF,2026-05-26,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c1fd72a0861eac51cfb6.png,XOM,2026-09-03,Bearish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/03b5520fe4544f4742ae.png,ABBV,2021-12-20,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8f033fb9dcd2acefb811.png,ABBV,2023-10-06,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/fa0745f1d5dbc2d0da68.png,ADBE,2021-08-19,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a0d719e6e08e871df886.png,AMD,2019-08-28,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4d1ada4464d2b8b38f9a.png,AMD,2020-11-16,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/918ea86c8729a4edf242.png,AMD,2022-11-30,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/cffe54d4ab1f3c5eb58b.png,AMZN,2025-03-11,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/9e688d524a435e001cdc.png,BA,2023-03-16,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/829af441acf5935fd185.png,BA,2024-12-24,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a576b96ee0d623d39bd0.png,BAC,2023-01-13,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/ec4f27140692ecac0997.png,BRK-B,2020-09-25,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c373dcfbc8a4371fe670.png,BRK-B,2022-09-07,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1f2342955afb2a7dd81d.png,BRK-B,2025-09-30,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/cd9f2b96eb2700ca402e.png,CAT,2020-05-14,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/31981d857180c49b473f.png,CAT,2026-07-08,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/db2c6b0ddeae2cb0ba30.png,COST,2020-06-22,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/28bfc1d3e1a4bd6946ee.png,COST,2021-10-18,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c5e76132efaffd747b07.png,COST,2023-09-27,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2e460ea14eaf4d7f4388.png,COST,2024-02-28,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/840aa25414a4660df7f1.png,CRM,2022-12-19,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b696729b112f548b79c1.png,CSCO,2021-08-19,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/39c378fdcc11bbb95293.png,CSCO,2024-03-08,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/dabb807fbc5efa7a107f.png,DIA,2019-10-10,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/92e96815e2b199b502e0.png,DIA,2023-07-10,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a34cf1aaf3956504fb51.png,DIA,2024-10-16,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/387d0e7faa88191390ed.png,DIS,2021-01-11,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/0d6f0c196b4f4bfa7387.png,GE,2019-05-10,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6dd1e1f7f317eeffe916.png,GE,2023-12-08,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/979903114057f7558bb4.png,GS,2021-02-12,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2f9c19c4f69f4d9f090b.png,GS,2022-08-05,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1290bdee572005ad8b04.png,GS,2025-04-24,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/efe22e411e657027d6fc.png,GS,2026-04-27,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5a47d7ad27a62123434d.png,JNJ,2019-11-08,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/0de9e2b525cb19053c55.png,JPM,2024-03-04,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/0f22b60a680ac5ab0f76.png,JPM,2025-12-03,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/63c3b8905501380df8de.png,KO,2019-12-02,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5742a3c566791889ecb2.png,KO,2024-03-20,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b5674ffc8efb3bc45e6d.png,MA,2021-10-06,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8c9643e7072475ad0803.png,MA,2024-07-11,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c5a508bb64183f3d83b7.png,MCD,2026-02-03,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a4dfb5204a813555725b.png,META,2021-10-25,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/bdb0f711153fe9b554a9.png,META,2022-08-15,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1cd09e7074b12a16ef23.png,META,2024-05-01,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/19608cee613ad2d1737d.png,META,2026-07-09,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/14062fc89c58182864a8.png,MRK,2019-04-29,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4d5686abc06552b06c41.png,NFLX,2019-11-08,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/12b9b2abb9e54e54530c.png,NKE,2023-04-21,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/85c45ffd8b6c6a88575e.png,NVDA,2021-06-02,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/deeb25d05bc792145281.png,NVDA,2022-06-02,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8d40490f34a4019a235b.png,NVDA,2026-05-28,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/496397abb6d82c4132bf.png,ORCL,2019-10-03,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/024e3235dfcccdb11259.png,PEP,2021-06-14,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4d4f0ad1062457dbad8e.png,PEP,2023-06-02,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/9b77f5ae60d856f17d66.png,PFE,2020-01-31,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/675286fdeb672d79b12f.png,PG,2020-06-18,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/90768c2e93231db15882.png,PLTR,2025-09-02,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/655dcd718071bf690ff2.png,QCOM,2021-08-27,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/762a50e43e670157d4af.png,QCOM,2024-03-20,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4cd86f6ea3d6a58fc524.png,QQQ,2019-08-13,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/37e507d815bfe1ab22b4.png,QQQ,2023-06-22,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4f14ada11011bbae9980.png,QQQ,2024-06-10,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/752c922304ba4953c2fb.png,QQQ,2025-07-02,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/af8b0cb513b248b6b0aa.png,SPY,2021-08-12,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/be6afa1086e7bc5b86d2.png,SPY,2022-08-24,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a67f44c2547ad8a38507.png,TXN,2021-05-19,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b9bacabc2312efff27fe.png,TXN,2022-01-10,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/54057c203ffbe1a1ba55.png,UNH,2023-02-06,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/bbb1c216c3c77af171ec.png,V,2023-06-21,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c8d699a488a63800cca2.png,WFC,2019-10-29,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/70b4241d834ac69f1ead.png,WFC,2026-09-04,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/96189c7269ca3fe362c8.png,WMT,2019-09-09,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/fa39316f4a52bef09560.png,XLF,2020-08-27,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5a91bf9d19f2bd2c3bc7.png,XLF,2022-08-05,Bullish Engulfing,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/22c114d72620a5ea9b29.png,XLF,2026-04-13,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/73ef696427d07842fbd1.png,XOM,2026-01-02,Bullish Engulfing,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/ce878a4b7bb3e40d130c.png,ABBV,2021-03-01,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/921cda2267190f46ec3e.png,ABBV,2023-01-20,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2c734d5f1c156803b470.png,ADBE,2021-06-02,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/fbdde8ff7b13e7c20d27.png,AMD,2019-10-07,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/de5c494a218ccaaad94a.png,AMD,2020-12-24,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1a7d9f299d4cb7179a51.png,AMD,2022-03-23,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c23f606719ec6c50a24e.png,AMZN,2025-12-22,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/0cc1c4e511994f36edbc.png,BA,2023-02-15,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/72e2a486a1b7caf9f4cb.png,BA,2024-07-11,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/dfe1cd77c2c3b4682359.png,BAC,2023-09-11,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d349a16f1c2f72113ea2.png,BRK-B,2020-11-03,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a9abc22d5547a1169b43.png,BRK-B,2022-12-19,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8ea85c67d56ddce1b366.png,BRK-B,2025-05-21,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1a35e9c0c0f5f20832d4.png,CAT,2020-09-28,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1db9db0e60d2b45fa438.png,CAT,2026-07-21,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d590a28ecc2a421f4b3c.png,COST,2020-08-14,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5a73cfb3823ad46fdf98.png,COST,2021-01-28,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b96a0c65ebb0be583cdb.png,COST,2023-09-07,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/61d50fbf6ef85cd184c4.png,COST,2024-04-11,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/84f3677a2c27e5f5abd2.png,CRM,2022-10-26,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7d763e0bb9783f355926.png,CSCO,2021-03-25,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8bcc2ceed0b8a1906842.png,CSCO,2024-01-02,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/cb4dae2cc6e14c84bd27.png,DIA,2019-08-21,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/98be4a33a4d7544ba4ee.png,DIA,2023-03-14,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a75b3aa42786294e2a22.png,DIA,2024-09-23,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8ec21f02105f0011433d.png,DIS,2021-03-22,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f842a472a7412d38eb2f.png,GE,2019-08-28,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/15db0f7ee4f69c74e04f.png,GE,2023-06-22,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1873786320b78a9574b4.png,GS,2021-07-29,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b510299e59b62b206ee3.png,GS,2022-01-20,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8970994c86000f52b1ea.png,GS,2025-08-13,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5d0b04cedb6786e6f2db.png,GS,2026-08-07,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8054605fc6eaca3d34aa.png,JNJ,2019-12-16,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c1b89806730fed01cb64.png,JPM,2024-02-08,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3846f131f44ee6833542.png,JPM,2025-03-18,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/acb26d4a3528521aba54.png,KO,2019-10-16,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2453fac1f98e76d9f78a.png,KO,2024-05-28,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f133fe372baa1ce379dc.png,MA,2021-06-10,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/675ef76f156c61355410.png,MA,2024-05-10,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/78be4d585609696a4ad7.png,MCD,2026-02-11,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/663b181068624ca2014e.png,META,2021-02-10,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/03d5e818d2096c230492.png,META,2022-03-23,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6b8974eff94bd3b096b6.png,META,2024-08-29,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/fec319537fbd879b0af6.png,META,2026-06-23,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3d801cb2431e5c79e2c7.png,MRK,2019-11-11,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4517e82470ac79106b4e.png,NFLX,2019-04-30,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6f6f3376967d97be7e16.png,NKE,2023-01-24,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1a146d2e28e2ace4675a.png,NVDA,2021-10-07,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/91f9abbaa23f9b002302.png,NVDA,2022-10-11,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/237d604fe1653e0991ac.png,NVDA,2026-03-16,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f222d1cf3a8c9494eff9.png,ORCL,2019-10-21,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/45721dd8ac564e324237.png,PEP,2021-09-16,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/899e979cee1d0f6c38c3.png,PEP,2023-04-18,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b45bd0468d912285227e.png,PFE,2020-04-15,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/67530b4dae2e6c037334.png,PG,2020-02-04,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b1c076551e425d96c376.png,PLTR,2025-09-23,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/954154644dffbfd661e1.png,QCOM,2021-02-08,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/ea262027278ae7c56cea.png,QCOM,2024-12-13,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a9fe9db24fa15e5c53b5.png,QQQ,2019-11-04,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/394660b43c43fb4a7e3c.png,QQQ,2023-02-06,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f1f04fb1d753b83ebfdf.png,QQQ,2024-05-22,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/ad2a68ca167fd4c53657.png,QQQ,2025-01-08,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1735db134290c4cd71d9.png,SPY,2021-04-06,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c466b8f8d55e5276f05c.png,SPY,2022-10-11,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a617619affc4ccf3ad3e.png,TXN,2021-08-30,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6c72e690afb990fbadf6.png,TXN,2022-12-27,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f9d0b572b7742436c5cc.png,UNH,2023-12-08,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/573a2d57aa64ac7c00b0.png,V,2023-06-02,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/89b2c6dee1cdb1e75b4f.png,WFC,2019-09-19,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/487fa8a4d45684418164.png,WFC,2026-07-27,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/56a69ffee1c25b774702.png,WMT,2019-09-30,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/38abdc099ee51f3eb51e.png,XLF,2020-05-08,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/9a08e24b38bb2f1c238a.png,XLF,2022-10-31,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8b8aa629ff1de7d924e5.png,XLF,2026-08-27,Doji,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2a445a6692f7a621cc23.png,XOM,2026-07-24,Doji,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/ab72f16dcf394d53a9f5.png,AAPL,2019-10-02,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4b0e7b298fc86d05ed6a.png,ABBV,2021-10-11,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2e2caf8b295d4d0637c4.png,ADBE,2020-09-03,Evening Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8f09b91e97632bdc7eab.png,ADBE,2021-04-19,Evening Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3fea1cb2a5078271a902.png,ADBE,2023-11-09,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/547344b62b263c151c7b.png,ADBE,2025-08-26,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c38c63ad9707b5e46f2a.png,AMD,2022-03-30,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/81174817c42bddc5723e.png,AMZN,2024-09-25,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d798dd4617aa54c1b39e.png,BA,2023-10-12,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1ce5207c68969e3c32a5.png,BA,2024-04-01,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6bf09d50a0009c24a5a0.png,BA,2025-01-02,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5a16ff6985f1ac500864.png,BRK-B,2020-04-13,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c11877b27eaec7ec4664.png,BRK-B,2022-03-29,Evening Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/82dacd8e6720f81cc535.png,BRK-B,2024-02-26,Evening Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/92e0d9bd79a902abb36f.png,CAT,2021-06-07,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/69d6f6e75e0316f48bae.png,CAT,2026-01-23,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8acb692c018d5ed6086b.png,COIN,2022-06-01,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b72c61ea46b1a3ee75a8.png,COST,2023-11-16,Evening Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d4a2cf760815be516687.png,CSCO,2021-11-11,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c96be99629808a469689.png,DIA,2019-12-30,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b5314effd4d50f021ff0.png,DIA,2024-04-01,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/45fb9070a894fe2f50c1.png,DIS,2021-02-25,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/116cf309c52b16705bca.png,DIS,2023-02-09,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/288a005c53c8f59dd28b.png,GE,2021-07-02,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/e9b54669b3e5065a8b19.png,GOOGL,2020-06-24,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a84f274b4b9e83147734.png,GS,2026-03-26,Evening Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/ee95eee20ed34407478d.png,HD,2019-09-03,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/bf3cdad247dff98bfff4.png,IBM,2019-05-02,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/0adf2030b6d1e82f2e3b.png,IBM,2021-11-09,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/79dfd732ddd3e7b91067.png,INTC,2024-03-13,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/97d493c3dd1de1a39f98.png,INTC,2026-03-12,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f5c62f5be663486c2559.png,IWM,2024-11-12,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/37b42d1f763e7188a676.png,IWM,2026-03-05,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d95d154e27794df240b0.png,JNJ,2019-05-28,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a217b91b000383ed06b1.png,JNJ,2024-09-05,Evening Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2e6ff58a830536b04e4d.png,JPM,2021-08-13,Evening Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c931005b6779e77bc4e8.png,KO,2019-10-02,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d483fd09064f7c253283.png,KO,2022-04-18,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/008cf323c46b5de8f740.png,KO,2026-06-30,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/bba1512234bc742c34da.png,MA,2022-09-13,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/129e9c293495f197f299.png,MA,2024-03-22,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4c1af47b9d5955029790.png,MCD,2025-12-19,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4303cc972036c8f2f55b.png,MRK,2021-04-22,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7b90b4f27bcd201679b6.png,MRK,2022-07-18,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/e91a34f5453b0362e734.png,MRK,2023-06-26,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/0bab6b42a6f48be3f5b2.png,MSFT,2020-06-24,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5752bb301de995403110.png,MSFT,2023-03-20,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/de864aeea9ad8a4a8cbe.png,NFLX,2023-07-20,Evening Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a34409b0be8d8a55dd88.png,NKE,2025-02-05,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/59ec65eb6917e712fff6.png,NVDA,2022-07-22,Evening Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5e97546950df071ca74c.png,ORCL,2021-08-18,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/81d8404ef8a2706b8680.png,PEP,2019-10-25,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2a56458934c3b5eb3aa8.png,PEP,2021-11-11,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/cf7fb9388e4a90c5fe03.png,PFE,2022-10-19,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/eba3ef32ea55cc3c29ed.png,PFE,2023-07-25,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/ddd70d9522cfffcf9681.png,PFE,2026-06-15,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/0b1a9d0989dfdacbc262.png,PG,2020-10-19,Evening Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2ea84204074c89fef264.png,PG,2023-06-23,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/79a7de83889604610493.png,PG,2024-02-26,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a91e9a8b828eaa3ba725.png,PG,2025-06-02,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8bb0d07101b1242cba68.png,PLTR,2021-09-20,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/acec30cb12076047ed16.png,PLTR,2024-04-30,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/df6f0203532bc3243746.png,PLTR,2026-06-02,Evening Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c5f79d0a1f8294d718b2.png,QCOM,2021-11-10,Evening Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c424436126d00e01c7cd.png,QCOM,2024-06-20,Evening Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/94b3c46058c197f27059.png,QQQ,2019-11-20,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4eddca1e2253e2d0cff3.png,SPY,2019-07-16,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/822953bc5b6ce09b3e8f.png,TSLA,2020-02-05,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/9855c72d9bc75223be5c.png,TSLA,2021-11-23,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c49ec4848132539599b9.png,TXN,2021-05-10,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6db128d3e2ac75887e3b.png,TXN,2022-01-05,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/602912b2bf003ecd038a.png,TXN,2023-03-06,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/e66974160f8e6fc47872.png,XLF,2020-08-31,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/26812bb6d7a34fc0b136.png,XLF,2022-11-14,Evening Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1b69e60bd595ad26943a.png,XOM,2026-01-06,Evening Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7215396b9395bf88ab31.png,ABBV,2021-06-29,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/00ee65ba24581ee24594.png,ABBV,2022-04-25,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/86145724f9efec37cf27.png,ABBV,2023-05-08,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/46ce2c1cf3cda59bd0e8.png,ABBV,2024-09-12,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2bfc4a169b08750ea6aa.png,ADBE,2021-12-17,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4962f2ad391dea344dce.png,ADBE,2023-08-08,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7cfaea30a0391e5adce5.png,AMD,2020-05-27,Hammer,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d8ea3cf696f809f4edb6.png,AMD,2022-06-23,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/dcc49619e0c60a38b22c.png,AMZN,2024-05-21,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b738e48c8bd5328b2973.png,AMZN,2025-11-19,Hammer,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1a477bcf610535c9822a.png,BA,2023-09-19,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6fe210fc8fed1aafb3cb.png,BA,2024-08-27,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5450757755dd93c9b0f8.png,BA,2026-03-19,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a9536d55b63530a61725.png,BAC,2023-03-02,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/faae9f3ecf6dc35718ec.png,BRK-B,2020-09-17,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8ee15ffdf1af293144ae.png,BRK-B,2022-09-01,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/e7ac643875806da778aa.png,BRK-B,2024-12-10,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d667fe68cb3e905a4d7d.png,BRK-B,2025-06-05,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/71fd0aba5e2a10600db4.png,CAT,2020-05-13,Hammer,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/38b39128d6977f9edaaf.png,CAT,2026-07-07,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/bc37f9ff08dce1584098.png,COST,2020-01-30,Hammer,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7362a29283d85a62efd7.png,COST,2021-02-12,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/60bc28912b618d42ec14.png,COST,2023-05-17,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/bcfc7cb2c784d2035624.png,COST,2024-10-31,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b4ffaa78cef26ea88e36.png,CRM,2022-05-24,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/81ed285811a9732fddef.png,CSCO,2021-01-21,Hammer,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/18dd0948d8d352242108.png,CSCO,2024-05-21,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/297b564dfa3722a0446b.png,DIA,2019-05-29,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/01f52f69d3f1309e961f.png,DIS,2021-05-06,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/85cab20dd753b6200c27.png,DIS,2025-02-11,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/9a0422a784d2d12909c4.png,GE,2019-10-09,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4c0cbd297d1d2c96003e.png,GE,2021-10-06,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b4ee91897903023185c9.png,GE,2023-11-01,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/ad9cc3f8f5f8a16895c8.png,GS,2021-12-20,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2c31810a3d97ed2858ab.png,GS,2022-12-30,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/88c8ce2e64c39bd06d4a.png,GS,2025-10-17,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/9171ce8a48a6a75f7007.png,GS,2026-02-20,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a93276d92969f3eed9df.png,JPM,2024-12-16,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/0073923154079be77e74.png,JPM,2025-10-17,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3b327af7f83cabc8e382.png,KO,2019-09-10,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/03855481974692ed515f.png,KO,2022-02-14,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f34da77c85ac3a51e5dc.png,KO,2024-09-11,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/0ff021993adb258786b4.png,MA,2021-08-16,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/05f55d5e3b613dc3467a.png,META,2022-06-14,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/43d58332f7c6a076d097.png,META,2024-05-17,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/759c737bbbb0f307fabb.png,MRK,2019-09-10,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/16bd922fef38ac70a33b.png,MSFT,2024-11-04,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7eba6c28d4498b22b34f.png,NFLX,2019-08-07,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7e2a49e1f02eaa4ca7fa.png,NKE,2023-05-24,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d18ec7278f86932a1ece.png,NVDA,2022-09-29,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3132c7d9e5fa938079cf.png,NVDA,2026-05-27,Hammer,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/ca79531ad1bfc6530e39.png,ORCL,2019-09-18,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/301f7c074acc2e8f0a28.png,PEP,2021-04-14,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/dcc33a176b728d1dfb4e.png,PEP,2023-06-29,Hammer,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/03e9278151f021a408ae.png,PFE,2020-12-17,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2a136f04e038ea0def64.png,PG,2020-11-19,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f748085cd516a431a0c4.png,PLTR,2020-12-15,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/88b1b97db3ecdae9888f.png,PLTR,2025-08-15,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7a5ecdd6b02688dd8e31.png,QCOM,2020-05-22,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c57dde478d3aad81c3fb.png,QCOM,2021-10-01,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5c4eaa32eff4b9b5da9f.png,QCOM,2024-07-18,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/9808c829fc8455ac5ec3.png,QQQ,2019-05-23,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d522c95254a213e5524c.png,QQQ,2023-08-08,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/54949a97bb708f5536d3.png,QQQ,2024-04-02,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/344e34cbef8f2e24e7e4.png,QQQ,2025-11-07,Hammer,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f3d565e521e186aa735e.png,SPY,2022-09-16,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5ceadc7562c1e9d22955.png,TXN,2021-08-12,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5ea776199a0453f3e2d5.png,UNH,2023-03-30,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/67874fe20c37dc7b7f65.png,UNH,2025-06-23,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/73407a05ee65f34189ed.png,WFC,2019-08-07,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/adba5b74772c11c11173.png,WFC,2026-05-15,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a403a4e143e3d528cbba.png,WMT,2019-10-21,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8e27a37008913e4a4845.png,XLF,2022-09-01,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/35ba30e027a6e37a9040.png,XLF,2026-09-15,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/96455819b1e5de62175e.png,XOM,2026-04-17,Hammer,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5828830a5520a29411e6.png,AAPL,2020-03-24,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/bb35a56dd2c2ae1d4c09.png,AAPL,2022-12-21,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/12aece59bd8c6259f9b4.png,ADBE,2020-03-13,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2d753309f819f6d2c0a5.png,AMD,2022-10-03,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/eb3b58490fdc063787aa.png,AMZN,2023-03-03,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/e587b3fd8c13f87d577d.png,BA,2022-05-03,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/bd12b6802736a7ec1d22.png,BA,2023-10-06,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/eaa4a51c9416abc0356c.png,BAC,2019-10-04,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d148bf1b134665c833fa.png,BRK-B,2020-03-24,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/94c5f843be6b2926962b.png,BRK-B,2025-12-11,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f3dfae5df849dcb15730.png,CAT,2019-05-21,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6778f8b8e85749ec0ca6.png,COIN,2022-04-19,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/193cbe48739ff316cabe.png,COST,2023-08-03,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/40dbb5cc1e90d58b142a.png,CRM,2022-08-24,Morning Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/039d74a672f6bc9815dc.png,CSCO,2022-02-15,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/23d88850c6322f14bcae.png,CSCO,2025-09-09,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/171b85a0c911b57054f1.png,DIS,2020-02-19,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/bee2aca6c53122af2ee3.png,DIS,2021-08-05,Morning Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/605dfc104ba0a7b2fecd.png,DIS,2022-03-15,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1504e621179571796e4e.png,DIS,2026-01-21,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f2571824fa4d67c6b9be.png,GE,2019-12-06,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/716c193b06a3bd073456.png,GE,2021-06-21,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6738ad27e35c6cb27cb7.png,GOOGL,2020-01-02,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b953d2316dcb65b12ecb.png,GOOGL,2023-06-28,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6dc0fc3bcb55be183510.png,GS,2020-03-02,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8352ca7e39982d6ec501.png,GS,2026-01-02,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1287f62cd89a4092541e.png,IBM,2019-08-08,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/78868239eab4b25c6be0.png,INTC,2022-01-31,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/e0983735dadaf62f533b.png,INTC,2025-04-03,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8406afa04cab94db9786.png,IWM,2021-08-20,Morning Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3bbc3c41a2a80ad19710.png,IWM,2026-07-09,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/11280bd9efea6a25b0f3.png,JNJ,2019-10-04,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/821f9f70bb04d48468c1.png,JNJ,2025-10-30,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/9b3d187f8cc3fb653c9a.png,JNJ,2026-03-25,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/24e2f3a1399cc09c5704.png,JPM,2024-06-07,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2696fdc0427751cf50d9.png,JPM,2025-11-19,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/bf608f4fbbb645cea1a8.png,MCD,2022-09-07,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/687693a1848ff91fb882.png,MCD,2025-05-15,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2a1e4059a003c0b4155c.png,META,2022-02-09,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c98e733cae9cdc7afc33.png,MRK,2022-04-28,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/56abf1bf4aec5c4de0a9.png,MRK,2023-05-19,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/76992ee61b4ea1a9b5d9.png,MSFT,2023-08-21,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8578b1fdc7ffc20f6d2a.png,NKE,2020-03-24,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7f76ab4b05fcb80ffcd4.png,NVDA,2021-12-07,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/ac2c31a3851df5512644.png,NVDA,2022-03-15,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/413edcd673ebeb84e044.png,NVDA,2024-11-19,Morning Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/bb9d45ca46be127c8ca7.png,ORCL,2019-09-04,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2558ed7e4f2a70d08b35.png,ORCL,2020-09-09,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/35b3a5145940d82f07f0.png,PEP,2019-07-26,Morning Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7a57e489cbe8710e7d41.png,PEP,2020-01-06,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/31c40ac6ec5a671681de.png,PEP,2021-05-20,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c177d30341ddc4fc39de.png,PFE,2022-02-25,Morning Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/406315867f072001158c.png,PFE,2023-03-13,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c7a3d40f7e24afb9e49b.png,PFE,2024-11-13,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/965d5a31eabcbc684401.png,PG,2019-05-30,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6eea80ca75aa4a941fa8.png,PLTR,2021-11-24,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a1ed3ced6f6735ffa489.png,PLTR,2022-12-21,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6eea0ef002579e7f5447.png,QCOM,2021-02-24,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/249d11c8a8486d77d9a7.png,QCOM,2022-10-03,Morning Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6e7e8f2be116be9be671.png,QQQ,2019-05-03,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/edf663f05c45a0e1957a.png,QQQ,2022-05-13,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2c74f24d522bacd2789e.png,QQQ,2023-08-21,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/ff4bfe764c2e46e918f9.png,QQQ,2025-11-10,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c56e17b7381e2348080a.png,TXN,2023-08-14,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7dd3424a079814788f7a.png,TXN,2025-05-27,Morning Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/efb5a2dd3fc3125a12fe.png,UNH,2025-06-24,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/e33ff639dbbf25bd6fa4.png,UNH,2026-05-22,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/fc784a33333491d01661.png,V,2020-03-13,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/96754e83c5176cf5fcdb.png,V,2023-06-01,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4efdce74235b4af1ca21.png,V,2026-09-24,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7d8862ef8941cf54aff0.png,WFC,2019-07-18,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2ca911903f68c5c8fba3.png,WMT,2023-10-10,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8b64298830057f3826e5.png,XLF,2020-03-02,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/643bb00d121abbe73656.png,XLF,2026-01-29,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8757524dbd15470717ba.png,XOM,2019-07-29,Morning Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/df4a63bbd1e986d6bdbc.png,ABBV,2021-09-23,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2916eb7c66197ada9855.png,ABBV,2023-01-17,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/252436e982b3cc570575.png,ADBE,2021-09-16,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/0ea1bde6666ad9abb547.png,AMD,2019-06-14,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/10affef45d69d30b0145.png,AMD,2020-09-03,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c36591012ecd1e0e08a8.png,AMD,2022-08-29,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/0ddcff0bce3e2325e578.png,AMZN,2025-06-26,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6ce8623ddd9e8b32abb7.png,BA,2023-06-13,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d5c42f43ad63f44e57d0.png,BA,2024-01-03,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/115f1099dd246acb4868.png,BAC,2023-10-23,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f270dbff4a0f6d95afea.png,BRK-B,2020-02-20,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b68f3cf7189b21ac27e8.png,BRK-B,2022-02-17,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2459f42cb37e1d7712d7.png,BRK-B,2025-03-25,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3540efd602d6573f72bd.png,CAT,2020-11-06,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6350c31c466a0155ff25.png,CAT,2026-09-04,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5c93c2c36ee476d5c0a9.png,COST,2020-08-11,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a921c0ec2461cb223659.png,COST,2021-08-23,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/cc8ca412b6963f599fd5.png,COST,2023-04-21,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5234eecbd24587543a27.png,COST,2024-10-23,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/477517bef90c1160a86c.png,CRM,2022-06-29,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/51ccbb96c52bb1a671e5.png,CSCO,2021-06-15,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5c174c10a133d4128f19.png,CSCO,2024-08-15,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/9c759f78d29d7a8dd588.png,DIA,2019-05-21,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1d09fe8af439d16564d8.png,DIA,2023-10-09,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3eb7f0a51973980428fa.png,DIA,2024-09-20,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/017542771ad7dee6b1a5.png,DIS,2021-01-27,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/9b89cd99eb8a25ea026c.png,GE,2019-06-03,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3902f57833f5df01d4e0.png,GE,2023-09-11,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1b87667f4817722ec3bc.png,GS,2021-01-13,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a24443c6574ea466b334.png,GS,2022-09-20,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f3eafd0d85924fc7b337.png,GS,2025-05-13,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/618b884088891664a683.png,GS,2026-05-15,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b3c69fcf09cfac2f5270.png,JNJ,2019-10-18,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c3307bcc86449a1b8121.png,JPM,2024-04-15,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/dd123e2ae8301d8c2975.png,JPM,2025-07-09,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3840372dc32762ebafda.png,KO,2019-05-17,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/05352f03d3cadac05ae7.png,KO,2024-11-12,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6ce3fc5ea415c631645b.png,MA,2021-08-25,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/119cc240e84f20a775a9.png,MA,2024-01-08,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/129ef2ca34b53dd7fa7d.png,MCD,2026-03-18,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3596f19232ecf6758574.png,META,2021-11-16,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/75ef1dea573125e6df0a.png,META,2022-09-13,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6fd3a8c13c6da545d5d6.png,META,2024-02-20,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/deb2561c7d3a83c166b6.png,META,2026-05-27,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/95475b069ebfd8430977.png,MRK,2019-09-24,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/05c316f19b1f7f3b4cf4.png,NFLX,2019-10-08,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/63e0b1cc234e5d0f2b29.png,NKE,2023-08-23,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/e17192d0e54c1ae43343.png,NVDA,2021-11-18,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/dd5a8f1f3c16887a3403.png,NVDA,2022-11-16,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4a1d9e9f78db18f52525.png,NVDA,2026-06-08,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/91ede20b1bf538c3e857.png,ORCL,2019-07-09,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/28b1e1061408c0aaa27c.png,PEP,2021-02-11,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3f65fabec16123dd29ef.png,PEP,2023-09-14,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/e0a959eecdfbd0169631.png,PFE,2020-03-20,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/32669a1f1e0775a53e7b.png,PG,2020-10-05,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/86a5a65cd1c2636db4bb.png,PLTR,2025-04-09,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f334ca0e556a37c60c2f.png,QCOM,2021-10-05,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/16cabe9739d0886f32dc.png,QCOM,2024-06-03,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4c6f3f57f802ef46afd1.png,QQQ,2019-06-06,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/49a97bacb973820b1579.png,QQQ,2023-02-03,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/47777d1a60a93b94bd0b.png,QQQ,2024-11-21,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/fd87faa81f1383cde1c7.png,QQQ,2025-01-02,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8e705ad0fc6b8b1596f8.png,SPY,2021-10-04,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/cc17b1657dac0f079c55.png,SPY,2022-06-16,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d68d29dab79a9517d3cf.png,TXN,2021-06-07,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6dfbc9b4a8cbbf1197b1.png,TXN,2022-10-10,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/90bf7a1b02e44097567e.png,UNH,2023-10-11,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b330cdec2f879f951333.png,V,2023-02-13,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/9c1c0580777b996d86ae.png,WFC,2019-07-25,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b9fa90a221db42552021.png,WFC,2026-02-26,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/c6ff8fb6602ddad5eded.png,WMT,2019-11-04,None,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a373e747d6319c515bef.png,XLF,2020-11-02,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/80dfb6fcd72e42f4051c.png,XLF,2022-09-23,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/fc14bf75c8c0a05b470b.png,XLF,2026-07-06,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/62c38029dfab419d1372.png,XOM,2026-07-22,None,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2507cacea4d6121a224c.png,ABBV,2021-01-12,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2e9f83fac73a8df56185.png,ABBV,2022-11-14,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3f83cba058acf1daf895.png,ABBV,2023-12-04,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/cd80510ba607a7bb831a.png,ABBV,2024-03-12,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/e2393186a9c161212c67.png,ADBE,2021-03-16,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/26d0e9fec48a8b279d9a.png,ADBE,2023-06-09,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/ce29cafef00c5fad5335.png,AMD,2019-11-12,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/87373821543ec7d85da5.png,AMD,2020-06-10,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7e9afc13251cf3e0b241.png,AMZN,2024-12-02,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/13fcf6f8a8e813d96b96.png,BA,2023-04-03,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5a9561312cdec1823708.png,BA,2024-12-02,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/29c1316aa76fa3eeb002.png,BA,2026-02-13,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4b9abbdcb2c5fe3c3e8a.png,BAC,2023-04-14,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8806c626d37c09c3c1b4.png,BRK-B,2020-10-05,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/e8cc404d1de39190bdae.png,BRK-B,2022-07-08,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/e09ee4e6f3b6436d1e7f.png,BRK-B,2024-07-30,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/7acd9de002a8e96c3f25.png,BRK-B,2025-03-26,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/31ce3f5ae4f8a0c75452.png,CAT,2020-10-14,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/11cd6c9e8d8c5866ce55.png,CAT,2026-01-15,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/0abb5628aa9b760d22c6.png,COST,2020-02-19,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/56a2575f9bf65dcb360b.png,COST,2021-11-15,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/3bd430d948450868b140.png,COST,2023-11-15,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/ed59991c96f396ea9888.png,COST,2024-06-18,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4feee228653ee7377051.png,CSCO,2021-03-10,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/719235644e7335cdd446.png,CSCO,2024-06-21,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/050ebbc0bc3f31c597a4.png,DIA,2019-10-11,Shooting Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d9cdc5375d7aa337ce41.png,DIA,2023-07-20,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5436c6528b52cbcd39a0.png,DIA,2024-11-11,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/175c7b8e6fa0f449a2d2.png,DIS,2021-05-25,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/627cbcc69287bbcaa2e5.png,DIS,2025-03-19,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/9b44bfd52848b89c7d41.png,GE,2019-11-25,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a2878ca182926fb569fc.png,GE,2021-05-10,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/11ae10cd4986a84ccaca.png,GE,2023-03-06,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/16d60cdcbc63e80cd4ae.png,GS,2021-03-18,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f2fcc9385fa15ad29490.png,GS,2022-10-26,Shooting Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/e099bc8dc1a2acdd3f2c.png,GS,2025-12-22,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a9c0b72fa66657d3116e.png,JNJ,2019-10-28,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/2e378c64eed9899d0220.png,JPM,2024-01-05,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/e4d0b4501cfec38dfa46.png,JPM,2025-05-08,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5c983b40b32e5f9231fb.png,KO,2019-06-12,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/49aa0f14d25bdd900f75.png,KO,2022-05-26,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f4212cb52938933cf1f4.png,KO,2024-02-07,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/f734e661c95fc685b431.png,MA,2021-10-08,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/616a813818ac8a118496.png,MA,2024-06-24,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6bdc093520978d93f812.png,MCD,2026-06-10,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/283d4f2105500a77bdcd.png,META,2021-06-24,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/03fc1ee84e26b609331d.png,META,2024-04-04,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4c04ba4dbb50f492aa0d.png,META,2026-09-03,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6f21fde7b7e7281fdc93.png,MRK,2019-12-06,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6193703fdfe7aea28666.png,MSFT,2024-06-27,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/fdf8961167e0abef9532.png,NFLX,2019-05-22,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/480b9dfacba46e4a9196.png,NKE,2023-10-10,Shooting Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d8957d2c7eacec17ccb4.png,NVDA,2021-04-08,Shooting Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5ab46d8fd0eb1cb162db.png,NVDA,2022-10-20,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/d0780e67cc9223e54ca2.png,NVDA,2026-05-08,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5e157f6e199e6d7318d9.png,ORCL,2019-10-09,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/9ac2cf32dee31e9c0830.png,PEP,2021-05-14,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/36bff4f2510c9150fb4e.png,PG,2020-06-03,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5cb032642c3d2892b235.png,PLTR,2025-06-16,Shooting Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/76ea97c3291c210751af.png,QCOM,2020-06-05,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/0e7996e91a7a0918538d.png,QCOM,2021-08-30,Shooting Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/a20da24c0eccab291710.png,QCOM,2024-02-27,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/6b326ad90a1859fd7a29.png,QQQ,2019-10-11,Shooting Star,True,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/b13e2f55f2d6e2401ca1.png,QQQ,2023-03-06,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/ef84b75d630aca859f5e.png,QQQ,2025-05-01,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1c0bece25a4c61567e66.png,SPY,2021-07-29,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/1a9e0dc1715643a5ee64.png,TXN,2021-03-16,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/e1094e5ffda3337fcf71.png,UNH,2025-11-26,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/8aa8ee670aba5e657d2a.png,V,2021-05-20,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5438305af8dfaf557cf9.png,V,2023-03-27,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/4adaf6b50f7c0ef3b9cd.png,WFC,2019-11-07,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/df4bd80e654a3335fa1a.png,WMT,2019-12-16,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/af826871775174bd6110.png,XLF,2020-12-01,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/002929fb2726dfbfc44f.png,XLF,2022-08-11,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
+charts/5969f108e6854f370c4f.png,XOM,2026-08-20,Shooting Star,False,"[0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125]",Doji,0.0
