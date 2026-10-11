@@ -1,0 +1,226 @@
+{
+  "runtime": {
+    "concurrency": 1,
+    "batch_size": 1,
+    "timeout": 120,
+    "retries": 3,
+    "max_model_len": 16384,
+    "port": 8000
+  },
+  "parity_policy": {
+    "concurrency": 1,
+    "batch_size": 1,
+    "atol": 0.01,
+    "prefix_caching": false,
+    "enforce_eager": true,
+    "chunked_prefill": false,
+    "seed": 0,
+    "max_num_seqs": 8,
+    "gdn_prefill_backend": "triton"
+  },
+  "server_packages": {
+    "compressed-tensors": "0.17.0",
+    "cuda-bindings": "13.4.3",
+    "cuda-core": "1.2.1",
+    "cuda-python": "13.4.1",
+    "cuda-toolkit": "13.0.3.0",
+    "flashinfer-python": "0.7.0.post1",
+    "humming-kernels": "0.1.16",
+    "numpy": "2.3.5",
+    "nvidia-cublas": "13.1.1.3",
+    "nvidia-cuda-cccl-cu12": "12.9.27",
+    "nvidia-cuda-cupti": "13.0.85",
+    "nvidia-cuda-nvcc-cu12": "12.9.86",
+    "nvidia-cuda-nvrtc": "13.0.88",
+    "nvidia-cuda-nvrtc-cu12": "12.9.86",
+    "nvidia-cuda-runtime": "13.0.96",
+    "nvidia-cuda-runtime-cu12": "12.9.79",
+    "nvidia-cudnn-cu13": "9.20.0.48",
+    "nvidia-cudnn-frontend": "1.31.0",
+    "nvidia-cufft": "12.0.0.61",
+    "nvidia-cufile": "1.15.1.6",
+    "nvidia-curand": "10.4.0.35",
+    "nvidia-cusolver": "12.0.4.66",
+    "nvidia-cusparse": "12.6.3.3",
+    "nvidia-cusparselt-cu13": "0.8.1",
+    "nvidia-cutlass-dsl": "4.8.0",
+    "nvidia-cutlass-dsl-libs-base": "4.8.0",
+    "nvidia-cutlass-dsl-libs-core": "4.8.0",
+    "nvidia-cutlass-dsl-libs-cu12": "4.8.0",
+    "nvidia-cutlass-dsl-libs-cu13": "4.8.0",
+    "nvidia-ml-py": "13.615.71",
+    "nvidia-nccl-cu13": "2.29.7",
+    "nvidia-nvjitlink": "13.4.92",
+    "nvidia-nvshmem-cu13": "3.4.5",
+    "nvidia-nvtx": "13.0.85",
+    "pillow": "12.3.0",
+    "quack-kernels": "0.6.5",
+    "safetensors": "0.9.0rc1",
+    "tokenizers": "0.23.3",
+    "tokenspeed-mla": "0.2.15",
+    "tokenspeed-triton": "3.9.10.post20261008",
+    "torch": "2.13.0",
+    "torchvision": "0.28.0",
+    "transformers": "5.19.0",
+    "triton": "3.7.1",
+    "vllm": "0.31.1rc1.dev253+g7d0b4e57a.cu129"
+  },
+  "scorer_packages": {
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "pillow": "12.3.0",
+    "python-dateutil": "2.9.0.post0",
+    "pytz": "2026.5",
+    "six": "1.17.0",
+    "tzdata": "2026.5"
+  },
+  "server_build": {
+    "torch_cuda": "13.0"
+  },
+  "host_requirements": {
+    "nvidia_driver_major_minimum": 580,
+    "cuda_major": 13,
+    "source": "https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html",
+    "check": "nvidia-smi --query-gpu=driver_version --format=csv,noheader; reject missing, malformed or any <580 before importing Torch or starting the server."
+  },
+  "determinism_environment": {
+    "PYTHONHASHSEED": "0",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "NVIDIA_TF32_OVERRIDE": "0"
+  },
+  "torch_install": {
+    "index_url": "https://pypi.org/simple",
+    "packages": {
+      "torch": "2.13.0",
+      "torchvision": "0.28.0"
+    },
+    "requirements": "06-jev-patterns/requirements-jev-torch.txt",
+    "source_evidence": "User reports both installed from PyPI; v3 metadata confirms versions and torch.version.cuda=13.0, but does not preserve wheel index origin."
+  },
+  "model_snapshot": {
+    "model": "autotrust/JEV-27B-VL",
+    "revision": "3514d1d8ead2189c75f433fa949fe63c8e3f3c66",
+    "files": {
+      "README.md": "259546236e19eaa5e8093387ca980eda9d3e6d447efa098a9074a75b2fab2a8a",
+      "serve.sh": "08e6600fcbef6348280ab592b5ca13b71bc3e495524f9aba71163f87dac9be45",
+      "serve_decide.py": "b4c95faf8619b32241394f68dd1b5b5a1702a94da96f59c5467d8de4367b5132",
+      "calibration.json": "902f4f26fdf1b92224c32b706ee6cea381f6465621c82975bf7e0023c02d9dd2"
+    },
+    "weight_files": {
+      "adapter_vllm/adapter_model.safetensors": {
+        "sha256": "c26cb3fb6d43eaf734cfef74afc40172d30459f6a6bd47e3cfa1f8e866ed6bd9",
+        "size": 451501776
+      },
+      "model-00001-of-00018.safetensors": {
+        "sha256": "ba0ce20aae489ad196733da5064bcdf159a1fe84f53336648196e1ebb7751b1c",
+        "size": 3966730552
+      },
+      "model-00002-of-00018.safetensors": {
+        "sha256": "06a148c01bfbe3faa14a5f184a7ff29a706f7ae1c8b2705d2058e26d17a001fb",
+        "size": 3043080328
+      },
+      "model-00003-of-00018.safetensors": {
+        "sha256": "2e1bf62cbcd406eaa64b60d10353e1f0ef4039d0976e56f05cabe953454f9968",
+        "size": 2542796952
+      },
+      "model-00004-of-00018.safetensors": {
+        "sha256": "511e34063187882659753c4d93f3859f93c019fd438d8813071921c81d9a3f1a",
+        "size": 3988973152
+      },
+      "model-00005-of-00018.safetensors": {
+        "sha256": "635cb53446dc74f219740fc59e18b774f877b803b9722e289ca62575a6efa701",
+        "size": 2099339864
+      },
+      "model-00006-of-00018.safetensors": {
+        "sha256": "0bc5214fac607f0e6cc92eec3789d4b8559410ef9fce66621ba8158e8410dae0",
+        "size": 3979553696
+      },
+      "model-00007-of-00018.safetensors": {
+        "sha256": "80b0c49033e9a0d5762562aa12f4acdb7f54da586f3d0110f28c48d91cf07892",
+        "size": 2108759344
+      },
+      "model-00008-of-00018.safetensors": {
+        "sha256": "7192c5b66185d3592927daabee1cc19e6f6e0ce75988ee20e824b624765fda79",
+        "size": 3979553696
+      },
+      "model-00009-of-00018.safetensors": {
+        "sha256": "af3c48cc37af44f3db6ae0579baf019180d48d9c527caa0a1f03ff85813a56d8",
+        "size": 2108759344
+      },
+      "model-00010-of-00018.safetensors": {
+        "sha256": "163490a76f3bea3a40855b7efc04ce6d27afaf1a34f0bbde495b9491f76457c9",
+        "size": 3979553696
+      },
+      "model-00011-of-00018.safetensors": {
+        "sha256": "5f3ae1b948aeee39da77aec558e8236cd65fe4d7cb7686a76bb007acc563c6d8",
+        "size": 2108759344
+      },
+      "model-00012-of-00018.safetensors": {
+        "sha256": "a3de1c7114677a8f5ac5c4892c90e8238ea5c1e2038c80e757dfc87c3902ca55",
+        "size": 3979553696
+      },
+      "model-00013-of-00018.safetensors": {
+        "sha256": "06ab79a41f74c9c5cb734816feb0c7fc364104b227165ee7391231e1155aa02a",
+        "size": 2108759344
+      },
+      "model-00014-of-00018.safetensors": {
+        "sha256": "4138ed94603065ba884bbcadedb04d7718bb40117e85e6f5c6fc5b9c05b7a85b",
+        "size": 3979553696
+      },
+      "model-00015-of-00018.safetensors": {
+        "sha256": "69224e27b9de4e7dbf6fc936c6eaae08447bda3b80a6c31a871ab451173afd22",
+        "size": 2108759344
+      },
+      "model-00016-of-00018.safetensors": {
+        "sha256": "73cb9a1089fb6155cb648609478d6633be8a5c7d9ca5a05bc8925ce8a553cefe",
+        "size": 3979564040
+      },
+      "model-00017-of-00018.safetensors": {
+        "sha256": "beb51f01056142ac4984bd800507b0dd0fd18de57f8e9ef6ea41d1a3598983a8",
+        "size": 2108759344
+      },
+      "model-00018-of-00018.safetensors": {
+        "sha256": "1d3479509e21494658f9b64d317f5ea8e55c4025d28c702d6c4d0b356ce8ea06",
+        "size": 3392197344
+      }
+    },
+    "configuration_files": {
+      "adapter_vllm/adapter_config.json": {
+        "git_blob_sha1": "2d093d03334d1bcd8511a3867adb084f382fd3c5"
+      },
+      "adapter_vllm/decision_head.json": {
+        "git_blob_sha1": "8f51b80347fa5afe85ea6643032f33e88e45a91d"
+      },
+      "calibration.json": {
+        "git_blob_sha1": "0b3f438b22000bfbb599ee6e9f21aa10bf5a9baf"
+      },
+      "chat_template.jinja": {
+        "git_blob_sha1": "c0c686f9c38d70d179fb7b5f5aa7530bc913dda3"
+      },
+      "config.json": {
+        "git_blob_sha1": "706cebd746c4b6f2b1d1f892630867acfdfd3df8"
+      },
+      "generation_config.json": {
+        "git_blob_sha1": "023756cfadf88e5bf69eefeee3e172f38c448d64"
+      },
+      "merges.txt": {
+        "git_blob_sha1": "a494e019ca1502219fd0128658b979e5f05ae8e8"
+      },
+      "model.safetensors.index.json": {
+        "git_blob_sha1": "da35e3c564457dface7d138f0b6cac284ff8958c"
+      },
+      "preprocessor_config.json": {
+        "git_blob_sha1": "2ea84a437d448ff71b08df68fdd949d5cc4ebb64"
+      },
+      "tokenizer_config.json": {
+        "git_blob_sha1": "5de744b3fca2129d7186979ae47c06be33903243"
+      },
+      "video_preprocessor_config.json": {
+        "git_blob_sha1": "3ba673a5ad7d4d13f54155ecd38b2a94a6dac8fe"
+      },
+      "vocab.json": {
+        "git_blob_sha1": "0aa0ce0658d60ac4a5d609f4eadb0e8e43514176"
+      }
+    }
+  }
+}

@@ -13,6 +13,7 @@ import pandas as pd
 EXP=Path(__file__).resolve().parents[2];REPO=EXP.parent
 sys.path.insert(0,str(EXP))
 from shared.src.render import render_chart
+from shared.src.jev_api import parity_policy
 A=EXP/'06a-candles';B=EXP/'06b-chart-patterns'
 MAP={'Head and Shoulders':'Inverse Head and Shoulders','Inverse Head and Shoulders':'Head and Shoulders',
      'Double Top':'Double Bottom','Double Bottom':'Double Top','Triangle':'Triangle'}
@@ -198,16 +199,22 @@ def prepare():
             jobs.append({**c,'id':identity,'arm':arm,'paraphrase':number,'question':question,
                 'context_file':str(context.relative_to(REPO)) if arm=='definitions' else None,
                 'options_file':str(options.relative_to(REPO)),
-                'out':f'results/inference/frozen_v4/{identity}.csv'})
+                'out':f'results/inference/frozen_v5/{identity}.csv'})
     for path in [A/'options.json',B/'options.json',agreement_table,B/'results/real_agreement.json',
                  EXP/'shared/context/candles.txt',EXP/'shared/context/chart_patterns.txt',EXP/'config/model_contract.json',EXP/'config/gpu_runtime.json',EXP/'requirements-scoring.txt',EXP/'requirements-jev-server.txt',EXP/'requirements-jev-torch.txt',EXP/'shared/results/diagnostics/2026-10-10/runtime_lock.json',
                  EXP/'shared/results/diagnostics/2026-10-10-gdn-attn/diagnosis.json',EXP/'shared/results/diagnostics/2026-10-10-gdn-attn/server.log',
                  EXP/'shared/results/diagnostics/2026-10-10-gdn-attn/runtime_lock.json',EXP/'shared/results/diagnostics/2026-10-10-gdn-attn/session_summary.json',
+                 EXP/'shared/results/diagnostics/2026-10-10-v4-parity/diagnosis.json',
+                 EXP/'shared/results/diagnostics/2026-10-10-v4-parity/candles.parity.json',
+                 EXP/'shared/results/diagnostics/2026-10-10-v4-parity/runtime_lock.json',
+                 EXP/'shared/results/diagnostics/2026-10-10-v4-parity/session_summary.json',
+                 EXP/'shared/results/diagnostics/2026-10-10-v4-parity/frozen_v4_settings.json',
                  EXP/'shared/src/score.py',EXP/'shared/src/jev_api.py',EXP/'shared/src/evaluate.py',EXP/'shared/src/render.py',Path(__file__),EXP/'scripts/run_gpu.py',
                  REPO/'01-jev-tsla-charts/scripts/remote_serve.sh']:
         assets[str(path.relative_to(REPO))]=digest(path)
-    config={'schema_version':4,'status':'serial/cacheless policy frozen after GDN_ATTN batch-invariance startup rejection; revision not GPU run','seed':606227,
+    config={'schema_version':5,'status':'Matteo-approved0.03 plus matching-argmax policy frozen after v4 failure; v5 not GPU run','seed':606227,
         'model_contract':'06-jev-patterns/config/model_contract.json','gpu_runtime':'06-jev-patterns/config/gpu_runtime.json','questions':QUESTIONS,
+        'parity_gate':parity_policy(),
         'arms':['zero_shot','definitions'],
         'reference_arm':{'status':'removed','enabled':False,'reason':'Trimmed before inference; no reference-image jobs or enable flag.'},
         'primary_evaluation':{'candles':'test only','real':'showcase_only: no aggregate or per-class model accuracy claims',
@@ -229,7 +236,10 @@ def prepare():
         'execution_status':'not_run','prior_attempt':{'status':'failed global candle gate','decide_calls':40,'prediction_calls':0,
           'diagnosis':'06-jev-patterns/shared/results/diagnostics/2026-10-10/diagnosis.json'},
         'prior_startup_attempt':{'status':'failed GDN_ATTN batch-invariant server startup','decide_calls':0,'prediction_calls':0,
-          'diagnosis':'06-jev-patterns/shared/results/diagnostics/2026-10-10-gdn-attn/diagnosis.json'}}
+           'diagnosis':'06-jev-patterns/shared/results/diagnostics/2026-10-10-gdn-attn/diagnosis.json'},
+        'prior_v4_attempt':{'status':'failed original0.01 candle gate','decide_calls':40,'prediction_calls':0,
+          'max_abs_diff':0.018410737935632693,'argmax_agreement_count':20,
+          'diagnosis':'06-jev-patterns/shared/results/diagnostics/2026-10-10-v4-parity/diagnosis.json'}}
     if config['call_budget']['default']['total_decide_calls']>=config['fresh_call_cap']:
         raise ValueError('Trimmed fresh-run call budget must remain below 10,000')
     write_json(EXP/'config/inference_arms.json',config)

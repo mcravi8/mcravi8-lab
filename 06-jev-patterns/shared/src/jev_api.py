@@ -11,9 +11,17 @@ from collections.abc import Sequence
 MODEL = "autotrust/JEV-27B-VL"
 PROTOCOL = "jev27-bare-v1"
 CHOICE_TEMPERATURE = 1.0161280671450397
-PARITY_ATOL = .01
+PARITY_ATOL = .03
+PARITY_REQUIRE_ARGMAX = True
 CHOICE_STRATEGY = "single"
 NATIVE_CHOICES = 16
+
+
+def parity_policy():
+    """Matteo-approved v5 repeatability gate, changed after observing v4 failures."""
+    return {'version':5,'n_charts':20,'atol':PARITY_ATOL,
+            'require_argmax_agreement':PARITY_REQUIRE_ARGMAX,
+            'argmax_tie_break':'first option in declared order'}
 
 
 def options_list(options):

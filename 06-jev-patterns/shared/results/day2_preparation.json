@@ -17,7 +17,7 @@
     "patterns_mirror_time": 100,
     "patterns_mirror_price": 100
   },
-  "config_sha256": "709199bc81ca87687ab481c881d1f9199d1b9ee5706af9f742a91239835e2e62",
+  "config_sha256": "ce625ff1b60064233a801d2bbf73422b78e816be52b06d2468f9cea4ee7febb2",
   "call_budget": {
     "default": {
       "jobs": 21,
@@ -33,7 +33,7 @@
     }
   },
   "gpu_started": false,
-  "asset_count": 4439,
+  "asset_count": 4444,
   "styles": [
     {
       "dataset": "candles",

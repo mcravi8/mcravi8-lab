@@ -1,0 +1,146 @@
+{
+  "reviewed_on_cpu": "2026-10-10",
+  "source_directory": "06-jev-patterns/shared/results/inference_run_v4",
+  "source_sha256": {
+    "server.log": "2e6f88aa12816b30652fef13d729191ea9d62b0e8b5ce01446b3b3ff9b697d83",
+    "runtime_lock.json": "6937510cd8a7bd1c0fcc19c3699bd4c3b209b2ef21ad82740df278fffbca4eca",
+    "session_summary.json": "f6981af2f412b7b2f8fe4e2a9f906aed84ae3553c5949e2808e682dfa02966ed",
+    "run_gpu_stdout.log": "c9178b51ac8dee7d1546d8e6a528ab97c48d848d04e2004a86321a7dbefceef5",
+    "candles.parity.json": "0906cc334b702d6f300be62739d3e6a12b0cf7d95ea7130e8c596ea42a439e74",
+    "score_errors.csv": "dd644ba584c3d4de7d1330f875f6dd9f87b66c4ade80277047a59b420792066d",
+    "frozen_v4_settings.json": "24c70da31ec5a5803c07ed5bf0be443de0e70867ec17bd4644e209e66915d635"
+  },
+  "status": "failed original0.01 candle repeatability gate",
+  "max_abs_diff": 0.018410737935632693,
+  "rows_over_0_01": 5,
+  "argmax_agreement_count": 20,
+  "n_charts": 20,
+  "decide_calls": 40,
+  "prediction_calls": 0,
+  "http_failures": 0,
+  "rows": [
+    {
+      "file": "charts/002929fb2726dfbfc44f.png",
+      "max_abs_diff": 0.01461855569496423,
+      "first_prediction": "Shooting Star",
+      "second_prediction": "Shooting Star"
+    },
+    {
+      "file": "charts/0ddcff0bce3e2325e578.png",
+      "max_abs_diff": 0.001308860102397922,
+      "first_prediction": "Bullish Engulfing",
+      "second_prediction": "Bullish Engulfing"
+    },
+    {
+      "file": "charts/187d9bf8e72b374abe90.png",
+      "max_abs_diff": 0.015456454305336736,
+      "first_prediction": "Doji",
+      "second_prediction": "Doji"
+    },
+    {
+      "file": "charts/2465e5d521630a3972fe.png",
+      "max_abs_diff": 0.006176477692761695,
+      "first_prediction": "Bearish Engulfing",
+      "second_prediction": "Bearish Engulfing"
+    },
+    {
+      "file": "charts/2d0033923033e388d63b.png",
+      "max_abs_diff": 0.0037509038710246967,
+      "first_prediction": "Bearish Engulfing",
+      "second_prediction": "Bearish Engulfing"
+    },
+    {
+      "file": "charts/3ac0345e8e4b270966c6.png",
+      "max_abs_diff": 0.003834966684711609,
+      "first_prediction": "Shooting Star",
+      "second_prediction": "Shooting Star"
+    },
+    {
+      "file": "charts/496397abb6d82c4132bf.png",
+      "max_abs_diff": 0.0032521293740449264,
+      "first_prediction": "Bullish Engulfing",
+      "second_prediction": "Bullish Engulfing"
+    },
+    {
+      "file": "charts/55c9b091567f06da06d6.png",
+      "max_abs_diff": 0.005947456132521178,
+      "first_prediction": "Bullish Engulfing",
+      "second_prediction": "Bullish Engulfing"
+    },
+    {
+      "file": "charts/61e6324177a4ff99f3bf.png",
+      "max_abs_diff": 0.0027467145516765212,
+      "first_prediction": "Doji",
+      "second_prediction": "Doji"
+    },
+    {
+      "file": "charts/6f0148f819f9b9c5b661.png",
+      "max_abs_diff": 0.013673437846596859,
+      "first_prediction": "Doji",
+      "second_prediction": "Doji"
+    },
+    {
+      "file": "charts/7d763e0bb9783f355926.png",
+      "max_abs_diff": 0.006995970591015366,
+      "first_prediction": "Doji",
+      "second_prediction": "Doji"
+    },
+    {
+      "file": "charts/8af991eef8d1204db6c1.png",
+      "max_abs_diff": 0.0007165051406734166,
+      "first_prediction": "Shooting Star",
+      "second_prediction": "Shooting Star"
+    },
+    {
+      "file": "charts/979903114057f7558bb4.png",
+      "max_abs_diff": 0.002148832939782047,
+      "first_prediction": "Bullish Engulfing",
+      "second_prediction": "Bullish Engulfing"
+    },
+    {
+      "file": "charts/a617619affc4ccf3ad3e.png",
+      "max_abs_diff": 0.005676614265940905,
+      "first_prediction": "Doji",
+      "second_prediction": "Doji"
+    },
+    {
+      "file": "charts/b5674ffc8efb3bc45e6d.png",
+      "max_abs_diff": 0.007876741390339392,
+      "first_prediction": "Bearish Engulfing",
+      "second_prediction": "Bearish Engulfing"
+    },
+    {
+      "file": "charts/c466b8f8d55e5276f05c.png",
+      "max_abs_diff": 0.0016602141714279345,
+      "first_prediction": "Doji",
+      "second_prediction": "Doji"
+    },
+    {
+      "file": "charts/d3b011f30bb6e3ae06cd.png",
+      "max_abs_diff": 0.0076123212043006094,
+      "first_prediction": "Shooting Star",
+      "second_prediction": "Shooting Star"
+    },
+    {
+      "file": "charts/e1094e5ffda3337fcf71.png",
+      "max_abs_diff": 0.011274083551692321,
+      "first_prediction": "Bullish Engulfing",
+      "second_prediction": "Bullish Engulfing"
+    },
+    {
+      "file": "charts/f135f582197431e57f8e.png",
+      "max_abs_diff": 0.004802339650670007,
+      "first_prediction": "Bullish Engulfing",
+      "second_prediction": "Bullish Engulfing"
+    },
+    {
+      "file": "charts/fff73461627b9b78f843.png",
+      "max_abs_diff": 0.018410737935632693,
+      "first_prediction": "Bullish Engulfing",
+      "second_prediction": "Bullish Engulfing"
+    }
+  ],
+  "explanation": "Residual bf16 kernel nondeterminism despite serial batch1, eager, no-prefix-cache/no-chunked-prefill execution; exact kernel/build cause has not been isolated.",
+  "replay_under_v5": "Saved pairs satisfy max drift<=0.03 and20/20 top predictions equal; CPU replay only, not a fresh GPU gate.",
+  "new_gpu_run": false
+}

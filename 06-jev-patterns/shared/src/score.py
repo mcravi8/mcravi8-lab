@@ -21,7 +21,7 @@ from PIL import Image, ImageOps
 
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
-from shared.src.jev_api import build_payload, options_list, probabilities, server_identity, parse_probabilities, PARITY_ATOL, MODEL
+from shared.src.jev_api import build_payload, options_list, probabilities, server_identity, parse_probabilities, PARITY_ATOL, parity_policy, MODEL
 
 OUTPUT_FIELDS = ["probabilities", "prediction", "latency_ms"]
 
@@ -172,12 +172,14 @@ def parity_check(client, rows, path, fingerprint, force=False):
         report = json.loads(path.read_text())
         if report.get('fingerprint') != fingerprint or report.get('files') != ids:
             raise ValueError("Parity provenance differs; use a fresh output")
+        if report.get('parity_policy') != parity_policy():
+            raise ValueError("Parity policy differs; use a fresh output")
     else:
         # Finish all 20 first-pass calls before the second pass.
         first = [client.score(row)[0] for row in fixtures]
         second = [client.score(row)[0] for row in fixtures]
         report = {'fingerprint': fingerprint, 'files': ids, 'first': first, 'second': second,
-                  'atol': PARITY_ATOL, 'synthetic': client.args.dry_run,
+                  'atol': PARITY_ATOL, 'parity_policy':parity_policy(), 'synthetic': client.args.dry_run,
                   'note': 'Repeatability only; this does not establish HF-vLLM parity or model accuracy'}
     if len(report.get('first', [])) != 20 or len(report.get('second', [])) != 20:
         raise ValueError("Incomplete parity result")
@@ -186,14 +188,23 @@ def parity_check(client, rows, path, fingerprint, force=False):
     maximum = max(abs(x-y) for a,b in zip(first,second) for x,y in zip(a,b))
     row_diffs=[max(abs(x-y) for x,y in zip(a,b)) for a,b in zip(first,second)]
     argmax_matches=[max(range(len(a)),key=a.__getitem__)==max(range(len(b)),key=b.__getitem__) for a,b in zip(first,second)]
-    report.update(max_abs_diff=maximum, passed=maximum <= PARITY_ATOL, atol=PARITY_ATOL,
+    drift_passed=maximum <= PARITY_ATOL
+    predictions_matched=all(argmax_matches)
+    report.update(max_abs_diff=maximum, passed=drift_passed and predictions_matched, atol=PARITY_ATOL,
+                  probability_drift_passed=drift_passed,top_predictions_matched=predictions_matched,
+                  argmax_mismatch_files=[file for file,matched in zip(ids,argmax_matches) if not matched],
                   row_max_abs_diff=row_diffs,rows_over_atol=sum(v>PARITY_ATOL for v in row_diffs),
                   argmax_agreement_count=sum(argmax_matches),argmax_agreement_rate=sum(argmax_matches)/20,
                   execution={'parity_concurrency':1,'prediction_concurrency':client.args.concurrency,
                              'batch_size':client.args.batch_size,'runtime_fingerprint':client.args.execution_fingerprint})
     write_json(path, report)
-    if maximum > PARITY_ATOL:
-        raise ValueError(f'Parity failed: max probability difference {maximum:.6f} > {PARITY_ATOL}; scoring blocked')
+    failures=[]
+    if not drift_passed:
+        failures.append(f'max probability difference {maximum:.6f} > {PARITY_ATOL}')
+    if not predictions_matched:
+        failures.append(f'top predictions differ on {20-sum(argmax_matches)}/20 charts')
+    if failures:
+        raise ValueError('Parity failed: '+'; '.join(failures)+'; scoring blocked')
     return report
 
 
@@ -255,6 +266,7 @@ def run(args):
             'reference_images': [{'sha256':digest(p),'caption':args.reference_caption} for p in args.reference_image],
             'server_identity': client.identity, 'endpoint': client.base, 'synthetic': args.dry_run,
             'prediction_origin': 'fake_server' if args.dry_run else 'jev',
+            'parity_policy':parity_policy(),
             'execution':{'concurrency':args.concurrency,'batch_size':args.batch_size,
                          'runtime_fingerprint':args.execution_fingerprint},
             'synthetic_dataset': all(bool(r.get('template_id')) and not r.get('end_date') for r in rows),
@@ -280,7 +292,7 @@ def run(args):
             append_csv(errors_path, ERROR_FIELDS, {'file':'', 'phase':'parity', 'attempts':getattr(error,'attempts',1), 'error':str(error), 'timestamp_utc':datetime.now(timezone.utc).isoformat()})
             raise
         if args.parity_only:
-            print(json.dumps({'parity_passed':True, 'charts':20, 'max_abs_diff':parity['max_abs_diff'], 'synthetic':args.dry_run})); return 0
+            print(json.dumps({'parity_passed':True, 'charts':20, 'max_abs_diff':parity['max_abs_diff'], 'argmax_agreement_count':parity['argmax_agreement_count'], 'parity_policy':parity_policy(), 'synthetic':args.dry_run})); return 0
         succeeded, failed = 0, 0
         def process(row):
             try: return row, client.score(row), None
@@ -296,7 +308,7 @@ def run(args):
                         append_csv(out, fields, {**row, 'probabilities':json.dumps(p),
                             'prediction':args.options[max(range(len(p)),key=p.__getitem__)], 'latency_ms':latency})
                         succeeded += 1
-        summary = {'scored':succeeded,'failed':failed,'skipped':len(done),'repaired':repaired,'parity_max_abs_diff':parity['max_abs_diff'], 'synthetic':args.dry_run}
+        summary = {'scored':succeeded,'failed':failed,'skipped':len(done),'repaired':repaired,'parity_max_abs_diff':parity['max_abs_diff'], 'parity_argmax_agreement_count':parity['argmax_agreement_count'], 'parity_policy':parity_policy(), 'synthetic':args.dry_run}
         write_json(out.with_suffix('.summary.json'), summary)
         print(json.dumps(summary))
         return int(failed > 0)

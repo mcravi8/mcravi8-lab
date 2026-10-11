@@ -135,7 +135,7 @@ class ScorerTests(unittest.TestCase):
             self.assertEqual(meta['server_identity']['canonical_model'],jev_api.MODEL)
             self.assertEqual(fixture.requests[-1]['strategy'],'single')
 
-    def test_supplied_failed_gate_stays_failed_and_reports_argmax_agreement(self):
+    def test_original_0_033344_gate_still_fails_under_approved_policy(self):
         evidence=json.loads((Path(__file__).resolve().parents[1]/
             'shared/results/diagnostics/2026-10-10/candles.parity.json').read_text())
         client=SimpleNamespace(args=SimpleNamespace(options=[str(i) for i in range(8)],dry_run=False,
@@ -144,14 +144,88 @@ class ScorerTests(unittest.TestCase):
         rows=[{'file':file} for file in evidence['files']]
         with tempfile.TemporaryDirectory() as d:
             path=Path(d)/'gate.json'
-            with self.assertRaisesRegex(ValueError,'> 0.01'):
+            with self.assertRaisesRegex(ValueError,'> 0.03'):
                 score.parity_check(client,rows,path,'fixture',force=True)
             report=json.loads(path.read_text())
-            self.assertFalse(report['passed']);self.assertEqual(report['atol'],0.01)
-            self.assertEqual(report['rows_over_atol'],3)
+            self.assertFalse(report['passed']);self.assertEqual(report['atol'],0.03)
+            self.assertEqual(report['rows_over_atol'],1)
             self.assertEqual(report['argmax_agreement_count'],20)
             self.assertEqual(report['execution']['parity_concurrency'],1)
             self.assertAlmostEqual(report['max_abs_diff'],0.03334436881129002)
+
+    def parity_fixture(self,first,second):
+        client=SimpleNamespace(args=SimpleNamespace(options=[str(i) for i in range(len(first[0]))],
+            dry_run=False,concurrency=1,batch_size=1,execution_fingerprint='a'*64),
+            score=Mock(side_effect=[(p,0,1) for p in first+second]))
+        rows=[{'file':f'{i:02}.png'} for i in range(20)]
+        return client,rows
+
+    def test_saved_v4_pairs_pass_new_rule_without_rewriting_original_failure(self):
+        source=Path(__file__).resolve().parents[1]/'shared/results/diagnostics/2026-10-10-v4-parity/candles.parity.json'
+        before=source.read_bytes();evidence=json.loads(before)
+        self.assertFalse(evidence['passed']);self.assertEqual(evidence['atol'],0.01)
+        client,rows=self.parity_fixture(evidence['first'],evidence['second'])
+        with tempfile.TemporaryDirectory() as d:
+            report=score.parity_check(client,rows,Path(d)/'gate.json','fixture',force=True)
+        self.assertTrue(report['passed']);self.assertEqual(report['atol'],0.03)
+        self.assertEqual(report['argmax_agreement_count'],20)
+        self.assertTrue(report['top_predictions_matched'])
+        self.assertEqual(report['rows_over_atol'],0)
+        self.assertAlmostEqual(report['max_abs_diff'],0.018410737935632693)
+        self.assertEqual(source.read_bytes(),before)
+
+    def test_joint_gate_includes_0_03_boundary_and_rejects_larger_drift(self):
+        first=[[.01,.09,.9]]*20
+        with tempfile.TemporaryDirectory() as d:
+            client,rows=self.parity_fixture(first,[[.04,.06,.9]]*20)
+            report=score.parity_check(client,rows,Path(d)/'boundary.json','boundary',force=True)
+            self.assertEqual(report['max_abs_diff'],0.03);self.assertTrue(report['passed'])
+            client,rows=self.parity_fixture(first,[[.040001,.059999,.9]]*20)
+            path=Path(d)/'above.json'
+            with self.assertRaisesRegex(ValueError,'> 0.03'):
+                score.parity_check(client,rows,path,'above',force=True)
+            report=json.loads(path.read_text())
+            self.assertFalse(report['passed']);self.assertTrue(report['top_predictions_matched'])
+
+    def test_small_drift_argmax_flip_blocks_predictions_and_logs_failure(self):
+        first=[.49,.48]+[.005]*6;flipped=[.48,.49]+[.005]*6
+        pairs=[first]*20+[flipped]+[first]*19
+        with tempfile.TemporaryDirectory() as d,server() as fixture,redirect_stdout(StringIO()):
+            root=Path(d);options=self.prepare(root)
+            with patch.object(score.Client,'score',side_effect=[(p,0,1) for p in pairs]) as calls:
+                with self.assertRaisesRegex(ValueError,'top predictions differ on 1/20'):
+                    score.run(self.args(root,fixture,options,'--limit','1'))
+            self.assertEqual(calls.call_count,40)
+            self.assertFalse((root/'results/preds.csv').exists())
+            report=json.loads((root/'results/preds.parity.json').read_text())
+            self.assertTrue(report['probability_drift_passed'])
+            self.assertFalse(report['top_predictions_matched']);self.assertFalse(report['passed'])
+            self.assertEqual(report['argmax_agreement_count'],19)
+            self.assertEqual(report['argmax_mismatch_files'],[report['files'][0]])
+            errors=list(csv.DictReader(StringIO((root/'results/preds_errors.csv').read_text())))
+            self.assertEqual(errors[-1]['phase'],'parity')
+
+    def test_cached_gate_rejects_changed_policy(self):
+        with tempfile.TemporaryDirectory() as d:
+            client,rows=self.parity_fixture([[.1,.9]]*20,[[.1,.9]]*20)
+            path=Path(d)/'gate.json'
+            score.parity_check(client,rows,path,'fixture',force=True)
+            cached=json.loads(path.read_text());cached['parity_policy']['atol']=0.01
+            path.write_text(json.dumps(cached))
+            with self.assertRaisesRegex(ValueError,'Parity policy differs'):
+                score.parity_check(client,rows,path,'fixture')
+            self.assertEqual(client.score.call_count,40)
+
+    def test_tied_top_probability_uses_declared_option_order(self):
+        first=[[.45,.45,.1]]*20
+        with tempfile.TemporaryDirectory() as d:
+            client,rows=self.parity_fixture(first,first)
+            report=score.parity_check(client,rows,Path(d)/'tie.json','tie',force=True)
+            self.assertTrue(report['passed'])
+            self.assertEqual(report['parity_policy']['argmax_tie_break'],'first option in declared order')
+            client,rows=self.parity_fixture(first,[[.449,.451,.1]]*20)
+            with self.assertRaisesRegex(ValueError,'top predictions differ on 20/20'):
+                score.parity_check(client,rows,Path(d)/'tie_flip.json','tie_flip',force=True)
 
     def test_serial_defaults_and_changed_execution_cannot_resume(self):
         with tempfile.TemporaryDirectory() as d,server() as fixture,redirect_stdout(StringIO()):
