@@ -82,6 +82,14 @@ All **150 real pattern parents remain showcase-only**, including both framings a
 
 The next useful work is independent review of weak classes and negative examples, followed by completion of the already frozen controls only after their gate passes. Any prompt, label, threshold or generator changes informed by these results need new held-out evaluation data. No GPU or Runpod resource was started to review the results or update this README.
 
+## CPU forecasting bridge
+
+The [frozen bridge protocol](config/forecast_bridge_v1.json) and [CPU implementation](shared/src/forecast_bridge.py) test a separate question: whether numeric bars plus detector indicators (B) or saved JEV pattern probabilities (C) improve **next-five-session Up/Flat/Down forecasts** over numeric bars alone (A). The target uses Experiment 01's one-third trailing five-session volatility band. The 06a market cohort supplies the same rows to every arm; synthetic and real showcase inputs are excluded.
+
+The primary analysis retains the original pre-2019 training/later-test split. Secondary annual walk-forward refits use only earlier observations, with training targets purged before test information history. Scalers fit on training rows only; models and success criteria are fixed before inspecting return outcomes. The balanced pattern sample is not a natural trading population, and this retrospective study is exploratory. This protocol does not change Experiment 05's prospective holdout.
+
+This revision freezes the protocol and implementation before running the recorded market return evaluation. No GPU, HTTP inference, Runpod resource or data download is required.
+
 ## Separate pinned environment
 
 From the repository root, use Python 3.11. TA-Lib comes from a pip wheel, including its C library; no Homebrew installation is needed.
@@ -136,7 +144,7 @@ Real-data intervals resample whole **ticker-calendar-quarter** blocks. Synthetic
 
 `shared/src/baselines.py` supplies training-majority, training-frequency prior, uniform probabilities, numerical logistic regression and the Experiment 04 CNN architecture with an arbitrary output count. Logistic uses only normalized visible OHLCV interpolated to 32 positions, with its scaler fitted on training rows. CNN validation comes from the latest 20% of training dates with overlapping fit windows purged. It verifies checkpoint reload predictions. Synthetic examples cannot train fitted baselines; uniform needs no training data. Default CLI mode is a preflight; fitting needs explicit `--mode train`.
 
-All real training dates end by **2018-12-31**. January–March 2019 is embargoed, and test input windows begin on or after **2019-04-01**. Synthetic data are evaluation-only. The train set is for baseline fitting and any future calibration; held-out labels must not select prompts, thresholds, hyperparameters or examples.
+Recognition-baseline training dates end by **2018-12-31**. January–March 2019 is embargoed, and test input windows begin on or after **2019-04-01**. Synthetic data are evaluation-only. The train set is for baseline fitting and any future calibration; held-out labels must not select prompts, thresholds, hyperparameters or examples.
 
 ## 06a dataset ready
 
