@@ -13,7 +13,7 @@
   "multiple_images": true,
   "max_images_per_request": 8,
   "evidence": "Card/server support up to eight images; the trimmed Experiment06 plan has removed the reference-image arm.",
-  "parity": "v6, explicitly approved after v5 failure:20 charts twice, require all argmaxes to match and mean absolute drift over all chart-option probabilities<=0.01. Log max/p90 and flag chart-max drift>0.03 without excluding charts. Repeatability only; not HF-vLLM parity.",
+  "parity": "v7, explicitly approved after v6 failure:20 charts twice; mean absolute chart-option drift<=0.01. Every argmax mismatch requires top-two margin<=0.01 in either pass; all other charts must match. Log raw agreement, near-tie and allowed/disallowed mismatch counts, max/p90, and chart-max flags>0.03. No exclusions. Repeatability only; not HF-vLLM parity.",
   "serving_entrypoint": "01-jev-tsla-charts/scripts/remote_serve.sh",
   "desktop_wrapper_note": "The existing Desktop/runpod-setup/remote_serve.sh is an older plain-vLLM command that does not provide the native decision route. Use the corrected repository01 wrapper, which invokes the pinned model snapshot serve.sh.",
   "executed": true,
@@ -160,5 +160,14 @@
     "max_abs_diff": 0.04121730474518304,
     "argmax_agreement_count": 20,
     "diagnosis": "06-jev-patterns/shared/results/diagnostics/2026-10-10-v5-parity/diagnosis.json"
+  },
+  "prior_v6_attempt": {
+    "status": "failed argmax agreement only",
+    "decide_calls": 40,
+    "prediction_calls": 0,
+    "mean_abs_diff": 0.0026098296378638183,
+    "max_abs_diff": 0.022243287166081593,
+    "argmax_agreement_count": 19,
+    "diagnosis": "06-jev-patterns/shared/results/diagnostics/2026-10-11-v6-parity/diagnosis.json"
   }
 }

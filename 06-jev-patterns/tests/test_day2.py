@@ -153,14 +153,16 @@ class Day2Tests(unittest.TestCase):
             changed=json.loads(json.dumps(pins));changed['policy'][key]=not changed['policy'][key]
             with self.assertRaisesRegex(ValueError,key):runbook.validate_execution(config,changed)
         changed=json.loads(json.dumps(pins));changed['policy']['atol']=0.05
-        with self.assertRaisesRegex(ValueError,'v6 policy'):runbook.validate_execution(config,changed)
+        with self.assertRaisesRegex(ValueError,'v7 policy'):runbook.validate_execution(config,changed)
         changed=json.loads(json.dumps(pins));changed['policy']['require_argmax_agreement']=False
-        with self.assertRaisesRegex(ValueError,'v6 policy'):runbook.validate_execution(config,changed)
-        for key,value in [('drift_statistic','max_abs_diff'),('flag_chart_max_abs_diff_above',.05)]:
+        with self.assertRaisesRegex(ValueError,'v7 policy'):runbook.validate_execution(config,changed)
+        for key,value in [('drift_statistic','max_abs_diff'),('flag_chart_max_abs_diff_above',.05),
+                          ('argmax_mismatch_exception',{'top_two_margin_lte':.02,'pass':'either'}),
+                          ('argmax_mismatch_exception',{'top_two_margin_lte':.01,'pass':'both'})]:
             changed=json.loads(json.dumps(pins));changed['policy'][key]=value
-            with self.assertRaisesRegex(ValueError,'v6 policy'):runbook.validate_execution(config,changed)
+            with self.assertRaisesRegex(ValueError,'v7 policy'):runbook.validate_execution(config,changed)
         wrong=json.loads(json.dumps(config));wrong['parity_gate']['drift_statistic']='max_abs_diff'
-        with self.assertRaisesRegex(ValueError,'v6 policy'):runbook.validate_execution(wrong,pins)
+        with self.assertRaisesRegex(ValueError,'v7 policy'):runbook.validate_execution(wrong,pins)
 
     def test_serial_native_server_keeps_system1_contract_and_supported_flags(self):
         command=runbook.server_command('/root/vllm-venv/bin/python','/weights',self.fixture(),
@@ -350,7 +352,7 @@ class FrozenArtifactTests(unittest.TestCase):
         for role in ['server','scorer']:
             for name,value in pins[role+'_packages'].items():
                 self.assertEqual(value,observed[role][name])
-        self.assertTrue(all('/frozen_v6/' in j['out'] for j in config['jobs']))
+        self.assertTrue(all('/frozen_v7/' in j['out'] for j in config['jobs']))
         self.assertEqual(config['prior_startup_attempt']['decide_calls'],0)
         self.assertEqual(config['parity_gate'],jev_api.parity_policy())
         self.assertEqual(config['prior_v4_attempt']['prediction_calls'],0)
@@ -383,40 +385,42 @@ class FrozenArtifactTests(unittest.TestCase):
         self.assertIn('not supported for GDN_ATTN',(folder/'server.log').read_text())
         self.assertEqual(rejected['decide_calls'],0)
 
-    def test_v6_keeps_other_settings_and_records_post_failure_approval(self):
-        archive=EXP/'shared/results/diagnostics/2026-10-10-v5-parity'
+    def test_v7_keeps_other_settings_and_records_final_post_failure_approval(self):
+        archive=EXP/'shared/results/diagnostics/2026-10-11-v6-parity'
         diagnosis=json.loads((archive/'diagnosis.json').read_text())
         for name,expected in diagnosis['source_sha256'].items():
             self.assertEqual(runbook.sha(archive/name),expected)
-        before=json.loads((archive/'frozen_v5_settings.json').read_text())
+        before=json.loads((archive/'frozen_v6_settings.json').read_text())
         pins=json.loads((EXP/'config/gpu_runtime.json').read_text())
         self.assertEqual(self.config['runtime'],before['runtime'])
         for key in ['server_packages','scorer_packages','server_build','host_requirements',
                     'determinism_environment','torch_install']:
             self.assertEqual(pins[key],before[key],key)
-        remaining={key:value for key,value in pins['policy'].items()
-                   if key not in ['atol','drift_statistic','flag_chart_max_abs_diff_above']}
-        self.assertEqual(remaining,{key:value for key,value in before['policy'].items() if key!='atol'})
+        self.assertEqual({key:value for key,value in pins['policy'].items() if key!='argmax_mismatch_exception'},
+                         before['policy'])
         self.assertEqual(self.config['questions'],before['questions'])
         for key in ['paraphrase_subsets','control_subsets']:
             self.assertEqual(self.config[key],before[key])
-        jobs=[{**job,'out':job['out'].replace('/frozen_v6/','/frozen_v5/')} for job in self.config['jobs']]
+        jobs=[{**job,'out':job['out'].replace('/frozen_v7/','/frozen_v6/')} for job in self.config['jobs']]
         self.assertEqual(jobs,before['jobs'])
         model=json.loads((EXP/'config/model_contract.json').read_text())
         self.assertEqual({key:model[key] for key in before['model_snapshot']},before['model_snapshot'])
         change=pins['parity_policy_change']
-        self.assertEqual(change['approved_by'],'Matteo')
+        self.assertEqual(change['approved_by'],'Matteo');self.assertEqual(change['approved_date'],'2026-10-11')
         self.assertTrue(change['changed_after_observing_failures'])
+        self.assertTrue(change['final_gate_change_requested'])
         self.assertEqual(change['previous_gate'],before['parity_gate'])
         self.assertEqual(change['approved_gate'],{'atol':0.01,'drift_statistic':'mean_abs_diff',
-            'require_argmax_agreement':True,'n_charts':20,'flag_chart_max_abs_diff_above':.03})
-        self.assertEqual(change['v5_argmax_agreement_count'],20)
-        self.assertAlmostEqual(change['v5_max_drift'],.04121730474518304)
-        self.assertFalse(change['new_gpu_run'])
+            'require_argmax_agreement':True,'n_charts':20,'flag_chart_max_abs_diff_above':.03,
+            'argmax_mismatch_exception':{'top_two_margin_lte':.01,'pass':'either'}})
+        self.assertEqual(change['v6_argmax_agreement_count'],19)
+        self.assertAlmostEqual(change['v6_max_drift'],.022243287166081593)
+        self.assertFalse(change['new_gpu_run']);self.assertEqual(len(pins['parity_policy_history']),2)
         self.assertEqual(pins['parity_policy_history'][0]['approved_gate']['atol'],.03)
         command=runbook.server_command('/root/venv/bin/python3','/workspace/models/JEV-27B-VL',self.config,model)
         observed=json.loads((archive/'session_summary.json').read_text())
         self.assertEqual(command,observed['server_command'])
+        self.assertEqual(diagnosis['decide_calls'],40);self.assertEqual(diagnosis['prediction_calls'],0)
 
     def test_chart15_identity_and_noise_floor_are_reproducible_from_archives(self):
         archive=EXP/'shared/results/diagnostics/2026-10-10-v5-parity'
@@ -432,8 +436,13 @@ class FrozenArtifactTests(unittest.TestCase):
         self.assertEqual(identity['original_png_sha256'],identity['v5_png_sha256'])
         self.assertTrue(identity['same_bytes']);self.assertTrue(identity['other_19_under_0_03_in_all_recorded_gates'])
         self.assertIsNone(noise['v3']['drift']);self.assertEqual(noise['v3']['decide_calls'],0)
-        self.assertFalse(noise['new_gpu_run']);self.assertEqual(noise['v6_execution_status'],'not_run')
+        self.assertFalse(noise['new_gpu_run']);self.assertEqual(noise['v7_execution_status'],'not_run')
         self.assertEqual(noise['approved_policy'],jev_api.parity_policy())
+        self.assertEqual(noise['sessions']['v6']['argmax_agreement_count'],19)
+        self.assertEqual(noise['sessions']['v6']['near_tie_first_count'],0)
+        self.assertEqual(noise['sessions']['v6']['near_tie_second_count'],1)
+        self.assertEqual(noise['sessions']['v6']['allowed_argmax_mismatch_count'],1)
+        self.assertEqual(noise['sessions']['v6']['disallowed_argmax_mismatch_count'],0)
         from shared.src.score import parity_statistics
         for session in noise['sessions'].values():
             path=runbook.REPO/session['source'];evidence=json.loads(path.read_text())

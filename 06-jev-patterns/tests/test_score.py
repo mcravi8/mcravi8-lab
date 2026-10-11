@@ -50,7 +50,9 @@ class ScorerTests(unittest.TestCase):
             report=json.loads((root/'results/preds.parity.json').read_text())
             self.assertEqual(len(report['files']),20);self.assertEqual(report['max_abs_diff'],0)
             summary=json.loads((root/'results/preds.summary.json').read_text())
-            for field in ['mean_abs_diff','max_abs_diff','p90_abs_diff','p90_chart_max_abs_diff','flagged_charts']:
+            for field in ['mean_abs_diff','max_abs_diff','p90_abs_diff','p90_chart_max_abs_diff','flagged_charts',
+                          'near_tie_first_count','near_tie_second_count','near_tie_chart_count','near_tie_charts',
+                          'allowed_argmax_mismatch_count','disallowed_argmax_mismatch_count']:
                 self.assertEqual(summary['parity_'+field],report[field])
             self.assertEqual(score.run(self.args(root,fixture,options)),0)
             self.assertEqual(len(fixture.requests),104)
@@ -90,7 +92,8 @@ class ScorerTests(unittest.TestCase):
             console=json.loads(output.getvalue())
             self.assertEqual(console['mean_abs_diff'],0);self.assertEqual(console['p90_abs_diff'],0)
             self.assertEqual(console['flagged_charts'],[])
-            self.assertEqual(console['parity_policy']['version'],6)
+            self.assertIn('near_tie_chart_count',console);self.assertIn('allowed_argmax_mismatch_count',console)
+            self.assertEqual(console['parity_policy']['version'],7)
             self.assertEqual(len(fixture.requests),41)
             self.assertFalse((root/'results/preds.csv').exists())
             payload=fixture.requests[-1]
@@ -239,13 +242,13 @@ class ScorerTests(unittest.TestCase):
         self.assertAlmostEqual(report['max_abs_diff'],.04121730474518304)
         self.assertEqual(source.read_bytes(),before)
 
-    def test_small_drift_argmax_flip_blocks_predictions_and_logs_failure(self):
-        first=[.49,.48]+[.005]*6;flipped=[.48,.49]+[.005]*6
+    def test_non_near_tie_argmax_flip_blocks_predictions_and_logs_failure(self):
+        first=[.50,.47]+[.005]*6;flipped=[.47,.50]+[.005]*6
         pairs=[first]*20+[flipped]+[first]*19
         with tempfile.TemporaryDirectory() as d,server() as fixture,redirect_stdout(StringIO()):
             root=Path(d);options=self.prepare(root)
             with patch.object(score.Client,'score',side_effect=[(p,0,1) for p in pairs]) as calls:
-                with self.assertRaisesRegex(ValueError,'top predictions differ on 1/20'):
+                with self.assertRaisesRegex(ValueError,'top predictions differ outside near ties on 1/20'):
                     score.run(self.args(root,fixture,options,'--limit','1'))
             self.assertEqual(calls.call_count,40)
             self.assertFalse((root/'results/preds.csv').exists())
@@ -262,7 +265,7 @@ class ScorerTests(unittest.TestCase):
             client,rows=self.parity_fixture([[.1,.9]]*20,[[.1,.9]]*20)
             path=Path(d)/'gate.json'
             score.parity_check(client,rows,path,'fixture',force=True)
-            cached=json.loads(path.read_text());cached['parity_policy']['version']=5
+            cached=json.loads(path.read_text());cached['parity_policy']['version']=6
             path.write_text(json.dumps(cached))
             with self.assertRaisesRegex(ValueError,'Parity policy differs'):
                 score.parity_check(client,rows,path,'fixture')
@@ -276,8 +279,83 @@ class ScorerTests(unittest.TestCase):
             self.assertTrue(report['passed'])
             self.assertEqual(report['parity_policy']['argmax_tie_break'],'first option in declared order')
             client,rows=self.parity_fixture(first,[[.449,.451,.1]]*20)
-            with self.assertRaisesRegex(ValueError,'top predictions differ on 20/20'):
-                score.parity_check(client,rows,Path(d)/'tie_flip.json','tie_flip',force=True)
+            report=score.parity_check(client,rows,Path(d)/'tie_flip.json','tie_flip',force=True)
+            self.assertTrue(report['passed']);self.assertFalse(report['top_predictions_matched'])
+            self.assertEqual(report['argmax_agreement_count'],0)
+            self.assertEqual(report['near_tie_chart_count'],20)
+            self.assertEqual(report['allowed_argmax_mismatch_count'],20)
+            self.assertEqual(report['disallowed_argmax_mismatch_count'],0)
+
+    def test_near_tie_exception_accepts_either_pass_and_keeps_raw_agreement(self):
+        for a,b,first_count,second_count in [
+            ([.35,.345,.305],[.33,.365,.305],1,0),
+            ([.33,.365,.305],[.35,.345,.305],0,1)]:
+            first=[a]+[[.7,.2,.1]]*19;second=[b]+first[1:]
+            stats=score.parity_statistics(first,second,[str(i) for i in range(20)],3)
+            self.assertTrue(stats['passed']);self.assertFalse(stats['top_predictions_matched'])
+            self.assertEqual(stats['argmax_agreement_count'],19)
+            self.assertEqual(stats['near_tie_first_count'],first_count)
+            self.assertEqual(stats['near_tie_second_count'],second_count)
+            self.assertEqual(stats['near_tie_chart_count'],1)
+            self.assertEqual(stats['allowed_argmax_mismatch_files'],['0'])
+            self.assertEqual(stats['disallowed_argmax_mismatch_count'],0)
+        # Near-tied charts with stable tops are counted, but not as allowed mismatches.
+        stats=score.parity_statistics([[.45,.449,.101]]*20,[[.45,.449,.101]]*20,[str(i) for i in range(20)],3)
+        self.assertEqual(stats['near_tie_chart_count'],20);self.assertEqual(stats['allowed_argmax_mismatch_count'],0)
+
+    def test_near_tie_margin_boundary_and_non_near_tie_mismatches(self):
+        cases=[([.35,.34,.31],[.34,.35,.31],True),
+               ([.3500005,.3399995,.31],[.3399995,.3500005,.31],False)]
+        for a,b,accepted in cases:
+            stats=score.parity_statistics([a]+[[.7,.2,.1]]*19,[b]+[[.7,.2,.1]]*19,[str(i) for i in range(20)],3)
+            self.assertEqual(stats['passed'],accepted)
+            self.assertTrue(stats['probability_drift_passed'])
+            self.assertEqual(stats['allowed_argmax_mismatch_count'],int(accepted))
+            self.assertEqual(stats['disallowed_argmax_mismatch_count'],int(not accepted))
+        self.assertAlmostEqual(score.PARITY_NEAR_TIE_MARGIN,.01)
+
+    def test_near_tie_exceptions_do_not_override_mean_drift_failure(self):
+        client,rows=self.parity_fixture([[.4,.395,.205]]*20,[[.3,.45,.25]]*20)
+        with tempfile.TemporaryDirectory() as d:
+            path=Path(d)/'gate.json'
+            with self.assertRaisesRegex(ValueError,'mean absolute probability difference'):
+                score.parity_check(client,rows,path,'fixture',force=True)
+            stats=json.loads(path.read_text())
+        self.assertTrue(stats['argmax_condition_passed']);self.assertFalse(stats['passed'])
+        self.assertEqual(stats['allowed_argmax_mismatch_count'],20)
+        self.assertEqual(stats['disallowed_argmax_mismatch_count'],0)
+
+    def test_v6_near_tie_failure_cpu_replay_scores_and_logs_exception_counts(self):
+        source=Path(__file__).resolve().parents[1]/'shared/results/diagnostics/2026-10-11-v6-parity/candles.parity.json'
+        before=source.read_bytes();evidence=json.loads(before)
+        self.assertFalse(evidence['passed']);self.assertEqual(evidence['parity_policy']['version'],6)
+        pairs=evidence['first']+evidence['second']+[[1]+[0]*7]
+        with tempfile.TemporaryDirectory() as d,server() as fixture,redirect_stdout(StringIO()):
+            root=Path(d);options=self.prepare(root,20)
+            # Use original filenames/order so archived chart#11 remains identifiable.
+            with (root/'charts/index.csv').open(newline='') as f:rows=list(csv.DictReader(f))
+            for row,file in zip(rows,evidence['files']):
+                (root/row['file']).rename(root/file);row['file']=file
+            with (root/'charts/index.csv').open('w',newline='') as f:
+                w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
+            with patch.object(score.Client,'score',side_effect=[(p,0,1) for p in pairs]) as calls:
+                self.assertEqual(score.run(self.args(root,fixture,options,'--limit','1')),0)
+            self.assertEqual(calls.call_count,41)
+            gate=json.loads((root/'results/preds.parity.json').read_text())
+            summary=json.loads((root/'results/preds.summary.json').read_text())
+            self.assertTrue(gate['passed']);self.assertFalse(gate['top_predictions_matched'])
+            self.assertEqual(gate['argmax_agreement_count'],19)
+            self.assertEqual(gate['near_tie_first_count'],0);self.assertEqual(gate['near_tie_second_count'],1)
+            self.assertEqual(gate['allowed_argmax_mismatch_files'],['charts/7d763e0bb9783f355926.png'])
+            self.assertEqual(gate['near_tie_charts'][0]['chart_number'],11)
+            self.assertAlmostEqual(gate['mean_abs_diff'],.0026098296378638183)
+            self.assertAlmostEqual(gate['max_abs_diff'],.022243287166081593)
+            self.assertEqual(summary['parity_near_tie_chart_count'],1)
+            self.assertEqual(summary['parity_allowed_argmax_mismatch_count'],1)
+            self.assertEqual(summary['parity_disallowed_argmax_mismatch_count'],0)
+            self.assertEqual(len(list(csv.DictReader(StringIO((root/'results/preds.csv').read_text())))),1)
+            self.assertFalse((root/'results/preds_errors.csv').exists())
+        self.assertEqual(source.read_bytes(),before)
 
     def test_serial_defaults_and_changed_execution_cannot_resume(self):
         with tempfile.TemporaryDirectory() as d,server() as fixture,redirect_stdout(StringIO()):

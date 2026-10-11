@@ -21,7 +21,7 @@ from PIL import Image, ImageOps
 
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
-from shared.src.jev_api import build_payload, options_list, probabilities, server_identity, parse_probabilities, PARITY_ATOL, PARITY_FLAG_THRESHOLD, parity_policy, MODEL
+from shared.src.jev_api import build_payload, options_list, probabilities, server_identity, parse_probabilities, PARITY_ATOL, PARITY_FLAG_THRESHOLD, PARITY_NEAR_TIE_MARGIN, parity_policy, MODEL
 
 OUTPUT_FIELDS = ["probabilities", "prediction", "latency_ms"]
 
@@ -183,6 +183,22 @@ def parity_statistics(first, second, files, n_options):
     mean = math.fsum(differences)/len(differences)
     matched = [max(range(n_options),key=a.__getitem__)==max(range(n_options),key=b.__getitem__)
                for a,b in zip(first,second)]
+    def top_two_margin(values):
+        top = sorted(values, reverse=True)[:2]
+        return top[0]-top[1]
+    first_margins = [top_two_margin(p) for p in first]
+    second_margins = [top_two_margin(p) for p in second]
+    near_first = [v <= PARITY_NEAR_TIE_MARGIN for v in first_margins]
+    near_second = [v <= PARITY_NEAR_TIE_MARGIN for v in second_margins]
+    near_either = [a or b for a,b in zip(near_first,near_second)]
+    allowed = [not match and near for match,near in zip(matched,near_either)]
+    disallowed = [not match and not near for match,near in zip(matched,near_either)]
+    near_charts = [{'chart_number':i+1,'file':file,'first_top_two_margin':first_margins[i],
+                    'second_top_two_margin':second_margins[i],'argmax_matched':matched[i],
+                    'argmax_mismatch_allowed':allowed[i],
+                    'first_top_option_index':max(range(n_options),key=first[i].__getitem__),
+                    'second_top_option_index':max(range(n_options),key=second[i].__getitem__)}
+                   for i,file in enumerate(files) if near_either[i]]
     flagged = [{'chart_number':i+1,'file':file,'max_abs_diff':row_max[i],
                 'mean_abs_diff':row_mean[i],'argmax_matched':matched[i]}
                for i,file in enumerate(files) if row_max[i] > PARITY_FLAG_THRESHOLD]
@@ -195,7 +211,17 @@ def parity_statistics(first, second, files, n_options):
             'probability_drift_passed':mean <= PARITY_ATOL,'top_predictions_matched':all(matched),
             'argmax_agreement_count':sum(matched),'argmax_agreement_rate':sum(matched)/20,
             'argmax_mismatch_files':[file for file,match in zip(files,matched) if not match],
-            'passed':mean <= PARITY_ATOL and all(matched)}
+            'near_tie_threshold':PARITY_NEAR_TIE_MARGIN,
+            'row_top_two_margin_first':first_margins,'row_top_two_margin_second':second_margins,
+            'near_tie_first_count':sum(near_first),'near_tie_second_count':sum(near_second),
+            'near_tie_chart_count':sum(near_either),'near_tie_charts':near_charts,
+            'near_tie_files':[row['file'] for row in near_charts],
+            'allowed_argmax_mismatch_count':sum(allowed),
+            'allowed_argmax_mismatch_files':[file for file,yes in zip(files,allowed) if yes],
+            'disallowed_argmax_mismatch_count':sum(disallowed),
+            'disallowed_argmax_mismatch_files':[file for file,yes in zip(files,disallowed) if yes],
+            'argmax_condition_passed':not any(disallowed),
+            'passed':mean <= PARITY_ATOL and not any(disallowed)}
 
 
 def parity_check(client, rows, path, fingerprint, force=False):
@@ -222,8 +248,8 @@ def parity_check(client, rows, path, fingerprint, force=False):
     failures=[]
     if not report['probability_drift_passed']:
         failures.append(f"mean absolute probability difference {report['mean_abs_diff']:.6f} > {PARITY_ATOL}")
-    if not report['top_predictions_matched']:
-        failures.append(f"top predictions differ on {20-report['argmax_agreement_count']}/20 charts")
+    if not report['argmax_condition_passed']:
+        failures.append(f"top predictions differ outside near ties on {report['disallowed_argmax_mismatch_count']}/20 charts")
     if failures:
         raise ValueError('Parity failed: '+'; '.join(failures)+'; scoring blocked')
     return report
@@ -313,7 +339,11 @@ def run(args):
             append_csv(errors_path, ERROR_FIELDS, {'file':'', 'phase':'parity', 'attempts':getattr(error,'attempts',1), 'error':str(error), 'timestamp_utc':datetime.now(timezone.utc).isoformat()})
             raise
         if args.parity_only:
-            print(json.dumps({'parity_passed':True, 'charts':20, 'mean_abs_diff':parity['mean_abs_diff'], 'max_abs_diff':parity['max_abs_diff'], 'p90_abs_diff':parity['p90_abs_diff'], 'p90_chart_max_abs_diff':parity['p90_chart_max_abs_diff'], 'flagged_charts':parity['flagged_charts'], 'argmax_agreement_count':parity['argmax_agreement_count'], 'parity_policy':parity_policy(), 'synthetic':args.dry_run})); return 0
+            print(json.dumps({'parity_passed':True, 'charts':20, 'mean_abs_diff':parity['mean_abs_diff'], 'max_abs_diff':parity['max_abs_diff'], 'p90_abs_diff':parity['p90_abs_diff'], 'p90_chart_max_abs_diff':parity['p90_chart_max_abs_diff'], 'flagged_charts':parity['flagged_charts'], 'argmax_agreement_count':parity['argmax_agreement_count'],
+                'near_tie_first_count':parity['near_tie_first_count'], 'near_tie_second_count':parity['near_tie_second_count'],
+                'near_tie_chart_count':parity['near_tie_chart_count'], 'near_tie_charts':parity['near_tie_charts'],
+                'allowed_argmax_mismatch_count':parity['allowed_argmax_mismatch_count'],
+                'disallowed_argmax_mismatch_count':parity['disallowed_argmax_mismatch_count'], 'parity_policy':parity_policy(), 'synthetic':args.dry_run})); return 0
         succeeded, failed = 0, 0
         def process(row):
             try: return row, client.score(row), None
@@ -329,7 +359,11 @@ def run(args):
                         append_csv(out, fields, {**row, 'probabilities':json.dumps(p),
                             'prediction':args.options[max(range(len(p)),key=p.__getitem__)], 'latency_ms':latency})
                         succeeded += 1
-        summary = {'scored':succeeded,'failed':failed,'skipped':len(done),'repaired':repaired,'parity_mean_abs_diff':parity['mean_abs_diff'], 'parity_max_abs_diff':parity['max_abs_diff'], 'parity_p90_abs_diff':parity['p90_abs_diff'], 'parity_p90_chart_max_abs_diff':parity['p90_chart_max_abs_diff'], 'parity_flagged_charts':parity['flagged_charts'], 'parity_argmax_agreement_count':parity['argmax_agreement_count'], 'parity_policy':parity_policy(), 'synthetic':args.dry_run}
+        summary = {'scored':succeeded,'failed':failed,'skipped':len(done),'repaired':repaired,'parity_mean_abs_diff':parity['mean_abs_diff'], 'parity_max_abs_diff':parity['max_abs_diff'], 'parity_p90_abs_diff':parity['p90_abs_diff'], 'parity_p90_chart_max_abs_diff':parity['p90_chart_max_abs_diff'], 'parity_flagged_charts':parity['flagged_charts'], 'parity_argmax_agreement_count':parity['argmax_agreement_count'],
+                   'parity_near_tie_first_count':parity['near_tie_first_count'], 'parity_near_tie_second_count':parity['near_tie_second_count'],
+                   'parity_near_tie_chart_count':parity['near_tie_chart_count'], 'parity_near_tie_charts':parity['near_tie_charts'],
+                   'parity_allowed_argmax_mismatch_count':parity['allowed_argmax_mismatch_count'],
+                   'parity_disallowed_argmax_mismatch_count':parity['disallowed_argmax_mismatch_count'], 'parity_policy':parity_policy(), 'synthetic':args.dry_run}
         write_json(out.with_suffix('.summary.json'), summary)
         print(json.dumps(summary))
         return int(failed > 0)

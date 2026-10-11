@@ -1,5 +1,5 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "source": "Observed failed CPU-client/GPU-server session supplied by user, 2026-10-10",
   "observed_inventory": "06-jev-patterns/shared/results/diagnostics/2026-10-10/runtime_lock.json",
   "server_packages": {
@@ -82,7 +82,11 @@
     "gdn_prefill_backend": "triton",
     "require_argmax_agreement": true,
     "drift_statistic": "mean_abs_diff",
-    "flag_chart_max_abs_diff_above": 0.03
+    "flag_chart_max_abs_diff_above": 0.03,
+    "argmax_mismatch_exception": {
+      "top_two_margin_lte": 0.01,
+      "pass": "either"
+    }
   },
   "correction_gpu_verified": false,
   "primary_sources": [
@@ -137,17 +141,48 @@
       "original_v2_max_drift": 0.03334436881129002,
       "all_other_execution_settings_changed": false,
       "new_gpu_run": false
+    },
+    {
+      "approved_by": "Matteo",
+      "approved_date": "2026-10-10",
+      "approval_source": "Explicit user instruction in this chat",
+      "changed_after_observing_failures": true,
+      "previous_gate": {
+        "version": 5,
+        "n_charts": 20,
+        "atol": 0.03,
+        "require_argmax_agreement": true,
+        "argmax_tie_break": "first option in declared order"
+      },
+      "approved_gate": {
+        "atol": 0.01,
+        "drift_statistic": "mean_abs_diff",
+        "require_argmax_agreement": true,
+        "n_charts": 20,
+        "flag_chart_max_abs_diff_above": 0.03
+      },
+      "reason": "v5 failed on one recurring chart at max drift0.0412173; all20 argmaxes matched. Residual bf16 kernel nondeterminism remains the working explanation under serial/eager/no-cache execution. Aggregate repeatability is accepted while tail drift is reported and every chart remains included.",
+      "v5_max_drift": 0.04121730474518304,
+      "v5_argmax_agreement_count": 20,
+      "v5_diagnosis": "06-jev-patterns/shared/results/diagnostics/2026-10-10-v5-parity/diagnosis.json",
+      "noise_floor_result": "06-jev-patterns/shared/results/parity_noise_floor.json",
+      "all_other_execution_settings_changed": false,
+      "new_gpu_run": false
     }
   ],
   "parity_policy_change": {
     "approved_by": "Matteo",
-    "approved_date": "2026-10-10",
+    "approved_date": "2026-10-11",
     "approval_source": "Explicit user instruction in this chat",
     "changed_after_observing_failures": true,
     "previous_gate": {
-      "version": 5,
+      "version": 6,
       "n_charts": 20,
-      "atol": 0.03,
+      "atol": 0.01,
+      "drift_statistic": "mean_abs_diff",
+      "drift_population": "all chart-option probabilities, including flagged charts",
+      "flag_chart_max_abs_diff_above": 0.03,
+      "p90_method": "linear interpolation at (n - 1) * 0.9",
       "require_argmax_agreement": true,
       "argmax_tie_break": "first option in declared order"
     },
@@ -156,14 +191,25 @@
       "drift_statistic": "mean_abs_diff",
       "require_argmax_agreement": true,
       "n_charts": 20,
-      "flag_chart_max_abs_diff_above": 0.03
+      "flag_chart_max_abs_diff_above": 0.03,
+      "argmax_mismatch_exception": {
+        "top_two_margin_lte": 0.01,
+        "pass": "either"
+      }
     },
-    "reason": "v5 failed on one recurring chart at max drift0.0412173; all20 argmaxes matched. Residual bf16 kernel nondeterminism remains the working explanation under serial/eager/no-cache execution. Aggregate repeatability is accepted while tail drift is reported and every chart remains included.",
-    "v5_max_drift": 0.04121730474518304,
-    "v5_argmax_agreement_count": 20,
-    "v5_diagnosis": "06-jev-patterns/shared/results/diagnostics/2026-10-10-v5-parity/diagnosis.json",
+    "reason": "v6 failed only on one argmax change whose pass2 top-two margin is0.0000264292. BF16 probability variation can reorder nearly tied choices. Allow a mismatch only when either pass has top-two margin<=0.01; keep mean drift<=0.01 and report raw agreement and near-tie counts.",
+    "v6_mean_drift": 0.0026098296378638183,
+    "v6_max_drift": 0.022243287166081593,
+    "v6_argmax_agreement_count": 19,
+    "v6_mismatch_file": "charts/7d763e0bb9783f355926.png",
+    "v6_mismatch_top_two_margins": [
+      0.013743209805803569,
+      2.642923402501607e-05
+    ],
+    "v6_diagnosis": "06-jev-patterns/shared/results/diagnostics/2026-10-11-v6-parity/diagnosis.json",
     "noise_floor_result": "06-jev-patterns/shared/results/parity_noise_floor.json",
     "all_other_execution_settings_changed": false,
-    "new_gpu_run": false
+    "new_gpu_run": false,
+    "final_gate_change_requested": true
   }
 }
