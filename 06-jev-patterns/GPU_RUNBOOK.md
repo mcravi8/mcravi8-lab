@@ -1,53 +1,53 @@
-# Experiment 06 frozen inference runbook
+# Experiment 06 trimmed inference runbook
 
-**Prepared and tested on CPU; never executed against JEV or a GPU.** The script [run_gpu.py](scripts/run_gpu.py) is the single future entry point. It does not create, start, stop or contact Runpod resources. Model inference requires a separately authorized, already prepared GPU host.
+**Prepared and tested on CPU; never executed against JEV or a GPU.** [run_gpu.py](scripts/run_gpu.py) is the single future entry point. It does not create, start, stop or contact Runpod resources. Inference requires a separately authorized, already prepared GPU host.
 
 ## Frozen assets and arms
 
-[Model contract](config/model_contract.json) pins **autotrust/JEV-27B-VL** to Hugging Face snapshot **3514d1d8ead2189c75f433fa949fe63c8e3f3c66**, including all 19 base/adapter safetensor files, serving/calibration SHA-256s and tokenizer/config Git blob IDs. No model weights were downloaded for Day 2.
+The [model contract](config/model_contract.json) pins **autotrust/JEV-27B-VL** to Hugging Face snapshot **3514d1d8ead2189c75f433fa949fe63c8e3f3c66**, including all 19 base/adapter safetensor files, serving/calibration SHA-256s and tokenizer/config Git blob IDs. No model weights were downloaded for CPU preparation.
 
-The [pinned model card](https://huggingface.co/autotrust/JEV-27B-VL/blob/3514d1d8ead2189c75f433fa949fe63c8e3f3c66/README.md), [native server](https://huggingface.co/autotrust/JEV-27B-VL/blob/3514d1d8ead2189c75f433fa949fe63c8e3f3c66/serve_decide.py) and [serve.sh](https://huggingface.co/autotrust/JEV-27B-VL/blob/3514d1d8ead2189c75f433fa949fe63c8e3f3c66/serve.sh) support a mixed text/image state and up to eight images. This keeps the **optional references arm**, using one labelled example board and one target image. Zero-shot and definitions calls use one target image. All calls use native System 1 `/v1/decide`, `thinking="off"`, `strategy="single"`, and ordered eight- or seven-class options.
+The [pinned model card](https://huggingface.co/autotrust/JEV-27B-VL/blob/3514d1d8ead2189c75f433fa949fe63c8e3f3c66/README.md) and [native server](https://huggingface.co/autotrust/JEV-27B-VL/blob/3514d1d8ead2189c75f433fa949fe63c8e3f3c66/serve_decide.py) define native System 1 `/v1/decide`, `thinking="off"`, `strategy="single"`, with ordered eight- or seven-class options. Every scheduled call has one target image. **The reference-image arm is removed**, including its enable flag; existing CPU reference boards are inactive historical artifacts.
 
-[Inference config](config/inference_arms.json) freezes two distinct question paraphrases for each task, definitions/context hashes, reference boards, selected style IDs, input CSVs, image hashes, output paths and call budgets. No prompt is chosen by prediction performance.
+[Inference config](config/inference_arms.json), schema 2, freezes **zero-shot and definitions** with one primary question wording per task. A second wording is confined to **100 charts per sub-part**, for both arms. These rows reuse main-arm predictions for the primary wording. No prompt or subset is selected from prediction performance.
 
-| Input collection | Rows | Arms, each with two paraphrases |
+| Input collection | Rows | Scheduled arms / wording |
 |---|---:|---|
-| 06a candles | 1,200 | zero-shot, definitions, optional definitions + references |
-| 06b real variable / fixed historical 100 | 150 / 150 | same three arms |
-| 06b synthetic variable / interpolated 100 | 1,200 / 1,200 | same three arms |
-| 06a style OHLC / line | 200 / 200 | same three arms |
-| 06b style OHLC / line | 200 / 200 | same three arms |
-| Time-reversed 06a / real 06b / synthetic 06b | 1,200 / 150 / 1,200 | zero-shot placebo |
-| Price-inverted eligible real + synthetic 06b | 14 + 864 | zero-shot class-equivariance control |
+| 06a candles | 1,200 | zero-shot + definitions, primary wording |
+| 06b real variable / genuine historical 100 | 150 / 150 | same arms/wording; **showcase-only** |
+| 06b synthetic variable / interpolated 100 | 1,200 / 1,200 | same arms/wording |
+| Paraphrase subset: 06a / synthetic 06b | 100 / 100 | both arms, second wording only |
+| Style subset: OHLC and line, per sub-part | 100 each style | zero-shot, primary wording |
+| Horizontal time mirror: 06a / synthetic 06b | 100 / 100 | zero-shot, primary wording |
+| Eligible price inversion: synthetic 06b | 100 | zero-shot, primary wording |
 
-The candle style is an alias of each original row's prediction, avoiding duplicate calls. 06a's style subset has 200 distinct market parents; 06b uses **all 150 retained real parents plus 50 distinct clean synthetic parents** because fewer than 200 real parents qualify. Index fields `data_origin`, `source_collection`, `source_file` and parent IDs preserve pairing. The two origins must be analyzed separately. Training rows are scored descriptively; real primary evaluation uses **test only**. Synthetic evaluation clusters all noise, framing and style siblings by `template_id`.
+Style and horizontal-mirror controls share the frozen 100-parent subsets: **06a market test rows**, and **06b distinct clean synthetic parents**, stratified by class. The paraphrase uses these same subsets. Candle style aliases original predictions and costs no new calls. Price inversion uses a separately fixed 100-parent clean synthetic subset from eligible classes. Real showcase charts are excluded from secondary controls. Main synthetic arms retain all 200 parents and six paired noise realizations; secondary controls do not measure noisy-chart robustness.
 
-Real fixed-100 charts use genuine historical observations with the same final date and contain the whole accepted pattern. Synthetic fixed-100 charts interpolate the same parent/noise realization; they are not independent examples. Numeric files match their corresponding framing or price transformation.
+Index fields `evidence_role`, `accuracy_valid`, `data_origin`, `source_collection`, `source_file` and parent IDs preserve scope and pairing. All **150 real parents remain**, with both variable and genuine historical fixed-100 framing, in both main arms: 600 descriptive prediction calls. Config and CSVs mark these rows `showcase_only` and `accuracy_valid=false`. **No aggregate or per-class real-data model accuracy claims are allowed.** The evaluator rejects their metrics and paired accuracy comparisons. The reported CPU result is the [detector-agreement table](06b-chart-patterns/results/detector_agreement.csv), documented [with denominators and counts](06b-chart-patterns/README.md#reported-cpu-result-detector-agreement); detector overlap is not expert label quality or JEV accuracy.
 
-**Horizontal mirroring reverses time** and has no valid assumed class swap. Its config marks label accuracy invalid; use probability/position sensitivity only. A separate OHLC price inversion preserves chronology, maps H&S ↔ inverse and Top ↔ Bottom, and leaves Triangle unchanged. Bull Flag is excluded because it becomes an out-of-taxonomy Bear Flag; None is excluded because an unlabelled Bear Flag could become a Bull Flag. Volume stays unchanged and gray for 06b.
+Real fixed-100 versions use actual historical observations with the same final date and include the accepted pattern. Synthetic fixed-100 versions interpolate the same parent/noise realization; they are correlated examples. Numeric files match framing or price transformation.
 
-Reference boards are fixed before inference. Candles use the first clear training ID per class, never test rows. The eight reference rows' own training predictions are descriptive. Pattern references use seven independent synthetic seeds, distinct from the 200 evaluation parents; they are illustrations, not expert-validated real examples. [Reference provenance](shared/references/provenance.json) records identities/hashes. References are **off by default**, enabled only with `--include-references`.
+**Horizontal mirroring reverses time**, with no valid assumed class swap; use probability/position sensitivity only. A separate OHLC price inversion preserves chronology and maps H&S ↔ inverse, Top ↔ Bottom, and Triangle → Triangle. Bull Flag is excluded because it becomes an out-of-taxonomy Bear Flag; None is excluded because an unlabelled Bear Flag could become a Bull Flag. Volume stays unchanged and gray for 06b.
 
 ## CPU preparation and transfer
 
-The CPU dependencies remain pinned in the separate Experiment 06 environment. After restoring the exact ignored Day 1/Day 2 inputs:
+CPU dependencies remain pinned in the separate Experiment 06 environment. Restore the exact ignored Day 1/Day 2 inputs, then run:
 
 ```sh
 06-jev-patterns/.venv/bin/python 06-jev-patterns/shared/src/prepare_day2.py
 06-jev-patterns/.venv/bin/python -m unittest discover -s 06-jev-patterns/tests -v
 ```
 
-Preparation writes fixed versions, styles, inversion charts, numeric bars, reference boards, arm indexes and the frozen config. [day2_preparation.json](shared/results/day2_preparation.json) records its config hash and counts. Regeneration is explicit: changed source, context or pixels changes the freeze.
+Preparation writes fixed versions, selected styles/inversions, numeric bars, arm indexes, the reported agreement CSV and frozen config. It removes obsolete generated arm indexes. [day2_preparation.json](shared/results/day2_preparation.json) records counts and the config hash. Changed source, context or pixels changes the freeze.
 
-Before a later authorized session, copy the repository **and all ignored chart PNGs referenced by the frozen config** to the GPU host, preserving repository-relative paths. A fresh Git clone alone is insufficient. Keep the market snapshots, scan caches and numeric bars for reproducibility even though scoring only reads PNGs. A changed/missing asset fails validation before server startup.
+Before a later authorized session, copy the repository **and every ignored chart PNG referenced by the config** to the GPU host, preserving repository-relative paths. A fresh clone alone is insufficient. Keep snapshots, scan caches and numeric bars for reproducibility. Missing/changed assets fail validation before server startup.
 
 ## Future GPU invocation — not run
 
-The previously documented location is Runpod **US-MO-1**, network volume **jev-weights**, port **8000**. This runbook assumes such storage and compute are already prepared and authorized; it does not provision them. Cache the exact pinned Hugging Face snapshot and provide an installed, model-card-compatible vLLM environment.
+The documented Runpod location is **US-MO-1**, network volume **jev-weights**, port **8000**. Compute/storage must already be prepared and authorized; this script does not provision them. Cache the exact Hugging Face snapshot and provide an installed, model-card-compatible vLLM environment.
 
-Use the repository's corrected [Experiment 01 remote_serve.sh](../01-jev-tsla-charts/scripts/remote_serve.sh). The inspected `~/Desktop/runpod-setup/remote_serve.sh` was an older plain-vLLM launcher without the native decision route. It was neither changed nor executed. The repository wrapper invokes the snapshot's own `serve.sh`, retaining its LoRA, raw decision template and **`--max-num-seqs 8`** requirement. Scorer concurrency is four; batch size 16 only controls the client queue and does not override the server limit.
+Use the corrected repository [Experiment 01 remote_serve.sh](../01-jev-tsla-charts/scripts/remote_serve.sh). The inspected `~/Desktop/runpod-setup/remote_serve.sh` was an older plain-vLLM launcher without the native decision route; it was neither changed nor executed. The repository wrapper invokes the snapshot's [serve.sh](https://huggingface.co/autotrust/JEV-27B-VL/blob/3514d1d8ead2189c75f433fa949fe63c8e3f3c66/serve.sh), preserving LoRA, the raw decision template and **`--max-num-seqs 8`**. Scorer concurrency is four; batch size 16 controls only the client queue.
 
-From the repository root on that future GPU host, with these example environment paths replaced by the actual prepared locations:
+From the repository root on that future GPU host, replace example paths with prepared environment locations:
 
 ```sh
 06-jev-patterns/.venv/bin/python 06-jev-patterns/scripts/run_gpu.py \
@@ -57,32 +57,39 @@ From the repository root on that future GPU host, with these example environment
   --scorer-python 06-jev-patterns/.venv/bin/python
 ```
 
-Append `--include-references` only to include the optional jobs. Without `--execute`, the script only validates local assets and prints the plan. **Neither mode was invoked during Day 2; tests import pure helpers and mock execution.**
+There is no reference-image enable flag. Without `--execute`, the script validates local assets and prints the plan. **Neither mode was invoked during this CPU revision; tests import helpers and mock subprocess execution.**
 
 The script:
 
-1. Verifies all frozen input hashes and the cached model's weight/serving/config hashes; rejects an occupied port instead of replacing another server.
-2. Records complete installed server/scorer package versions in `shared/results/inference_run/runtime_lock.json`; refuses a changed runtime on resume. The CPU environment is version-pinned. The model card does not supply a reproducible vLLM version lock; the future GPU environment must be prepared/validated, and GPU compatibility is currently unverified.
-3. Starts only the verified native Experiment 01 wrapper, with offline Hugging Face mode, port 8000 and context length 16,384. No model downloads or package installs occur in the script.
-4. Checks native identity/calibration, then runs **20 charts twice for each option schema** before any prediction job. Every pending job also runs its own 20-chart repeatability gate. Any max probability difference **>0.01 aborts** the session.
-5. Scores every row of every selected frozen job, retaining index metadata, ordered probabilities, class prediction and latency. Timeout is 120 seconds with three retries. Resume rejects changed inputs, model, question, context or reference board and skips completed rows.
-6. Writes each dataset's `results/inference/frozen_v1/<job>.csv` plus metadata, parity, error and summary files. Logs the server and overall session summary under `shared/results/inference_run/`. Stops its own server process on completion/failure. **It does not stop the existing cloud pod or its billing.**
+1. Verifies frozen assets, the under-10,000 fresh call cap, showcase-only scope, and model weight/serving/config hashes; rejects an occupied port.
+2. Records installed server/scorer versions in `shared/results/inference_run_v2/runtime_lock.json` and rejects changed runtimes on resume. CPU dependencies are pinned. The model card supplies no reproducible vLLM lock; future GPU compatibility must be validated and is currently unverified.
+3. Starts the verified native Experiment 01 wrapper with offline Hugging Face mode, port 8000 and context length 16,384. No downloads or package installs occur.
+4. Verifies native identity/calibration and runs **20 charts twice per option schema** before any prediction job. Every pending job also repeats 20 charts. Any maximum probability difference **>0.01 aborts**.
+5. Scores all frozen jobs, preserving scope metadata, ordered probabilities, class predictions and latency. Timeout is 120 seconds with three retries. Resume rejects changed inputs, model, question or context and skips completed rows.
+6. Writes `results/inference/frozen_v2/<job>.csv` plus metadata, parity, error and summary files. Logs and session summary go to `shared/results/inference_run_v2/`. It stops its own server on completion/failure, **not the existing cloud pod or its billing**.
 
-Repeatability is not proof of HF/vLLM parity or recognition quality. Errors abort before later jobs; already completed outputs remain resumable. Global gates run again per session; partially completed jobs repeat their gate, while completed no-op jobs make no further decide calls.
+Repeatability does not establish HF/vLLM parity or recognition quality. Global gates repeat each session; partial jobs repeat their gate. Completed no-op jobs make no new decide calls.
 
 ## Call and time budget
 
-| Plan | Jobs | Prediction calls | Job + global parity | Total decide calls | Estimated GPU minutes |
-|---|---:|---:|---:|---:|---:|
-| Default: zero-shot + definitions, controls | 44 | 25,656 | 1,760 + 80 | **27,496** | **120–313** |
-| Include reference-image arm | 62 | 35,056 | 2,480 + 80 | **37,616** | **204–532** |
+| Component | Jobs | Prediction calls |
+|---|---:|---:|
+| Main zero-shot + definitions, one wording | 10 | 7,800 |
+| Second wording, 100 charts per sub-part and arm | 4 | 400 |
+| OHLC / line, 100 per sub-part, zero-shot | 4 | 400 |
+| Horizontal mirrors, 100 per sub-part, zero-shot | 2 | 200 |
+| Price inversions, 100 synthetic parents, zero-shot | 1 | 100 |
+| **Total predictions** | **21** | **8,900** |
+| Per-job repeatability: 21 × 40 | | 840 |
+| Two global option-schema gates: 2 × 40 | | 80 |
+| **Total decide calls** | | **9,820** |
 
-These are **fresh successful-run** counts, excluding retries and repeated partial resumes. Two paraphrases, fixed framing, styles and controls expand the original plan's rough 6,000–9,000-call estimate.
+The fresh successful run is **9,820 calls**, down from 27,496, and remains below 10,000. Retries and repeated partial resumes are additional; this is a planned count, not a hard request limiter that would truncate output.
 
-The time range assumes 0.25–0.65 effective GPU seconds per single-image call at concurrency four, weights reference calls twice, and adds 5–15 minutes for startup/weight validation. Experiment 03's historical median request latency was 594.704 ms; it is context, not measured throughput for these larger charts. No Experiment 06 GPU timing is available. Hardware, serial parity gates, image size and cache behavior can move runtime outside this planning range.
+Estimated GPU time is **45.9–121.4 minutes (about 46–121)**: 0.25–0.65 effective GPU seconds per single-image call at concurrency four plus 5–15 minutes for startup/weight validation. Experiment 03's historical median request latency was 594.704 ms; it is context, not measured throughput for these charts. Serial parity gates, hardware, image size and cache behavior can move runtime outside the estimate. **No Experiment 06 GPU timing is available.**
 
 ## Later evaluation
 
-Use real test rows only, separate market and synthetic origins, and keep all correlated versions together. The evaluator accepts `--data-origin market --split test` or `--data-origin synthetic --split eval`; it rejects an unfiltered mixed-origin dataset. Add `--clear-only` for 06a's secondary analysis and report full-set results alongside it.
+Evaluate **06a test rows** (`--data-origin market --split test`) and **synthetic 06b** (`--data-origin synthetic --split eval`) separately. Retain all correlated versions within template blocks. The evaluator rejects mixed origins, showcase-only rows and accuracy-invalid time mirrors. `--clear-only` is secondary 06a analysis; report full-set results alongside it.
 
-Time-placebo outputs are for sensitivity, not label accuracy. For style/framing comparisons, align parents using the frozen provenance rather than treating different PNG filenames as independent observations. The real 06b test set has only 18 positive examples and three missing classes; do not present it as a complete seven-class benchmark. Human review and any later dataset revision must be recorded separately from this initial freeze.
+Real 06b is for visual examples and detector-agreement reporting only, regardless of train/test annotation. Do not report its per-class recognition accuracy. Align style/framing parents through frozen provenance; different PNG filenames are not independent observations. Horizontal controls report sensitivity rather than accuracy. User visual review remains pending; later dataset revisions must be separately recorded.

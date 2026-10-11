@@ -68,7 +68,7 @@ Day 2 now generates this paired control through shared/src/prepare_day2.py. Real
 
 ## Day 2 real-market dataset
 
-The frozen scan covered all **50 tickers**, adjusted daily OHLCV from **2005-01-01 through 2026-09-30** (or IPO), using the Day 1 snapshots. The actual result is **150 real parents: 82 train and 68 test**, each rendered twice. All six positive classes miss the 80–120 target. No rule was relaxed to fill a quota. Inverse H&S, Double Top and Double Bottom have **no test examples**. This is a small, imbalanced feasibility set; it cannot support a seven-class held-out recognition claim.
+The frozen scan covered all **50 tickers**, adjusted daily OHLCV from **2005-01-01 through 2026-09-30** (or IPO), using the Day 1 snapshots. The actual result is **150 real parents: 82 train and 68 test**, each rendered twice. All six positive classes miss the 80–120 target. No rule was relaxed to fill a quota. Inverse H&S, Double Top and Double Bottom have **no test examples**. **All 150 parents are showcase-only**, including both variable and fixed-100 versions. The frozen config and arm CSVs mark `evidence_role=showcase_only` and `accuracy_valid=false`; they support visual examples, with no aggregate or per-class model accuracy claims. The shared evaluator rejects accuracy metrics and paired accuracy comparisons for these rows. Train/test annotations remain for provenance.
 
 ### External detector, license and independent check
 
@@ -79,6 +79,10 @@ The external functions propose pre-breakout structures. Our adapter scans every 
 The [independent detector](src/zigzag_detector.py) consumes closing prices and causal ATR-scaled directional changes directly. It does not consume upstream pivots, candidates, volume tests or algorithms. Reversal scales are 1.5/2.5 ATR with a minimum 0.8% move; adjacent turns are at least three bars apart. Normalized tolerances include peak mismatch <=20% of height, shoulder mismatch <=25%, head prominence >=12%, neckline tilt <=25%, and minimum height 2.5 ATR. Triangles must narrow to <=70% of initial width; a separately fitted downward flag channel follows a >=4 ATR pole, retraces <=50%, and has residual width <=40% of the pole. Breakout clearance is 0.15 ATR. The complete rules, timing and bounds are in the config.
 
 Agreement pairs same-class completed events one-to-one within five bars, with span intersection-over-union >=0.5. We reject competing classes near the completion (within ten bars and span IoU >=0.3), and require both detector boundaries to remain broken at the final chart bar. “Single-label” means one agreed main formation under this explicit exclusion rule; small incidental shapes may remain.
+
+### Reported CPU result: detector agreement
+
+The [reported table](results/detector_agreement.csv) records external, independent and matched decisions, their Jaccard overlap and decision-unit denominators. It is a CPU result about detector consistency, not JEV recognition accuracy or an expert label-quality estimate.
 
 | Class | Eligible train / test | Selected train / test | Total | Event agreement |
 |---|---:|---:|---:|---:|
@@ -117,4 +121,4 @@ Reproduce from the repo root after restoring the exact Day 1 snapshots:
 
 [real_index.csv](results/real_index.csv) and [real_fixed100_index.csv](results/real_fixed100_index.csv) retain matching parent IDs. The [render manifest](results/real_render_manifest.json) pins raw data, code, rules, CSVs and all 300 image/bars pairs. Raw bars, scan caches and chart PNGs remain ignored; selected review grids and provenance are committed.
 
-The [frozen arms and GPU runbook](../GPU_RUNBOOK.md) document both paraphrases, styles, optional reference boards, correct mirror controls, all prediction paths and call/time estimates. The runbook has not been executed.
+The [trimmed frozen arms and GPU runbook](../GPU_RUNBOOK.md) retain zero-shot and definitions with one main wording, plus a second wording on 100 clean synthetic parents. Styles and horizontal mirrors use 100 clean synthetic parents, zero-shot only; price inversion uses another eligible 100-parent subset. Real showcase rows are excluded from secondary controls. The reference-image arm is removed. Across both sub-parts the fresh schedule is 9,820 decide calls, estimated at 46–121 GPU minutes; the runbook has not been executed.

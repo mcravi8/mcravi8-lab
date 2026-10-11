@@ -139,7 +139,18 @@ def _inference(groups, description, resamples, seed):
             "no_ci_reason": None if len(groups) >= 2 else (description if not groups else "Fewer than two independent blocks")}
 
 
+def assert_evaluable(frame):
+    """Do not turn showcase or time-placebo labels into accuracy claims."""
+    if 'evidence_role' in frame and frame.evidence_role.eq('showcase_only').any():
+        raise ValueError('Showcase-only rows cannot produce model accuracy metrics; report detector agreement and examples')
+    if 'source_collection' in frame and frame.source_collection.astype(str).str.startswith('real_').any():
+        raise ValueError('Real 06b rows are showcase-only; no model accuracy metrics')
+    if 'accuracy_valid' in frame and frame.accuracy_valid.map(lambda x:str(x).strip().lower()).eq('false').any():
+        raise ValueError('Label accuracy is invalid for this control; report probability sensitivity')
+
+
 def evaluate_frame(frame, options, *, synthetic=False, bootstrap_resamples=2000, seed=0):
+    assert_evaluable(frame)
     p = validate_frame(frame, options)
     result = evaluate_arrays(p, frame.label.to_numpy(), options)
     groups, description = bootstrap_groups(frame, synthetic=synthetic)
@@ -155,6 +166,8 @@ def evaluate_frame(frame, options, *, synthetic=False, bootstrap_resamples=2000,
 
 def compare_arms(left, right, options, *, synthetic=False, bootstrap_resamples=2000, seed=0):
     """Positive differences mean left improves over right; require identical coverage."""
+    assert_evaluable(left)
+    assert_evaluable(right)
     validate_frame(left, options)
     validate_frame(right, options)
     if set(left.file) != set(right.file):

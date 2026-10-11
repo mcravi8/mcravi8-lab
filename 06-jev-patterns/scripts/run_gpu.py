@@ -44,8 +44,19 @@ def validate_assets(config):
         if not path.is_file() or sha(path)!=expected:raise ValueError(f'Frozen artifact missing or changed: {relative}')
 
 
-def selected_jobs(config,include_references=False):
-    jobs=[j for j in config['jobs'] if include_references or not j['optional_reference']]
+def selected_jobs(config):
+    jobs=config['jobs']
+    if any(j.get('reference_image') or j.get('optional_reference') or j.get('arm')=='references' for j in jobs):
+        raise ValueError('Reference-image arm was removed from the trimmed plan')
+    total=sum(j['n_rows'] for j in jobs)+40*len(jobs)+80
+    if total>=config.get('fresh_call_cap',10000):
+        raise ValueError('Fresh-run decide call budget must remain below 10,000')
+    if 'call_budget' in config and total!=config['call_budget']['default']['total_decide_calls']:
+        raise ValueError('Declared decide call budget differs from frozen jobs')
+    for job in jobs:
+        if job.get('source_collection','').startswith('real_') or job.get('name','').startswith('real_'):
+            if job.get('evidence_role')!='showcase_only' or job.get('accuracy_valid') is not False:
+                raise ValueError('Real 06b jobs must remain showcase-only')
     if len({j['id'] for j in jobs})!=len(jobs):raise ValueError('Duplicate inference job IDs')
     if any(j['n_rows']<20 for j in jobs):raise ValueError('Every job needs 20 distinct chart rows for its repeatability gate')
     return jobs
@@ -53,7 +64,7 @@ def selected_jobs(config,include_references=False):
 
 def score_command(job,python,config,contract,*,parity_only=False,global_gate=False):
     runtime=config['runtime'];root=checked_path(job['root'])
-    out=f"results/inference/frozen_v1/global_parity_{job['kind']}.csv" if global_gate else job['out']
+    out=f"results/inference/frozen_v2/global_parity_{job['kind']}.csv" if global_gate else job['out']
     command=[str(python),str(EXP/'shared/src/score.py'),'--root',str(root),'--index',job['index'],
              '--out',out,'--options-file',str(checked_path(job['options_file'])),
              '--question',job['question'],'--control',job['control'],
@@ -62,7 +73,6 @@ def score_command(job,python,config,contract,*,parity_only=False,global_gate=Fal
              '--concurrency',str(runtime['concurrency']),'--batch-size',str(runtime['batch_size']),
              '--timeout',str(runtime['timeout']),'--retries',str(runtime['retries'])]
     if job['context_file']:command+=['--context-file',str(checked_path(job['context_file']))]
-    if job['reference_image']:command+=['--reference-image',str(checked_path(job['reference_image']))]
     if parity_only:command.append('--parity-only')
     return command
 
@@ -74,9 +84,9 @@ def global_gate_jobs(config):
     return jobs
 
 
-def execute_jobs(config,contract,python,include_references=False,runner=subprocess.run):
+def execute_jobs(config,contract,python,runner=subprocess.run):
     """Testable ordering: all global gates pass before any prediction job starts."""
-    jobs=selected_jobs(config,include_references)
+    jobs=selected_jobs(config)
     for job in global_gate_jobs(config):
         runner(score_command(job,python,config,contract,parity_only=True,global_gate=True),check=True)
     for number,job in enumerate(jobs,1):
@@ -127,8 +137,8 @@ def wait_ready(process,port,contract,timeout=900):
 
 
 def run_session(config,contract,args):
-    validate_assets(config);selected_jobs(config,args.include_references)
-    folder=EXP/'shared/results/inference_run';folder.mkdir(parents=True,exist_ok=True)
+    validate_assets(config);selected_jobs(config)
+    folder=EXP/'shared/results/inference_run_v2';folder.mkdir(parents=True,exist_ok=True)
     with (folder/'session.lock').open('w') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         verify_model(args.model_dir,contract)
@@ -143,14 +153,14 @@ def run_session(config,contract,args):
             MAX_MODEL_LEN=str(config['runtime']['max_model_len']),HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1')
         environment['PATH']=str(Path(args.server_python).absolute().parent)+os.pathsep+environment['PATH']
         started=time.time();process=None;result={'status':'starting','model_revision':contract['revision'],
-            'config_sha256':sha(args.config),'weights_verified':True,'include_references':args.include_references,
+            'config_sha256':sha(args.config),'weights_verified':True,
             'runtime_lock_sha256':sha(folder/'runtime_lock.json'),'provisions_pod':False}
         with (folder/'server.log').open('a') as log:
             try:
                 process=subprocess.Popen(['bash',str(REPO/contract['serving_entrypoint'])],stdout=log,stderr=subprocess.STDOUT,
                                          env=environment,start_new_session=True)
                 wait_ready(process,port,contract)
-                execute_jobs(config,contract,args.scorer_python,args.include_references)
+                execute_jobs(config,contract,args.scorer_python)
                 result['status']='complete'
             except BaseException as error:
                 result.update(status='failed',error=type(error).__name__+': '+str(error));raise
@@ -168,7 +178,6 @@ def arguments(argv=None):
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--config',type=Path,default=EXP/'config/inference_arms.json')
     p.add_argument('--execute',action='store_true',help='Start native JEV on an already authorized GPU host and score')
-    p.add_argument('--include-references',action='store_true')
     p.add_argument('--model-dir',type=Path,default=Path('/workspace/models/JEV-27B-VL'))
     p.add_argument('--server-python',type=Path)
     p.add_argument('--scorer-python',type=Path,default=EXP/'.venv/bin/python')
@@ -181,8 +190,8 @@ def main(argv=None):
     args=arguments(argv);config=json.loads(args.config.read_text());contract=json.loads(checked_path(config['model_contract']).read_text())
     if not args.execute:
         validate_assets(config)
-        print(json.dumps({'execution':'plan_only','budget':config['call_budget']['with_references' if args.include_references else 'default'],
-                          'jobs':[j['id'] for j in selected_jobs(config,args.include_references)]},indent=2));return
+        print(json.dumps({'execution':'plan_only','budget':config['call_budget']['default'],
+                          'jobs':[j['id'] for j in selected_jobs(config)]},indent=2));return
     run_session(config,contract,args)
 
 

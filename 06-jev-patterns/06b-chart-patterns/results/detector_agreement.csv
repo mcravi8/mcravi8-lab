@@ -1,0 +1,8 @@
+label,decision_unit,external,independent,matched,agreement_jaccard,denominator,evidence_type
+Head and Shoulders,completed event,102,221,20,0.0660066006601,"one-to-one union of completed detector events before span, split, exclusivity and sample filters",detector_overlap_not_model_accuracy
+Inverse Head and Shoulders,completed event,119,236,20,0.0597014925373,"one-to-one union of completed detector events before span, split, exclusivity and sample filters",detector_overlap_not_model_accuracy
+Double Top,completed event,46,487,11,0.0210727969349,"one-to-one union of completed detector events before span, split, exclusivity and sample filters",detector_overlap_not_model_accuracy
+Double Bottom,completed event,52,610,15,0.0231839258114,"one-to-one union of completed detector events before span, split, exclusivity and sample filters",detector_overlap_not_model_accuracy
+Triangle,completed event,65,1774,23,0.0126651982379,"one-to-one union of completed detector events before span, split, exclusivity and sample filters",detector_overlap_not_model_accuracy
+Bull Flag,completed event,293,4106,144,0.0338425381904,"one-to-one union of completed detector events before span, split, exclusivity and sample filters",detector_overlap_not_model_accuracy
+None,absence-screen window,17352,617,506,0.0289755483021,union of negative decisions on prespecified 120-bar absence-screen windows,detector_overlap_not_model_accuracy

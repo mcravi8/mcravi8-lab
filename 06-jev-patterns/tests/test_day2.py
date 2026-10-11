@@ -28,8 +28,7 @@ class Day2Tests(unittest.TestCase):
               'options_file':'06-jev-patterns/06a-candles/options.json','question':'Frozen question',
               'context_file':None,'reference_image':None,'control':'image','optional_reference':False,'n_rows':20}
         jobs=[dict(base,id='candles_zero_shot_p1',kind='candles'),
-              dict(base,id='synthetic_variable_zero_shot_p1',kind='patterns'),
-              dict(base,id='optional',kind='patterns',optional_reference=True)]
+              dict(base,id='synthetic_variable_zero_shot_p1',kind='patterns')]
         return {'jobs':jobs,'runtime':{'port':8000,'concurrency':4,'batch_size':16,'timeout':120,'retries':3}}
 
     def test_global_parity_gates_precede_all_prediction_jobs(self):
@@ -41,7 +40,7 @@ class Day2Tests(unittest.TestCase):
         self.assertTrue(all('--parity-only' in c for c in calls[:2]))
         self.assertTrue(all('--parity-only' not in c for c in calls[2:]))
         self.assertTrue(all(c[c.index('--concurrency')+1]=='4' for c in calls))
-        self.assertEqual(len(runbook.selected_jobs(config,True)),3)
+        self.assertEqual(len(runbook.selected_jobs(config)),2)
 
     def test_failed_global_gate_stops_before_any_prediction(self):
         calls=[]
@@ -54,7 +53,8 @@ class Day2Tests(unittest.TestCase):
 
     def test_default_arguments_do_not_authorize_execution(self):
         self.assertFalse(runbook.arguments([]).execute)
-        self.assertFalse(runbook.arguments([]).include_references)
+        with patch('sys.stderr',StringIO()),self.assertRaises(SystemExit):
+            runbook.arguments(['--include-references'])
         with redirect_stdout(StringIO()),patch('sys.stderr',StringIO()),self.assertRaises(SystemExit):
             runbook.arguments(['--execute'])
 
@@ -89,18 +89,20 @@ class Day2Tests(unittest.TestCase):
         self.assertNotIn('Bull Flag',prepare.MAP);self.assertNotIn('None',prepare.MAP)
         for a,b in prepare.MAP.items():self.assertEqual(prepare.MAP[b],a)
 
-    def test_call_budget_counts_predictions_parity_optional_and_global(self):
+    def test_call_budget_counts_predictions_parity_and_global(self):
         jobs=self.fixture()['jobs']
         report=prepare.estimate(jobs)
         self.assertEqual(report['prediction_calls'],40)
         self.assertEqual(report['total_decide_calls'],200)
-        self.assertEqual(prepare.estimate(jobs,True)['total_decide_calls'],260)
+        self.assertEqual(report['jobs'],2)
+        self.assertEqual(report['job_parity_calls'],80)
+        self.assertEqual(report['global_parity_calls'],80)
 
     def test_style_selection_is_unique_and_order_independent(self):
         index=pd.DataFrame([{'file':f'{i}.png','label':str(i%7),'split':'test' if i%2 else 'train'}
                             for i in range(240)])
         subset=prepare.style_subset(index)
-        self.assertEqual(len(subset),200);self.assertTrue(subset.file.is_unique)
+        self.assertEqual(len(subset),100);self.assertTrue(subset.file.is_unique)
         self.assertEqual(subset.file.tolist(),prepare.style_subset(index.iloc[::-1]).file.tolist())
 
     def test_mixed_origin_metrics_require_explicit_cohort(self):
@@ -112,6 +114,33 @@ class Day2Tests(unittest.TestCase):
         market=evaluate.select_cohort(frame,'market','test')
         self.assertEqual(len(market),1);self.assertFalse(evaluate.infer_synthetic_dataset(market,{}))
         with self.assertRaisesRegex(ValueError,'no rows'):evaluate.select_cohort(frame,'synthetic','test')
+
+    def test_runbook_rejects_reference_arm_over_budget_and_accuracy_enabled_showcase(self):
+        config=self.fixture()
+        config['jobs'][0]['reference_image']='reference.png'
+        with self.assertRaisesRegex(ValueError,'Reference-image'):runbook.selected_jobs(config)
+        config=self.fixture();config['jobs'][0]['n_rows']=10000
+        with self.assertRaisesRegex(ValueError,'below 10,000'):runbook.selected_jobs(config)
+        config=self.fixture();config['jobs'][0].update(name='real_variable',accuracy_valid=True)
+        with self.assertRaisesRegex(ValueError,'showcase-only'):runbook.selected_jobs(config)
+        config['jobs'][0].update(evidence_role='showcase_only',accuracy_valid=False)
+        self.assertEqual(len(runbook.selected_jobs(config)),2)
+
+    def test_showcase_and_time_placebo_cannot_produce_accuracy_or_arm_comparisons(self):
+        benchmark=pd.DataFrame({'file':['x.png'],'ticker':['A'],'end_date':['2020-01-02'],
+                               'label':['A'],'prediction':['A'],'probabilities':['[0.8,0.2]'],
+                               'latency_ms':[1],'evidence_role':['benchmark'],'accuracy_valid':[True]})
+        self.assertEqual(evaluate.evaluate_frame(benchmark,['A','B'],bootstrap_resamples=1)['accuracy'],1)
+        showcase=benchmark.assign(evidence_role='showcase_only')
+        for frame in [showcase,benchmark.assign(source_collection='real_variable')]:
+            with self.assertRaisesRegex(ValueError,'[Ss]howcase'):
+                evaluate.evaluate_frame(frame,['A','B'])
+            with self.assertRaisesRegex(ValueError,'[Ss]howcase'):
+                evaluate.compare_arms(benchmark,frame,['A','B'])
+            with self.assertRaisesRegex(ValueError,'[Ss]howcase'):
+                evaluate.compare_arms(frame,benchmark,['A','B'])
+        with self.assertRaisesRegex(ValueError,'accuracy is invalid'):
+            evaluate.evaluate_frame(benchmark.assign(accuracy_valid=False),['A','B'])
 
     def test_reference_payload_limit_order_and_plain_arm_unchanged(self):
         url='data:image/png;base64,AAAA'
@@ -161,7 +190,7 @@ class FrozenArtifactTests(unittest.TestCase):
 
     def test_declared_jobs_cover_all_arm_indexes_and_option_labels(self):
         config=self.config
-        for job in runbook.selected_jobs(config,True):
+        for job in runbook.selected_jobs(config):
             root=runbook.REPO/job['root']
             rows=pd.read_csv(root/job['index'],keep_default_na=False)
             self.assertEqual(len(rows),job['n_rows'])
@@ -172,21 +201,91 @@ class FrozenArtifactTests(unittest.TestCase):
             self.assertEqual(job['question'],config['questions'][job['kind']][job['paraphrase']-1])
             if job['role']=='time_placebo':
                 self.assertFalse(job['accuracy_valid']);self.assertFalse(job['expected_class_map'])
-            if job['optional_reference']:
-                self.assertIsNotNone(job['reference_image']);self.assertIsNotNone(job['context_file'])
+            self.assertNotEqual(job['arm'],'references')
+            self.assertFalse(job.get('reference_image'))
+            if job['role']=='showcase':
+                self.assertEqual(job['evidence_role'],'showcase_only')
+                self.assertFalse(job['accuracy_valid'])
+                self.assertTrue(rows.evidence_role.eq('showcase_only').all())
+                self.assertTrue(rows.accuracy_valid.eq(False).all())
         self.assertEqual(config['call_budget']['default'],prepare.estimate(config['jobs']))
-        self.assertEqual(config['call_budget']['with_references'],prepare.estimate(config['jobs'],True))
+        budget=config['call_budget']['default']
+        self.assertEqual(budget['jobs'],21)
+        self.assertEqual(budget['prediction_calls'],8900)
+        self.assertEqual(budget['job_parity_calls']+budget['global_parity_calls'],920)
+        self.assertEqual(budget['total_decide_calls'],9820)
+        self.assertLess(budget['total_decide_calls'],config['fresh_call_cap'])
+        self.assertEqual(set(config['call_budget']),{'default'})
 
     def test_style_parents_and_market_synthetic_separation(self):
         a,b=self.config['styles']
-        self.assertEqual(a['origin_counts'],{'market':200})
-        self.assertEqual(b['origin_counts'],{'market':150,'synthetic':50})
+        self.assertEqual(a['origin_counts'],{'market':100})
+        self.assertEqual(b['origin_counts'],{'synthetic':100})
         for group in [a,b]:
-            self.assertEqual(len(set(group['ids'])),200)
+            self.assertEqual(len(set(group['ids'])),100)
             self.assertEqual(group['styles'],['candle','ohlc','line'])
-        refs=json.loads((EXP/'shared/references/provenance.json').read_text())
-        self.assertTrue(all(row['split']=='train' for row in refs['candles']))
-        self.assertEqual(len(refs['patterns']),7)
+
+        for name in ['candles','patterns']:
+            rows=pd.read_csv(runbook.REPO/next(c['root']+'/'+c['index'] for c in self.config['collections']
+                             if c['name']==name+'_style_candle'),keep_default_na=False)
+            if name=='candles':
+                self.assertTrue(rows.split.eq('test').all())
+            else:
+                self.assertTrue(rows.is_clean.eq(True).all())
+                self.assertTrue(rows.template_id.is_unique)
+
+    def test_secondary_jobs_use_only_frozen_hundred_chart_subsets(self):
+        config=self.config
+        for job in config['jobs']:
+            if job['role'] in ['primary','showcase']:
+                self.assertEqual(job['paraphrase'],1)
+            elif job['role']=='paraphrase':
+                self.assertEqual(job['n_rows'],100)
+                self.assertEqual(job['paraphrase'],2)
+                self.assertIn(job['arm'],['zero_shot','definitions'])
+            else:
+                self.assertEqual(job['n_rows'],100)
+                self.assertEqual(job['paraphrase'],1)
+                self.assertEqual(job['arm'],'zero_shot')
+        for collection in config['collections']:
+            if collection['role'] not in ['paraphrase','alias','time_placebo']:
+                continue
+            rows=pd.read_csv(runbook.REPO/collection['root']/collection['index'],keep_default_na=False)
+            main=next(c for c in config['collections'] if c['name']==rows.source_collection.iloc[0])
+            originals=pd.read_csv(runbook.REPO/main['root']/main['index'],keep_default_na=False)
+            self.assertTrue(set(rows.id)<=set(originals.id))
+            self.assertEqual(len(rows.id.unique()),100)
+        for subset in config['paraphrase_subsets']+config['control_subsets']:
+            self.assertEqual(subset['n_rows'],100)
+            self.assertEqual(len(set(subset['ids'])),100)
+
+    def test_real_showcase_and_reported_detector_agreement(self):
+        config=self.config
+        self.assertEqual(config['real_showcase']['n_parents'],150)
+        self.assertFalse(config['real_showcase']['accuracy_valid'])
+        real=[c for c in config['collections'] if c['name'].startswith('real_')]
+        self.assertEqual(len(real),2)
+        ids=[]
+        for collection in real:
+            self.assertEqual(collection['role'],'showcase')
+            self.assertEqual(collection['n_rows'],150)
+            rows=pd.read_csv(runbook.REPO/collection['root']/collection['index'],keep_default_na=False)
+            ids.append(set(rows.id))
+            with self.assertRaisesRegex(ValueError,'Showcase-only'):
+                evaluate.evaluate_frame(rows,[])
+        self.assertEqual(ids[0],ids[1])
+        result=config['reported_results']['detector_agreement']
+        table=pd.read_csv(runbook.REPO/result['table'],keep_default_na=False)
+        raw=json.loads((runbook.REPO/result['details']).read_text())
+        self.assertEqual(len(table),7)
+        self.assertTrue(table.evidence_type.eq('detector_overlap_not_model_accuracy').all())
+        for row in table.itertuples():
+            self.assertAlmostEqual(row.agreement_jaccard,row.matched/(row.external+row.independent-row.matched))
+            self.assertAlmostEqual(row.agreement_jaccard,raw['classes'][row.label]['positive_jaccard'])
+        self.assertEqual(table[table.label=='None'].decision_unit.iloc[0],'absence-screen window')
+        self.assertEqual(config['reference_arm']['status'],'removed')
+        self.assertFalse(any('/references/' in name for name in config['assets']))
+
 
 
 if __name__=='__main__':unittest.main()
