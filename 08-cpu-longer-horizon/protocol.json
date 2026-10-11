@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "frozen_on": "2026-10-11",
+  "status": "Freeze source and protocol before deriving study outcomes; all historical results exploratory",
+  "purpose": "Bounded CPU screen of longer forecast horizon and additional year history, not JEV/RL or a pattern-detector ablation",
+  "data_cutoff": "2026-09-30",
+  "protected_holdout_start": "2026-10-16",
+  "universe": "All 50 names in the verified Experiment 06 surviving universe; no new acquisition",
+  "cohort": "Actual SPY week-end sessions shared by ticker; require 252 stock and SPY sessions and complete 20-session outcome; no outcome/pattern balancing",
+  "horizons": [
+    5,
+    20
+  ],
+  "target": {
+    "options": [
+      "Up",
+      "Flat",
+      "Down"
+    ],
+    "flat_band": 0.3333333333333333,
+    "volatility_observations": 60,
+    "definition": "Adjusted close[t+h]/close[t]-1; sample std ddof=1 of 60 trailing overlapping h-session returns; Flat strict abs return < sigma/3; equality directional",
+    "convention": "After-close research forecast, no executable entry or net P&L"
+  },
+  "features": {
+    "current": "5 daily bars at full resolution, 20 daily bars at full resolution, 100 daily bars on a 16-position grid; 9 summaries per view",
+    "added_year": "252 daily sessions aggregated to W-FRI OHLCV, partial boundary weeks use only visible bars; 16-position grid and same 9 summaries",
+    "shared_context": "Horizon-specific causal sigma; current SPY 100-session return/std/range; multiscale adds year SPY return/std/range",
+    "forbidden": "Ticker/date/identity, future return, target_date, label, test-derived calibration and named pattern flags"
+  },
+  "test_years": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "test_information_start": "2019-04-01",
+  "train_years": 5,
+  "minimum_train_dates": 104,
+  "purge": "Identical fold rows for both horizons/views: max of both training target dates must precede first test 252-session information_start; annual fixed fits only preceding five calendar years; common longest-history purge",
+  "model": {
+    "class": "StandardScaler -> LogisticRegression",
+    "C": 1.0,
+    "max_iter": 4000,
+    "seed": 83,
+    "class_weight": null,
+    "hyperparameter_search": false
+  },
+  "controls": [
+    "Horizon-specific train-frequency prior",
+    "Uniform with Up-first argmax ties",
+    "Multiscale training labels shuffled as date vectors within identical ticker coverage"
+  ],
+  "uncertainty": {
+    "resamples": 2000,
+    "seed": 83,
+    "blocks": [
+      4,
+      8,
+      12,
+      52
+    ],
+    "primary_block": 8,
+    "method": "Circular moving blocks of retained weekly forecast dates, all tickers together; row-weighted; conditional on fitted predictions; approximate stationarity"
+  },
+  "decision": {
+    "comparisons": [
+      "20:current_history_vs_train_prior",
+      "20:multiscale_history_vs_current_history"
+    ],
+    "marginal_confidence": 0.975,
+    "family": "Bonferroni approximate 5% family across two prespecified CPU decisions",
+    "minimum_positive_years": 5,
+    "longer_horizon_gate": "20-session current model paired Brier reduction vs prior has positive 97.5% primary-block CI and at least 5/7 positive years",
+    "year_view_gate": "20-session multiscale vs current has positive 97.5% primary-block CI, at least 5/7 positive years, and point Brier below its prior",
+    "action": "Passing motivates separately frozen independent confirmation; no automatic GPU operation. Failure is a stopping signal for this fixed numerical design, not proof all models lack information."
+  },
+  "input_sha256": {
+    "06-jev-patterns/shared/results/data_manifest.json": "0f01c1ff972b70167981802046fbc5aaf3ec05897c1240b5688462df8f81539a",
+    "06-jev-patterns/shared/config/universe.json": "89be0d53bdadac79452e6712a4e4fa1025a09e7af5f4124d1f894d67b7ea5c0a",
+    "06-jev-patterns/shared/src/data.py": "e00f9343468f36102196b31f5253d866f63b8c5c17f6f8078a151a7528c4925a",
+    "06-jev-patterns/shared/src/baselines.py": "2789a585f004895873e048b7e70aa0ba6ceab3b96808369b38558cacb1fe7089",
+    "06-jev-patterns/shared/src/evaluate.py": "a92700407a6a0b8b27965d19f10b9e0721aca67fe87ec2526ce033d3cc966f4e",
+    "06-jev-patterns/shared/src/forecast_bridge.py": "07df2563231671414e7b73056021b3acc33e17cb704434ebe2caf88fa426a0ec",
+    "06-jev-patterns/requirements.txt": "d42f8af170fccc201a7dc674803ba9d0f0a1b79896156d79c3b5ea26e598d24d",
+    "research/statistics.py": "46991303a5bf066e41867e9d12dbd0d965c3f38231ecad28208f52818cf64d74",
+    "05-cpu-walkforward/protocol.json": "93eb54750f504e2c598f8420aa9af3997d789226eef20cdd16e762fe1df9b6ee",
+    "05-cpu-walkforward/results/frozen_model_manifest.json": "3db1664c9ad3f15a1e3112a55fba108941a9e4893ef3959f10a838c20e8c634c",
+    "08-cpu-longer-horizon/src/study.py": "5e86ce7e0c8463b222eb6119fd2eda6c24ef6001d2f894ee0adbf606f5551cef"
+  }
+}

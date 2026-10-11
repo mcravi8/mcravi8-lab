@@ -42,6 +42,8 @@ jobs:
         run: python -m unittest discover -s 06-jev-patterns/tests -v
       - name: Direct pattern-guided forecast pilot (CPU fixtures only)
         run: python -m unittest discover -s 07-jev-pattern-direction/tests -v
+      - name: Longer-horizon causal features and CPU forecast study
+        run: python -m unittest discover -s 08-cpu-longer-horizon/tests -v
       - name: Verify isolated Linux scorer without GPU dependencies
         run: |
           python -m venv "$RUNNER_TEMP/jev-scorer"
